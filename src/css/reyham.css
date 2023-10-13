@@ -1,0 +1,36 @@
+
+
+
+.input-group div{
+    width: 100%;
+}
+.MuiInputBase-root input{
+    padding:8px 14px !important;
+}
+.MuiFormControl-root label{
+    line-height: .8rem;
+    color:rgba(0,0,0,.5);
+    font-family: vazir;
+    font-size: 12px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+.holder{
+    display: flex;
+
+}
+.collapseMenu{
+    margin: auto 20px auto -20px;
+}
+.sidePart{
+    display: block;
+}
+.mainPart{
+    display: block;
+}
+@media(max-width:700px){
+    .hideMobile{
+        display: none !important;
+    }
+}
