@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './css/App.css';
-import './css/reyham.css';
 import './css/fontAwesome.css';
+import './css/salimi.css';
+import './css/reyham.css';
 
 import {
   BrowserRouter as Router,
@@ -19,13 +21,22 @@ import Cookies from 'universal-cookie';
 import errortrans from './translate/error';
 import LayoutLogin from './components/LayoutLogin';
 import env from './env';
+import UserDetailHolder from './modules/Users/UserData/UserDetailHolder';
+import Orders from './pages/Orders';
+import OrderDetailHolder from './modules/Orders/OrderData/OrderDetailHolder';
+import Profile from './pages/Profile';
 
 const cookies = new Cookies();
+const style = document.getElementById('style-direction');
 var lang = JSON.parse(localStorage.getItem(env.cookieLang));
-
+if (lang.dir === 'rtl') {
+  style.href = '/css/rtl.css';
+} 
 if(!lang){
   localStorage.setItem(env.cookieLang,JSON.stringify(
-    {lang:errortrans.defaultLang}));
+    { lang:errortrans.defaultLang,
+      dir:errortrans.defaultDir,
+      color:errortrans.defaultColor}));
   lang = JSON.parse(localStorage.getItem(env.cookieLang));
 }
 
@@ -34,16 +45,19 @@ root.render(
     <Router>
     {cookies.get(env.cookieName)?
       <Routes>
-        <Route path="/" element={<Layout><Dashboard/></Layout>}/>
-        <Route path="/dashboard" element={<Layout><Dashboard/></Layout>}/>
-        
-      </Routes>:
-      <Routes>
-        <Route path="/" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>
-        <Route path="/:login" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>
-
+        <Route path="/" element={<Layout><Dashboard lang={lang}/></Layout>}/>
+        <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
+        <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
         <Route path="/users" element={<Layout><Users lang={lang}/></Layout>}/>
-      </Routes>}
+        <Route path="/users/detail/:userId" element={<Layout><UserDetailHolder lang={lang}/></Layout>}/>
+
+        <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
+        <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
+      </Routes>:
+        <Routes>
+          <Route path="/" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>
+          <Route path="/:auth" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>
+        </Routes>}
      </Router>
 );
 

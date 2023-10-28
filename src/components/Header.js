@@ -15,7 +15,8 @@ const Header = (props)=>{
        setTimeout(()=>(document.location.reload(),500))
     }
     return(
-    <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+    <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" 
+      style={{direction:props.lang.dir}} id="navbarBlur" data-scroll="true">
         <div className="container-fluid py-1 px-3">
         <nav className="collapseMenu nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="#" className="nav-link text-body p-0" id="iconNavbarSidenav"
@@ -34,15 +35,17 @@ const Header = (props)=>{
             </ol>
           </nav>
           <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            <div className="ms-md-auto pe-md-3 d-flex align-items-center hideMobile">
+            <div className={`${props.lang.dir==="ltr"?"ms-md-auto":"ms-md-right"} 
+              pe-md-3 d-flex align-items-center hideMobile`}>
               <div className="input-group input-group-outline">
-                <label className="form-label">Type here...</label>
+                <label className="form-label">{errortrans.typeHere[lang]}</label>
                 <input type="text" className="form-control"/>
               </div>
             </div>
             <ul className="navbar-nav  justify-content-end">
               <li className="nav-item d-flex align-items-center hideMobile">
-                <a className="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://dkmehr.com">Support</a>
+                <a className="btn btn-outline-primary btn-sm mb-0 me-3" 
+                  target="_blank" href="https://dkmehr.com">{errortrans.support[lang]}</a>
               </li>
               
               <li className="nav-item d-flex align-items-center">

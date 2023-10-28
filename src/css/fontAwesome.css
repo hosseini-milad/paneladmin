@@ -68,13 +68,16 @@
     font-weight: normal;
     font-style: normal;
   }
-  .fa, .far, .fas {
+  .fa, .far, .fas ,.fa-solid, .fa-brands, .fa-regular{
     font-family: "FontAwesome";
   font-style: normal;
     margin: auto 5px;
   }
-  .mini-size{
+  .mini-size , .fa-sm{
     font-size: 12px;
+  }
+  .fa-2xl{
+    font-size: 40px;
   }
   .uploadSize{
     font-size: large;
@@ -92,6 +95,16 @@
   .blackIcon{
     font-size: 20px;
     color: #111;
+  }
+  
+  .tableIcon{
+    font-size: 18px;
+    margin: auto 10px;
+    color: #333;
+  }
+  .tabIcon{
+    font-size: 16px;
+    margin: auto 0px;
   }
 
   /* makes the font 33% larger relative to the icon container */
@@ -443,6 +456,9 @@
     content: "\f03e";
   }
   .fa-pencil:before {
+    content: "\f040";
+  }
+  .fa-pen:before {
     content: "\f040";
   }
   .fa-map-marker:before {

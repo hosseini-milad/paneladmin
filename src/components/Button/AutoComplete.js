@@ -6,9 +6,11 @@ import createCache from "@emotion/cache";
 import CircularProgress from '@mui/material/CircularProgress';
 import { useState } from 'react';
 
-function StyleInput(props){
-    const options=[{"title":"Test1"},{"title":"Test2"}]
-    const [filterItems,setFilterItems] = useState([])
+function StyleSelect(props){
+    const testOptions=props.options
+    
+    console.log(testOptions)
+    const [filterItems,setFilterItems] = useState(testOptions)
     
     const [loading,setLoading] = useState("1")
     const [search,setSearch] = useState('')
@@ -17,33 +19,26 @@ function StyleInput(props){
         key: "muirtl",
         stylisPlugins: [stylisRTLPlugin]
       });
-    const searchItem=(searchPhrase)=>{
-        setSearch(searchPhrase)
-    }
+    const cacheltR = createCache({
+        key: "muiltr",
+        stylisPlugins: []
+      });
     return(
-        <CacheProvider value={cacheRtl}>{/*props.direction==="rtl"?cacheRtl:""}>*/  }
+        <CacheProvider value={props.direction==="rtl"?cacheRtl:cacheltR}>
             <Autocomplete
-            disablePortal
-            getOptionLabel={(option) => option.title}
+            getOptionLabel={(option) => (option&&option[props.label])?
+                option[props.label]:option}
             //className={stylisRTLPlugin}
-            options={filterItems||[]}
+            options={testOptions||[]}
             className={props.class}
-            onChange={(e,value)=>props.setItem(value)}
-            renderInput={(params) => 
-            <TextField {...params} label="شرح کالا" 
-                InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                    <>
-                        {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                        {params.InputProps.endAdornment}
-                    </>
-                    ),
-                }}
-                onChange={(e)=>searchItem(e.target.value)}
-            />}
+            style={{minWidth:"200px"}}
+            onChange={(e,value)=>props.action(value)}
+            renderInput={(params) => (
+            <TextField {...params} label={props.title}
+                onChange={(e)=>props.textChange(e.target.value)}
+            />)}
             />
         </CacheProvider>
     )
 }
-export default StyleInput
+export default StyleSelect

@@ -7,10 +7,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useState } from 'react';
 
 function StyleInput(props){
-    const options=[{"title":"Test1"},{"title":"Test2"}]
-    const [filterItems,setFilterItems] = useState([])
     
-    const [loading,setLoading] = useState("1")
+    const [showPass,setShowPass] = useState(0)
     const [search,setSearch] = useState('')
     const cacheRtl = createCache({
         key: "muirtl",
@@ -20,14 +18,18 @@ function StyleInput(props){
         key: "muiltr",
         stylisPlugins: []
       });
-    const searchItem=(searchPhrase)=>{
-        setSearch(searchPhrase)
-    }
     return(
-        <CacheProvider value={props.direction==="rtl"?cacheRtl:cacheltR}>
+        <CacheProvider value={props.direction==="rtl"?cacheRtl:cacheltR}
+        style={{position:"relative"}}>
             <TextField label={props.title} 
-                onChange={(e)=>searchItem(e.target.value)}
+                className={props.class}
+                onChange={(e)=>props.action(e.target.value)}
+                type={props.password&&!showPass?"password":"text"}
             />
+            {props.password?<i className={`fa ${showPass?"fa-eye-slash":"fa-eye"} 
+            ${props.direction==="rtl"?"showPassRTL":"showPass"}`}
+            onClick={()=>setShowPass(showPass?0:1)}></i>:<></>}
+            
         </CacheProvider>
     )
 }

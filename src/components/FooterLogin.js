@@ -25,7 +25,7 @@ const FooterLogin = (props)=>{
                         <a href="https://dkmehr.com/blog" className="nav-link text-white" target="_blank">Blog</a>
                       </li>
                       <li className="nav-item">
-                        <LanguageSwitcher/>
+                        <LanguageSwitcher theme="dark"/>
                       </li>
                     </ul>
                   </div>

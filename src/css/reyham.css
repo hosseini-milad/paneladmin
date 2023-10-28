@@ -1,8 +1,26 @@
 
-
+.main-pad{
+    padding-bottom: 50px;
+}
+.showPass{
+    position: absolute;
+    right:20px;
+    cursor: pointer;
+    top:5px
+}
+.showPassRTL{
+    position: absolute;
+    left:20px;
+    cursor: pointer;
+    top:5px
+}
 
 .input-group div{
     width: 100%;
+}
+.MuiInputBase-root{
+    padding: 0 !important;
+    min-height: 40px;
 }
 .MuiInputBase-root input{
     padding:8px 14px !important;
@@ -12,6 +30,14 @@
     color:rgba(0,0,0,.5);
     font-family: vazir;
     font-size: 12px;
+    overflow: initial;
+}
+.filterComponent{
+    min-width: 200px;
+}
+.DatePicker input{
+    padding: 7px 0 !important;
+    
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -34,3 +60,134 @@
         display: none !important;
     }
 }
+
+
+
+/*Overide*/
+.statue-div div {
+    margin: 0 8px;
+}
+.page-counter {
+    direction: ltr;
+}
+.user-list td ,.cu-name p{
+    text-align: initial;
+}
+.user-list th:nth-child(2){
+    text-align: initial;
+}
+.cu-avatar img {
+    margin: auto 8px;
+}
+.dense-btn {
+    width: 45%;
+}
+.sub-more-menu{
+    display: inherit;
+}
+.formInput{
+    margin:15px !important;
+}
+.footerFix{
+    position: fixed;
+  bottom: 0;
+}
+.text-white .nav-link{
+    color:#fff !important;
+}
+
+.activeAccordion{
+    background-color: azure;
+}
+.accordion{
+    cursor: pointer;
+}
+.inlineRow{
+    flex-direction: row;
+    justify-content: initial;
+}
+.icon-lg i {
+    top: 20%;
+}
+.me-2 {
+    margin: auto 0.5rem !important;
+}
+.ps__rtl{
+    direction: rtl;
+}
+.ps-4 {
+    padding-right: 1.5rem !important;
+}
+.ms-2 {
+    margin-right: 0.5rem !important;
+}
+.me-3 {
+    margin-left: 1rem !important;
+  }
+  .DatePicker__input{
+    font-size: 15px !important;
+  border: 1px solid silver !important;
+  border-radius: 4px;
+  }
+  .list-container{
+    overflow: initial;
+  }
+  .-top{
+    top: calc(100% + 20px) !important;
+    bottom: auto !important;
+  }
+  .ms-md-right{
+    margin-right: auto !important;
+  }
+  .checkBoxStyle{
+    text-align: center !important;
+  }
+  .sub-avatar-container img {
+    margin: 0 16px;
+    height: 50px;
+    object-fit: contain;
+  }
+  .cu-avatar{
+    position: relative;
+  }
+  .cu-avatar i{
+    position: absolute;
+    right:0;
+    top:0;
+  }
+  .user-statue {
+    gap: 0 40px;
+    flex-wrap: wrap;
+  }
+  .info-post{
+    display: flex;
+    justify-content: space-around;
+  }
+  .info-box {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .checkIcon{
+    color: green;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+  .cancelIcon{
+    color: orangered;
+  }
+  .checkIcon:hover{
+    background-color: green;
+    color: #fff;
+  }
+  .cancelIcon:hover{
+    background-color: orangered;
+  }
+  .cu-info-wrapper img {
+    margin-left: 16px;
+  }

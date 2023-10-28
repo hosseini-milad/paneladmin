@@ -5,17 +5,19 @@ import errortrans from "../translate/error";
 import StyleInput from "../components/Button/Input";
 
 function Login(props){
-    const [loginInfo,setLoginInfo]= useState({});
-    const [error,setError] = useState('')
+    const [user,setUser]= useState('');
+    const [pass,setPass]= useState('');
+    const [error,setError] = useState({errorText:'',errorColor:"brown"})
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     const direction = props.lang?props.lang.dir:errortrans.defaultDir;
     const [showPass,setShowPass] = useState(0)
+    console.log(user)
     const checkLogin=()=>{
         const postOptions={
             method:'post',
             headers: {'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'},
-            body:JSON.stringify(loginInfo)
+            body:JSON.stringify({phone:user,password:pass})
           }
         fetch(env.siteApi + "/auth/login",postOptions, {mode:'cors'})
       .then(res => res.json())
@@ -23,24 +25,25 @@ function Login(props){
         (result) => {
             console.log(result)
             if(result.error){
-                setError(result.error)
-                setTimeout(()=>setError(''),3000)
+                setError({errorText:result.error,
+                  errorColor:"brown"})
+                setTimeout(()=>setError({errorText:'',
+                  errorColor:"brown"}),3000)
             }
             else{
-                const accessLevel = result.access
+                const accessLevel = result.user.access
                 const cookies = new Cookies();
-                cookies.set('fiin-login', {
-                    userId:result._id,
-                    access:result.access,
+                cookies.set(env.cookieName, {
+                    userId:result.user._id,
+                    access:result.user.access,
                     level:accessLevel==="manager"?10:accessLevel==="agency"?5:
                     accessLevel==="agent"?4:accessLevel==="customer"?2:1,
-                    name:result.cName+" "+result.sName,
-                    date:result.date,
-                    token:result.token,
-                    username:accessLevel==="agent"?(result.cName+" "+result.sName):
-                    accessLevel==="agency"?result.nameCompany:result.email
+                    name:result.user.cName+" "+result.user.sName,
+                    date:result.user.date,
+                    token:result.user.token,
+                    username:(result.user.cName+" "+result.sName)
                 }, { path: '/' });
-                window.location.reload()
+                window.location.href=("/")
             }
             
         },
@@ -53,7 +56,7 @@ function Login(props){
             method:'post',
             headers: {'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'},
-            body:JSON.stringify({email:loginInfo.username})
+            body:JSON.stringify({email:user})
           }
         fetch(env.siteApi + "/auth/forget",postOptions, {mode:'cors'})
       .then(res => res.json())
@@ -83,49 +86,31 @@ function Login(props){
                   <div className="card z-index-0 fadeIn3 fadeInBottom">
                     <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                       <div className="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                        <h4 className="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
-                        {/*<div className="row mt-3">
-                          <div className="col-2 text-center ms-auto">
-                            <a className="btn btn-link px-3" href="javascript:;">
-                              <i className="fa fa-facebook text-white text-lg"></i>
-                            </a>
-                          </div>
-                          <div className="col-2 text-center px-1">
-                            <a className="btn btn-link px-3" href="javascript:;">
-                              <i className="fa fa-github text-white text-lg"></i>
-                            </a>
-                          </div>
-                          <div className="col-2 text-center me-auto">
-                            <a className="btn btn-link px-3" href="javascript:;">
-                              <i className="fa fa-google text-white text-lg"></i>
-                            </a>
-                          </div>
-                        </div>*/}
+                        <h4 className="text-white font-weight-bolder text-center mt-2 mb-0">{errortrans.signIn[lang]}</h4>
                       </div>
                     </div>
                     <div className="card-body">
                       <form role="form" className="text-start">
                         <div className="input-group input-group-outline my-3">
                           <StyleInput title={errortrans.email[lang]} 
-                            class="form-control"
-                            direction={direction}/>
+                            direction={direction} action={setUser}/>
                         </div>
                         <div className="input-group input-group-outline mb-3">
                           <StyleInput title={errortrans.password[lang]} 
-                            class="form-control"
-                            direction={direction}/>
+                            direction={direction} action={setPass} password="1"/>
                         </div>
                         <div className="form-check form-switch d-flex align-items-center mb-3">
                           <input className="form-check-input" type="checkbox" id="rememberMe"/>
                           <label className="form-check-label mb-0 ms-3" htmlFor="rememberMe">{errortrans.rememberMe[lang]}</label>
                         </div>
+                        <small style={{color:error.errorColor}}>{error.errorText}</small>
                         <div className="text-center">
                           <button type="button" className="btn bg-gradient-primary w-100 my-4 mb-2"
-                          onClick={()=>window.location.href="/users"}>{errortrans.signIn[lang]}</button>
+                          onClick={checkLogin}>{errortrans.signIn[lang]}</button>
                         </div>
                         <p className="text-sm text-center">
                         {errortrans.forgetPassword[lang]}
-                          <a href="../pages/sign-up.html" className="text-primary text-gradient font-weight-bold"> {errortrans.remember[lang]} </a>
+                          <a href="#" className="text-primary text-gradient font-weight-bold"> {errortrans.remember[lang]} </a>
                         </p>
                       </form>
                     </div>

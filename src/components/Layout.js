@@ -8,12 +8,13 @@ const lang = JSON.parse(localStorage.getItem('panel-lang'));
 function Layout(props){
     const [pinMenu,setPinMenu] = useState(0)
     return(
-        <div className={pinMenu?"holder g-sidenav-show  bg-gray-200 g-sidenav-pinned":"holder g-sidenav-show  bg-gray-200"}>
-            <SideBar setPinMenu={setPinMenu}/>
-            <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps ps--active-y">
-                <Header lang={lang} setPinMenu={setPinMenu} pinMenu={pinMenu}/>
+        <div className={`holder g-sidenav-show bg-gray-200 ${pinMenu?" g-sidenav-pinned":""}
+        ${lang.dir==="rtl"?" rtl":""}`}>
+            <SideBar setPinMenu={setPinMenu} lang={lang}/>
+            <main className="main-content position-relative h-100 border-radius-lg main-pad">{/* ps ps--active-y">*/}
+                <Header lang={lang} setPinMenu={setPinMenu} pinMenu={pinMenu} />
                 {props.children}
-                <Footer />
+                <Footer class="footer py-2 w-100"/>
             </main>
         </div>
     )

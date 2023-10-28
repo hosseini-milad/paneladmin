@@ -3,7 +3,7 @@ import LanguageSwitcher from "./LanguageSwitcher"
 const Footer = (props)=>{
     
     return(
-        <footer className="footer position-absolute bottom-2 py-2 w-100 text-white">
+        <footer className={props.class}>
               <div className="container">
                 <div className="row align-items-center justify-content-lg-between">
                   <div className="col-12 col-md-6 my-auto">
@@ -25,7 +25,7 @@ const Footer = (props)=>{
                         <a href="https://dkmehr.com/blog" className="nav-link" target="_blank">Blog</a>
                       </li>
                       <li className="nav-item">
-                        <LanguageSwitcher/>
+                        <LanguageSwitcher theme="dark"/>
                       </li>
                     </ul>
                   </div>
