@@ -1,9 +1,9 @@
 import { useState } from "react"
-import OrderTableRow from "./OrderTableRow"
 import tabletrans from "../../translate/tables"
+import ServiceTableRow from "./ServiceTableRow";
 
-function OrderTable(props){
-  const orders = props.orders
+function ServiceTable(props){
+  const service = props.service
   const lang=props.lang;
   const [detail,showDetail] = useState(-1)
     return(
@@ -13,15 +13,15 @@ function OrderTable(props){
           <th className="checkBoxStyle">
               <input type="checkbox" name="" id=""/></th>
             <th>
-              <p>{tabletrans.order[lang]}</p>
+              <p>{tabletrans.kind[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.customer[lang]}</p>
+              <p>{tabletrans.title[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.date[lang]}</p>
+              <p>{tabletrans.code[lang]}</p>
               <i></i>
             </th>
             <th>
@@ -45,9 +45,9 @@ function OrderTable(props){
           </tr>
         </thead>
         <tbody>
-          {orders&&orders.filter?orders.filter.map((order,i)=>(
-            <OrderTableRow detail={detail} showDetail={showDetail} 
-              order={order} index={i} key={i} lang={lang}/>
+          {service&&service.filter?service.filter.map((service,i)=>(
+            <ServiceTableRow detail={detail} showDetail={showDetail} 
+            service={service} index={i} key={i} lang={lang}/>
           )):''}
           
         </tbody>
@@ -55,4 +55,4 @@ function OrderTable(props){
 
     )
 }
-export default OrderTable
+export default ServiceTable

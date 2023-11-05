@@ -1,12 +1,18 @@
 const env={
     //siteApi:'http://localhost:4000/api',
+    //siteApi:'https://panel.mehrgaz.com/api',
     siteApi:'https://orderadmin.deleves.com/api',
     
     //siteApiUrl:'http://localhost:4000',
+    //siteApiUrl:'https://panel.mehrgaz.com',
     siteApiUrl:'https://orderadmin.deleves.com',
 
     cookieName:'panel-login',
+    //cookieName:'mehr-login',
+    
     cookieLang:'panel-lang',
+    //cookieLang:'mehr-lang',
+
     loader:<img className="imgLoader" src="/img/loaderPanel.gif"/>,
 }
 export function jalali_to_gregorian(jy, jm, jd) {
@@ -63,5 +69,18 @@ export function PriceDiscount(priceText,count,discountText){
     var priceTemp = normalPriceCount(rawPrice*parseInt(count)*(100-rawDiscount)/100)
     return((priceTemp?priceTemp.toString().split('.')[0]:""))
   }
+export function PageInfoFunction(orderInfo,filters){
+  var totalPage =orderInfo.size?parseInt(parseInt(orderInfo.size)/
+  parseInt(filters.pageSize?filters.pageSize:"10")):0
+  var currentPage =filters.offset?filters.offset:0
+  if(currentPage>totalPage)currentPage=0
+  return({
+    show:true,
+    totalPage:totalPage,
+    currentPage:currentPage,
+    allowNext:currentPage>0?true:false,
+    allowPre:currentPage==totalPage?false:true
+  })
+}
   
 export default env

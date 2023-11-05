@@ -1,33 +1,38 @@
 import { useState } from "react"
 
-function UserTableRow(){
+function UserTableRow(props){ 
   const [openOption,setOpenOption] = useState(0)
+  const [checkState,setCheckState] = useState(false)
+  const activeAcc = props.index===props.detail
+  const user=props.user
   console.log(openOption)
     return(
         <tr>
-            <td><input type="checkbox" name="" id=""/></td>
+            <td className="checkBoxStyle">
+              <input type="checkbox" name="" id="" checked={checkState}
+              onChange={(e)=>setCheckState(checkState?false:true)}/></td>
             <td>
               <div className="cu-avatar">
-              <i className="tableIcon fas fa-user"></i>
+              <img src="/img/avatar/avatar_1.jpg" alt="avatar"/>
                 <div className="cu-name">
-                  <p className="name">Jayvion Simon</p>
-                  <p className="email">benny89@yahoo.com</p>
+                  <p className="name">{user.cName}</p>
+                  <p className="email">کد مشتری: {user.cCode}</p>
                 </div>
               </div>
             </td>
             <td>
               <div className="cu-phone">
-                <p className="phone-num">955-439-2578</p>
+                <p className="phone-num">{user.phone}</p>
               </div>
             </td>
             <td>
               <div className="cu-company">
-                <p>Durgan - Murazik</p>
+                <p>{user.mobile}</p>
               </div>
             </td>
             <td>
               <div className="cu-role">
-                <p>Account Manager</p>
+                <p>{user.access}</p>
               </div>
             </td>
             <td>
@@ -38,7 +43,7 @@ function UserTableRow(){
             <td>
               <div className="more-btn">
                 <i className="tableIcon fas fa-edit" onClick={()=>
-                  window.location.href="/users/detail/123"}></i>
+                  window.location.href="/users/detail/"+user._id}></i>
                 <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i>
               </div>

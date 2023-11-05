@@ -25,13 +25,15 @@ import UserDetailHolder from './modules/Users/UserData/UserDetailHolder';
 import Orders from './pages/Orders';
 import OrderDetailHolder from './modules/Orders/OrderData/OrderDetailHolder';
 import Profile from './pages/Profile';
+import Services from './pages/Services';
+import ServiceDetailHolder from './modules/Service/ServiceData/ServiceDetailHolder';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
 var lang = JSON.parse(localStorage.getItem(env.cookieLang));
-if (lang.dir === 'rtl') {
+/*if (lang.dir === 'rtl') {
   style.href = '/css/rtl.css';
-} 
+} */
 if(!lang){
   localStorage.setItem(env.cookieLang,JSON.stringify(
     { lang:errortrans.defaultLang,
@@ -53,6 +55,8 @@ root.render(
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/services" element={<Layout><Services lang={lang}/></Layout>}/>
+        <Route path="/services/detail/:orderId" element={<Layout><ServiceDetailHolder lang={lang}/></Layout>}/>
       </Routes>:
         <Routes>
           <Route path="/" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>

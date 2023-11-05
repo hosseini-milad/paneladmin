@@ -4,7 +4,7 @@ import StyleDatePicker from "../../../components/Button/DatePicker"
 import tabletrans from "../../../translate/tables"
 import { useState } from "react"
 
-function OrderFilters(props){
+function ServiceFilters(props){
     return(
         <div className="user-filter">
             
@@ -52,4 +52,4 @@ function OrderFilters(props){
         </div>
     )
 }
-export default OrderFilters
+export default ServiceFilters

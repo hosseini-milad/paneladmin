@@ -23,12 +23,15 @@ function StyleInput(props){
         style={{position:"relative"}}>
             <TextField label={props.title} 
                 className={props.class}
+                defaultValue={props.defaultValue}
                 onChange={(e)=>props.action(e.target.value)}
                 type={props.password&&!showPass?"password":"text"}
             />
             {props.password?<i className={`fa ${showPass?"fa-eye-slash":"fa-eye"} 
             ${props.direction==="rtl"?"showPassRTL":"showPass"}`}
             onClick={()=>setShowPass(showPass?0:1)}></i>:<></>}
+            {props.icon?<div className={props.direction==="rtl"?"showPassRTL":"showPass"}>
+                {props.icon}</div>:<></>}
             
         </CacheProvider>
     )

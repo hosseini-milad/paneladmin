@@ -2,7 +2,7 @@ import { PriceDiscount, normalPriceCount, rxFindCount } from "../../../env"
 import tabletrans from "../../../translate/tables"
 import OrderQuickDetail from "../OrderComponent/OrderQuickDetail"
 
-function OrderDetails(props){
+function ServiceDetails(props){
     const detail=props.data
     const order=props.content
     return(
@@ -31,4 +31,4 @@ function OrderDetails(props){
         </div>
     )
 }
-export default OrderDetails
+export default ServiceDetails

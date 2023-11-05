@@ -8,8 +8,6 @@ import { useState } from 'react';
 
 function StyleSelect(props){
     const testOptions=props.options
-    
-    console.log(testOptions)
     const [filterItems,setFilterItems] = useState(testOptions)
     
     const [loading,setLoading] = useState("1")

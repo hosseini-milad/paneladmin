@@ -2,11 +2,21 @@ import StyleInput from "../../../components/Button/Input"
 import StyleSelect from "../../../components/Button/AutoComplete"
 
 function UserFilters(props){
+    console.log(props.options)
     return(
         <div className="user-filter">
-            <StyleSelect title={"Role"} class="filterComponent" direction={props.lang.dir}/>
+            <StyleSelect title={"Role"} class="filterComponent" direction={props.lang.dir}
+            options={props.options} 
+            action={(e)=>props.setFilters(prevState => ({
+              ...prevState,
+              access:e
+            }))}/>
           <div className="serach-input">
-            <StyleInput title={"Search..."} direction={props.lang.dir} />
+            <StyleInput title={"Customer"} direction={props.lang.dir} 
+            action={(e)=>(e.length>3||e.length===0)&&props.setFilters(prevState => ({
+              ...prevState,
+              customer:e
+            }))}/>
             <i className="tableIcon fas fa-ellipsis-v"></i>
           </div>
           <div className="option-sub">

@@ -7,6 +7,18 @@ const tabletrans ={
         english: "Name",
         persian: "نام"
     },
+    phoneNumber:{
+        english: "Phone Number",
+        persian: "شماره تماس"
+    },
+    company:{
+        english: "Company",
+        persian: "شرکت"
+    },
+    role:{
+        english: "Role",
+        persian: "نقش"
+    },
     date:{
         english: "Date",
         persian: "تاریخ"
@@ -42,6 +54,14 @@ const tabletrans ={
     print:{
         english: "Print",
         persian: "چاپ"
+    },
+    addNew:{
+        english: "Add New",
+        persian: "افزودن"
+    },
+    service:{
+        english: "Service",
+        persian: "خدمات"
     },
     edit:{
         english: "Edit",
@@ -92,6 +112,52 @@ const tabletrans ={
     lensSize:{
         english:"Lens Size",
         persian:"سایز لنز"
+    },
+    rowsPerPage:{
+        english:"Rows per page: ",
+        persian:"تعداد در صفحه: "
+    },
+    of:{
+        english:" Of ",
+        persian:"از"
+    },
+    
+    account:{
+        english:"Account",
+        persian:"پروفایل کاربری"
+    },
+    general:{
+        english:"General",
+        persian:"عمومی"
+    },
+    billing:{
+        english:"Billing",
+        persian:"پرداخت"
+    },
+    notification:{
+        english:"Notification",
+        persian:"هشدارها"
+    },
+    socialLink:{
+        english:"Social Links",
+        persian:"شبکه های اجتماعی"
+    },
+    security:{
+        english:"Security",
+        persian:"امنیت"
+    },
+
+    kind:{
+        english:"Kind",
+        persian:"نوع"
+    },
+    title:{
+        english:"Title",
+        persian:"عنوان"
+    },
+    code:{
+        english:"Code",
+        persian:"کد"
     },
 
 }

@@ -7,7 +7,7 @@ function LayoutLogin(props){
     
     return(
         <>
-            <HeaderLogin lang={lang}/>
+            {/*<HeaderLogin lang={lang}/>*/}
             {props.children}
             <Footer class="footer py-2 w-100 text-white footerFix"/>
         </>

@@ -5,18 +5,17 @@ import Status from "./Status"
 
 function StatusBar(props){
   const lang = props.lang
-  const [content,setContent] = useState('')
+  const content = props.status
   const token=props.token
-  useEffect(() => {
-    const body={
-    }
+  /*useEffect(() => {
     const postOptions={
         method:'post',
         headers: {'Content-Type': 'application/json',
         "x-access-token":token&&token.token,"userId":token&&token.userId},
-        body:JSON.stringify(body)
+        body:JSON.stringify({filters:props.filters,date:props.filters.date})
       }
-    fetch(env.siteApi + "/panel/order/rxStatus",postOptions)
+      console.log(postOptions)
+   fetch(env.siteApi + "/panel/order/rxStatus",postOptions)
   .then(res => res.json())
   .then(
     (result) => {
@@ -27,12 +26,16 @@ function StatusBar(props){
       console.log(error);
     }
     
-)},[])
-  
+)},[props.filters])
+  */
     return(
         <div className="user-statue">
-          {content&&content.status.map((status,i)=>(status.count?
-            <div className="statue-all statue-div" key={i}>
+          {content&&content.map((status,i)=>(status.count?
+            <div className="statue-all statue-div" key={i} 
+              onClick={()=>props.setFilters(prevState => ({
+                ...prevState,
+                status:status.status==="all"?"":status.status
+              }))}>
               <p>{statustrans[status.status][lang]}</p>
               <Status status={status.status} text={status.count} lang={lang}/>
             </div>:<React.Fragment key={i}></React.Fragment>

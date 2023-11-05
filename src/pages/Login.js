@@ -31,17 +31,18 @@ function Login(props){
                   errorColor:"brown"}),3000)
             }
             else{
-                const accessLevel = result.user.access
+              var user = result.user?result.user:result
+                const accessLevel = user.access
                 const cookies = new Cookies();
                 cookies.set(env.cookieName, {
-                    userId:result.user._id,
-                    access:result.user.access,
+                    userId:user._id,
+                    access:user.access,
                     level:accessLevel==="manager"?10:accessLevel==="agency"?5:
                     accessLevel==="agent"?4:accessLevel==="customer"?2:1,
-                    name:result.user.cName+" "+result.user.sName,
-                    date:result.user.date,
-                    token:result.user.token,
-                    username:(result.user.cName+" "+result.sName)
+                    name:user.cName+" "+user.sName,
+                    date:user.date,
+                    token:user.token,
+                    username:(user.cName+" "+result.sName)
                 }, { path: '/' });
                 window.location.href=("/")
             }

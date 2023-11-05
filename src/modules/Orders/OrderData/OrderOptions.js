@@ -11,7 +11,8 @@ function OrderOptions(props){
     const [editMode,setEditMode]= useState(0)
     const odMain = content.odMain.split(',')
     const osMain = content.osMain.split(',')
-    const frameSize = content.frameSize.split(',')
+    const frameSize = content.frameSize?content.frameSize.split(','):
+    [,,,,,,,,,,,,]
     const [error,setError] = useState({errorText:'',errorColor:"brown"})
     const odOs=rxFindCountSeprate(content)
     const updateData=() => {
@@ -74,7 +75,7 @@ function OrderOptions(props){
       <div class="delivery-info">
         <div class="info-header">
           <p>{tabletrans.lensSize[props.lang]}</p>
-          <i class="fa-solid fa-pen pen"></i>
+          {/*<i class="fa-solid fa-pen pen"></i>*/}
         </div>
         <div class="del-info-wrapper">
           <div class="del-col">
@@ -112,9 +113,9 @@ function OrderOptions(props){
       <div class="delivery-info">
         <div class="info-header">
           <p>Frame Sizes</p>
-          <i class="fa-solid fa-pen pen"></i>
+          {/*<i class="fa-solid fa-pen pen"></i>*/}
         </div>
-        <div class="del-info-wrapper">
+        {frameSize?<div class="del-info-wrapper">
           <div class="del-col">
             <p>HBox</p>
             <p>VBox</p>
@@ -143,24 +144,12 @@ function OrderOptions(props){
             <small>{frameSize[8]?frameSize[8]:'-'}</small>
             <small>{frameSize[9]?frameSize[9]:'-'}</small>
           </div>
-        </div>
+        </div>:<></>}
 
         <div class="info-post">
         <p>Frame Type</p>
         <small>{content.frameType}</small>
       </div>
-    </div>
-    <div class="payment-info">
-      <div class="info-header">
-        <p>Frame Type</p>
-        <i class="fa-solid fa-pen pen"></i>
-      </div>
-      <div class="pay-info-wrapper">
-        <p>Phone number</p>
-        <p>**** **** **** 5678</p>
-        <i class="fa-brands fa-cc-mastercard fa-lg"></i>
-      </div>
-
     </div>
     </div>
     )

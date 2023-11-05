@@ -7,8 +7,8 @@ const menutrans =[
         href:"/"
     },
     {
-        english: "Users",
-        persian: "کاربران",
+        english: "Customers",
+        persian: "مدیریت مشتریان",
         index:1,
         icon:"fa-users",
         href:"/users"

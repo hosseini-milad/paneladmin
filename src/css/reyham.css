@@ -1,6 +1,7 @@
 
 .main-pad{
     padding-bottom: 50px;
+    width: 100%;
 }
 .showPass{
     position: absolute;
@@ -24,6 +25,14 @@
 }
 .MuiInputBase-root input{
     padding:8px 14px !important;
+    font-family: vazir !important;
+}
+.MuiAutocomplete-popper div{
+  font-family: vazir !important;
+
+}
+.price-input .MuiFormControl-root{
+  width: 100%;
 }
 .MuiFormControl-root label{
     line-height: .8rem;
@@ -75,6 +84,9 @@
 }
 .user-list th:nth-child(2){
     text-align: initial;
+}
+.user-list img{
+  max-width: 100px;
 }
 .cu-avatar img {
     margin: auto 8px;
@@ -190,4 +202,94 @@
   }
   .cu-info-wrapper img {
     margin-left: 16px;
+  }
+  .sub-order-table {
+    background-color: #f4f6f8;
+    padding:10px;
+  }
+  .sub-row {
+    margin-bottom: 3px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  .disableIcon{
+    color:silver;
+  }
+  .errorHandler{
+    position: fixed;
+    top: 20px;
+    left:0;
+    background-color: rgba(255,255,255,.6);
+    padding: 30px 100px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .add-btn {
+    color:#333;
+    background-color: lightgreen;
+  }
+  .add-btn:hover {
+    border-color: green;
+    background-color: green;
+    color:#fff;
+  }
+  .serviceItem{
+    padding: 0.5rem 0;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .serviceItem .MuiFormControl-root{
+    width: 90%;
+    margin-block: 10px;
+    padding-left:1rem;
+    
+  }
+  .popup-brand {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius:0 0 15px 15px;
+    padding: 5px 10px;
+    margin: auto;
+  }
+
+  dialog {
+    position: fixed;
+    border-radius: 0;
+    display: block;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+    width: 100%;
+    background-color: rgba(0,0,0,.4);
+  }
+  .nav-link:hover{
+    background-color: #333;
+  }
+  .manageIcon{
+    position: absolute;
+    left: 10%;
+    top: 10px;
+    border: 1px solid silver;
+    width: 30px;
+    height: 40px;
+    text-align: center;
+    line-height: 2.5;
+    border-radius: 3px;
+  }
+  .manageIcon:hover{
+    border-color: #333;
+  }
+  .price-input{
+    position: relative;
+  }
+  .price-input .showPassRTL,.price-input .showPass{
+    top:17px;
+  }
+  .sale-input input{
+    margin:auto 5px;
+  }
+  .nav-link:hover{
+    background-color: var(--bs-primary) !important;
   }
