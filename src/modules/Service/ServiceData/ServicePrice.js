@@ -5,6 +5,8 @@ import tabletrans from "../../../translate/tables"
 
 function ServicePrice(props){
   const brand=props.brand
+  var fCode=props.fCode
+  try{fCode =JSON.parse(props.fCode)}catch{}
   var price=props.price
   try{price =JSON.parse(props.price)}catch{}
   var purchase=props.purchase
@@ -21,7 +23,12 @@ function ServicePrice(props){
     
     props.setPurchase(oldPrice)
   }
-  console.log(props.price)
+  const updateFactoryCode=(newPrice)=>{
+    var oldPrice = fCode?fCode:{}
+    oldPrice[brand] = newPrice
+    
+    props.setFCode(oldPrice)
+  }
     return(
         <div className="item-box">
         <div className="item-col">
@@ -35,15 +42,12 @@ function ServicePrice(props){
               action={(e)=>updatePrice(e)} icon={"IRR"}/>
            
           </div>
-          {/*<div className="account-input info-input">
-            <label htmlFor="account">Account</label>
-            <select name="" id="account">
-              <option value="sales">Sales</option>
-              <option value="discount">discount</option>
-              <option value="others">Others</option>
-            </select>
+          <div className="account-input info-input">
+            <StyleInput title={"کد کارخانه"} direction={props.direction}
+              defaultValue={fCode?fCode[brand]:''}
+              action={(e)=>updateFactoryCode(e)}/>
           </div>
-          <div className="description-input info-input">
+          {/*<div className="description-input info-input">
             <label htmlFor="desc">Description</label>
             <textarea name="" id=""></textarea>
           </div>

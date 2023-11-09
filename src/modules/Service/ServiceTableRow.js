@@ -1,12 +1,17 @@
 import React ,{ useState } from "react"
 import Status from "../Components/Status"
 import  { normalPriceCount, rxFindCount } from "../../env"
+import ServiceQuickDetail from "./ServiceComponent/ServiceQuickDetail"
+import { serviceKind } from "../../translate/status"
 
 function ServiceTableRow(props){
   const [openOption,setOpenOption] = useState(0)
   const [checkState,setCheckState] = useState(false)
   const activeAcc = props.index===props.detail
   const service=props.service
+  var serviceName = '';
+  try{serviceName=serviceKind.find(item=>(item.english===service.category))[props.lang]
+  }catch{}
     return(<React.Fragment>
         <tr 
             className={activeAcc?"activeAccordion":"accordion"}>
@@ -15,15 +20,15 @@ function ServiceTableRow(props){
               onChange={(e)=>setCheckState(checkState?false:true)}/></td>
             <td>
                 <div className="order-id">
-                  <p>
-                    {service.category}</p>
+                  <p>{serviceName}</p>
                 </div>
             </td>
             <td>
               <div className="cu-avatar">
                   <img src="/img/avatar/avatar_1.jpg" alt="avatar"/>
                   <div className="cu-name">
-                    <p className="name">{service.title}</p>
+                    <p className="name" onClick={()=>
+                  window.location.href="/services/detail/"+service._id}>{service.title}</p>
                   </div>
                 </div>
               </td>
@@ -53,7 +58,8 @@ function ServiceTableRow(props){
               </td>
               <td>
               <div className="more-btn">
-              
+                <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
+                  onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/services/detail/"+service._id}></i>
                 <i className="tableIcon fas fa-ellipsis-v" 
@@ -71,7 +77,9 @@ function ServiceTableRow(props){
               </div>:<></>}
             </td>
           </tr>
-          
+          {activeAcc?<tr className="sub-order">
+          <td colSpan="9"><ServiceQuickDetail service={service} lang={props.lang}/></td></tr>
+            :<React.Fragment></React.Fragment>}
           </React.Fragment>
     )
 }

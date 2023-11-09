@@ -19,6 +19,7 @@ function ServiceDetailHolder(props){
   const [content,setContent] = useState('')
   const [brand,setBrand] = useState('')
   const [price,setPrice] = useState('')
+  const [fCode,setFCode] = useState('')
   const [purchase,setPurchase] = useState('')
   const [serviceChange,setServiceChange] = useState('')
   useEffect(()=>{
@@ -44,6 +45,7 @@ fetch(env.siteApi + "/panel/product/fetch-service",postOptions)
           errorColor:"green"})
           setContent(result.filter)
           setPrice(result.filter.servicePrice)
+          setFCode(result.filter.factoryCode)
           setPurchase(result.filter.servicePurchase)
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
@@ -61,14 +63,17 @@ fetch(env.siteApi + "/panel/product/fetch-service",postOptions)
       
       var newPurchase = purchase
       try{newPurchase = JSON.parse(purchase)}catch{}
+      var newFCode = fCode
+      try{newFCode = JSON.parse(fCode)}catch{}
       var postOptions={
           method:'post',
           headers: {'Content-Type': 'application/json'},
           body:JSON.stringify({serviceId:url,
             ...serviceChange,servicePrice:newPrice,
-          servicePurchase:newPurchase})
+          servicePurchase:newPurchase,
+          factoryCode:newFCode})
         }
-       
+       console.log(postOptions)
     fetch(env.siteApi + "/panel/product/editService",postOptions)
     .then(res => res.json())
     .then(
@@ -100,7 +105,7 @@ return(
           <h4>{formtrans.newService[lang]}</h4>
         </div>
       {(content||url==='new')?<>
-      <div className="item-box">
+      <div className="item-box" style={{alignItems: "flex-end"}}>
         <ServiceType direction={direction} lang={lang} content={content}
           setServiceChange={setServiceChange} serviceChange={serviceChange}
           setBrand={setBrand} brand={brand}/>
@@ -108,7 +113,9 @@ return(
       </div>
       {/*<ServiceOptions />*/}
       {brand?<ServicePrice brand={brand} direction={direction} lang={lang} 
-        price={price} setPrice={setPrice} purchase={purchase} setPurchase={setPurchase}/>:<></>}
+        price={price} setPrice={setPrice} 
+        purchase={purchase} setPurchase={setPurchase} 
+        fCode={fCode} setFCode={setFCode}/>:<></>}
       </>:env.loader}
       <div className="save-wrapper">
         <div className="save-btn" onClick={saveService}>{formtrans.saveChanges[lang]}</div>

@@ -106,3 +106,26 @@ const statustrans ={
     }
 }
 export default statustrans
+
+export const serviceKind=[
+    {
+        english:'Color',
+        persian:"رنگ",
+    },
+    {
+        english:'Mirror',
+        persian:"میرور"
+    },
+    {
+        english:'Coating',
+        persian:"پوشش"
+    },
+    {
+        english:'Extra',
+        persian:"خدمات جانبی"
+    },
+    {
+        english:'Cylinder',
+        persian:"خدمات سیلندر"
+    }
+]

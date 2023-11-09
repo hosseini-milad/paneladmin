@@ -22,13 +22,9 @@ function Services(props){
       const body={
           offset:filters.offset?filters.offset:"0",
           pageSize:filters.pageSize?filters.pageSize:"10",
-          customer:filters.customer,
-          orderNo:filters.orderNo,
-          status:filters.status,
-          brand:filters.brand,
-          dateFrom:filters.date&&filters.date.dateFrom,
-          dateTo:filters.date&&filters.date.dateTo,
-          access:"manager"
+          category:filters.category,
+          title:filters.title,
+          
       }
       const postOptions={
           method:'post',

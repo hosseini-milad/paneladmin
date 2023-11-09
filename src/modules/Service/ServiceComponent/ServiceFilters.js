@@ -3,35 +3,26 @@ import StyleSelect from "../../../components/Button/AutoComplete"
 import StyleDatePicker from "../../../components/Button/DatePicker"
 import tabletrans from "../../../translate/tables"
 import { useState } from "react"
+import { serviceKind } from "../../../translate/status"
 
 function ServiceFilters(props){
+  console.log(props.filters)
     return(
         <div className="user-filter">
             
           <div className="serach-input">
-            <StyleInput title={"Order No"} direction={props.lang.dir} 
-            action={(e)=>(e.length>7||e.length===0)&&props.setFilters(prevState => ({
+            <StyleSelect title={"Type"} direction={props.lang.dir} 
+            options={serviceKind} label={props.lang.lang}
+            action={(e)=>props.setFilters(prevState => ({
               ...prevState,
-              orderNo:e
+              category:e?e.english:''
             }))}/>
-            <StyleSelect title={"Brand"} direction={props.lang.dir} 
-              options={props.options} 
-              action={(e)=>props.setFilters(prevState => ({
+            <StyleInput title={"title"} direction={props.lang.dir} 
+              action={(e)=>(e.length>7||e.length===0)&&props.setFilters(prevState => ({
                 ...prevState,
-                brand:e
+                title:e
               }))}/>
-            <StyleInput title={"Customer"} direction={props.lang.dir} 
-              action={(e)=>(e.length>3||e.length===0)&&props.setFilters(prevState => ({
-                ...prevState,
-                customer:e
-              }))}/>
-
-            <StyleDatePicker title={tabletrans.selectDate[props.lang.lang]} class="filterComponent" 
-              direction={props.lang.dir} local={props.lang.dir==="ltr"?"en":"fa"}
-              action={(e)=>props.setFilters(prevState => ({
-                ...prevState,
-                date:e
-              }))}/>
+            
 
             <i className="tableIcon fas fa-ellipsis-v"></i>
           </div>
