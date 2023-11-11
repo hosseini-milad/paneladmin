@@ -27,6 +27,8 @@ import OrderDetailHolder from './modules/Orders/OrderData/OrderDetailHolder';
 import Profile from './pages/Profile';
 import Services from './pages/Services';
 import ServiceDetailHolder from './modules/Service/ServiceData/ServiceDetailHolder';
+import Products from './pages/Products';
+import ProductDetailHolder from './modules/Products/ProductData/ProductDetailHolder';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -55,8 +57,11 @@ root.render(
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
+
         <Route path="/services" element={<Layout><Services lang={lang}/></Layout>}/>
         <Route path="/services/detail/:orderId" element={<Layout><ServiceDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/products" element={<Layout><Products lang={lang}/></Layout>}/>
+        <Route path="/products/detail/:orderId" element={<Layout><ProductDetailHolder lang={lang}/></Layout>}/>
       </Routes>:
         <Routes>
           <Route path="/" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>

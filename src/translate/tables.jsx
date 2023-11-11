@@ -63,6 +63,10 @@ const tabletrans ={
         english: "Service",
         persian: "خدمات"
     },
+    products:{
+        english: "Products",
+        persian: "محصولات"
+    },
     edit:{
         english: "Edit",
         persian: "ویرایش"
@@ -158,6 +162,32 @@ const tabletrans ={
     code:{
         english:"Code",
         persian:"کد"
+    },
+
+    /*Products*/
+    details:{
+        english:"Details",
+        persian:"جزئیات"
+    },
+    titleShort:{
+        english:"Title, short description, image...",
+        persian:"تیتر، توضیحات و تصاویر"
+    },
+    createProduct:{
+        english:"Create a new product",
+        persian:"افزدون محصول جدید"
+    },
+    productName:{
+        english:"Product Name",
+        persian:"نام محصول"
+    },
+    productSubDescription:{
+        english:"Sub Description",
+        persian:"توضیحات مختصر"
+    },
+    images:{
+        english:"Product Images",
+        persian:"تصاویر محصول"
     },
 
 }
