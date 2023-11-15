@@ -40,6 +40,8 @@
     font-family: vazir;
     font-size: 12px;
     overflow: initial;
+    background: #fff;
+    padding: 2px 5px;
 }
 .filterComponent{
     min-width: 200px;
@@ -293,4 +295,41 @@
   }
   .navbar-nav .nav-link:hover{
     background-color: var(--bs-primary) !important;
+  }
+  .create-btn-wrapper p { width: 17%;}
+  .halfWidth{
+    width: 41%;
+  }
+  .fullWidth{
+    width: 95%;
+  }
+  .regular-price i, .sale-price i, .tax-active-wrapper i {
+    position: absolute;
+    left: 15px;
+    top: 25px;
+    z-index: 10;
+  }
+
+  .cu-avatar img {
+    height: 50px;
+    object-fit: cover;
+  }
+  .contentTextEditor{
+    padding-top: 50px;
+    width: 100%;
+  }
+  .images{
+    position: relative;
+  }
+  .images img{
+    position: absolute;
+    left: 10px;
+    top:50px;
+    width: calc(100% - 300px);
+    max-height: 200px;
+    object-fit: contain;
+  }
+  .imageHolder{
+    width: 100%;
+    margin-right:30px;
   }

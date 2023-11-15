@@ -89,6 +89,22 @@ menu:[
                 href:"/services",
                 url:"services"
             },
+            {
+                english: "Brands",
+                persian: "برندها",
+                index:1,
+                icon:"fa-bar-chart",
+                href:"/brands",
+                url:"brands"
+            },
+            {
+                english: "Category",
+                persian: "دسته بندی ها",
+                index:1,
+                icon:"fa-bar-chart",
+                href:"/category",
+                url:"category"
+            },
             ]
     }
 ]

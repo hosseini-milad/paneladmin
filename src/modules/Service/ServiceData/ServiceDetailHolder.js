@@ -20,6 +20,7 @@ function ServiceDetailHolder(props){
   const [brand,setBrand] = useState('')
   const [price,setPrice] = useState('')
   const [fCode,setFCode] = useState('')
+  const [brandList,setBrandList] = useState('')
   const [purchase,setPurchase] = useState('')
   const [serviceChange,setServiceChange] = useState('')
   useEffect(()=>{
@@ -46,6 +47,7 @@ fetch(env.siteApi + "/panel/product/fetch-service",postOptions)
           setContent(result.filter)
           setPrice(result.filter.servicePrice)
           setFCode(result.filter.factoryCode)
+          setBrandList(result.brandsData)
           setPurchase(result.filter.servicePurchase)
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
@@ -108,7 +110,7 @@ return(
       <div className="item-box" style={{alignItems: "flex-end"}}>
         <ServiceType direction={direction} lang={lang} content={content}
           setServiceChange={setServiceChange} serviceChange={serviceChange}
-          setBrand={setBrand} brand={brand}/>
+          setBrand={setBrand} brand={brand} brandList={brandList}/>
         <ServiceImages />
       </div>
       {/*<ServiceOptions />*/}

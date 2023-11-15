@@ -47,9 +47,17 @@ const formtrans ={
         english: "Save Changes",
         persian: "ذخیره تغییرات"
     },
+    brandCode:{
+        english: "Brand Code",
+        persian: "کد برند"
+    },
     newService:{
         english: "New Service",
         persian: "خدمات جدید"
+    },
+    catCode:{
+        english: "Category Code",
+        persian: "کد دسته بندی"
     },
     cancel:{
         english: "Cancel",

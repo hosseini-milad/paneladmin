@@ -189,6 +189,65 @@ const tabletrans ={
         english:"Product Images",
         persian:"تصاویر محصول"
     },
+    attributes:{
+        english:"Additional functions and attributes...",
+        persian:"خصوصیات اضافی"
+    },
+
+    propertie:{
+        english:"Properties",
+        persian:"خصوصیات"
+    },
+    pricing:{
+        english:"Pricing",
+        persian:"قیمت"
+    },
+    pricingRelative:{
+        english:"Price related inputs",
+        persian:"قیمت مرتبط"
+    },
+    productCode:{
+        english:"Product Code",
+        persian:"کد محصول"
+    },
+    productSku:{
+        english:"Product SKU",
+        persian:"شناسه محصول"
+    },
+    category:{
+        english:"Category",
+        persian:"دسته بندی"
+    },
+    quantity:{
+        english:"Quantity",
+        persian:"تعداد"
+    },
+    regularPrice:{
+        english:"Regular Price",
+        persian:"قیمت عادی"
+    },
+
+    /*Brands*/
+    brands:{
+        english:"Brands",
+        persian:"برندها"
+    },
+    addBrand:{
+        english:"Add/Edit Brand",
+        persian:"افزدون یا ویرایش برند"
+    },
+    addCategory:{
+        english:"Add/Edit Category",
+        persian:"افزدون یا ویرایش دسته بندی"
+    },
+    description:{
+        english:"Description",
+        persian:"توضیحات"
+    },
+    fullDescription:{
+        english:"Full Description",
+        persian:"توضیحات کامل"
+    },
 
 }
 export default tabletrans

@@ -4,6 +4,7 @@ import menutrans from "../translate/menuAccordion"
 import Cookies from 'universal-cookie';
 import React from "react";
 import tabletrans from "../translate/tables";
+
 import MenuItems from "./MenuItems";
 
 function SideBarAccordion(props){
@@ -32,11 +33,15 @@ function SideBarAccordion(props){
             <div className={`collapse navbar-collapse  w-auto 
                 ${props.lang.dir==="rtl"?" ps ps__rtl ps--active-y":""}`} 
                 id="sidenav-collapse-main">
+            
+        
             <ul className="navbar-nav">
+            
                 {menuList?menuList.menu.map((menu,i)=>(
                     <MenuItems menu={menu} key={i} domain={url}
                     lang={props.lang}/>
                 )):''}
+                
                 
                 <li className="nav-item mt-3">
                     <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
@@ -50,6 +55,13 @@ function SideBarAccordion(props){
                     </a>
                 </li>
             </ul>
+            <div className="ps__rail-y" 
+                style={{top: "23px", height: "188px", right: "0px"}}>
+                <div className="ps__thumb-y" tabIndex="0" 
+                style={{top: "8px", height: "72px"}}>
+
+                </div>
+            </div>
             </div>
             <div className="sidenav-footer position-absolute w-100 bottom-0 ">
             <div className="mx-3">

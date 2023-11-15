@@ -1,13 +1,13 @@
 import React ,{ useState } from "react"
 import Status from "../Components/Status"
-import  env, { normalPriceCount, rxFindCount } from "../../env"
-import ProductQuickDetail from "./ProductComponent/ProductQuickDetail"
+import  { normalPriceCount, rxFindCount } from "../../env"
+import CatQuickDetail from "./CatComponent/CatQuickDetail"
 
-function ProductTableRow(props){
+function CatTableRow(props){
   const [openOption,setOpenOption] = useState(0)
   const [checkState,setCheckState] = useState(false)
   const activeAcc = props.index===props.detail
-  const product=props.product
+  const cat=props.cat
     return(<React.Fragment>
         <tr 
             className={activeAcc?"activeAccordion":"accordion"}>
@@ -17,48 +17,47 @@ function ProductTableRow(props){
             <td>
                 <div className="order-id">
                   <p onClick={()=> window.location.href=
-                    "/orders/detail/"+product.rxOrderNo}>
-                    {product.rxOrderNo}</p>
+                    "/category/detail/"+cat._id}>
+                    {cat._id}</p>
                 </div>
             </td>
             <td>
               <div className="cu-avatar">
-                  <img src={product?(env.siteApiUrl+product.imageUrl):''} 
-                  alt={product?product.title:"default"}/>
+                  <img src="/img/avatar/avatar_1.jpg" alt="avatar"/>
                   <div className="cu-name" onClick={()=>
-                  window.location.href="/products/detail/"+product._id}>
-                    <p className="name">{product.title}</p>
-                    <p className="email">{product.sku}</p>
+                  window.location.href="/category/detail/"+cat._id}>
+                    <p className="name">{cat.title}</p>
+                    <p className="email">{cat.sku}</p>
                   </div>
-                  {product.moreInformation?
-                    <i className="fa fa-comment-o" title={product.moreInformation}></i>:<></>}
+                  {cat.moreInformation?
+                    <i className="fa fa-comment-o" title={cat.moreInformation}></i>:<></>}
                 </div>
               </td>
               <td>
                 <div className="or-date">
-                  <p className="date">{new Date(product.date)
+                  <p className="date">{new Date(cat.date)
                   .toLocaleDateString(props.lang==="persian"?'fa':'en')}</p>
-                  <p className="time">{new Date(product.date)
+                  <p className="time">{new Date(cat.date)
                   .toLocaleTimeString(props.lang==="persian"?'fa':'en')}</p>
                 </div>
               </td>
               <td>
                 <div className="order-num">
-                  <p>{product.brand}</p>
+                  <p>{cat.brand}</p>
                 </div>
               </td>
               <td>
                 <div className="order-num">
-                  <p>{rxFindCount(product)}</p>
+                  <p>{"product"}</p>
                 </div>
               </td>
               <td>
                 <div className="order-price">
-                  <p>{normalPriceCount(product.totalPrice)}</p>
+                  <p>{normalPriceCount(cat.totalPrice)}</p>
                 </div>
               </td>
               <td>
-                <Status status={product.status} class={"order-status"} 
+                <Status status={cat.status} class={"order-status"} 
                   lang={props.lang}/>
               </td>
             <td>
@@ -66,7 +65,7 @@ function ProductTableRow(props){
               <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
                 onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
                 <i className="tableIcon fas fa-edit" onClick={()=>
-                  window.location.href="/products/detail/"+product._id}></i>
+                  window.location.href="/category/detail/"+cat._id}></i>
                 <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i>
               </div>
@@ -83,9 +82,9 @@ function ProductTableRow(props){
             </td>
           </tr>
           {activeAcc?<tr className="sub-order">
-        <td colSpan="9"><ProductQuickDetail product={product}/></td></tr>
+        <td colSpan="9"><CatQuickDetail cat={cat}/></td></tr>
           :<React.Fragment></React.Fragment>}
           </React.Fragment>
     )
 }
-export default ProductTableRow
+export default CatTableRow

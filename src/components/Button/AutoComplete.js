@@ -33,7 +33,7 @@ function StyleSelect(props){
             onChange={(e,value)=>props.action(value)}
             renderInput={(params) => (
             <TextField {...params} label={props.title}
-                onChange={(e)=>props.textChange(e.target.value)}
+                onChange={(e)=>props.textChange?props.textChange(e.target.value):''}
             />)}
             />
         </CacheProvider>

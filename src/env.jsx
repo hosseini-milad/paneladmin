@@ -1,11 +1,11 @@
 const env={
-    siteApi:'http://localhost:4000/api',
+    //siteApi:'http://localhost:4000/api',
     //siteApi:'https://panel.mehrgaz.com/api',
-    //siteApi:'https://orderadmin.deleves.com/api',
+    siteApi:'https://orderadmin.deleves.com/api',
     
-    siteApiUrl:'http://localhost:4000',
+    //siteApiUrl:'http://localhost:4000',
     //siteApiUrl:'https://panel.mehrgaz.com',
-    //siteApiUrl:'https://orderadmin.deleves.com',
+    siteApiUrl:'https://orderadmin.deleves.com',
 
     cookieName:'panel-login',
     //cookieName:'mehr-login',
@@ -14,6 +14,9 @@ const env={
     //cookieLang:'mehr-lang',
 
     loader:<img className="imgLoader" src="/img/loaderPanel.gif"/>,
+    default:"/img/avatar/avatar_1.jpg",
+
+    editorApi:'qosmvwu6wq395cpq7ay8ud8j9d21cf4cdgkxwmpz317vpy2i'
 }
 export function jalali_to_gregorian(jy, jm, jd) {
     var sal_a, gy, gm, gd, days;

@@ -1,16 +1,45 @@
 import React, { useRef ,useEffect, useState} from 'react';
-import { Editor } from '@tinymce/tinymce-react';
 import StyleInput from '../../../components/Button/Input';
 import tabletrans from '../../../translate/tables';
+import ImageSimple from '../../../components/Button/ImageSimple';
+import env from '../../../env';
+import RichTextEditor from '../../../components/Button/RichTextEditor';
 
 function ProductName(props){
-    const editorRef = useRef(null);
     const content = props.content
-    useEffect(()=>{
-        if(editorRef.current)
-        console.log(editorRef&&editorRef.current.getContent())
+    
+    const [image,setImage]= useState();
+    const [imageUrl,setImageUrl] = useState('')
+    
+    useEffect(() => {
+      const postOptions={
+          method:'post',
+          headers: {
+              "content-type": "application/json"
+          },
+          body:JSON.stringify({base64image:image&&image.base64,
+                              imgName:image&&image.fileName,
+                            folderName:"product"})
+      }//URL.createObjectURL(image)
+      //console.log(postOptions)
+      image&&fetch(env.siteApi+"/panel/user/upload",postOptions)
+          .then(res => res.json())
+          .then(
+          (result) => {
+            props.setProductChange(prevState => ({
+              ...prevState,
+              imageUrl:result.url
+            }))
+          },
+          (error) => {
+              console.log(error);
+          }
+          )
+          .catch((error)=>{
+          console.log(error)
+          })
 
-    },editorRef&&editorRef.current)
+      },[image])
     return(
         <div className="pd-row">
           <div className="row-title">
@@ -25,43 +54,32 @@ function ProductName(props){
                     ...prevState,
                     title:e
                   }))}/>
-                <StyleInput title={tabletrans.productSubDescription[props.lang]} direction={props.direction}
-                 class={"formInput"} defaultValue={content?content.description:''} 
-                 action={(e)=>props.setProductChange(prevState => ({
+              <div className="contentTextEditor">
+                <label for="name">{tabletrans.description[props.lang]}</label>
+                <RichTextEditor content={content} value={"description"}
+                  setProductChange={props.setProductChange} 
+                  action={(e)=>props.setProductChange(prevState => ({
                     ...prevState,
                     description:e
-                  }))}/>
-              <div className="content">
-                <Editor
-                  apiKey='qosmvwu6wq395cpq7ay8ud8j9d21cf4cdgkxwmpz317vpy2i'
-                  onInit={(evt, editor) => editorRef.current = editor}
-                  initialValue={content?content.fullDesc:''}
-                  
-                  init={{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                      'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                      'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                      'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                    ],
-                    toolbar: 'undo redo | blocks | ' +
-                      'bold italic forecolor | alignleft aligncenter ' +
-                      'alignright alignjustify | bullist numlist outdent indent | ' +
-                      'removeformat | help',
-                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                  }}
-                />
+                    }))} height={200}/>
+              </div>
+              <div className="contentTextEditor">
+                <label for="name">{tabletrans.fullDescription[props.lang]}</label>
+                <RichTextEditor content={content} value={"fullDesc"}
+                  setProductChange={props.setProductChange} 
+                  action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    fullDesc:e
+                    }))}/>
               </div>
               <hr/>
               <div className="images">
                 <h5>{tabletrans.images[props.lang]}</h5>
-                <input type="file" name="" id="pd-image"/>
-                <label htmlFor="pd-image">
-                  <img src="../assets/img/icon-pic.png" alt="picture"/>
-                  <h6>Drop or Select file</h6>
-                  <p>Drop files here or click<span>browse</span>thorough your machine</p>
-                </label>
+                <ImageSimple cardName="Input Image" imageGallery={[]} 
+                    setImage={setImage} setImageUrl={setImageUrl} part={1}/>
+                <img src={props.productChange.imageUrl?env.siteApiUrl+props.productChange.imageUrl:
+                  (content?(env.siteApiUrl+content.imageUrl):'')} 
+                  alt={content?content.title:env.default}/>
               </div>
             </div>
           </div>

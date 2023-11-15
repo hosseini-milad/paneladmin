@@ -7,18 +7,19 @@ import brandtrans from "../../../translate/brands"
 function ServiceBrandHolder(props){
   const [brands,showBrands] = useState(0)
   const options = props.all?[{english:"All",persian:"همه",value:'all'}]:
-    brandtrans.map(item=>item)
+    props.brandList//brandtrans.map(item=>item)
+    //console.log(props.brandList)
     return(
         <div style={{position:"relative"}}>
           <StyleSelect title={tabletrans.brand[props.lang]} direction={props.direction} 
-          options={options} label={props.lang} class={"formInput"}
-          action={(e)=>(props.setBrand(''),setTimeout(()=>props.setBrand(e&&e.value),100))}/>
+          options={options} label="title" class={"formInput"}
+          action={(e)=>(props.setBrand(''),setTimeout(()=>props.setBrand(e&&e.brandCode),100))}/>
           <div className={props.direction==="rtl"?"manageIcon":"manageIcon manageIconLtr"}
             onClick={()=>showBrands(1)}>
             <i className="fa-solid fa-gear fa-sm open-modal" style={{color: "#0000ff"}}
                 ></i>
           </div>
-          {brands?<BrandList showBrands={showBrands}/>:<></>}
+          {brands?<BrandList showBrands={showBrands} brandList={props.brandList}/>:<></>}
         </div>
     )
 }

@@ -51,7 +51,7 @@ function ServiceType(props){
                 }))}/>:<></>}
                 <ServiceBrandHolder lang={props.lang} direction={props.direction} 
                 setServiceChange={props.setServiceChange} setBrand={props.setBrand}
-                brand={props.brand} all={tab>2?1:0}/>
+                brand={props.brand} all={tab>2?1:0} brandList={props.brandList}/>
           </div>
           {/*<div className="return-input">
             <input type="checkbox" name="" id="return"/>

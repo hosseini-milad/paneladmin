@@ -9,9 +9,10 @@ import { useState } from 'react';
 import env from '../env';
 import ProductTable from '../modules/Products/ProductTable';
 import tabletrans from '../translate/tables';
+import BrandTable from '../modules/Brands/BrandTable';
 const cookies = new Cookies();
 
-function Products(props){
+function Brands(props){
     const direction = props.lang?props.lang.dir:errortrans.defaultDir;
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     const [content,setContent] = useState("")
@@ -38,7 +39,7 @@ function Products(props){
           body:JSON.stringify(body)
         }
         console.log(postOptions)
-    fetch(env.siteApi + "/panel/product/list-product",postOptions)
+    fetch(env.siteApi + "/panel/product/list-brands",postOptions)
     .then(res => res.json())
     .then(
       (result) => {
@@ -59,13 +60,13 @@ function Products(props){
         <div className="od-header-info">
           
           <div className="od-header-name">
-            <p>{tabletrans.products[lang]}</p>
+            <p>{tabletrans.brands[lang]}</p>
           </div>
           
         </div>
         <div className="od-header-btn">
           <div className="edit-btn add-btn" 
-            onClick={()=>window.location.href="/products/detail/new"}>
+            onClick={()=>window.location.href="/brands/detail/new"}>
             <i className="fa-solid fa-plus"></i>
             <p>{tabletrans.addNew[lang]}</p>
           </div>
@@ -81,7 +82,7 @@ function Products(props){
         <OrderFilters lang={props.lang} setFilters={setFilters}
           options={content.brand} filters={filters}/>
         <div className="user-list"> 
-          {loading?env.loader:<ProductTable product={content} lang={lang}/>}
+          {loading?env.loader:<BrandTable brand={content} lang={lang}/>}
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters} 
           lang={props.lang}/>
@@ -89,4 +90,4 @@ function Products(props){
     </div>
     )
 }
-export default Products
+export default Brands

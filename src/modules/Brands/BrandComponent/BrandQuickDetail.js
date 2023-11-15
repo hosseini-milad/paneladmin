@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import env, { normalPriceCount, rxFindCount } from "../../../env"
 
-function ProductQuickDetail(props){
+function BrandQuickDetail(props){
     const product = props.product
     
     return(
@@ -26,4 +26,4 @@ function ProductQuickDetail(props){
     </div>
     )
 }
-export default ProductQuickDetail
+export default BrandQuickDetail

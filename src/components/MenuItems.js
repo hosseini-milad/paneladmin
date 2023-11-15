@@ -29,6 +29,7 @@ function MenuItems(props){
                 <span className="nav-link-text ms-1">{menu[props.lang.lang]}</span>
             </a>
         </li>
+        
     )
 }
 export default MenuItems

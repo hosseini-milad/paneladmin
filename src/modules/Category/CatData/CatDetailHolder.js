@@ -4,22 +4,17 @@ import Status from "../../Components/Status"
 import errortrans from "../../../translate/error"
 import tabletrans from "../../../translate/tables"
 import formtrans from "../../../translate/forms"
-import ProductName from './ProductName';
-import ProductSKU from './ProductSku';
-import ProductPrice from './ProductPrice';
+import CatDetails from './CatDetails';
+import CatImage from './CatImage';
 
-function ProductDetailHolder(props){
+function CatDetailHolder(props){
   const url = window.location.pathname.split('/')[3]
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
 
   const [content,setContent] = useState('')
-  const [brand,setBrand] = useState('')
-  const [category,setCategory] = useState('')
-  const [fCode,setFCode] = useState('')
-  const [purchase,setPurchase] = useState('')
-  const [productChange,setProductChange] = useState('')
+  const [catChange,setCatChange] = useState('')
   
 
   useEffect(()=>{
@@ -27,10 +22,10 @@ function ProductDetailHolder(props){
     var postOptions={
       method:'post',
       headers: {'Content-Type': 'application/json'},
-      body:JSON.stringify({productId:url})
+      body:JSON.stringify({catId:url})
     }
    
-fetch(env.siteApi + "/panel/product/fetch-product",postOptions)
+fetch(env.siteApi + "/panel/product/fetch-category",postOptions)
 .then(res => res.json())
 .then(
   (result) => {
@@ -44,8 +39,6 @@ fetch(env.siteApi + "/panel/product/fetch-product",postOptions)
         setError({errorText:"سرویس پیدا شد",
           errorColor:"green"})
           setContent(result.filter)
-          setCategory(result.categoryList)
-          setBrand(result.brandList)
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
       
@@ -55,16 +48,16 @@ fetch(env.siteApi + "/panel/product/fetch-product",postOptions)
   }
 )
   },[])
-  const saveProducts=()=>{
+  const saveCategory=()=>{
     //if(newCustomer) {
       var postOptions={
           method:'post',
           headers: {'Content-Type': 'application/json'},
-          body:JSON.stringify({productId:url,
-            ...productChange})
+          body:JSON.stringify({catId:url,
+            ...catChange})
         }
        console.log(postOptions)
-    fetch(env.siteApi + "/panel/product/editProduct",postOptions)
+    fetch(env.siteApi + "/panel/product/editCats",postOptions)
     .then(res => res.json())
     .then(
       (result) => {
@@ -77,7 +70,7 @@ fetch(env.siteApi + "/panel/product/fetch-product",postOptions)
           else{
             setError({errorText:result.success,
               errorColor:"green"})
-            setTimeout(()=>window.location.href="/products",2000)
+            setTimeout(()=>window.location.href="/category",2000)
           }
           
       },
@@ -86,25 +79,20 @@ fetch(env.siteApi + "/panel/product/fetch-product",postOptions)
       }
     )
   }
+console.log(content)
 return(
   <div className="new-item" style={{direction:direction}}>
       <div className="create-product">
-      <h4>{tabletrans.createProduct[lang]}</h4>
+      <h4>{tabletrans.addCategory[lang]}</h4>
       {content||url==="new"?<div className="pages-wrapper">
-        <ProductName direction={direction} lang={lang} content={content} 
-          productChange={productChange} setProductChange={setProductChange}/>
-        <ProductSKU direction={direction} lang={lang} content={content} 
-          productChange={productChange} setProductChange={setProductChange}
-          brand={brand} category={category}/>
-        <ProductPrice direction={direction} lang={lang} content={content} 
-          productChange={productChange} setProductChange={setProductChange}/>
-        <div className="create-btn-wrapper">
-          <div className="dense-btn">
-            <input className="switch-input" type="checkbox" id="switch-3" />
+        <div className="item-box">
+          <CatDetails direction={direction} lang={lang} content={content}
+            setCatChange={setCatChange} catChange={catChange}/>
+          <CatImage lang={lang}/>
           </div>
-          <p>Publish</p>
-          <div className="save-btn" onClick={saveProducts}>{formtrans.saveChanges[lang]}</div>
-          <div className="cancel-btn" onClick={()=>window.location.href="/services"}>{formtrans.cancel[lang]}</div>
+        <div className="create-btn-wrapper">
+          <div className="save-btn" onClick={saveCategory}>{formtrans.saveChanges[lang]}</div>
+          <div className="cancel-btn" onClick={()=>window.location.href="/brands"}>{formtrans.cancel[lang]}</div>
         </div>
         
       </div>:<div>{env.loader}</div>}
@@ -112,4 +100,4 @@ return(
   </div>
   )
 }
-export default ProductDetailHolder
+export default CatDetailHolder

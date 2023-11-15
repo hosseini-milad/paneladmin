@@ -29,6 +29,10 @@ import Services from './pages/Services';
 import ServiceDetailHolder from './modules/Service/ServiceData/ServiceDetailHolder';
 import Products from './pages/Products';
 import ProductDetailHolder from './modules/Products/ProductData/ProductDetailHolder';
+import Brands from './pages/Brands';
+import BrandDetailHolder from './modules/Brands/BrandData/BrandDetailHolder';
+import Category from './pages/Category';
+import CatDetailHolder from './modules/Category/CatData/CatDetailHolder';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -62,10 +66,17 @@ root.render(
         <Route path="/services/detail/:orderId" element={<Layout><ServiceDetailHolder lang={lang}/></Layout>}/>
         <Route path="/products" element={<Layout><Products lang={lang}/></Layout>}/>
         <Route path="/products/detail/:orderId" element={<Layout><ProductDetailHolder lang={lang}/></Layout>}/>
+
+        <Route path="/brands" element={<Layout><Brands lang={lang}/></Layout>}/>
+        <Route path="/brands/detail/:orderId" element={<Layout><BrandDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/category" element={<Layout><Category lang={lang}/></Layout>}/>
+        <Route path="/category/detail/:orderId" element={<Layout><CatDetailHolder lang={lang}/></Layout>}/>
       </Routes>:
         <Routes>
           <Route path="/" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>
           <Route path="/:auth" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>
+          <Route path="/:page/:auth" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>
+          <Route path="/:page/:page/:auth" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>
         </Routes>}
      </Router>
 );
