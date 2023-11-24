@@ -150,6 +150,10 @@ const tabletrans ={
         english:"Security",
         persian:"امنیت"
     },
+    access:{
+        english:"Access",
+        persian:"دسترسی"
+    },
 
     kind:{
         english:"Kind",

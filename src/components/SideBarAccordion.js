@@ -4,6 +4,7 @@ import menutrans from "../translate/menuAccordion"
 import Cookies from 'universal-cookie';
 import React from "react";
 import tabletrans from "../translate/tables";
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import MenuItems from "./MenuItems";
 
@@ -34,7 +35,28 @@ function SideBarAccordion(props){
                 ${props.lang.dir==="rtl"?" ps ps__rtl ps--active-y":""}`} 
                 id="sidenav-collapse-main">
             
-        
+            <Scrollbars
+            renderView={(style,...props)=> 
+                <div
+                    className="box"
+                    style={{...style}}
+                    {...props}/>
+            }
+            renderThumbVertical={(style,...props)=> 
+                <div
+                    className="boxThumb"
+                    style={{...style}}
+                    {...props}/>
+            }
+            renderTrackVertical={(style,...props)=> 
+                <div
+                    className="boxTrack"
+                    style={{...style}}
+                    {...props}/>
+            }
+            autoHide
+            autoHideTimeout={1000}
+            autoHideDuration={200}>
             <ul className="navbar-nav">
             
                 {menuList?menuList.menu.map((menu,i)=>(
@@ -42,26 +64,8 @@ function SideBarAccordion(props){
                     lang={props.lang}/>
                 )):''}
                 
-                
-                <li className="nav-item mt-3">
-                    <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link text-white " href="/profile">
-                        <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i className="menuIcon fas fa-user"></i>
-                        </div>
-                        <span className="nav-link-text ms-1">Profile</span>
-                    </a>
-                </li>
             </ul>
-            <div className="ps__rail-y" 
-                style={{top: "23px", height: "188px", right: "0px"}}>
-                <div className="ps__thumb-y" tabIndex="0" 
-                style={{top: "8px", height: "72px"}}>
-
-                </div>
-            </div>
+            </Scrollbars>
             </div>
             <div className="sidenav-footer position-absolute w-100 bottom-0 ">
             <div className="mx-3">

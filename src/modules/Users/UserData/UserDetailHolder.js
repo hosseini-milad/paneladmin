@@ -8,6 +8,7 @@ import UserSocial from "./UserSocial"
 import errortrans from "../../../translate/error"
 import tabletrans from "../../../translate/tables"
 import env from "../../../env"
+import UserAccess from "./UserAccess"
 
 function UserDetailHolder(props){
   const url = window.location.pathname.split('/')[3]
@@ -47,6 +48,7 @@ function UserDetailHolder(props){
         {tabIndex===2?<UserNotif direction={direction} lang={lang}/>:<></>}
         {tabIndex===3?<UserSocial direction={direction} lang={lang}/>:<></>}
         {tabIndex===4?<UserSecurity direction={direction} lang={lang}/>:<></>}
+        {tabIndex===5?<UserAccess direction={direction} lang={lang}/>:<></>}
       </div>
     </div>
     )

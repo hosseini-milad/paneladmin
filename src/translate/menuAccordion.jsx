@@ -27,8 +27,8 @@ menu:[
             persian: "گزارش",
             index:1,
             icon:"fa-bar-chart",
-            href:"/report",
-            url:"report"
+            href:"/reports",
+            url:"reports"
         },
         ]
     },
@@ -46,6 +46,14 @@ menu:[
                 icon:"fa-users",
                 href:"/users",
                 url:"users"
+            },
+            {
+                english: "Sale Policy",
+                persian: "سیاست های فروش و تخفیف",
+                index:0,
+                icon:"fa-percent",
+                href:"/",
+                url:""
             },
             ]
     },

@@ -33,6 +33,7 @@ import Brands from './pages/Brands';
 import BrandDetailHolder from './modules/Brands/BrandData/BrandDetailHolder';
 import Category from './pages/Category';
 import CatDetailHolder from './modules/Category/CatData/CatDetailHolder';
+import Reports from './pages/Reports';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -71,6 +72,9 @@ root.render(
         <Route path="/brands/detail/:orderId" element={<Layout><BrandDetailHolder lang={lang}/></Layout>}/>
         <Route path="/category" element={<Layout><Category lang={lang}/></Layout>}/>
         <Route path="/category/detail/:orderId" element={<Layout><CatDetailHolder lang={lang}/></Layout>}/>
+
+        <Route path="/reports" element={<Layout><Reports lang={lang}/></Layout>}/>
+
       </Routes>:
         <Routes>
           <Route path="/" element={<LayoutLogin><Login lang={lang}/></LayoutLogin>}/>

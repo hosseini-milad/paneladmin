@@ -12,11 +12,13 @@ function MenuItems(props){
             {menu[props.lang.lang]}</h6>
             {showItem?menu.children.map((submenu,i)=>(
                 <a className={url===submenu.url?"nav-link text-white active bg-gradient-primary"
-                :"nav-link text-white"} href={submenu.href} key={i}>
+                :"nav-link text-white"} href={submenu.href} key={i}
+                title={submenu[props.lang.lang]}>
                     <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                     <i className={`menuIcon fas ${submenu.icon}`}></i>
                     </div>
-                    <span className="nav-link-text ms-1">{submenu[props.lang.lang]}</span>
+                    <span className="nav-link-text ms-1 etc max150">
+                        {submenu[props.lang.lang]}</span>
                 </a>
             )):<></>}
         </li>:

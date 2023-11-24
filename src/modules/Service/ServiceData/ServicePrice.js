@@ -4,7 +4,7 @@ import formtrans from "../../../translate/forms"
 import tabletrans from "../../../translate/tables"
 
 function ServicePrice(props){
-  const brand=props.brand
+  const brand=props.brand.toLowerCase()
   var fCode=props.fCode
   try{fCode =JSON.parse(props.fCode)}catch{}
   var price=props.price
