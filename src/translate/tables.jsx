@@ -11,6 +11,14 @@ const tabletrans ={
         english: "Phone Number",
         persian: "شماره تماس"
     },
+    userCode:{
+        english: "User Code",
+        persian: "کد کاربر"
+    },
+    credit:{
+        english: "Credit",
+        persian: "اعتبار"
+    },
     company:{
         english: "Company",
         persian: "شرکت"
@@ -30,6 +38,14 @@ const tabletrans ={
     brand:{
         english: "Brand",
         persian: "برند"
+    },
+    bugCount:{
+        english: "Bug Count",
+        persian: "تعداد مغایرت"
+    },
+    rowCount:{
+        english: "Row Count",
+        persian: "تعداد سطر"
     },
     order:{
         english: "Order",
@@ -67,9 +83,17 @@ const tabletrans ={
         english: "Products",
         persian: "محصولات"
     },
+    customers:{
+        english: "Customers",
+        persian: "مشتریان"
+    },
     edit:{
         english: "Edit",
         persian: "ویرایش"
+    },
+    update:{
+        english: "Update",
+        persian: "بروزرسانی"
     },
     subTotal:{
         english: "SubTotal",

@@ -11,7 +11,7 @@ function StyleRadio(props){
             {props.options&&props.options.map((opt,i)=>(
                 <React.Fragment key={i}>
                 <label htmlFor={opt}>{opt[props.label]}</label>
-                <input type="radio" name="type" id={opt} 
+                <input type="radio" name="type" id={opt} className={props.class}
                     onClick={(e)=>{props.action(opt);props.setTab(i)}} 
                     defaultChecked={opt["english"]===props.defaultValue}
                 /></React.Fragment>

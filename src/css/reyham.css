@@ -1,4 +1,7 @@
-
+textarea{
+  width: 100%;
+  min-height: 200px;
+}
 .main-pad{
     padding-bottom: 50px;
     width: 100%;
@@ -83,6 +86,7 @@
 }
 .user-list td ,.cu-name p{
     text-align: initial;
+    position: relative;
 }
 .user-list th:nth-child(2){
     text-align: initial;
@@ -293,8 +297,16 @@
   .sale-input input{
     margin:auto 5px;
   }
-  .navbar-nav .nav-link:hover{
+  .navbar-vertical .nav-link:hover{
     background-color: var(--bs-primary) !important;
+  }
+  .topMenu .nav-link{
+    font-size: 1.2rem;
+    padding: 0 7px !important;
+  }
+  .topMenu .nav-link i:hover{
+    color:var(--bs-primary);
+    transition: .3s all;
   }
   .create-btn-wrapper p { width: 17%;}
   .halfWidth{
@@ -376,4 +388,59 @@
   } 
   .max150{
     max-width: 150px;
+  }
+  .rtlRadio{
+    margin-right: 0;
+    margin-left: 15px;
+    margin-top: -5px;
+  }
+  .ltrRadio{
+    margin-right: 15px;
+    margin-left: 0px;
+    margin-top: -5px;
+  }
+  .sub-more-menu-fa{
+    left:30px;
+    right: auto;
+  }
+  .hidden{
+    display: none;
+  }
+
+
+  /* Board */
+  .reyham-board {
+    
+  }
+
+  /* Profile */
+  .profileRtl th{
+    text-align: right;
+  }
+  .section-member{
+    padding-right: 0;
+  }
+  .asso-btnRTL{
+    margin-left: 10px;
+    margin-right: auto;
+  }
+  .slideBar{
+    width:45%;
+    display: flex;
+    margin: 0 10%;
+  min-width: 200px;
+  }
+  .slideBarTitle{
+    margin-top: -40px;
+    font-size: 12px;
+    
+  }
+  .disable-label{
+    background: silver;
+  }
+  .settingSide{
+    top:70px !important;
+  }
+  .info-wrapper div:nth-child(9) {
+    width: initial;
   }

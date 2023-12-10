@@ -6,6 +6,7 @@ import Paging from '../modules/Components/Paging';
 import errortrans from "../translate/error";
 import UserFilters from '../modules/Users/UserComponent/UserFilters';
 import env from '../env'
+import tabletrans from '../translate/tables';
 const cookies = new Cookies();
 
 function Users(props){
@@ -14,6 +15,7 @@ function Users(props){
     const [content,setContent] = useState("")
     const [filters,setFilters] = useState("")
     const [loading,setLoading] = useState(0)
+    const [update,setUpdate] = useState(0)
     const token=cookies.get(env.cookieName)
     useEffect(() => {
       setLoading(1)
@@ -49,10 +51,87 @@ function Users(props){
       }
       
   )},[filters])
-  console.log(content)
+  useEffect(() => {
+    if(update===0)return
+    const body={
+        url:update
+    }
+    const postOptions={
+        method:'post',
+        headers: {'Content-Type': 'application/json',
+        "x-access-token":token&&token.token,"userId":token&&token.userId},
+        body:JSON.stringify(body)
+      }
+      console.log(postOptions)
+  fetch(env.siteApi + "/panel/user/parse-list",postOptions)
+  .then(res => res.json())
+  .then(
+    (result) => {
+      console.log(result)
+    },
+    (error) => {
+      console.log(error);
+    }
+    
+)},[update])
+  const resizeFile = (file) =>
+    new Promise((resolve,reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+    });
+  const updateCustomers=async(event)=>{
+      const uploadFile = event.target.files[0]
+      const tempfile = await resizeFile(uploadFile);
+        const token=props.token
+        const postOptions={
+            method:'post',
+            headers: { 'Content-Type': 'application/json',
+            "x-access-token": token&&token.token,
+            "userId":token&&token.userId
+        },
+            body:JSON.stringify({base64image:tempfile,folderName:"excel",
+                imgName:uploadFile.name.split('.')[0]})
+          }
+        fetch(env.siteApi + "/panel/user/upload",postOptions)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                //console.log(result)
+                if(result.error){
+
+                }
+                else{
+                    setUpdate(result.url)
+                }
+            },
+            (error) => {
+                console.log(error)
+            })
+  }
     return(
       <div className="user" style={{direction:direction}}>
-      <h4>List</h4>
+      <div className="od-header">
+        <div className="od-header-info">
+          
+          <div className="od-header-name">
+            <p>{tabletrans.customers[lang]}</p>
+          </div>
+          
+        </div>
+        <div className="od-header-btn">
+          <input type="button" value="کنترل دسترسی" 
+            onClick={()=>window.location.href="/access"}/>
+          <label htmlFor="upFiles" className="edit-btn">
+            <i className="fa-solid fa-refresh"></i>
+            {tabletrans.update[lang]}
+          </label>
+          <input id="upFiles" type="file" accept=".*" className="hidden" 
+                onChange={updateCustomers}/>
+          
+        </div>
+      </div>
       <div className="list-container">
         <StatusBar />
         <UserFilters lang={props.lang} setFilters={setFilters} 

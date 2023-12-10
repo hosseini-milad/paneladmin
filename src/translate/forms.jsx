@@ -19,6 +19,10 @@ const formtrans ={
         english: "Customer Code",
         persian: "کد مشتری"
     },
+    access:{
+        english: "Access",
+        persian: "دسترسی"
+    },
     meliCode:{
         english: "Meli Code",
         persian: "کد ملی/شناسه ملی"
@@ -90,6 +94,10 @@ const formtrans ={
     description:{
         english: "Description",
         persian: "توضیحات"
+    },
+    metaDescription:{
+        english: "Meta Description",
+        persian: "توضیحات متا"
     },
 
 }

@@ -14,7 +14,8 @@ function ServiceType(props){
     return(
         <div className="item-col">
           <div className="type-input">
-            <StyleRadio options={serviceKind} title="Type"
+            <StyleRadio options={serviceKind} title="Type" 
+            class={props.direction==="rtl"?"rtlRadio":"ltrRadio"}
             label={props.lang} tab={tab} setTab={setTab}
             defaultValue={content?content.category:''}
             action={(e)=>props.setServiceChange(prevState => ({

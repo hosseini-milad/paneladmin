@@ -1,13 +1,13 @@
 const env={
     //siteApi:'http://localhost:4000/api',
     //siteApi:'https://panel.mehrgaz.com/api',
-    //siteApi:'https://orderadmin.deleves.com/api',
-    siteApi:'https://admin.mgmlens.com/api',
+    siteApi:'https://orderadmin.deleves.com/api',
+    //siteApi:'https://admin.mgmlens.com/api',
     
     //siteApiUrl:'http://localhost:4000',
     //siteApiUrl:'https://panel.mehrgaz.com',
-    //siteApiUrl:'https://orderadmin.deleves.com',
-    siteApiUrl:'https://admin.mgmlens.com',
+    siteApiUrl:'https://orderadmin.deleves.com',
+    //siteApiUrl:'https://admin.mgmlens.com',
 
     cookieName:'panel-login',
     //cookieName:'mehr-login',
@@ -18,7 +18,12 @@ const env={
     loader:<img className="imgLoader" src="/img/loaderPanel.gif"/>,
     default:"/img/avatar/avatar_1.jpg",
 
-    editorApi:'qosmvwu6wq395cpq7ay8ud8j9d21cf4cdgkxwmpz317vpy2i'
+    editorApi:'qosmvwu6wq395cpq7ay8ud8j9d21cf4cdgkxwmpz317vpy2i',
+
+    columnOrder:['lead','informations','fiin','property','seguros',
+        'escritura','commissions','suspended'],
+    columnAgentOrder:['lead','inprogress','escritura']
+
 }
 export function jalali_to_gregorian(jy, jm, jd) {
     var sal_a, gy, gm, gd, days;
@@ -86,6 +91,57 @@ export function PageInfoFunction(orderInfo,filters){
     allowNext:currentPage>0?true:false,
     allowPre:currentPage==totalPage?false:true
   })
+}
+
+var fulldays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+export const dayFromNow=(originDate)=>{
+  var dt = new Date(originDate),
+      time=formatAMPM(dt),
+      date = dt.getDate(),
+      month = months[dt.getMonth()],
+      timeDiff = originDate - Date.now(),
+      diffDays = new Date().getDate() - date,
+      diffMonths = new Date().getMonth() - dt.getMonth(),
+      diffYears = new Date().getFullYear() - dt.getFullYear();
+
+  if(diffYears === 0 && diffDays === 0 && diffMonths === 0){
+    return `Today at ${time}` ;
+  }else if(diffYears === 0 && diffDays === 1) {
+    return `Yesterday at ${time}`;
+  }else if(diffYears === 0 && diffDays === -1) {
+    return "Tomorrow";
+  }else if(diffYears === 0 && (diffDays < -1 && diffDays > -7)) {
+    return fulldays[dt.getDay()];
+  }else if(diffYears >= 1){
+    return month + " " + date + ", " + new Date(originDate).getFullYear();
+    }else {
+      return month + " " + date;
+    }
+}
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+
+export const normalDate=(dateObj)=>{
+return(dateObj.year+'/'+dateObj.month+'/'+dateObj.day)
+}
+export const splitDate=(dateRaw)=>{
+try{
+  const dateArray = dateRaw.split('/')
+return({year:parseInt(dateArray[0]),
+  month:parseInt(dateArray[1]),
+  day:parseInt(dateArray[2])})
+}
+catch{return}
 }
   
 export default env

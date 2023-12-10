@@ -1,9 +1,9 @@
 import { useState } from "react"
-import tabletrans from "../../translate/tables"
-import ServiceTableRow from "./ServiceTableRow";
+import tabletrans from "../../../translate/tables"
+import BugTableRow from "./BugTableRow";
 
-function ServiceTable(props){
-  const service = props.service
+function BugTable(props){
+  const orders = props.orders
   const lang=props.lang;
   const [detail,showDetail] = useState(-1)
     return(
@@ -13,23 +13,23 @@ function ServiceTable(props){
           <th className="checkBoxStyle">
               <input type="checkbox" name="" id=""/></th>
             <th>
-              <p>{tabletrans.kind[lang]}</p>
+              <p>{tabletrans.order[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.title[lang]}</p>
+              <p>{tabletrans.customer[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.code[lang]}</p>
+              <p>{tabletrans.date[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.brand[lang]}</p>
+              <p>{tabletrans.bugCount[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.item[lang]}</p>
+              <p>{tabletrans.rowCount[lang]}</p>
               <i></i>
             </th>
             <th>
@@ -45,10 +45,9 @@ function ServiceTable(props){
           </tr>
         </thead>
         <tbody>
-          {service&&service.filter?service.filter.map((service,i)=>(
-            <ServiceTableRow detail={detail} showDetail={showDetail} 
-            service={service} index={i} key={i} lang={lang} 
-            direction={props.direction}/>
+          {orders&&orders.filter?orders.filter.map((order,i)=>(
+            <BugTableRow detail={detail} showDetail={showDetail} 
+              order={order} index={i} key={i} lang={lang}/>
           )):''}
           
         </tbody>
@@ -56,4 +55,4 @@ function ServiceTable(props){
 
     )
 }
-export default ServiceTable
+export default BugTable

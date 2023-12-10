@@ -4,10 +4,13 @@ import env from "../../../env"
 import formtrans from "../../../translate/forms"
 import UserAvatar from "../UserComponent/UserAvatar"
 import ErrorShow from "../../../components/Button/ErrorShow"
+import StyleSelect from "../../../components/Button/AutoComplete"
+import StyleSelectMultiple from "../../../components/Button/SelectMultiple"
 
 function UserGeneral(props){
   const userData = props.userData
   const [formData, setFormData] = useState()
+  const [group, setGroup] = useState([])
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
   const saveChanges=() => {
     var postOptions={
@@ -103,6 +106,15 @@ function UserGeneral(props){
                 action={(e)=>setFormData(prevState => ({
                   ...prevState,
                   city:e
+                }))}/>
+                
+              <StyleSelectMultiple title={formtrans.access[props.lang]} direction={props.direction} 
+                defaultValue={userData.profile} class={"formInput"}
+                options={props.accessList||[]}
+                label={"profileName"}
+                action={(e)=>setFormData(prevState => ({
+                  ...prevState,
+                  group:e?e._id:''
                 }))}/>
               
               <div className="info-input"><label htmlFor="about">

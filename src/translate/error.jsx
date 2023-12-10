@@ -54,5 +54,42 @@ const errortrans ={
         persian:"سفارشات"
     },
 
+    //Access Control
+    profiles:{
+        english:"Profiles",
+        persian:"پروفایل ها"
+    },
+    profile:{
+        english:"Profile",
+        persian:"پروفایل"
+    },
+    profileName:{
+        english:"Profile Name",
+        persian:"نام پروفایل"
+    },
+    profileCode:{
+        english:"Profile Code",
+        persian:"کد پروفایل"
+    },
+    createdBy:{
+        english:"Created By",
+        persian:"ایجاد کننده"
+    },
+    createdOn:{
+        english:"Created On",
+        persian:"تاریج ایجاد"
+    },
+    read:{
+        english:"Read",
+        persian:"خواندن"
+    },
+    edit:{
+        english:"Edit",
+        persian:"ویرایش"
+    },
+    full:{
+        english:"Full",
+        persian:"کامل"
+    },
 }
 export default errortrans

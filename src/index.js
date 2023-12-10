@@ -5,6 +5,7 @@ import './css/App.css';
 import './css/fontAwesome.css';
 import './css/salimi.css';
 import './css/reyham.css';
+import './css/board.css';
 
 import {
   BrowserRouter as Router,
@@ -34,6 +35,10 @@ import BrandDetailHolder from './modules/Brands/BrandData/BrandDetailHolder';
 import Category from './pages/Category';
 import CatDetailHolder from './modules/Category/CatData/CatDetailHolder';
 import Reports from './pages/Reports';
+import FindBug from './modules/Report/FindBug';
+import CRM from './pages/Crm';
+import AccessHolder from './modules/AccessControl/AccessHolder';
+import ProfileAdd from './modules/AccessControl/ProfileAdd';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -57,8 +62,11 @@ root.render(
         <Route path="/" element={<Layout><Dashboard lang={lang}/></Layout>}/>
         <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
         <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
+        <Route path="/crm" element={<Layout><CRM lang={lang}/></Layout>}/>
         <Route path="/users" element={<Layout><Users lang={lang}/></Layout>}/>
         <Route path="/users/detail/:userId" element={<Layout><UserDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/access" element={<Layout><AccessHolder lang={lang}/></Layout>}/>
+        <Route path="/access/detail/:profileId" element={<Layout><ProfileAdd lang={lang}/></Layout>}/>
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
@@ -72,8 +80,9 @@ root.render(
         <Route path="/brands/detail/:orderId" element={<Layout><BrandDetailHolder lang={lang}/></Layout>}/>
         <Route path="/category" element={<Layout><Category lang={lang}/></Layout>}/>
         <Route path="/category/detail/:orderId" element={<Layout><CatDetailHolder lang={lang}/></Layout>}/>
-
+ 
         <Route path="/reports" element={<Layout><Reports lang={lang}/></Layout>}/>
+        <Route path="/find-bugs" element={<Layout><FindBug lang={lang}/></Layout>}/>
 
       </Routes>:
         <Routes>

@@ -21,6 +21,11 @@ function UserTableRow(props){
               </div>
             </td>
             <td>
+              <div className="cu-role">
+                <p>{user.credit}</p>
+              </div>
+            </td>
+            <td>
               <div className="cu-phone">
                 <p className="phone-num">{user.phone}</p>
               </div>
@@ -28,11 +33,6 @@ function UserTableRow(props){
             <td>
               <div className="cu-company">
                 <p>{user.mobile}</p>
-              </div>
-            </td>
-            <td>
-              <div className="cu-role">
-                <p>{user.access}</p>
               </div>
             </td>
             <td>

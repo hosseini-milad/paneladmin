@@ -76,7 +76,8 @@ function Services(props){
         <ServiceFilters lang={props.lang} setFilters={setFilters}
           options={content.brand} filters={filters}/>
         <div className="user-list">
-          {loading?env.loader:<ServiceTable service={content} lang={lang}/>}
+          {loading?env.loader:<ServiceTable service={content} lang={lang}
+           direction={direction}/>}
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters} 
           lang={props.lang}/>

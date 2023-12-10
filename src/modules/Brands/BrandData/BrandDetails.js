@@ -46,7 +46,12 @@ function BrandDetails(props){
                   }}
                 />
               </div>
-              
+              <textarea placeholder={formtrans.metaDescription[props.lang]} 
+              defaultValue={content?content.description:''}
+              onChange={(e)=>props.setBrandChange(prevState => ({
+                ...prevState,
+                description:e.target.value
+              }))}/>
         </div>
     )
 }

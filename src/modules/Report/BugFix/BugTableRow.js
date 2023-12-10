@@ -1,20 +1,14 @@
 import React ,{ useState } from "react"
-import Status from "../Components/Status"
-import  { normalPriceCount, rxFindCount } from "../../env"
-import ServiceQuickDetail from "./ServiceComponent/ServiceQuickDetail"
-import { serviceKind } from "../../translate/status"
+import Status from "../../Components/Status"
+import  { normalPriceCount, rxFindCount } from "../../../env"
+import BugQuickDetail from "./BugQuickDetail"
 
-function ServiceTableRow(props){
+
+function BugTableRow(props){
   const [openOption,setOpenOption] = useState(0)
   const [checkState,setCheckState] = useState(false)
   const activeAcc = props.index===props.detail
-  const service=props.service
-  var serviceName = '';
-  try{serviceName=serviceKind.find(item=>(item.english===service.category))[props.lang]
-  }catch{}
-  const removeItem=()=>{
-    console.log("remove")
-  }
+  const order=props.order
     return(<React.Fragment>
         <tr 
             className={activeAcc?"activeAccordion":"accordion"}>
@@ -23,54 +17,60 @@ function ServiceTableRow(props){
               onChange={(e)=>setCheckState(checkState?false:true)}/></td>
             <td>
                 <div className="order-id">
-                  <p>{serviceName}</p>
+                  <p onClick={()=> window.location.href=
+                    "/orders/detail/"+order.orderNo}>
+                    {order.orderNo}</p>
                 </div>
             </td>
             <td>
               <div className="cu-avatar">
                   <img src="/img/avatar/avatar_1.jpg" alt="avatar"/>
                   <div className="cu-name">
-                    <p className="name" onClick={()=>
-                  window.location.href="/services/detail/"+service._id}>{service.title}</p>
+                    <p className="name">{order.userData}</p>
+                    <p className="name">{order.userPhone}</p>
                   </div>
+                  {order.moreInformation?
+                    <i className="fa fa-comment-o" title={order.moreInformation}></i>:<></>}
                 </div>
               </td>
               <td>
                 <div className="or-date">
-                  <p className="date">{service.serviceCode}</p>
+                  <p className="date">{new Date(order.date)
+                  .toLocaleDateString(props.lang==="persian"?'fa':'en')}</p>
+                  <p className="time">{new Date(order.date)
+                  .toLocaleTimeString(props.lang==="persian"?'fa':'en')}</p>
                 </div>
               </td>
               <td>
                 <div className="order-num">
-                  <p>{service.brand}</p>
+                  <p>{order.bugCount}</p>
                 </div>
               </td>
               <td>
                 <div className="order-num">
-                  <p>2</p>
+                  <p>{order.rowCount}</p>
                 </div>
               </td>
               <td>
                 <div className="order-price">
-                  <p>{normalPriceCount(service.colorPrice)}</p>
+                  <p>{normalPriceCount(order.totalPrice)}</p>
                 </div>
               </td>
               <td>
-                <Status status={service.status} class={"order-status"} 
+                <Status status={order.status} class={"order-status"} 
                   lang={props.lang}/>
               </td>
-              <td>
+            <td>
               <div className="more-btn">
-                <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
-                  onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
+              <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
+                onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
                 <i className="tableIcon fas fa-edit" onClick={()=>
-                  window.location.href="/services/detail/"+service._id}></i>
+                  window.location.href="/orders/detail/"+order.rxOrderNo}></i>
                 <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i>
               </div>
-              {openOption?<div className={props.direction==="rtl"?
-                "sub-more-menu-fa sub-more-menu":"sub-more-menu"}>
-                <div className="sub-option sub-delete" onClick={removeItem}>
+              {openOption?<div className="sub-more-menu">
+                <div className="sub-option sub-delete">
                 <i className="tableIcon fas fa-remove" style={{color: "#ff0000"}}></i>
                   <p>Delete</p>
                 </div>
@@ -82,9 +82,9 @@ function ServiceTableRow(props){
             </td>
           </tr>
           {activeAcc?<tr className="sub-order">
-          <td colSpan="9"><ServiceQuickDetail service={service} lang={props.lang}/></td></tr>
-            :<React.Fragment></React.Fragment>}
+        <td colSpan="9"><BugQuickDetail order={order}/></td></tr>
+          :<React.Fragment></React.Fragment>}
           </React.Fragment>
     )
 }
-export default ServiceTableRow
+export default BugTableRow

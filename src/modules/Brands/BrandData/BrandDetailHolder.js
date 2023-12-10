@@ -56,8 +56,7 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
           body:JSON.stringify({brandId:url,
             ...brandChange})
         }
-       console.log(postOptions)
-    fetch(env.siteApi + "/panel/product/editBrand",postOptions)
+     fetch(env.siteApi + "/panel/product/editBrand",postOptions)
     .then(res => res.json())
     .then(
       (result) => {

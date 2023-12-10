@@ -15,6 +15,7 @@ function UserDetailHolder(props){
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [userData,setUserData] = useState()
+  const [accessList,setAccess] = useState()
   const [tabIndex,setTabIndex] = useState(0)
   useEffect(() => {
     var postOptions={
@@ -27,6 +28,7 @@ function UserDetailHolder(props){
   .then(
     (result) => {
       setUserData(result.data)
+      setAccess(result.profiles)
     },
       (error) => {
         console.log(error);
@@ -43,7 +45,7 @@ function UserDetailHolder(props){
 
       <div className="pages-wrapper">
         {tabIndex===0?<UserGeneral direction={direction} lang={lang}
-          userData={userData}/>:<></>}
+          userData={userData} accessList={accessList}/>:<></>}
         {tabIndex===1?<UserBill direction={direction} lang={lang}/>:<></>}
         {tabIndex===2?<UserNotif direction={direction} lang={lang}/>:<></>}
         {tabIndex===3?<UserSocial direction={direction} lang={lang}/>:<></>}

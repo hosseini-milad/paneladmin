@@ -30,6 +30,14 @@ menu:[
             href:"/reports",
             url:"reports"
         },
+        {
+            english: "CRM",
+            persian: "مدیریت",
+            index:1,
+            icon:"fa-bar-chart",
+            href:"/crm",
+            url:"crm"
+        },
         ]
     },
     {
@@ -40,7 +48,7 @@ menu:[
         href:"#",
         children:[
             {
-                english: "Customers",
+                english: "Customers Manager",
                 persian: "مدیریت مشتریان",
                 index:0,
                 icon:"fa-users",
@@ -49,11 +57,11 @@ menu:[
             },
             {
                 english: "Sale Policy",
-                persian: "سیاست های فروش و تخفیف",
+                persian: "سیاست های فروش",
                 index:0,
                 icon:"fa-percent",
-                href:"/",
-                url:""
+                href:"/policy",
+                url:"policy"
             },
             ]
     },
@@ -65,8 +73,8 @@ menu:[
         href:"#",
         children:[
             {
-                english: "Orders",
-                persian: "سفارشات",
+                english: "Orders List",
+                persian: "لیست سفارشات",
                 index:0,
                 icon:"fa-tasks",
                 href:"/orders",
@@ -82,8 +90,8 @@ menu:[
         href:"#",
         children:[
             {
-                english: "Products",
-                persian: "محصولات",
+                english: "Products List",
+                persian: "لیست محصولات",
                 index:0,
                 icon:"fa-dashboard",
                 href:"/products",
@@ -114,6 +122,23 @@ menu:[
                 url:"category"
             },
             ]
+    },
+    {
+        english: "Configuration",
+        persian: "تنظیمات",
+        index:3,
+        icon:"fa-bar-cog",
+        href:"#",
+        children:[
+            {
+                english: "Find Bug",
+                persian: "مغایرت ها",
+                index:0,
+                icon:"fa-bug",
+                href:"/find-bugs",
+                url:"find-bugs"
+            },
+        ]
     }
 ]
 }

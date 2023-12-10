@@ -1,21 +1,26 @@
 import env from "../env";
 import errortrans from "../translate/error";
 import menutrans from "../translate/menuAccordion"
-import Cookies from 'universal-cookie';
-import React from "react";
+import React, { useState } from "react";
 import tabletrans from "../translate/tables";
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import MenuItems from "./MenuItems";
+import { useEffect } from "react";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function SideBarAccordion(props){
     const url = window.location.pathname.split('/')[1]
     const menuList = menutrans
+    const [allowMenu,setAllowMenu] = useState([])
+    const token=cookies.get(env.cookieName)
     const logOff=()=>{
         const cookies = new Cookies();
         cookies.remove(env.cookieName,{ path: '/' });
        setTimeout(()=>(window.location.reload(),1000))
     }
+    console.log(token.access)
     return(
         <aside className={
             `sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3
@@ -61,7 +66,8 @@ function SideBarAccordion(props){
             
                 {menuList?menuList.menu.map((menu,i)=>(
                     <MenuItems menu={menu} key={i} domain={url}
-                    lang={props.lang}/>
+                    lang={props.lang} profile={token.profile}
+                    access={token.access}/>
                 )):''}
                 
             </ul>

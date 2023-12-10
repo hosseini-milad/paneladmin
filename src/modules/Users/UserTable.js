@@ -16,15 +16,15 @@ function UserTable(props){
               <i></i>
             </th>
             <th>
+              <p>{tabletrans.credit[lang]}</p>
+              <i></i>
+            </th>
+            <th>
               <p>{tabletrans.phoneNumber[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.company[lang]}</p>
-              <i></i>
-            </th>
-            <th>
-              <p>{tabletrans.role[lang]}</p>
+              <p>{tabletrans.userCode[lang]}</p>
               <i></i>
             </th>
             <th>
