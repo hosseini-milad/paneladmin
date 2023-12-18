@@ -13,6 +13,7 @@ menu:[
         index:0,
         icon:"fa-dashboard",
         href:"#",
+
         children:[
         {
             english: "Dashboard",
@@ -139,6 +140,24 @@ menu:[
                 url:"find-bugs"
             },
         ]
+    }
+],
+setting:[
+    {
+        english: "Access",
+        persian: "دسترسی ها",
+        index:0,
+        icon:"fa-key",
+        href:"/access",
+        url:"access"
+    },
+    {
+        english: "Filters",
+        persian: "فیلترها",
+        index:1,
+        icon:"fa-key",
+        href:"/filter",
+        url:"filter"
     }
 ]
 }

@@ -264,6 +264,14 @@ const tabletrans ={
         english:"Add/Edit Brand",
         persian:"افزدون یا ویرایش برند"
     },
+    policies:{
+        english:"Policies",
+        persian:"سیاست های فروش"
+    },
+    addPolicy:{
+        english:"Add/Edit Policy",
+        persian:"افزدون یا ویرایش سیاست فروش"
+    },
     addCategory:{
         english:"Add/Edit Category",
         persian:"افزدون یا ویرایش دسته بندی"
@@ -271,6 +279,14 @@ const tabletrans ={
     description:{
         english:"Description",
         persian:"توضیحات"
+    },
+    classes:{
+        english:"Classes",
+        persian:"کلاس مشتری"
+    },
+    classManage:{
+        english:"Class Manage",
+        persian:"مدیریت کلاس"
     },
     fullDescription:{
         english:"Full Description",

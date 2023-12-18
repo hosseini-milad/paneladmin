@@ -108,13 +108,13 @@ function UserGeneral(props){
                   city:e
                 }))}/>
                 
-              <StyleSelectMultiple title={formtrans.access[props.lang]} direction={props.direction} 
+              <StyleSelect title={formtrans.access[props.lang]} direction={props.direction} 
                 defaultValue={userData.profile} class={"formInput"}
                 options={props.accessList||[]}
                 label={"profileName"}
                 action={(e)=>setFormData(prevState => ({
                   ...prevState,
-                  group:e?e._id:''
+                  profile:e?e._id:''
                 }))}/>
               
               <div className="info-input"><label htmlFor="about">

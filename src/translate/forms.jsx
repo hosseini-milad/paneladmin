@@ -19,6 +19,10 @@ const formtrans ={
         english: "Customer Code",
         persian: "کد مشتری"
     },
+    customer:{
+        english: "Customer",
+        persian: "مشتری"
+    },
     access:{
         english: "Access",
         persian: "دسترسی"
@@ -54,6 +58,27 @@ const formtrans ={
     brandCode:{
         english: "Brand Code",
         persian: "کد برند"
+    },
+    brandName:{
+        english: "Brand Name",
+        persian: "نام برند"
+    },
+    filters:{
+        english: "Filters",
+        persian: "فیلترها"
+    },
+    
+    value:{
+        english: "Value",
+        persian: "مقدار"
+    },
+    discount:{
+        english: "Discount",
+        persian: "تخفیف"
+    },
+    class:{
+        english: "Class",
+        persian: "کلاس"
     },
     newService:{
         english: "New Service",
@@ -98,6 +123,26 @@ const formtrans ={
     metaDescription:{
         english: "Meta Description",
         persian: "توضیحات متا"
+    },
+    category:{
+        english: "Category",
+        persian: "دسته بندی"
+    },
+    type:{
+        english: "Type",
+        persian: "نوع"
+    },
+    options:{
+        english: "options",
+        persian: "انتخاب ها"
+    },
+    optionsN:{
+        english: "Negative Options",
+        persian: "انتخاب های منفی"
+    },
+    policyCode:{
+        english: "Policy Code",
+        persian: "کد سیاست"
     },
 
 }

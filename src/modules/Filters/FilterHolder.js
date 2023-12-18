@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import env from "../../env";
 import errortrans from "../../translate/error";
 
-function AccessHolder(props){
+function FilterHolder(props){
     const direction = props.lang?props.lang.dir:errortrans.defaultDir;
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     const [content,setContent] = useState('')
@@ -16,11 +16,11 @@ function AccessHolder(props){
             body:JSON.stringify(body)
           }
           console.log(postOptions)
-      fetch(env.siteApi + "/panel/user/list-profiles",postOptions)
+      fetch(env.siteApi + "/panel/product/list-filter",postOptions)
       .then(res => res.json())
       .then(
         (result) => {
-            setContent(result.profiles)
+            setContent(result.filter)
         },
         (error) => {
           console.log(error);
@@ -82,38 +82,38 @@ function AccessHolder(props){
             </div>
         </div>
         <div className="profiles-header">
-            <h5>{errortrans.profiles[lang]}</h5>
-            <div className="add-profile-btn" onClick={()=>window.location.href="/access/detail/new"}>
+            <h5>{errortrans.filters[lang]}</h5>
+            <div className="add-profile-btn" onClick={()=>window.location.href="/filter/detail/new"}>
                 <i className="fa-solid fa-plus" style={{color: "#ffffff"}}></i>
-                <p>{errortrans.profile[lang]}</p>
+                <p>{errortrans.filter[lang]}</p>
             </div>
         </div>
         <div className={direction==="ltr"?"profile-table":"profile-table profileRtl"}>
             <table>
             <thead>
                 <tr>
-                <th>{errortrans.profileName[lang]}</th>
+                <th>{errortrans.filterName[lang]}</th>
                 <th>{errortrans.createdBy[lang]}</th>
                 <th>{errortrans.createdOn[lang]}</th>
                 <th></th>
                 </tr>
             </thead>
             <tbody>
-                {content&&content.map((profile,i)=>(
+                {content&&content.map((filter,i)=>(
                     <tr key={i}>
                     <td>
                         <div className="profiles-title">
                         <i className="fa-solid fa-certificate fa-sm" style={{color: "#00c6c6"}}></i>
                         <div className="p-wrapper" onClick={()=>
-                        window.location.href="/access/detail/"+profile._id}>
-                            <p>{profile.profileName} 
-                                <span>({profile.profileCode})</span></p>
-                            <p>{profile.description}</p>
+                        window.location.href="/filter/detail/"+filter._id}>
+                            <p>{filter.title} 
+                                <span>({filter.enTitle})</span></p>
+                            <p>{filter.description}</p>
                         </div>
                         </div>
                     </td>
                     <td>مدیریت</td>
-                    <td>{new Date(profile.date).toLocaleDateString('fa')}</td>
+                    <td>{new Date(filter.date).toLocaleDateString('fa')}</td>
                     <td>
                         <div className="profiles-icons">
                         <i className="fa-solid fa-pen-to-square fa-sm" style={{color: "#c0c0c0"}}></i>
@@ -129,4 +129,4 @@ function AccessHolder(props){
         </div>
     )
 }
-export default AccessHolder
+export default FilterHolder

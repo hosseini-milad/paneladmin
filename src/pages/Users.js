@@ -121,8 +121,10 @@ function Users(props){
           
         </div>
         <div className="od-header-btn">
-          <input type="button" value="کنترل دسترسی" 
-            onClick={()=>window.location.href="/access"}/>
+          <label className="edit-btn">
+            <i className="fa-solid fa-plus"></i>
+            {tabletrans.classes[lang]}
+          </label>
           <label htmlFor="upFiles" className="edit-btn">
             <i className="fa-solid fa-refresh"></i>
             {tabletrans.update[lang]}

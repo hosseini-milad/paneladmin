@@ -444,3 +444,19 @@ textarea{
   .info-wrapper div:nth-child(9) {
     width: initial;
   }
+  .new-member{
+    position: relative;
+    width: fit-content;
+    display: flex;
+  }
+  .addClassBtn{
+    padding: 7px 12px;
+
+  }
+  .addClassBtn:hover{
+    color:rgb(89, 108, 255);
+    cursor: pointer;
+  }
+  .main-setting{
+    width: 100%;
+  }

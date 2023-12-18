@@ -21,7 +21,7 @@ function StyleSelect(props){
         key: "muiltr",
         stylisPlugins: []
       });
-    return(
+    return( 
         <CacheProvider value={props.direction==="rtl"?cacheRtl:cacheltR}>
             <Autocomplete
             getOptionLabel={(option) => (option&&option[props.label])?
@@ -29,6 +29,7 @@ function StyleSelect(props){
             //className={stylisRTLPlugin}
             options={testOptions||[]}
             className={props.class}
+            defaultValue={props.defaultValue||null}
             style={{minWidth:"200px"}}
             onChange={(e,value)=>props.action(value)}
             renderInput={(params) => (

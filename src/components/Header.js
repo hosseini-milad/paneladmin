@@ -131,7 +131,7 @@ const Header = (props)=>{
           </div>
         </div>
         <Configuration show={configure} setConfigure={setConfigure}/>
-        <Setting show={setting} setSetting={setSetting}/>
+        <Setting show={setting} setSetting={setSetting} lang={lang}/>
       </nav> 
     )
 }

@@ -4940,3 +4940,374 @@ table {
   background-color: #00caca;
 }
 /*End Setting*/
+
+/* Team User */
+.team-users {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  position: relative;
+}
+.team-users p {
+  margin: 0;
+}
+.team-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+.team-header h4 {
+  font-size: 1.3rem;
+}
+.team-search {
+  display: flex;
+  width: 300px;
+  border-radius: 15px;
+  border: 1px solid #e1e1e1;
+  padding-inline: 0.5rem;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: 15px;
+}
+.team-search input {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 3px 7px;
+}
+.team-search i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.team-create {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #14b474;
+  border-radius: 4px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  color: #fff;
+  padding: 2px 8px;
+}
+.team-create p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+}
+.team-wrapper {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 5px;
+}
+.user-card {
+  border-radius: 3px;
+  border: 1px solid transparent;
+  padding: 1rem;
+  display: flex;
+  position: relative;
+}
+.user-card:hover {
+  box-shadow: 0 0 10px 7px #dddddd;
+}
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.user-profile img {
+  padding: 2px;
+  border: 2px solid #43b18b !important;
+  background-color: #fff !important;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 60px;
+}
+.owner {
+  cursor: pointer;
+  color: #fff;
+  padding: 4px 5px;
+  background-color: #00bd7b;
+  border-radius: 2px;
+  max-width: 100px;
+  margin-inline: auto;
+}
+.owner p {
+  font-size: 8px;
+  font-weight: 400;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.user-id p:nth-child(1) {
+  font-size: 1.143rem;
+  color: black;
+  font-weight: 600;
+}
+.user-id p:nth-child(2) {
+  color: #999;
+  font-size: 0.929rem;
+}
+.user-state td:nth-child(1) {
+  width: 120px;
+  color: #888;
+  font-size: 13px;
+  text-align: left;
+}
+.user-state td:nth-child(2) {
+  color: #888;
+  padding-right: 5px;
+  font-size: 13px;
+  text-align: left;
+}
+.user-state td:nth-child(3) {
+  font-size: 13px;
+  text-align: left;
+  color: black;
+}
+.user-card i {
+  color: #c0c0c0;
+}
+.user-btn i{
+  cursor: pointer;
+}
+.user-btn i:nth-child(2) {
+  margin-left: 2px;
+  padding: 8px 7px;
+  border-radius: 3px;
+  border-left: 2px solid #f1f3f6;
+}
+.user-card:hover .user-btn i:nth-child(2) {
+  border: 2px solid #c8c8c8;
+  color: blue;
+}
+.user-card:hover .user-btn i {
+  color: blue;
+}
+.create-team-user {
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 6px 20px 2px;
+  width: 600px;
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  z-index: 2;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.red-line {
+  background-color: rgb(206, 0, 0);
+  height: 2px;
+  width: 25px;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+}
+.create-team-user h4 {
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1.286rem;
+  cursor: pointer;
+  color: #000;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+.email-input , .profile-input , .role-input{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-block-start: 1rem;
+  padding-block-end: 0;
+  position: relative;
+}
+.profile-input , .role-input{
+  margin-bottom: 15px;
+}
+.email-input input , .role-input select , .profile-input select{
+  width: 70%;
+  background-color: transparent;
+  padding-inline: 0.5rem;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 4.9px;
+}
+.role-input select , .profile-input select{
+  padding-bottom: 10.7px;
+}
+.email-input label , .role-input label , .profile-input label {
+  margin: 0;
+  width: 30%;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 8px;
+  color: #666;
+  font-size: 0.9rem;
+}
+.note-input {
+  margin-left: auto;
+  margin-bottom: 30px;
+}
+.note-input p {
+  color: #333;
+  font-size: 0.8rem;
+}
+.note-input span {
+  color: #dc4b1f;
+  font-size: 0.8rem;
+}
+.assign-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.assign-box {
+  border: 1px solid #e1e1e1;
+  width: calc(100% - 2px);
+  border-radius: 8px;
+  padding-block: 0.5rem;
+  min-height: 300px;
+}
+.unchecked-header {
+  padding-inline: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #e5e5e5;
+  color: #555;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.checked-header {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #e5e5e5;
+}
+.checked-header p {
+  color: #e74c3c;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.transfer-arrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #00dd00 ;
+  cursor: pointer;
+  color: #00dd00;
+  background-color: white;
+}
+.transfer-arrow:hover{
+  background-color: #00dd00 ;
+  color: white;
+}
+.gp-wrapper{
+  display: flex;
+  flex-direction: column;
+  padding-block: 0.5rem;
+  gap: 10px;
+}
+.gp-header p{
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  padding-left: 0.8rem;
+}
+.gp-member{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-inline: 0.8rem;
+  padding-block: 0.2rem;
+}
+.gp-member label{
+  margin: 0;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.gp-member i{
+  display: none;
+  margin-left: auto;
+}
+.gp-member:hover{
+  background-color: rgba(128, 128, 128, 0.392);
+}
+.gp-member:hover i{
+  display: flex;
+}
+.default-line{
+  margin-bottom: 20px;
+}
+.default-line p {
+  font-size: 1.143rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #2c7bd0;
+  color: #2c7bd0;
+}
+.notify-input{
+  margin-bottom: 15px;
+}
+.create-btn-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.add-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #14b474;
+  border-radius: 2px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  padding: 2px 15px;
+}
+.add-btn p{
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 300;
+}
+.cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #c4c4c4;
+  background: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  padding: 2px 15px;
+}
+.cancel-btn p {
+  color: black;
+}
+.create-team-user input[type="checkbox"]{
+  accent-color: rgb(0, 134, 0);
+
+}
+
+/* End Team User */

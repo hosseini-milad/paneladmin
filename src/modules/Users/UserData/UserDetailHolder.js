@@ -9,6 +9,7 @@ import errortrans from "../../../translate/error"
 import tabletrans from "../../../translate/tables"
 import env from "../../../env"
 import UserAccess from "./UserAccess"
+import UserClass from "./UserClass"
 
 function UserDetailHolder(props){
   const url = window.location.pathname.split('/')[3]
@@ -36,12 +37,13 @@ function UserDetailHolder(props){
   )   
     
   },[])
+  console.log(tabIndex)
     return(
     <div className="account" style={{direction:direction}}>
       <h4><i className={`fa-solid fa-angle-${direction==="rtl"?"right":"left"}` }
           onClick={()=>window.location.href="/users"}></i>
           {tabletrans.account[lang]}</h4>
-      <UserTabs tabIndex={tabIndex} setTabIndex={setTabIndex} lang={lang}/>
+      <UserTabs tabIndex={tabIndex} setTabIndex={setTabIndex} lang={props.lang}/>
 
       <div className="pages-wrapper">
         {tabIndex===0?<UserGeneral direction={direction} lang={lang}
@@ -50,7 +52,8 @@ function UserDetailHolder(props){
         {tabIndex===2?<UserNotif direction={direction} lang={lang}/>:<></>}
         {tabIndex===3?<UserSocial direction={direction} lang={lang}/>:<></>}
         {tabIndex===4?<UserSecurity direction={direction} lang={lang}/>:<></>}
-        {tabIndex===5?<UserAccess direction={direction} lang={lang}/>:<></>}
+        {tabIndex===5?<UserClass direction={direction} lang={lang}
+          userData={userData}/>:<></>}
       </div>
     </div>
     )

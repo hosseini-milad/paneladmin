@@ -91,5 +91,33 @@ const errortrans ={
         english:"Full",
         persian:"کامل"
     },
+    newClass:{
+        english:"New Class",
+        persian:"کلاس جدید"
+    },
+    setting:{
+        english:"Setting",
+        persian:"تنظیمات"
+    },
+    back:{
+        english:"Back",
+        persian:"عقب"
+    },
+    filters:{
+        english:"Filters",
+        persian:"فیلترها"
+    },
+    filter:{
+        english:"Filter",
+        persian:"فیلتر"
+    },
+    filterName:{
+        english:"Filter Name",
+        persian:"نام فیلتر"
+    },
+    filterCode:{
+        english:"Filter Code",
+        persian:"کد فیلتر"
+    },
 }
 export default errortrans

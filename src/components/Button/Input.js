@@ -23,8 +23,10 @@ function StyleInput(props){
         style={{position:"relative"}}>
             <TextField label={props.title} 
                 className={props.class}
+                disabled={props.disable?true:false}
                 defaultValue={props.defaultValue}
                 onChange={(e)=>props.action(e.target.value)}
+                onKeyDown={(e)=>props.doAction?props.doAction(e):''}
                 type={props.password&&!showPass?"password":"text"}
             />
             {props.password?<i className={`fa ${showPass?"fa-eye-slash":"fa-eye"} 

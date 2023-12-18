@@ -1,4 +1,5 @@
 import env from "../env";
+import errortrans from "../translate/error";
 
 
 function LanguageSwitcher(){
@@ -6,7 +7,7 @@ function LanguageSwitcher(){
     
     const setLang=(lang,dir)=>{
         localStorage.setItem(env.cookieLang,JSON.stringify(
-            {lang:lang,dir:dir}));
+            {lang:lang,dir:dir,color:errortrans.defaultColor}));
         window.scrollTo(0, 0);
         setTimeout(()=>window.location.reload(),200);
     }

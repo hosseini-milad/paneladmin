@@ -39,6 +39,11 @@ import FindBug from './modules/Report/FindBug';
 import CRM from './pages/Crm';
 import AccessHolder from './modules/AccessControl/AccessHolder';
 import ProfileAdd from './modules/AccessControl/ProfileAdd';
+import FilterHolder from './modules/Filters/FilterHolder';
+import FilterAdd from './modules/Filters/FilterAdd';
+import Classes from './pages/Classes';
+import Policy from './pages/Policy';
+import PolicyDetailHolder from './modules/Policy/PolicyData/PolicyDetailHolder';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -67,6 +72,8 @@ root.render(
         <Route path="/users/detail/:userId" element={<Layout><UserDetailHolder lang={lang}/></Layout>}/>
         <Route path="/access" element={<Layout><AccessHolder lang={lang}/></Layout>}/>
         <Route path="/access/detail/:profileId" element={<Layout><ProfileAdd lang={lang}/></Layout>}/>
+        <Route path="/filter" element={<Layout><FilterHolder lang={lang}/></Layout>}/>
+        <Route path="/filter/detail/:filtereId" element={<Layout><FilterAdd lang={lang}/></Layout>}/>
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
@@ -80,6 +87,11 @@ root.render(
         <Route path="/brands/detail/:orderId" element={<Layout><BrandDetailHolder lang={lang}/></Layout>}/>
         <Route path="/category" element={<Layout><Category lang={lang}/></Layout>}/>
         <Route path="/category/detail/:orderId" element={<Layout><CatDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/class" element={<Layout><Classes lang={lang}/></Layout>}/>
+        <Route path="/class/detail/:orderId" element={<Layout><BrandDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/policy" element={<Layout><Policy lang={lang}/></Layout>}/>
+        <Route path="/policy/detail/:orderId" element={<Layout><PolicyDetailHolder lang={lang}/></Layout>}/>
+        
  
         <Route path="/reports" element={<Layout><Reports lang={lang}/></Layout>}/>
         <Route path="/find-bugs" element={<Layout><FindBug lang={lang}/></Layout>}/>

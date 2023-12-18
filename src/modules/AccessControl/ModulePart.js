@@ -11,7 +11,7 @@ function ModulePart(props){
             <i className="fa-solid fa-sliders" style={{color: "#c0c0c0"}}></i>
             <div className="section-title">
               <p>{module[props.lang]} <span><i className="fa-solid fa-sort-down fa-sm"></i></span></p>
-              <p>This section belongs to Team Profile</p>
+              <p>{module.description}</p>
             </div>
           </div>
           <div className="section-wrapper slideBarTitle">

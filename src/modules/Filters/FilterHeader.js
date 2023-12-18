@@ -1,32 +1,31 @@
 import StyleInput from "../../components/Button/Input"
 import errortrans from "../../translate/error"
 
-function AccessHeader(props){
+function FilterHeader(props){
   const content=props.content
     return(
       <div className="access-header">
-        <a className="ps-back-btn" href="/access">
+        <a className="ps-back-btn" href="/filter">
           <i className="fa-solid fa-rotate-left" style={{color: "#c0c0c0"}}></i>
           <p>{errortrans.back[props.lang]}</p>
         </a>
         <div className="ps-title">
           <i className="fa-solid fa-certificate fa-sm" style={{color: "#00c6c6"}}></i>
           <div className="p-wrapper">
-            <StyleInput title={errortrans.profileName[props.lang]} direction={props.direction} 
-              defaultValue={content.profileName||''} class={"formInput"}
-              action={(e)=>props.setProfileChange(prevState => ({
+            <StyleInput title={errortrans.filterName[props.lang]} direction={props.direction} 
+              defaultValue={content.title||''} class={"formInput"}
+              action={(e)=>props.setFilterChange(prevState => ({
                 ...prevState,
-                profileName:e
+                title:e
               }))}/>
             {/*<p>by<span>ZohoSprints</span>on<span>09/Nov/2023</span></p>*/}
           </div>
           
-          <StyleInput title={errortrans.profileCode[props.lang]} direction={props.direction} 
-              defaultValue={content.profileCode||''} class={"formInput"}
-              disable={content.profileCode?true:false}
-              action={(e)=>props.setProfileChange(prevState => ({
+          <StyleInput title={errortrans.filterCode[props.lang]} direction={props.direction} 
+              defaultValue={content.enTitle||''} class={"formInput"}
+              action={(e)=>props.setFilterChange(prevState => ({
                 ...prevState,
-                profileCode:e
+                enTitle:e
               }))}/>
         </div>
         <div className={props.direction==="ltr"?"asso-btn":"asso-btn asso-btnRTL"}>
@@ -37,4 +36,4 @@ function AccessHeader(props){
       </div>
     )
 }
-export default AccessHeader
+export default FilterHeader
