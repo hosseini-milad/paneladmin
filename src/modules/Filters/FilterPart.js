@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import errortrans from "../../translate/error"
 import ModuleSubPart from "./ModuleSubPart"
 import StyleInput from "../../components/Button/Input"
 import StyleSelect from "../../components/Button/AutoComplete"
 import formtrans from "../../translate/forms"
+import env from "../../env"
 
 function FilterPart(props){
+    const [listCategory,setListCategory]=useState()
     const [optionSelect,setOptionSelect] = useState()
     const [optionShow,setOptionShow] = useState(1)
     const updateOptions=(key)=>{
@@ -23,46 +25,66 @@ function FilterPart(props){
       setTimeout(()=>setOptionShow(1),100)
     }
     const data = props.data
+    const removeItem=(index)=>{
+      var tempArray = props.options
+      tempArray.splice(index, 1);
+      props.setOptions(tempArray)
+      setOptionShow(0)
+      setTimeout(()=>setOptionShow(1),100)
+    }
+    useEffect(()=>{
+      var postOptions={
+        method:'post',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify({})
+      }
+     
+  fetch(env.siteApi + "/panel/product/list-category",postOptions)
+  .then(res => res.json())
+  .then(
+    (result) => {
+      if(result.error){
+      }
+        else{
+            setListCategory(result.filter)
+        }
+        
+    },
+    (error) => {
+      console.log(error);
+    }
+  )
+    },[])
     return(
         <div className="ps-section">
           <div className="info-box">
             <div className="info-wrapper">
-              {/*<StyleInput title={formtrans.title[props.lang]} direction={props.direction} 
-                defaultValue={data?data.title:''} class={"formInput"}
-                action={(e)=>setFormData(prevState => ({
-                  ...prevState,
-                  title:e
-                }))}/>
-              
-              <StyleInput title={formtrans.title["english"]} direction={props.direction} 
-                defaultValue={data?data.enTitle:''} class={"formInput"}
-                action={(e)=>setFormData(prevState => ({
-                  ...prevState,
-                  enTitle:e
-                }))}/>*/}
-              
-              <StyleInput title={formtrans.category[props.lang]} direction={props.direction} 
+              <StyleSelect title={formtrans.category[props.lang]} direction={props.direction} 
+                options={listCategory||[]}
+                label={"title"||null}
                 defaultValue={data?data.category:''} class={"formInput"}
                 action={(e)=>props.setFilterChange(prevState => ({
                   ...prevState,
                   category:e
                 }))}/>
 
-              <StyleSelect title={formtrans.type[props.lang]} direction={props.direction} 
+              {/*<StyleSelect title={formtrans.type[props.lang]} direction={props.direction} 
                 options={["Input","Select"]}
                 defaultValue={data?data.type:''} class={"formInput"}
                 action={(e)=>props.setFilterChange(prevState => ({
                   ...prevState,
                   type:e
-                }))}/>
+                }))}/>*/}
               <div className="optionsSelect">
                 {optionShow?<StyleInput title={formtrans.options[props.lang]} direction={props.direction} 
                   value={optionSelect} class={"formInput"}
                   action={(e)=>setOptionSelect(e)}
                   doAction={(e)=>updateOptions(e.key)}/>:<></>}
-                  <ul>
+                  <ul> 
                     {props.options&&props.options.map((option,i)=>(
-                      <li key={i}>{option}</li>
+                      <li key={i} className="optionItem"><span>{option}</span>
+                        <i className="fa fa-remove" onClick={()=>removeItem(i)}></i>
+                      </li>
                     ))}
                   </ul>
               </div>

@@ -12,16 +12,17 @@ function PolicyDetailHolder(props){
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
-  const [brandOptions,setBrandOptions] = useState([])
+  
   const [classOptions,setClassOptions] = useState([])
-  const [filterOptions,setFilterOptions] = useState([])
+  const [filters,setFilters] = useState([])
+  const [categoryOptions,setCategoryOptions] = useState([])
+  
   const [content,setContent] = useState('')
   const [policyChange,setPolicyChange] = useState('')
-  const [filters,setFilters] = useState([])
   
-  //console.log(policyChange)
+  
   useEffect(()=>{
-    if(url==="new")return
+    //if(url==="new")return
     var postOptions={
       method:'post',
       headers: {'Content-Type': 'application/json'},
@@ -32,6 +33,7 @@ fetch(env.siteApi + "/panel/user/fetch-policy",postOptions)
 .then(res => res.json())
 .then(
   (result) => {
+    //console.log(result)
     if(result.error){
       setError({errorText:result.error,
         errorColor:"brown"})
@@ -42,9 +44,8 @@ fetch(env.siteApi + "/panel/user/fetch-policy",postOptions)
         setError({errorText:"سرویس پیدا شد",
           errorColor:"green"})
           setContent(result.filter)
-          setBrandOptions(result.brands)
           setClassOptions(result.classes)
-          setFilterOptions(result.filters)
+          setCategoryOptions(result.category)
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
       
@@ -94,11 +95,11 @@ return(
         <div className="item-box">
           <PolicyUsers direction={direction} lang={lang} content={content}
             setPolicyChange={setPolicyChange} policyChange={policyChange}
-            classOptions={classOptions}/>
+            classOptions={classOptions}/> 
           <PolicyDetails direction={direction} lang={lang} content={content}
             setPolicyChange={setPolicyChange} policyChange={policyChange}
-            brandOptions={brandOptions} filterOptions={filterOptions}
-            filters={filters} setFilters={setFilters}/>
+            filters={filters} setFilters={setFilters}
+            categoryOptions={categoryOptions}/>
           </div>
         <div className="create-btn-wrapper">
           <div className="save-btn" onClick={savePolicy}>{formtrans.saveChanges[lang]}</div>

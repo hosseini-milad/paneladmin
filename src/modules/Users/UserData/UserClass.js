@@ -73,7 +73,7 @@ function UserClass(props){
                     <i className="fa-solid fa-plus"></i>
                 </div>
               </div>
-        <div className="default-line"><p>Default Section</p></div>
+        {/*<div className="default-line"><p>Default Section</p></div>
         <div className="role-input">
           <label htmlFor="role">User Role</label>
           <div className="red-line"></div>
@@ -99,7 +99,7 @@ function UserClass(props){
         <div className="create-btn-wrapper">
           <div className="add-btn"><p>Add</p></div>
           <div className="cancel-btn"><p>Cancel</p></div>
-        </div>
+    </div>*/}
     </div>
     )
 }

@@ -81,9 +81,9 @@ function OrderUser(props){
                   <StyleSelect title={"name"} defaultValue={user.cName} options={searchList||[]}
                     action={(e)=>setNewCustomer(e)} direction={props.direction} label={"cName"}
                     textChange={setSearch}/>:
-                    <p>{user.cName}</p>}
+                    <p>{user?user.cName:''}</p>}
                   {editMode?<p>{newCustomer&&newCustomer.phone}</p>:
-                    <p>{user.phone}</p>}
+                    <p>{user?user.phone:''}</p>}
                   <p>IP Address:<span>192.158.1.38</span></p>
                   <div class="bl-btn">
                     <i class="fa-solid fa-plus fa-xl"></i>

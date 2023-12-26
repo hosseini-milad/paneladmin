@@ -121,7 +121,7 @@ function Users(props){
           
         </div>
         <div className="od-header-btn">
-          <label className="edit-btn">
+          <label className="edit-btn" onClick={()=>window.location.href="/class"}>
             <i className="fa-solid fa-plus"></i>
             {tabletrans.classes[lang]}
           </label>

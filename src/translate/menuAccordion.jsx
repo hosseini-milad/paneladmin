@@ -99,6 +99,14 @@ menu:[
                 url:"products"
             },
             {
+                english: "Stock Product",
+                persian: "محصولات استوک",
+                index:0,
+                icon:"fa-dashboard",
+                href:"/stock",
+                url:"stock"
+            },
+            {
                 english: "Services",
                 persian: "خدمات",
                 index:1,

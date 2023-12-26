@@ -4,28 +4,31 @@ import Status from "../../Components/Status"
 import errortrans from "../../../translate/error"
 import tabletrans from "../../../translate/tables"
 import formtrans from "../../../translate/forms"
-import BrandDetails from './BrandDetails';
-import BrandImage from './BrandImage';
+import ClassDetails from './ClassDetails';
+import ClassUser from './ClassUsers';
+import ClassPolicy from './ClassPolicy';
 
-function BrandDetailHolder(props){
+function ClassDetailHolder(props){
   const url = window.location.pathname.split('/')[3]
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
 
+  const [userFilter,setUserFilter] = useState('')
   const [content,setContent] = useState('')
-  const [brandChange,setBrandChange] = useState('')
+  const [users,setUsers] = useState('')
+  const [policy,setPolicy] = useState('')
+  const [classChange,setClassChange] = useState('')
   
-  console.log(brandChange)
   useEffect(()=>{
     if(url==="new")return
     var postOptions={
       method:'post',
       headers: {'Content-Type': 'application/json'},
-      body:JSON.stringify({brandId:url})
+      body:JSON.stringify({classId:url})
     }
    
-fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
+fetch(env.siteApi + "/panel/user/fetch-class",postOptions)
 .then(res => res.json())
 .then(
   (result) => {
@@ -39,6 +42,8 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
         setError({errorText:"سرویس پیدا شد",
           errorColor:"green"})
           setContent(result.filter)
+          setUsers(result.userClass)
+          setPolicy(result.policyClass)
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
       
@@ -48,15 +53,16 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
   }
 )
   },[])
-  const saveBrands=()=>{
+  
+  const saveClass=()=>{
     //if(newCustomer) {
       var postOptions={
           method:'post',
           headers: {'Content-Type': 'application/json'},
-          body:JSON.stringify({brandId:url,
-            ...brandChange})
+          body:JSON.stringify({classId:url,
+            ...classChange})
         }
-     fetch(env.siteApi + "/panel/product/editBrand",postOptions)
+     fetch(env.siteApi + "/panel/user/update-class",postOptions)
     .then(res => res.json())
     .then(
       (result) => {
@@ -69,7 +75,7 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
           else{
             setError({errorText:result.success,
               errorColor:"green"})
-            setTimeout(()=>window.location.href="/brands",2000)
+            setTimeout(()=>window.location.href="/class",2000)
           }
           
       },
@@ -81,32 +87,23 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
 return(
   <div className="new-item" style={{direction:direction}}>
       <div className="create-product">
-      <h4>{tabletrans.addBrand[lang]}</h4>
+      <h4>{tabletrans.addClass[lang]}</h4>
       {content||url==="new"?<div className="pages-wrapper">
         <div className="item-box">
-          <BrandDetails direction={direction} lang={lang} content={content}
-            setBrandChange={setBrandChange} brandChange={brandChange}/>
-            <div className='imageHolder'>
-              <label>Thumbnail</label>
-              <BrandImage lang={lang} content={content} value="brandUrl"
-                brandChange={brandChange} part={1}
-                action={(e)=>setBrandChange(prevState => ({
-                  ...prevState,
-                  brandUrl:e
-                }))}/>
-              <hr/>
-              <label>Main Image</label>
-              <BrandImage lang={lang} content={content} value="imageUrl"
-                brandChange={brandChange} part={2}
-                action={(e)=>setBrandChange(prevState => ({
-                  ...prevState,
-                  imageUrl:e
-                }))}/>
-            </div>
-          </div>
+          <ClassDetails direction={direction} lang={lang} content={content}
+            setClassChange={setClassChange} classChange={classChange}/>
+          
+          <ClassPolicy direction={direction} lang={lang} content={policy}
+            setClassChange={setClassChange} classChange={classChange}/> 
+        </div>
+        <div className="item-box">
+        <ClassUser direction={direction} lang={lang} content={content} users={users}
+            setClassChange={setClassChange} classChange={classChange}
+            setUserFilter={setUserFilter} userFilter={userFilter}/> 
+        </div>
         <div className="create-btn-wrapper">
-          <div className="save-btn" onClick={saveBrands}>{formtrans.saveChanges[lang]}</div>
-          <div className="cancel-btn" onClick={()=>window.location.href="/brands"}>{formtrans.cancel[lang]}</div>
+          <div className="save-btn" onClick={saveClass}>{formtrans.saveChanges[lang]}</div>
+          <div className="cancel-btn" onClick={()=>window.location.href="/class"}>{formtrans.cancel[lang]}</div>
         </div>
         
       </div>:<div>{env.loader}</div>}
@@ -114,4 +111,4 @@ return(
   </div>
   )
 }
-export default BrandDetailHolder
+export default ClassDetailHolder

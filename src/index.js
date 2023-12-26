@@ -6,6 +6,7 @@ import './css/fontAwesome.css';
 import './css/salimi.css';
 import './css/reyham.css';
 import './css/board.css';
+import './css/responsive.css';
 
 import {
   BrowserRouter as Router,
@@ -44,6 +45,8 @@ import FilterAdd from './modules/Filters/FilterAdd';
 import Classes from './pages/Classes';
 import Policy from './pages/Policy';
 import PolicyDetailHolder from './modules/Policy/PolicyData/PolicyDetailHolder';
+import ClassDetailHolder from './modules/Classes/ClassData/ClassDetailHolder';
+import StockManage from './pages/StockManage';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -77,6 +80,8 @@ root.render(
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/stock" element={<Layout><StockManage lang={lang}/></Layout>}/>
+        <Route path="/stock/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
 
         <Route path="/services" element={<Layout><Services lang={lang}/></Layout>}/>
         <Route path="/services/detail/:orderId" element={<Layout><ServiceDetailHolder lang={lang}/></Layout>}/>
@@ -88,7 +93,7 @@ root.render(
         <Route path="/category" element={<Layout><Category lang={lang}/></Layout>}/>
         <Route path="/category/detail/:orderId" element={<Layout><CatDetailHolder lang={lang}/></Layout>}/>
         <Route path="/class" element={<Layout><Classes lang={lang}/></Layout>}/>
-        <Route path="/class/detail/:orderId" element={<Layout><BrandDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/class/detail/:orderId" element={<Layout><ClassDetailHolder lang={lang}/></Layout>}/>
         <Route path="/policy" element={<Layout><Policy lang={lang}/></Layout>}/>
         <Route path="/policy/detail/:orderId" element={<Layout><PolicyDetailHolder lang={lang}/></Layout>}/>
         

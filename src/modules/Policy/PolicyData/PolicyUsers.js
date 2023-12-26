@@ -4,10 +4,31 @@ import StyleInput from "../../../components/Button/Input"
 import formtrans from "../../../translate/forms"
 import tabletrans from "../../../translate/tables"
 import StyleSelect from '../../../components/Button/AutoComplete';
+import env from '../../../env';
 
 function PolicyUsers(props){
-    const editorRef = useRef(null);
+    const [searchUser,setSearhUser]=useState()
     const content=props.content
+      //console.log(searchUser)
+    const searchUserFunction=(search)=>{
+      if(search.length>3){
+        var postOptions={
+          method:'post',
+          headers: {'Content-Type': 'application/json'},
+          body:JSON.stringify({customer:search})
+        }
+     fetch(env.siteApi + "/panel/user/list",postOptions)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        console.log(result)
+        setSearhUser(result.filter)
+      },
+      (error) => {
+        console.log(error);
+      })
+    }
+  }
     return(
         <div className="serviceItem">
             <StyleInput title={formtrans.name[props.lang]} direction={props.direction} 
@@ -17,14 +38,17 @@ function PolicyUsers(props){
                 policyName:e
               }))}/>
               <StyleInput title={formtrans.policyCode[props.lang]} direction={props.direction} 
-              defaultValue={content?content.discount:''} class={"formInput"}
+              defaultValue={content?content.policyCode:''} class={"formInput"}
               action={(e)=>props.setPolicyChange(prevState => ({
                 ...prevState,
-                discount:e
+                policyCode:e
               }))}/>
             <StyleSelect title={formtrans.customer[props.lang]} direction={props.direction} 
-              defaultValue={content?content.userId:''} class={"formInput"}
-              options={["123","321"]}
+              defaultValue={(content&&content.userId)?
+                content.userInfo[0].cName:''} class={"formInput"}
+              options={searchUser||[]}
+              label={"fullInfo"||''}
+              textChange={(e)=>searchUserFunction(e)}
               action={(e)=>props.setPolicyChange(prevState => ({
                 ...prevState,
                 userId:e
@@ -32,11 +56,10 @@ function PolicyUsers(props){
             <StyleSelect title={formtrans.class[props.lang]} direction={props.direction} 
               options={props.classOptions||[]}
               label={"className"||''}
-              defaultValue={(content&&content.classId)?
-                content.classInfo[0].className:''} class={"formInput"}
+              defaultValue={(content?content.class:'')} class={"formInput"}
               action={(e)=>props.setPolicyChange(prevState => ({
                 ...prevState,
-                classId:e
+                class:e
               }))}/>
             <StyleInput title={formtrans.discount[props.lang]} direction={props.direction} 
               defaultValue={content?content.discount:''} class={"formInput"}

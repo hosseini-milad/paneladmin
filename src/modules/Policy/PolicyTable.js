@@ -25,15 +25,15 @@ function PolicyTable(props){
               <i></i>
             </th>
             <th>
+              <p>{tabletrans.category[lang]}</p>
+              <i></i>
+            </th>
+            <th>
               <p>{tabletrans.brand[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.item[lang]}</p>
-              <i></i>
-            </th>
-            <th>
-            <p>{tabletrans.price[lang]}</p>
+            <p>{tabletrans.discount[lang]}</p>
               <i></i>
             </th>
             <th>

@@ -12,7 +12,7 @@ function CatDetailHolder(props){
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
-
+  const [userBrand,setUserBrand] = useState([])
   const [content,setContent] = useState('')
   const [catChange,setCatChange] = useState('')
   
@@ -39,6 +39,7 @@ fetch(env.siteApi + "/panel/product/fetch-category",postOptions)
         setError({errorText:"سرویس پیدا شد",
           errorColor:"green"})
           setContent(result.filter)
+          setUserBrand(result.filter?result.filter.brands:'')
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
       
@@ -54,7 +55,7 @@ fetch(env.siteApi + "/panel/product/fetch-category",postOptions)
           method:'post',
           headers: {'Content-Type': 'application/json'},
           body:JSON.stringify({catId:url,
-            ...catChange})
+            ...catChange,brands:userBrand})
         }
        console.log(postOptions)
     fetch(env.siteApi + "/panel/product/editCats",postOptions)
@@ -87,8 +88,9 @@ return(
       {content||url==="new"?<div className="pages-wrapper">
         <div className="item-box">
           <CatDetails direction={direction} lang={lang} content={content}
-            setCatChange={setCatChange} catChange={catChange}/>
-          <CatImage lang={lang}/>
+            setCatChange={setCatChange} catChange={catChange}
+            userBrand={userBrand} setUserBrand={setUserBrand}/>
+          <CatImage lang={lang}/> 
           </div>
         <div className="create-btn-wrapper">
           <div className="save-btn" onClick={saveCategory}>{formtrans.saveChanges[lang]}</div>

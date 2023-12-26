@@ -72,7 +72,7 @@ fetch(env.siteApi + "/panel/product/fetch-filter",postOptions)
           else{
             setError({errorText:result.success,
               errorColor:"green"})
-            setTimeout(()=>window.location.href="/filter",200000)
+            setTimeout(()=>window.location.href="/filter",2000)
           }
           
       },

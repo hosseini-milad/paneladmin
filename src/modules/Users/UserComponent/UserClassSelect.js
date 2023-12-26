@@ -1,4 +1,5 @@
 import env from "../../../env";
+import formtrans from "../../../translate/forms";
 import UserClassPlace from "./UserClassPlace";
 
 function UserClassSelect(props){
@@ -8,10 +9,10 @@ function UserClassSelect(props){
     return env.loader
     else return(
         <div className="assign-wrapper">
-            <UserClassPlace header={"Available Class"} token={token} 
+            <UserClassPlace header={formtrans.availableClass[props.lang]} token={token} 
             classes = {classes.availableClass} userData={props.userData}
             setChangeClass={props.setChangeClass}/>
-            <UserClassPlace header={"Assign Class"} token={token} 
+            <UserClassPlace header={formtrans.assignClass[props.lang]} token={token} 
             classes = {classes.assignClass} userData={props.userData}
             setChangeClass={props.setChangeClass}/>
         </div>

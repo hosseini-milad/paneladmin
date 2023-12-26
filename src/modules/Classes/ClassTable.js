@@ -1,9 +1,9 @@
 import { useState } from "react"
 import tabletrans from "../../translate/tables"
-import BrandTableRow from "./BrandTableRow";
+import ClassTableRow from "./ClassTableRow";
 
-function BrandTable(props){
-  const brand = props.brand
+function ClassTable(props){
+  const classes = props.classes
   const lang=props.lang;
   const [detail,showDetail] = useState(-1)
     return(
@@ -13,11 +13,7 @@ function BrandTable(props){
           <th className="checkBoxStyle">
               <input type="checkbox" name="" id=""/></th>
             <th>
-              <p>{tabletrans.order[lang]}</p>
-              <i></i>
-            </th>
-            <th>
-              <p>{tabletrans.customer[lang]}</p>
+              <p>{tabletrans.name[lang]}</p>
               <i></i>
             </th>
             <th>
@@ -25,7 +21,7 @@ function BrandTable(props){
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.brand[lang]}</p>
+              <p>{tabletrans.category[lang]}</p>
               <i></i>
             </th>
             <th>
@@ -45,9 +41,9 @@ function BrandTable(props){
           </tr>
         </thead>
         <tbody>
-          {brand&&brand.filter?brand.filter.map((brand,i)=>(
-            <BrandTableRow detail={detail} showDetail={showDetail} 
-            brand={brand} index={i} key={i} lang={lang}/>
+          {classes&&classes.filter?classes.filter.map((classes,i)=>(
+            <ClassTableRow detail={detail} showDetail={showDetail} 
+            classes={classes} index={i} key={i} lang={lang}/>
           )):''}
           
         </tbody>
@@ -55,4 +51,4 @@ function BrandTable(props){
 
     )
 }
-export default BrandTable
+export default ClassTable

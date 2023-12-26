@@ -8,7 +8,7 @@ import StyleSelect from "../../../components/Button/AutoComplete"
 import StyleSelectMultiple from "../../../components/Button/SelectMultiple"
 
 function UserGeneral(props){
-  const userData = props.userData
+  const userData = props.userData 
   const [formData, setFormData] = useState()
   const [group, setGroup] = useState([])
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
@@ -109,7 +109,7 @@ function UserGeneral(props){
                 }))}/>
                 
               <StyleSelect title={formtrans.access[props.lang]} direction={props.direction} 
-                defaultValue={userData.profile} class={"formInput"}
+                defaultValue={props.profile?props.profile:''} class={"formInput"}
                 options={props.accessList||[]}
                 label={"profileName"}
                 action={(e)=>setFormData(prevState => ({

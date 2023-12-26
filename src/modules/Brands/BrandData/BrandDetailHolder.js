@@ -13,10 +13,10 @@ function BrandDetailHolder(props){
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
 
+  const [userFactory,setUserFactory] = useState([])
   const [content,setContent] = useState('')
   const [brandChange,setBrandChange] = useState('')
   
-  console.log(brandChange)
   useEffect(()=>{
     if(url==="new")return
     var postOptions={
@@ -39,6 +39,7 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
         setError({errorText:"سرویس پیدا شد",
           errorColor:"green"})
           setContent(result.filter)
+          setUserFactory(result.filter?result.filter.factory:'')
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
       
@@ -54,8 +55,9 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
           method:'post',
           headers: {'Content-Type': 'application/json'},
           body:JSON.stringify({brandId:url,
-            ...brandChange})
+            ...brandChange,factory:userFactory})
         }
+        console.log(postOptions)
      fetch(env.siteApi + "/panel/product/editBrand",postOptions)
     .then(res => res.json())
     .then(
@@ -85,7 +87,8 @@ return(
       {content||url==="new"?<div className="pages-wrapper">
         <div className="item-box">
           <BrandDetails direction={direction} lang={lang} content={content}
-            setBrandChange={setBrandChange} brandChange={brandChange}/>
+            setBrandChange={setBrandChange} brandChange={brandChange}
+            userFactory={userFactory} setUserFactory={setUserFactory}/>
             <div className='imageHolder'>
               <label>Thumbnail</label>
               <BrandImage lang={lang} content={content} value="brandUrl"

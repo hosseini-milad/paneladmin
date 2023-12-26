@@ -5,25 +5,25 @@ import formtrans from "../../../translate/forms"
 
 function PolicyFilters(props){
     const content = props.content
-    const filters = props.filters
-    console.log(filters)
+    const filters = props.filterOptions
+    //console.log(filters)
     return(
         <div className=''>
           <table>
             <tbody>
-              {props.filterOptions&&props.filterOptions.map(
+              {filters&&filters.map(
                 (filter,i)=>(
                 <tr key={i}>
                   <td>
                       {filter.type==="Input"?<StyleInput title={filter.title} direction={props.direction} 
-                          defaultValue={content?content[filter.enTitle]:''} class={"formInput"}
+                          defaultValue={content?content.filters[filter.enTitle]:''} class={"formInput"}
                           action={(e)=>props.setFilters(prevState => ({
                               ...prevState,
                               [filter.enTitle]:e
                           }))}/>:
                           <StyleSelect title={filter.title} direction={props.direction} 
                           options={filter.optionsP||[]}
-                          defaultValue={content?content[filter.enTitle]:''} class={"formInput"}
+                          defaultValue={content?content.filters[filter.enTitle]:''} class={"formInput"}
                           action={(e)=>props.setFilters(prevState => ({
                               ...prevState,
                               [filter.enTitle]:e

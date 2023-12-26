@@ -9,7 +9,7 @@ import { useState } from 'react';
 import env from '../env';
 import ProductTable from '../modules/Products/ProductTable';
 import tabletrans from '../translate/tables';
-import BrandTable from '../modules/Brands/BrandTable';
+import ClassTable from '../modules/Classes/ClassTable';
 const cookies = new Cookies();
 
 function Classes(props){
@@ -22,15 +22,6 @@ function Classes(props){
     useEffect(() => {
       setLoading(1)
       const body={
-          offset:filters.offset?filters.offset:"0",
-          pageSize:filters.pageSize?filters.pageSize:"10",
-          customer:filters.customer,
-          orderNo:filters.orderNo,
-          status:filters.status,
-          brand:filters.brand,
-          dateFrom:filters.date&&filters.date.dateFrom,
-          dateTo:filters.date&&filters.date.dateTo,
-          access:"manager"
       }
       const postOptions={
           method:'post',
@@ -43,6 +34,7 @@ function Classes(props){
     .then(res => res.json())
     .then(
       (result) => {
+        console.log(result)
         setLoading(0)
           setContent('')
           setTimeout(()=> setContent(result),200)
@@ -82,7 +74,7 @@ function Classes(props){
         <OrderFilters lang={props.lang} setFilters={setFilters}
           options={content.brand} filters={filters}/>
         <div className="user-list"> 
-          {loading?env.loader:<BrandTable brand={content} lang={lang}/>}
+          {loading?env.loader:<ClassTable classes={content} lang={lang}/>}
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters} 
           lang={props.lang}/>

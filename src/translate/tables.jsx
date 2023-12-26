@@ -91,6 +91,10 @@ const tabletrans ={
         english: "Edit",
         persian: "ویرایش"
     },
+    delete:{
+        english: "Delete",
+        persian: "حذف"
+    },
     update:{
         english: "Update",
         persian: "بروزرسانی"
@@ -203,7 +207,7 @@ const tabletrans ={
     },
     createProduct:{
         english:"Create a new product",
-        persian:"افزدون محصول جدید"
+        persian:"افزودن محصول جدید"
     },
     productName:{
         english:"Product Name",
@@ -262,7 +266,7 @@ const tabletrans ={
     },
     addBrand:{
         english:"Add/Edit Brand",
-        persian:"افزدون یا ویرایش برند"
+        persian:"افزودن یا ویرایش برند"
     },
     policies:{
         english:"Policies",
@@ -270,11 +274,15 @@ const tabletrans ={
     },
     addPolicy:{
         english:"Add/Edit Policy",
-        persian:"افزدون یا ویرایش سیاست فروش"
+        persian:"افزودن یا ویرایش سیاست فروش"
     },
     addCategory:{
         english:"Add/Edit Category",
-        persian:"افزدون یا ویرایش دسته بندی"
+        persian:"افزودن یا ویرایش دسته بندی"
+    },
+    addClass:{
+        english:"Add/Edit Class",
+        persian:"افزودن یا ویرایش کلاس ها"
     },
     description:{
         english:"Description",
@@ -291,6 +299,14 @@ const tabletrans ={
     fullDescription:{
         english:"Full Description",
         persian:"توضیحات کامل"
+    },
+    available:{
+        english:"Available",
+        persian:"فعال"
+    },
+    notAvailable:{
+        english:"Not Available",
+        persian:"غیر فعال"
     },
 
 }

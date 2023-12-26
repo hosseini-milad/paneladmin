@@ -25,8 +25,10 @@ function OrderTableRow(props){
               <div className="cu-avatar">
                   <img src="/img/avatar/avatar_1.jpg" alt="avatar"/>
                   <div className="cu-name">
-                    <p className="name">{order.userInfo[0].cName}</p>
-                    <p className="email">{order.userInfo[0].phone}</p>
+                    <p className="name">{order.userInfo[0]?
+                    order.userInfo[0].cName:''}</p>
+                    <p className="email">{order.userInfo[0]?
+                    order.userInfo[0].phone:''}</p>
                   </div>
                   {order.moreInformation?
                     <i className="fa fa-comment-o" title={order.moreInformation}></i>:<></>}

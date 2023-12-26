@@ -67,7 +67,22 @@ const formtrans ={
         english: "Filters",
         persian: "فیلترها"
     },
-    
+    factoryManage:{
+        english: "Factory Manage",
+        persian: "مدیریت تولیدکننده"
+    },
+    factory:{
+        english: "Factory",
+        persian: "تولیدکننده"
+    },
+    brand:{
+        english: "Brand",
+        persian: "برند"
+    },
+    brandManage:{
+        english: "Brand Manage",
+        persian: "مدیریت برند"
+    },
     value:{
         english: "Value",
         persian: "مقدار"
@@ -79,6 +94,18 @@ const formtrans ={
     class:{
         english: "Class",
         persian: "کلاس"
+    },
+    classcode:{
+        english: "Class Code",
+        persian: "کد کلاس"
+    },
+    availableClass:{
+        english: "Available Class",
+        persian: "کلاس های موجود"
+    },
+    assignClass:{
+        english: "Assign Class",
+        persian: "کلاس های فعال"
     },
     newService:{
         english: "New Service",
@@ -143,6 +170,47 @@ const formtrans ={
     policyCode:{
         english: "Policy Code",
         persian: "کد سیاست"
+    },
+    
+    material:{
+        english: "Material",
+        persian: "متریال"
+    },
+    coating:{
+        english: "Coating",
+        persian: "پوشش"
+    },
+    lenzIndex:{
+        english: "Lens Index",
+        persian: "ایندکس"
+    },
+    design:{
+        english: "Design",
+        persian: "طراحی"
+    },
+    sph:{
+        english: "SPH",
+        persian: "SPH"
+    },
+    cyl:{
+        english: "CYL",
+        persian: "CYL"
+    },
+    existance:{
+        english: "Existance",
+        persian: "موجودی"
+    },
+    count:{
+        english: "Count",
+        persian: "تعداد"
+    },
+    submit:{
+        english: "Submit",
+        persian: "ثبت"
+    },
+    filters:{
+        english: "Product Filters",
+        persian: "فیلتر عدسی"
     },
 
 }

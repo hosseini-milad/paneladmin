@@ -8,10 +8,6 @@ import { useState } from 'react';
 
 function StyleSelect(props){
     const testOptions=props.options
-    const [filterItems,setFilterItems] = useState(testOptions)
-    
-    const [loading,setLoading] = useState("1")
-    const [search,setSearch] = useState('')
 
     const cacheRtl = createCache({
         key: "muirtl",
@@ -27,6 +23,7 @@ function StyleSelect(props){
             getOptionLabel={(option) => (option&&option[props.label])?
                 option[props.label]:option}
             //className={stylisRTLPlugin}
+            isOptionEqualToValue={(option, value) => option&&(option.id === value.id)}
             options={testOptions||[]}
             className={props.class}
             defaultValue={props.defaultValue||null}
