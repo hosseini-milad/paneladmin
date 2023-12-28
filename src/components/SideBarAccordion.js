@@ -24,15 +24,15 @@ function SideBarAccordion(props){
     return(
         <aside className={
             `sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3
-            ${props.lang.dir==="rtl"?" fixed-end me-3 rotate-caret bg-gradient-dark ps ps__rtl":
-            " fixed-start ms-3  bg-gradient-dark"}`}
+            ${props.lang.dir==="rtl"?" fixed-end me-3 rotate-caret bg-white ps ps__rtl":
+            " fixed-start ms-3  bg-white"}`}
             id="sidenav-main">
             <div className="sidenav-header">
             <i className="serviceIcon fas fa-close position-absolute end-0 top-0 "
             onClick={()=>props.setPinMenu(0)}/>
             <a className="navbar-brand m-0" href={menuList.title.href} target="_blank">
-                <i className={`serviceIcon fas ${menuList.title.icon}`}></i>
-                <span className="ms-1 font-weight-bold text-white">{menuList.title[props.lang.lang]}</span>
+                <i className={`mainIcon fas ${menuList.title.icon}`}></i>
+                <span className="ms-1 font-weight-bold text-dark">{menuList.title[props.lang.lang]}</span>
             </a>
             </div>
             <hr className="horizontal light mt-0 mb-2"/>
@@ -75,7 +75,7 @@ function SideBarAccordion(props){
             </div>
             <div className="sidenav-footer position-absolute w-100 bottom-0 ">
             <div className="mx-3">
-                <a className="btn bg-gradient-primary w-100" href="#" 
+                <a className="btn bg-gradient-secondary w-100" href="#" 
                 onClick={logOff} type="button">{errortrans.logOut[props.lang.lang]}</a>
             </div>
             </div>

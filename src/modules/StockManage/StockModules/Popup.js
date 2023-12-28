@@ -31,7 +31,7 @@ function Popup(props){
           }
             else{
               setError({errorText:'Updated',errorColor:"green"})
-              setTimeout(()=>props.setPopupShow(0),2000)
+              setTimeout(()=>props.setPopupShow(0),1000)
             }
             
         },
@@ -45,7 +45,13 @@ function Popup(props){
         <div className="popup-box" ref={ref} id="popit">
             <div className="p-number">
             <p>{formtrans.count[props.lang]}</p>
-            <p>{data.sku}</p>
+            <p>{data.store}</p>
+            </div>
+            <div className="p-number sphPopUp">
+                <a href={"https://mgmlens.com/printbarcode/"+data.sku} target="_blank">
+                    <i className="fa fa-barcode blackIcon"/></a>
+                <small>SPH: {data.sph?data.sph:"0.00"}</small>
+                <small>CYL: {data.cyl?data.cyl:"0.00"}</small>
             </div>
             <div className="pricePopup">
                 <StyleInput title={tabletrans.price[props.lang]}

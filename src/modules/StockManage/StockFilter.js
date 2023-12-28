@@ -1,10 +1,12 @@
 import StyleSelect from "../../components/Button/AutoComplete"
 import formtrans from "../../translate/forms"
+import ExportBarCode from "./StockModules/ExportBarCode"
 
 function StockFilter(props){
   
-  const filters = props.content
+  const filters = props.content&&props.content
     return(
+      <div className="filter-holder">
       <div className="filter-wrapper">
         <h3>{formtrans.filters[props.lang]}</h3>
         <div className="filter-input">
@@ -15,6 +17,15 @@ function StockFilter(props){
               action={(e)=>props.setFilters(preState=>({
                 ...preState,
                 brand:e}))}/>
+        </div>
+        <div className="filter-input">
+          <StyleSelect title={formtrans.lenzIndex[props.lang]} direction={props.direction} 
+              //defaultValue={content?content.brandCode:''} class={"formInput"}
+              options={filters&&filters.lenzIndexList||[]}
+              class="matrixFilter"
+              action={(e)=>props.setFilters(preState=>({
+                ...preState,
+                lenzIndex:e}))}/>
         </div>
         <div className="filter-input">
           <StyleSelect title={formtrans.material[props.lang]} direction={props.direction} 
@@ -35,18 +46,9 @@ function StockFilter(props){
                 coating:e}))}/>
         </div>
         <div className="filter-input">
-          <StyleSelect title={formtrans.lenzIndex[props.lang]} direction={props.direction} 
-              //defaultValue={content?content.brandCode:''} class={"formInput"}
-              options={filters&&filters.lenzIndexList||[]}
-              class="matrixFilter"
-              action={(e)=>props.setFilters(preState=>({
-                ...preState,
-                lenzIndex:e}))}/>
-        </div>
-        <div className="filter-input">
           <StyleSelect title={formtrans.sph[props.lang]} direction={props.direction} 
               //defaultValue={content?content.brandCode:''} class={"formInput"}
-              options={["6.00","4.00","2.00","-2.00","-4.00","-6.00"]}
+              options={["+6.00","+4.00","+2.00","-2.00","-4.00","-6.00"]}
               class="matrixFilter"
               action={(e)=>props.setFilters(preState=>({
                 ...preState,
@@ -55,36 +57,17 @@ function StockFilter(props){
         <div className="filter-input">
           <StyleSelect title={formtrans.cyl[props.lang]} direction={props.direction} 
               //defaultValue={content?content.brandCode:''} class={"formInput"}
-              options={["6.00","4.00","2.00","-2.00","-4.00","-6.00"]}
+              options={["+6.00","+4.00","+2.00","-2.00","-4.00","-6.00"]}
               class="matrixFilter"
               action={(e)=>props.setFilters(preState=>({
                 ...preState,
                 cyl:e}))}/>
         </div>
-        <div className="filter-input">
-          <label for="sph">From SPH</label>
-          <select name="" id="sph">
-            <option value="-2.00">-2.00</option>
-            <option value="-4.00">-4.00</option>
-            <option value="-6.00">-6.00</option>
-          </select>
-        </div>
-        <div className="filter-input">
-          <label for="sph">To SPH</label>
-          <select name="" id="sph">
-            <option value="2.00">2.00</option>
-            <option value="4.00">4.00</option>
-            <option value="6.00">6.00</option>
-          </select>
-        </div>
-        <div className="filter-input">
-          <label for="cylfix">CYL FIX</label>
-          <input type="text" id="cylfix"/>
-        </div>
-        <div className="filter-input">
-          <label for="sphfix">SPH FIX</label>
-          <input type="text" id="sphfix"/>
-        </div>
+      </div>
+        {(filters&&filters.in&&filters.in.brand
+          &&filters.in.lenzIndex&&filters.in.material)?
+        <ExportBarCode lang={props.lang} data={filters}/>
+        :<></>}
       </div>
     )
 }

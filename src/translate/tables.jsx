@@ -63,6 +63,18 @@ const tabletrans ={
         english: "Price",
         persian: "قیمت"
     },
+    priceSell:{
+        english: "Sell Price",
+        persian: "قیمت فروش"
+    },
+    pricePurchase:{
+        english: "Purchase Price",
+        persian: "قیمت خرید"
+    },
+    priceNotif:{
+        english: "Notify Price",
+        persian: "اعلامیه قیمت"
+    },
     details:{
         english: "Details",
         persian: "جزئیات"

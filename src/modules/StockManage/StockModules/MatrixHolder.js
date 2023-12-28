@@ -1,11 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Popup from "./Popup"
 
 function MatrixHolder(props){
     const content = props.content
     const colHeader=content.cylList
-    
-    const [matrix,setMatrix]=useState(content.matrixData)
+    const rowHeader=content.sphList
+
+    const [matrix,setMatrix]=useState()
+
+    useEffect(()=>{
+        setMatrix(content.matrixData)
+    },[content.matrixData])
 
     const [popupShow,setPopupShow] = useState(0)
     const [xy,setXY] = useState([0,0])
@@ -20,7 +25,11 @@ function MatrixHolder(props){
         if(newItem.price)
             tempMatrix[xy[0]][xy[1]].price=newItem.price
         setMatrix(tempMatrix)
+        /*props.setFilters(preState=>({
+            ...preState,
+            update:Math.random()}))*/
     }
+    //console.log(content)
     return(<>
     <table>
         <thead>
@@ -34,13 +43,15 @@ function MatrixHolder(props){
         <tbody>
             {matrix&&matrix.map((row,i)=>(
               <tr key={i}>
-                <td style={{direction:"ltr"}}>{row[0]?row[0].sph:''}</td>
-                {row&&row.map((item,j)=>(item&&
+                <td style={{direction:"ltr"}}>{rowHeader[i]?rowHeader[i]:''}</td>
+                {row&&row.map((item,j)=>(
                     <td key={j}>
-                    <div onClick={(e)=>popup(item,i,j)} 
-                        className={item.active==="false"?"disCube":"cube"}>
-                    </div>
-                </td>
+                        {item?<div onClick={(e)=>popup(item,i,j)} 
+                            className={item.active==="false"?"disCube":"cube"}>
+                        </div>:
+                        <div className="noCube">
+                        </div>}
+                    </td>
                 ))}
               </tr>
             ))}

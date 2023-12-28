@@ -87,6 +87,10 @@ const errortrans ={
         english:"Edit",
         persian:"ویرایش"
     },
+    barCode:{
+        english:"BarCode",
+        persian:"بارکد"
+    },
     full:{
         english:"Full",
         persian:"کامل"

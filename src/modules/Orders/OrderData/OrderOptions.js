@@ -67,7 +67,7 @@ function OrderOptions(props){
           <div class="del-col">
           {editMode?<StyleSelect title={tabletrans.coridor[props.lang]} 
             action={setNewCoridor} direction={props.direction} 
-            options={["13","14","15","16","17","18"]}/>:
+            options={["10","13","14","15","16","17","18"]}/>:
           <small>{content.coridor?content.coridor:"-"}</small>}
           </div>
         </div>

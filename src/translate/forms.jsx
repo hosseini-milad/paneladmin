@@ -200,6 +200,10 @@ const formtrans ={
         english: "Existance",
         persian: "موجودی"
     },
+    status:{
+        english: "Status",
+        persian: "وضعیت"
+    },
     count:{
         english: "Count",
         persian: "تعداد"
@@ -208,9 +212,25 @@ const formtrans ={
         english: "Submit",
         persian: "ثبت"
     },
+    pricing:{
+        english: "Pricing",
+        persian: "قیمت گذاری"
+    },
+    existance:{
+        english: "Existance",
+        persian: "موجودی"
+    },
     filters:{
         english: "Product Filters",
         persian: "فیلتر عدسی"
+    },
+    export:{
+        english: "Export",
+        persian: "خروجی اکسل"
+    },
+    download:{
+        english: "Download",
+        persian: "دریافت اکسل"
     },
 
 }

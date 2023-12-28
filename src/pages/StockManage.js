@@ -12,14 +12,16 @@ function StockManage(props){
     const [error,setError] = useState({errorText:'',errorColor:"brown"})
 
     const [filters,setFilters] = useState()
+    
     const [stockList,setStockList] = useState()
     useEffect(()=>{
+      setStockList()
         var postOptions={
             method:'post',
             headers: {'Content-Type': 'application/json'},
-            body:JSON.stringify({...filters,
-              /*brand:"ESSENCE",material:"Clear 2/2",
-            lenzIndex:"1.61", sph:"-4.00",cyl:"-2.00"*/})
+            body:JSON.stringify({...filters,/*
+              brand:"LECO",material:"Clear 2/2",coating:"HMC",
+            lenzIndex:"1.56", sph:"+4.00",cyl:"+2.00"*/})
           }
          
       fetch(env.siteApi + "/panel/lens/stock-list",postOptions)
@@ -46,13 +48,13 @@ function StockManage(props){
     },[filters])
     return(
   <main className="main-content position-relative h-100 border-radius-lg "
-    style={{direction:direction}}>
+    /*style={{direction:direction}}*/>
     <div className="matrix">
       <StockFilter direction={direction} content={stockList}
       setFilters={setFilters} filters={filters} lang={lang}/>
-      <StockMatrix  lang={lang} direction={direction} content={stockList}/>
+      <StockMatrix  lang={lang} setFilters={setFilters} direction={direction} content={stockList}/>
     </div>
-    <StockList content={stockList} lang={lang}/>
+    <StockList content={stockList} lang={lang} direction={direction}/>
     <Paging content={stockList} setFilters={setFilters} filters={filters} 
           lang={props.lang}/>
   </main>
