@@ -55,7 +55,7 @@ function ProductName(props){
                     title:e
                   }))}/>
               <div className="contentTextEditor">
-                <label for="name">{tabletrans.description[props.lang]}</label>
+                <label htmlFor="name">{tabletrans.description[props.lang]}</label>
                 <RichTextEditor content={content} value={"description"}
                   setProductChange={props.setProductChange} 
                   action={(e)=>props.setProductChange(prevState => ({
@@ -64,7 +64,7 @@ function ProductName(props){
                     }))} height={200}/>
               </div>
               <div className="contentTextEditor">
-                <label for="name">{tabletrans.fullDescription[props.lang]}</label>
+                <label htmlFor="name">{tabletrans.fullDescription[props.lang]}</label>
                 <RichTextEditor content={content} value={"fullDesc"}
                   setProductChange={props.setProductChange} 
                   action={(e)=>props.setProductChange(prevState => ({

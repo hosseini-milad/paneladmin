@@ -1,11 +1,14 @@
 import { useState } from "react"
+import UserClassInTable from "./UserComponent/UserClassInTable"
+import tabletrans from "../../translate/tables"
+import Status from "../Components/Status"
 
 function UserTableRow(props){ 
   const [openOption,setOpenOption] = useState(0)
   const [checkState,setCheckState] = useState(false)
   const activeAcc = props.index===props.detail
   const user=props.user
-  console.log(openOption)
+  console.log(user)
     return(
         <tr>
             <td className="checkBoxStyle">
@@ -21,12 +24,16 @@ function UserTableRow(props){
               </div>
             </td>
             <td>
-              <div className="cu-role">
+              <div className="cu-company">
                 <p>{user.credit}</p>
               </div>
             </td>
             <td>
-              <div className="cu-phone">
+              {user.class?<UserClassInTable classes={user.class}/>:
+              <></>}
+            </td>
+            <td>
+              <div className="cu-company">
                 <p className="phone-num">{user.phone}</p>
               </div>
             </td>
@@ -37,7 +44,7 @@ function UserTableRow(props){
             </td>
             <td>
               <div className="pen-status order-status">
-                Pending
+                <Status text={user.lock!=="3"?"فعال":"قفل شده"} />
               </div>
             </td>
             <td>
@@ -47,14 +54,15 @@ function UserTableRow(props){
                 <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i>
               </div>
-              {openOption?<div className="sub-more-menu">
+              {openOption?<div className={props.direction==="rtl"?
+                "sub-more-menu":"sub-more-menu sub-more-rtl"}>
                 <div className="sub-option sub-delete">
                 <i className="tableIcon fas fa-remove" style={{color: "#ff0000"}}></i>
-                  <p>Delete</p>
+                  <p>{tabletrans.delete[props.lang]}</p>
                 </div>
                 <div className="sub-option sub-edit">
                   <i className="tableIcon fas fa-edit"></i>
-                  <p>Edit</p>
+                  <p>{tabletrans.edit[props.lang]}</p>
                 </div>
               </div>:<></>}
             </td>

@@ -5,8 +5,10 @@ import tabletrans from "../../../translate/tables"
 function ProductSKU(props){
     const content = props.content
     const brand=props.brand
+    const filters=props.filters
     const category = props.category
-    console.log(category)
+    const defFilters = content?content.filters:''
+    console.log(defFilters)
     return(
         <div className="pd-row">
           <div className="row-title">
@@ -28,67 +30,35 @@ function ProductSKU(props){
                     ...prevState,
                     sku:e
                   }))}/>
-                <StyleInput title={tabletrans.quantity[props.lang]} direction={props.direction}
-                 class={"formInput"} defaultValue={content?content.quantity:''} 
-                 action={(e)=>props.setProductChange(prevState => ({
-                    ...prevState,
-                    quantity:e
-                  }))}/>
-                <StyleSelect title={tabletrans.brand[props.lang]} direction={props.direction}
-                 class={"formInput halfWidth"} defaultValue={content?content.brand:''} 
-                 options={brand?brand:[]} label={"title"}
-                 action={(e)=>props.setProductChange(prevState => ({
-                    ...prevState,
-                    brand:e
-                  }))}/>
-                  <StyleSelect title={tabletrans.category[props.lang]} direction={props.direction}
-                 class={"formInput halfWidth"} defaultValue={content?content.category:''} 
+                <StyleSelect title={tabletrans.category[props.lang]} direction={props.direction}
+                 class={"formInput halfWidth"} defaultValue={content?JSON.parse(content.category):''} 
                  options={category?category:[]} label="title"
                  action={(e)=>props.setProductChange(prevState => ({
                     ...prevState,
-                    category:e
+                    category:e?e._id:''
                   }))}/>
-                <div className="pd-color"><div>Color</div></div>
-                <div className="pd-size"><div>Size</div></div>
+                <StyleSelect title={tabletrans.brand[props.lang]} direction={props.direction}
+                 class={"formInput halfWidth"} defaultValue={content?JSON.parse(content.brand):''} 
+                 options={brand?brand:[]} label={"title"}
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    brand:e?e._id:''
+                  }))}/>
+                {filters?filters.map((filter,i)=>(
+                  <StyleSelect title={filter.title} direction={props.direction}
+                  class={"formInput halfWidth"} defaultValue={defFilters&&defFilters[filter.enTitle]||''}
+                  options={filter.optionsP?filter.optionsP:[]} 
+                  action={(e)=>e&&props.setChangeFilters(prevState => ({
+                     ...prevState,
+                     [filter.enTitle]:e
+                   }))} key={i}/>
+                )):<></>}
                 <div className="pd-tags info-input">
                   <label htmlFor="pd-tag">Tags</label>
                   <input type="text" name="" id="pd-tag"/>
                 </div>
 
               </div>
-              {/*<div className="gender-wrapper">
-                <h5>Gender</h5>
-                <div className="gender-checkboxes">
-                  <input type="checkbox" name="" id="men"/>
-                  <label htmlFor="men">Men</label>
-                  <input type="checkbox" name="" id="women"/>
-                  <label htmlFor="women">Women</label>
-                  <input type="checkbox" name="" id="kid"/>
-                  <label htmlFor="kid">Kids</label>
-                </div>
-              </div>
-              <div className="label-wrapper">
-                <div className="sale-label">
-                  <div className="dense-btn">
-                    <input className="switch-input" type="checkbox" id="switch-1" />
-                    <label className="switch-label" htmlFor="switch-1">Toggle</label>
-                  </div>
-                  <div className="sale-input info-input">
-                    <label htmlFor="sale">Sale Label</label>
-                    <input type="text" name="" id="sale"  disabled  />
-                  </div>
-                </div>
-                <div className="new-label">
-                  <div className="dense-btn">
-                    <input className="switch-input" type="checkbox" id="switch-2"/>
-                    <label className="switch-label" htmlFor="switch-2">Toggle</label>
-                  </div>
-                  <div className="sale-input info-input">
-                    <label htmlFor="new">New Label</label>
-                    <input type="text" name="" id="new"  disabled  />
-                  </div>
-                </div>
-              </div>*/}
 
             </div>
           </div>

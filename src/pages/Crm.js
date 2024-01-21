@@ -20,12 +20,16 @@ const initalDataStatic = {
             id:"lead", title:"Lead",
             taskIds:['task-1','task-2','task-3','task-4']
         },
-        'informations':{
-            id:"informations", title:"Informações",
+        'inprogress':{
+            id:"inprogress", title:"Inprogress",
             taskIds:[]
         },
-        'fiin':{
-            id:"fiin", title:"FINE's",
+        'completed':{
+            id:"complete", title:"Completed",
+            taskIds:['task-5','task-6']
+        },
+        'done':{
+            id:"done", title:"Done",
             taskIds:['task-5','task-6']
         }
     },
@@ -169,7 +173,8 @@ function CRM(props){
     }
     console.log(boardArray)
     return(
-        <div className='reyham-board board-list' style={{direction:direction}}>
+    <div className="crm">
+        <div className='reyham-board board-list'>
             {boardArray?<DragDropContext
             onDragStart={DragStart}
             onDragUpdate={DragUpdate}
@@ -181,6 +186,7 @@ function CRM(props){
                 })}
             </DragDropContext>:<div>Updating</div>}
         </div>
+    </div>
     )
 }
 export default CRM

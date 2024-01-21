@@ -19,6 +19,12 @@ function ProductPrice(props){
                     price:e
                   }))}/>
                 
+                <StyleInput title={tabletrans.quantity[props.lang]} direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.quantity:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    quantity:e
+                  }))}/>
               </div>
               {/*<div className="sale-price info-input">
                 <label htmlFor="sale-price">Sale Price</label>

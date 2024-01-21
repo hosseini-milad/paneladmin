@@ -7,6 +7,8 @@ import formtrans from "../../../translate/forms"
 import ClassDetails from './ClassDetails';
 import ClassUser from './ClassUsers';
 import ClassPolicy from './ClassPolicy';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function ClassDetailHolder(props){
   const url = window.location.pathname.split('/')[3]
@@ -14,6 +16,7 @@ function ClassDetailHolder(props){
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
 
+  const token=cookies.get(env.cookieName)
   const [userFilter,setUserFilter] = useState('')
   const [content,setContent] = useState('')
   const [users,setUsers] = useState('')
@@ -58,7 +61,10 @@ fetch(env.siteApi + "/panel/user/fetch-class",postOptions)
     //if(newCustomer) {
       var postOptions={
           method:'post',
-          headers: {'Content-Type': 'application/json'},
+          headers: {'Content-Type': 'application/json',
+          "x-access-token": token&&token.token,
+          "userId":token&&token.userId,
+          "module":"Customers Manager"},
           body:JSON.stringify({classId:url,
             ...classChange})
         }

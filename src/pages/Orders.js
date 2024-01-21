@@ -7,6 +7,7 @@ import OrderFilters from '../modules/Orders/OrderComponent/OrderFilters';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import env from '../env';
+import OrderTab from '../modules/Orders/OrderComponent/OrderTab';
 const cookies = new Cookies();
 
 function Orders(props){
@@ -22,6 +23,7 @@ function Orders(props){
           offset:filters.offset?filters.offset:"0",
           pageSize:filters.pageSize?filters.pageSize:"10",
           customer:filters.customer,
+          category:filters.category,
           orderNo:filters.orderNo,
           status:filters.status,
           brand:filters.brand,
@@ -57,10 +59,12 @@ function Orders(props){
       <div className="list-container">
         <StatusBar lang={lang} token={token} filters={filters}
          status={content.rxStatus} setFilters={setFilters}/>
+         <OrderTab setFilters={setFilters} filters={filters}/>
         <OrderFilters lang={props.lang} setFilters={setFilters}
           options={content.brand} filters={filters}/>
         <div className="user-list">
-          {loading?env.loader:<OrderTable orders={content} lang={lang}/>}
+          {loading?env.loader:<OrderTable orders={content} lang={lang}
+          category={filters.category}/>}
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters} 
           lang={props.lang}/>

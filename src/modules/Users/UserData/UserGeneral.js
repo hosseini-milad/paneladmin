@@ -9,13 +9,17 @@ import StyleSelectMultiple from "../../../components/Button/SelectMultiple"
 
 function UserGeneral(props){
   const userData = props.userData 
+  const token=props.token
   const [formData, setFormData] = useState()
   const [group, setGroup] = useState([])
   const [error,setError] = useState({errorText:'',errorColor:"brown"})
   const saveChanges=() => {
     var postOptions={
         method:'post',
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json',
+        "x-access-token": token&&token.token,
+        "userId":token&&token.userId,
+        "module":"Customers Manager"},
         body:JSON.stringify({
           userId:userData._id,
           ...formData
@@ -32,7 +36,11 @@ function UserGeneral(props){
           errorColor:"green"})
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),3000)
       }
-      else console.log(result)
+      else {
+        setError({errorText:result.message,
+          errorColor:"brown"})
+        setTimeout(()=>setError({errorText:'',errorColor:"brown"}),3000)
+      }
     },
       (error) => {
         console.log(error);

@@ -47,6 +47,9 @@ import Policy from './pages/Policy';
 import PolicyDetailHolder from './modules/Policy/PolicyData/PolicyDetailHolder';
 import ClassDetailHolder from './modules/Classes/ClassData/ClassDetailHolder';
 import StockManage from './pages/StockManage';
+import Landing from './pages/Landing';
+import CRMList from './modules/Crm/CRMList/crmList';
+import CRMAdd from './modules/Crm/CRMList/crmAdd';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -67,10 +70,14 @@ root.render(
     <Router>
     {cookies.get(env.cookieName)?
       <Routes>
-        <Route path="/" element={<Layout><Dashboard lang={lang}/></Layout>}/>
+        <Route path="/" element={<Layout><Landing lang={lang}/></Layout>}/>
         <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
         <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
         <Route path="/crm" element={<Layout><CRM lang={lang}/></Layout>}/>
+        <Route path="/crmlist" element={<Layout><CRMList lang={lang}/></Layout>}/>
+        <Route path="/crmlist/detail/:crmId" element={<Layout><CRMAdd lang={lang}/></Layout>}/>
+
+
         <Route path="/users" element={<Layout><Users lang={lang}/></Layout>}/>
         <Route path="/users/detail/:userId" element={<Layout><UserDetailHolder lang={lang}/></Layout>}/>
         <Route path="/access" element={<Layout><AccessHolder lang={lang}/></Layout>}/>

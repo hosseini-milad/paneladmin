@@ -39,9 +39,17 @@ const tabletrans ={
         english: "Brand",
         persian: "برند"
     },
+    invoice:{
+        english: "Invoice",
+        persian: "قبض/فروشگاه"
+    },
     bugCount:{
         english: "Bug Count",
         persian: "تعداد مغایرت"
+    },
+    rowNumber:{
+        english: "#",
+        persian: "#"
     },
     rowCount:{
         english: "Row Count",
@@ -49,7 +57,11 @@ const tabletrans ={
     },
     order:{
         english: "Order",
-        persian: "سفارش"
+        persian: "شماره سفارش"
+    },
+    user:{
+        english: "User",
+        persian: "کاربر"
     },
     item:{
         english: "Item",
@@ -58,6 +70,10 @@ const tabletrans ={
     status:{
         english: "Status",
         persian: "وضعیت"
+    },
+    statusFactory:{
+        english: "Status Factory",
+        persian: "وضعیت کارگاه"
     },
     price:{
         english: "Price",

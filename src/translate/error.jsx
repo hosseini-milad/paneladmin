@@ -123,5 +123,23 @@ const errortrans ={
         english:"Filter Code",
         persian:"کد فیلتر"
     },
+
+    //CRM Control
+    crms:{
+        english:"CRM",
+        persian:"مدیریت رویدادها"
+    },
+    crm:{
+        english:"crm",
+        persian:"افزودن"
+    },
+    crmName:{
+        english:"CRM Name",
+        persian:"نام CRM"
+    },
+    crmCode:{
+        english:"CRM Code",
+        persian:"کد CRM"
+    },
 }
 export default errortrans

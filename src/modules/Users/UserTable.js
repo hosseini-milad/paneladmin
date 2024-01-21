@@ -20,6 +20,10 @@ function UserTable(props){
               <i></i>
             </th>
             <th>
+              <p>{tabletrans.classes[lang]}</p>
+              <i></i>
+            </th>
+            <th>
               <p>{tabletrans.phoneNumber[lang]}</p>
               <i></i>
             </th>

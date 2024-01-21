@@ -178,6 +178,13 @@ textarea{
   }
   .cu-avatar{
     position: relative;
+    min-width: 160px;
+  }
+  .user-list th:nth-child(5){
+    width: auto;
+  }
+  .or-date {
+    padding: 0 5px;
   }
   .cu-avatar i{
     position: absolute;
@@ -187,6 +194,7 @@ textarea{
   .user-statue {
     gap: 0 40px;
     flex-wrap: wrap;
+    min-height: 60px;
   }
   .info-post{
     display: flex;
@@ -585,6 +593,12 @@ textarea{
 .filter-input {
   margin: 15px 0;
 }
+.filter-input input {
+  border: none;
+}
+.filter-input select {
+  border:none;
+}
 #matrix:checked ~ #matrix-page {
   min-height: 500px;
 }
@@ -608,4 +622,78 @@ checkbox-container label {
 }
 .boxThumb{
   background-color:gray
+}
+.miniFilter{
+  min-width: 120px !important;
+}
+
+.cu-company p{
+  text-align: center;
+}
+.cu-phone p{
+  text-align: center;
+}
+.sub-more-rtl{
+  right:auto;
+  left:30px;
+}
+.listTd{
+  width: fit-content;
+  min-width: 120px;
+}
+.centerTd{
+  text-align: center;
+}
+.user-list tr {
+  border-bottom: 2px solid #f6f7f9;
+}
+.or-date p:first-child {
+  color: #000;
+}
+.cu-name p {
+  color: #000;
+}
+.user-list td {
+  color: #000;
+}
+
+.slidemenu {
+  display: flex;
+}
+.slide-toggle {
+  display: none;
+}
+.slidemenu label{
+  float: none;
+  width: 50%;
+  position: relative;
+  color: gray;
+  opacity: 1;
+}
+.sliderMenu{
+  height: 32px;
+  width: 0;
+  transition: .3s all;
+  position: absolute;
+  top:0;
+  left: 0;
+}
+.sliderMenuSelect span{
+  color:#000;
+}
+.sliderMenuSelect .sliderMenu{
+  background-color: white;
+  border-radius: 10px;
+  height: 32px;
+  margin: 5px auto !important;
+  transition: .3s all;
+  position: absolute;
+  opacity: 1 !important;
+  top:0;
+  width: 100%;
+  right: 0;
+}
+.slidemenu label span {
+  z-index: 5;
+  position: inherit;
 }

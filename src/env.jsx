@@ -1,13 +1,13 @@
 const env={
-    //siteApi:'http://localhost:4000/api',
+    siteApi:'http://localhost:4000/api',
     //siteApi:'https://panel.mehrgaz.com/api',
     //siteApi:'https://orderadmin.deleves.com/api',
-    siteApi:'https://admin.mgmlens.com/api',
+    //siteApi:'https://admin.mgmlens.com/api',
     
-    //siteApiUrl:'http://localhost:4000',
+    siteApiUrl:'http://localhost:4000',
     //siteApiUrl:'https://panel.mehrgaz.com',
     //siteApiUrl:'https://orderadmin.deleves.com',
-    siteApiUrl:'https://admin.mgmlens.com',
+    //siteApiUrl:'https://admin.mgmlens.com',
 
     cookieName:'panel-login',
     //cookieName:'mehr-login',
@@ -20,9 +20,8 @@ const env={
 
     editorApi:'qosmvwu6wq395cpq7ay8ud8j9d21cf4cdgkxwmpz317vpy2i',
 
-    columnOrder:['lead','informations','fiin','property','seguros',
-        'escritura','commissions','suspended'],
-    columnAgentOrder:['lead','inprogress','escritura']
+    columnOrder:['lead','inprogress','completed','done'],
+    columnAgentOrder:['lead','inprogress','completed','done']
 
 }
 export function jalali_to_gregorian(jy, jm, jd) {

@@ -1,4 +1,11 @@
-function DashboardChart(){
+import { useEffect, useState } from "react"
+import WeekStatistic from "./charts/WeekStatistic"
+import RXChart from "./charts/RXChart"
+import env from "../../env"
+import StockChart from "./charts/StockChart"
+import UserChart from "./charts/UserChart"
+function DashboardChart(props){
+    
     return(
         <div class="row mt-4">
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
@@ -6,7 +13,8 @@ function DashboardChart(){
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                <RXChart lang={props.lang} direction={props.direction}
+                  label={["","S","S","M","T","W","T","F"]}/>
                 </div>
               </div>
             </div>
@@ -26,7 +34,8 @@ function DashboardChart(){
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
+                <StockChart lang={props.lang} direction={props.direction}
+                  label={["","S","S","M","T","W","T","F"]}/>
                 </div>
               </div>
             </div>
@@ -46,7 +55,8 @@ function DashboardChart(){
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
+                <UserChart lang={props.lang} direction={props.direction}
+                  label={["","S","S","M","T","W","T","F"]}/>
                 </div>
               </div>
             </div>

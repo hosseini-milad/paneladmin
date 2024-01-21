@@ -16,14 +16,13 @@ function ProductDetailHolder(props){
 
   const [content,setContent] = useState('')
   const [brand,setBrand] = useState('')
+  const [filters,setFilters] = useState('')
+  const [changeFilters,setChangeFilters] = useState('')
   const [category,setCategory] = useState('')
-  const [fCode,setFCode] = useState('')
-  const [purchase,setPurchase] = useState('')
   const [productChange,setProductChange] = useState('')
   
-
   useEffect(()=>{
-    if(url==="new")return
+    //if(url==="new")return
     var postOptions={
       method:'post',
       headers: {'Content-Type': 'application/json'},
@@ -43,9 +42,10 @@ fetch(env.siteApi + "/panel/product/fetch-product",postOptions)
       else{
         setError({errorText:"سرویس پیدا شد",
           errorColor:"green"})
-          setContent(result.filter)
           setCategory(result.categoryList)
           setBrand(result.brandList)
+          setContent(result.filter)
+          setChangeFilters(result.filter.filters)
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
       
@@ -55,13 +55,48 @@ fetch(env.siteApi + "/panel/product/fetch-product",postOptions)
   }
 )
   },[])
+  useEffect(()=>{
+    var defaultCat = content?JSON.parse(content.category)._id:''
+    //console.log(defaultCat)
+    if(!productChange.category&&!defaultCat)return
+    var postOptions={
+      method:'post',
+      headers: {'Content-Type': 'application/json'},
+      body:JSON.stringify({category:productChange.category?productChange.category:
+        defaultCat})
+    }
+   //console.log(postOptions)
+fetch(env.siteApi + "/panel/product/list-filter",postOptions)
+.then(res => res.json())
+.then(
+  (result) => {
+    if(result.error){
+      setError({errorText:result.error,
+        errorColor:"brown"})
+      setTimeout(()=>setError({errorText:'',
+        errorColor:"brown"}),3000)
+    }
+      else{
+        setError({errorText:"سرویس پیدا شد",
+          errorColor:"green"})
+          //console.log(result)
+          setFilters(result.filter)
+        setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
+      }
+      
+  },
+  (error) => {
+    console.log(error);
+  }
+)
+  },[productChange.category,content])
   const saveProducts=()=>{
     //if(newCustomer) {
       var postOptions={
           method:'post',
           headers: {'Content-Type': 'application/json'},
           body:JSON.stringify({productId:url,
-            ...productChange})
+            ...productChange,filters:changeFilters})
         }
        console.log(postOptions)
     fetch(env.siteApi + "/panel/product/editProduct",postOptions)
@@ -95,7 +130,8 @@ return(
           productChange={productChange} setProductChange={setProductChange}/>
         <ProductSKU direction={direction} lang={lang} content={content} 
           productChange={productChange} setProductChange={setProductChange}
-          brand={brand} category={category}/>
+          brand={brand} category={category} filters={filters} 
+          changeFilters={changeFilters} setChangeFilters={setChangeFilters}/>
         <ProductPrice direction={direction} lang={lang} content={content} 
           productChange={productChange} setProductChange={setProductChange}/>
         <div className="create-btn-wrapper">

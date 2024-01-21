@@ -20,8 +20,8 @@ menu:[
             persian: "داشبورد",
             index:0,
             icon:"fa-dashboard",
-            href:"/",
-            url:""
+            href:"/dashboard",
+            url:"dashboard"
         },
         {
             english: "Report",

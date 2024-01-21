@@ -45,15 +45,20 @@ function UserClass(props){
         const postOptions={
             method:'post',
             headers: {'Content-Type': 'application/json',
-            "x-access-token":token&&token.token,"userId":token&&token.userId},
+            "x-access-token": token&&token.token,
+            "userId":token&&token.userId,
+            "module":"Customers Manager"},
             body:JSON.stringify(body)
           }
-          console.log(postOptions)
+          //console.log(postOptions)
       fetch(env.siteApi + "/panel/user/update-class",postOptions)
       .then(res => res.json())
       .then(
         (result) => {
-            setClasses(result)
+          if(result.error){
+            console.log(result.message)
+          }
+          else  setClasses(result)
         },
         (error) => {
           console.log(error);

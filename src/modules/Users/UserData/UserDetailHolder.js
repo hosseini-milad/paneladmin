@@ -10,6 +10,8 @@ import tabletrans from "../../../translate/tables"
 import env from "../../../env"
 import UserAccess from "./UserAccess"
 import UserClass from "./UserClass"
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function UserDetailHolder(props){
   const url = window.location.pathname.split('/')[3]
@@ -19,11 +21,13 @@ function UserDetailHolder(props){
   const [accessList,setAccess] = useState()
   const [profile,setProfile] = useState()
   const [tabIndex,setTabIndex] = useState(0)
+
+  const token=cookies.get(env.cookieName)
   useEffect(() => {
     var postOptions={
         method:'post',
         headers: {'Content-Type': 'application/json'},
-        body:JSON.stringify({userId:url})
+        body:JSON.stringify({userId:url}) 
       }
   fetch(env.siteApi + "/panel/user/fetch-user",postOptions)
   .then(res => res.json())
@@ -48,7 +52,7 @@ function UserDetailHolder(props){
       <UserTabs tabIndex={tabIndex} setTabIndex={setTabIndex} lang={props.lang}/>
 
       <div className="pages-wrapper">
-        {tabIndex===0?<UserGeneral direction={direction} lang={lang}
+        {tabIndex===0?<UserGeneral direction={direction} lang={lang} token={token}
           userData={userData} accessList={accessList} profile={profile}/>:<></>}
         {tabIndex===1?<UserBill direction={direction} lang={lang}/>:<></>}
         {tabIndex===2?<UserNotif direction={direction} lang={lang}/>:<></>}

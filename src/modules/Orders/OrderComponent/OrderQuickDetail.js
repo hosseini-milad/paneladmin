@@ -12,7 +12,7 @@ function OrderQuickDetail(props){
         const postOptions={
             method:'post',
             headers: {'Content-Type': 'application/json'},
-            body:JSON.stringify({sku:order.rxLenz.split(',')[2]})
+            body:JSON.stringify({sku:order.rxLenz&&order.rxLenz.split(',')[2]})
           }
         fetch(env.siteApi + "/order/manufacture/find",postOptions)
       .then(res => res.json())

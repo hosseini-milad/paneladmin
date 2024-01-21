@@ -1,3 +1,12 @@
+.crm{
+  max-width: 100%;
+  overflow: auto;
+  max-height: calc(100vh - 160px);
+}
+.crm ul {
+  padding-left: 0rem;
+}
+
 .container-fluid{
     --bs-gutter-x: 1.5rem;
 --bs-gutter-y: 0;
@@ -49,7 +58,6 @@ margin-left: auto;
     margin-right: 10px;
   }
   .board-list {
-    width: 1880px;
     display: flex;
   }
   .board-item {

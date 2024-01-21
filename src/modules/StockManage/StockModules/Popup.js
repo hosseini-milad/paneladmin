@@ -50,6 +50,8 @@ function Popup(props){
             <div className="p-number sphPopUp">
                 <a href={"https://mgmlens.com/printbarcode/"+data.sku} target="_blank">
                     <i className="fa fa-barcode blackIcon"/></a>
+                <a href={"https://mgmlens.com/printLabel/"+data.sku} target="_blank">
+                    <i className="fa fa-print blackIcon"/></a>
                 <small>SPH: {data.sph?data.sph:"0.00"}</small>
                 <small>CYL: {data.cyl?data.cyl:"0.00"}</small>
             </div>
