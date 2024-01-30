@@ -20,7 +20,6 @@ function SideBarAccordion(props){
         cookies.remove(env.cookieName,{ path: '/' });
        setTimeout(()=>(window.location.reload(),1000))
     }
-    console.log(token.access)
     return(
         <aside className={
             `sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3

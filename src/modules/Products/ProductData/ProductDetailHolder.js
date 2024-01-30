@@ -56,7 +56,11 @@ fetch(env.siteApi + "/panel/product/fetch-product",postOptions)
 )
   },[])
   useEffect(()=>{
-    var defaultCat = content?JSON.parse(content.category)._id:''
+    var defaultCat = ''
+    try{
+      defaultCat=(content&&content.category)?JSON.parse(content.category)._id:''
+    }
+    catch{}
     //console.log(defaultCat)
     if(!productChange.category&&!defaultCat)return
     var postOptions={

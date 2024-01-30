@@ -71,6 +71,14 @@ const errortrans ={
         english:"Profile Code",
         persian:"کد پروفایل"
     },
+    crmName:{
+        english:"CRM Name",
+        persian:"نام CRM"
+    },
+    crmCode:{
+        english:"CRM Code",
+        persian:"کد CRM"
+    },
     createdBy:{
         english:"Created By",
         persian:"ایجاد کننده"

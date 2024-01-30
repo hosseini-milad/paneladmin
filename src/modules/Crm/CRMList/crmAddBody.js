@@ -30,7 +30,7 @@ function CRMBody(props){
             + Add Step
         </div>
         {newStepShow?<CRMNewStep setSteps={props.setSteps}
-        setNewStepShow={setNewStepShow}/>
+        setNewStepShow={setNewStepShow} stepLen={props.steps.length}/>
         :<></>
         }
       </main>

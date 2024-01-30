@@ -26,7 +26,7 @@ function CRMAdd(props){
       method:'post',
       headers: {'Content-Type': 'application/json',
       "x-access-token":token&&token.token,"userId":token&&token.userId},
-      body:JSON.stringify({profileId:url})
+      body:JSON.stringify({crmId:url})
     }
    
 fetch(env.siteApi + "/panel/crm/fetch-crm",postOptions)
@@ -44,6 +44,7 @@ fetch(env.siteApi + "/panel/crm/fetch-crm",postOptions)
         setError({errorText:"سرویس پیدا شد",
           errorColor:"green"})
           setContent(result.data)
+          setSteps(result.data.crmSteps)
           setAccessChange(result.data?result.data.access:'')
         setTimeout(()=>setError({errorText:'',errorColor:"brown"}),2000)
       }
@@ -62,7 +63,7 @@ fetch(env.siteApi + "/panel/crm/fetch-crm",postOptions)
           "x-access-token":token&&token.token,"userId":token&&token.userId},
           body:JSON.stringify({crmId:url,
             ...crmChange,
-            steps:steps})
+            crmSteps:steps})
         }
         console.log(postOptions)
      fetch(env.siteApi + "/panel/crm/update-crm",postOptions)
@@ -88,7 +89,7 @@ fetch(env.siteApi + "/panel/crm/fetch-crm",postOptions)
       }
     )
   }
-return(
+return( 
   <div className="new-item" style={{direction:direction}}>
       <div className="create-product">
       {content||url==="new"?<div className="pages-wrapper">

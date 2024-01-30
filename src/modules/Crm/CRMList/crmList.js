@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import env from "../../../env";
 import errortrans from "../../../translate/error";
 
-function AccessHolder(props){
+function CrmList(props){
     const direction = props.lang?props.lang.dir:errortrans.defaultDir;
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     const [content,setContent] = useState('')
@@ -48,21 +48,21 @@ function AccessHolder(props){
                 </tr>
             </thead>
             <tbody>
-                {content&&content.map((profile,i)=>(
+                {content&&content.map((crm,i)=>(
                     <tr key={i}>
                     <td>
                         <div className="profiles-title">
                         <i className="fa-solid fa-certificate fa-sm" style={{color: "#00c6c6"}}></i>
                         <div className="p-wrapper" onClick={()=>
-                        window.location.href="/access/detail/"+profile._id}>
-                            <p>{profile.profileName} 
-                                <span>({profile.profileCode})</span></p>
-                            <p>{profile.description}</p>
+                        window.location.href="/crmlist/detail/"+crm._id}>
+                            <p>{crm.crmName} 
+                                <span>({crm.crmCode})</span></p>
+                            <p>{crm.description}</p>
                         </div>
                         </div>
                     </td>
                     <td>مدیریت</td>
-                    <td>{new Date(profile.date).toLocaleDateString('fa')}</td>
+                    <td>{new Date(crm.date).toLocaleDateString('fa')}</td>
                     <td>
                         <div className="profiles-icons">
                         <i className="fa-solid fa-pen-to-square fa-sm" style={{color: "#c0c0c0"}}></i>
@@ -78,4 +78,4 @@ function AccessHolder(props){
         </div>
     )
 }
-export default AccessHolder
+export default CrmList

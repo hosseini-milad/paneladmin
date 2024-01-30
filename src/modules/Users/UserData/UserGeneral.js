@@ -6,6 +6,7 @@ import UserAvatar from "../UserComponent/UserAvatar"
 import ErrorShow from "../../../components/Button/ErrorShow"
 import StyleSelect from "../../../components/Button/AutoComplete"
 import StyleSelectMultiple from "../../../components/Button/SelectMultiple"
+import ShowError from "../../../components/Modal/ShowError"
 
 function UserGeneral(props){
   const userData = props.userData 
@@ -135,7 +136,12 @@ function UserGeneral(props){
               </div>
             </div>
             <div className="save-btn" onClick={saveChanges}>{formtrans.saveChanges[props.lang]}</div>
-            <ErrorShow message={error.errorText} color={error.errorColor} />
+            
+            {error&&error.errorText?
+            <ShowError status={"WARNING"} title={"Message"} 
+            text={error.errorText} linkText={""} style={{direction:"rtl"}}
+            color={error.errorColor}/>:<></>}
+            {/*<ErrorShow message={error.errorText} color={error.errorColor} />*/}
           </div>
 
 

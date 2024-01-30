@@ -6,7 +6,9 @@
 .crm ul {
   padding-left: 0rem;
 }
-
+.board-title{
+  position: relative;
+}
 .container-fluid{
     --bs-gutter-x: 1.5rem;
 --bs-gutter-y: 0;

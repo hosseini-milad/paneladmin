@@ -6,6 +6,7 @@ import UpdateTaskStatus from '../modules/Crm/UpdateTaskStatus';
 import Cookies from 'universal-cookie';
 import errortrans from "../translate/error";
 const cookies = new Cookies();
+
 const initalDataStatic = {
     tasks:{
         'task-1':{id:'task-1',content:"1.User Register"},
@@ -36,45 +37,45 @@ const initalDataStatic = {
     columnOrder:env.columnOrder
 }
 function CRM(props){
-    const direction = props.lang?props.lang.dir:errortrans.defaultDir;
-    const lang = props.lang?props.lang.lang:errortrans.defaultLang;
-    
-    const [taskState,setTaskState] = useState()
-    //const initalData = 
-    const [boardArray,setBoardArray] = useState(initalDataStatic)
+    const [boardArray,setBoardArray] = useState()
     const token=cookies.get(env.cookieName)
     useEffect(()=>{
-        setTaskState()
+        const body={
+            crmId:"65b7c4bf4df713a2e74544c0"
+        }
         const postOptions={
-            method:'get',
-            headers: { 'Content-Type': 'application/json' ,
-            "x-access-token": token&&token.token,
-            "userId":token&&token.userId}
+            method:'post',
+            headers: {'Content-Type': 'application/json'},
+            body:JSON.stringify(body)
           }
-        0&&fetch(env.siteApi + "/task/currentState",postOptions)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                setTaskState(result);
-                setBoardArray(()=>UpdateTaskStatus({result:result,token:token}))
-            },
-            (error) => {
-                //cookies.remove('fiin-login',{ path: '/' });
-                //setTimeout(()=>(document.location.reload(),500))
-                console.log(error)
-            })
+      fetch(env.siteApi + "/panel/crm/fetch-tasks",postOptions)
+      .then(res => res.json())
+      .then(
+        (result) => {
+            setBoardArray(result)
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
     },[])
+    const direction = props.lang?props.lang.dir:errortrans.defaultDir;
+    const lang = props.lang?props.lang.lang:errortrans.defaultLang;
+    //console.log(taskList)
+    const [taskState,setTaskState] = useState()
+    //const initalData = 
+    //console.log(boardArray)
     const updateState=(id,state,prior)=>{
-        console.log(id,state,prior)
+        
         const postOptions={
             method:'post',
             headers: { 'Content-Type': 'application/json' ,
             "x-access-token": token&&token.token,
             "userId":token&&token.userId},
-            body:JSON.stringify({id:id,
+            body:JSON.stringify({taskId:id,
                 state:state,prior:prior})
           }
-        0&&fetch(env.siteApi + "/task/changeState",postOptions)
+        fetch(env.siteApi + "/panel/crm/change-state",postOptions)
         .then(res => res.json())
         .then(
             (result) => {
@@ -92,7 +93,8 @@ function CRM(props){
             "userId":token&&token.userId},
             body:JSON.stringify({tasks:tasks})
           }
-        0&&fetch(env.siteApi + "/task/changeOrder",postOptions)
+          console.log(postOptions)
+        0&&fetch(env.siteApi + "/panel/crm/changeOrder",postOptions)
         .then(res => res.json())
         .then(
             (result) => {
@@ -114,8 +116,10 @@ function CRM(props){
             return;
         const start = boardArray.columns[source.droppableId]
         const finish = boardArray.columns[destination.droppableId]
+        
+        //return
         if(start === finish){
-            const newTaskIds=Array.from(start.taskIds)
+            const newTaskIds=Array.from(start)
             newTaskIds.splice(source.index,1);
             newTaskIds.splice(destination.index,0,draggableId);
             
@@ -135,30 +139,33 @@ function CRM(props){
             return;
         }
         else{
-            const startTaskIds=Array.from(start.taskIds)
-            startTaskIds.splice(source.index,1);
+            const startTaskIds=(start)
+
             
+            startTaskIds.splice(source.index,1);
             updateState(draggableId,destination.droppableId,destination.index)
             const newStart = {
                 ...start, taskIds:startTaskIds,
             }
-            const finishTaskIds=Array.from(finish.taskIds)
+            const finishTaskIds=finish
             finishTaskIds.splice(destination.index,0,draggableId);
-
+            
             const newFinish = {
                 ...finish, taskIds:finishTaskIds,
             }
 
+            //console.log(finishTaskIds)
             const newBoard = {
                 ...boardArray,
                 columns:{
                     ...boardArray.columns,
-                    [newStart.id]:newStart,
-                    [newFinish.id]:newFinish
+                    [newStart.id]:start,
+                    [newFinish.id]:finish
                 }
             }
             setBoardArray(newBoard)
             return;
+            return
         }
     }
     const DragStart=(result)=>{
@@ -171,7 +178,6 @@ function CRM(props){
             destination.index/Object.keys(boardArray.tasks).length:0
         document.body.style.backgroundColor=`rgba(153,141,217,${opacity})`*/
     }
-    console.log(boardArray)
     return(
     <div className="crm">
         <div className='reyham-board board-list'>
@@ -180,9 +186,18 @@ function CRM(props){
             onDragUpdate={DragUpdate}
             onDragEnd={DragEnd}>
                 {boardArray.columnOrder.map((columnId)=>{
-                    const column = boardArray.columns[columnId];
-                    const tasks = column?column.taskIds.map(taskId=>boardArray.tasks[taskId]):'';
-                    return(column?<Column key={column.id} column={column} tasks={tasks}/>:<></>)
+                    const column = boardArray.columnOrder.find
+                        (item=>item.enTitle===columnId.enTitle);
+                    const tasks = boardArray.columns[columnId.enTitle];
+                    //console.log(tasks) 
+                    var rawTasks = boardArray.tasks
+                    var newTasks =[]
+                    rawTasks.find(item=>item._id===tasks[item._id])
+                    for(var i=0;i<tasks.length;i++){
+                        newTasks.push(rawTasks.find(item=>item._id===tasks[i]))
+                    }
+                    return(column?<Column key={column._id} column={column} tasks={newTasks}
+                        setBoardArray={setBoardArray} crm={boardArray.crm}/>:<></>)
                 })}
             </DragDropContext>:<div>Updating</div>}
         </div>

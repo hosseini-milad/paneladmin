@@ -6,9 +6,9 @@ function CRMNewStep(props){
     const addStep=()=>{
         props.setSteps(existingItems => {
             return [
-              ...existingItems.slice(0, 1),
+              ...existingItems.slice(0, props.stepLen),
               newStep,
-              ...existingItems.slice(1 + 1),
+              ...existingItems.slice(props.stepLen + 1),
             ]
           })
         props.setNewStepShow(0)

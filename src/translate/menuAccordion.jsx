@@ -1,9 +1,9 @@
 const menutrans ={
 title:{
-    english:"DkMehr",
-    persian:"داده کاوان",
+    english:"MGM",
+    persian:"ام جی ام",
     icon:"fa-eercast",
-    href:"https://dkmehr.com"
+    href:"https://mgmlens.com"
     
 },
 menu:[

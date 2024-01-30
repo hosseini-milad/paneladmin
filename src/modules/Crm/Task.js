@@ -1,8 +1,12 @@
 import {Draggable} from 'react-beautiful-dnd'
 import { dayFromNow } from '../../env'
+import { useState } from 'react'
+import TaskPopUp from './TaskPopUp'
 function Task(props){
-    return(<Draggable key={props.taskList.id}
-        draggableId ={props.taskList.id} index={props.index}>
+    const [taskPop,setTaskPop] = useState(0)
+    const taskData = props.taskList
+    return(<Draggable key={taskData._id}
+        draggableId ={taskData._id} index={props.index}>
             {(provided,snapshot)=>(
                 <li className={snapshot.isDragging?"board-task dragTask":"board-task"}
                     {...provided.draggableProps}
@@ -11,33 +15,41 @@ function Task(props){
                     data-dragging={snapshot.isDragging}>
                         
                     <div className='titles'>
-                        <a href={`/profile/${props.taskList.content.id}`}>
-                            <h3 className="task-title">{props.taskList.content.user}</h3></a>
-                        {props.taskList.content.partner?
-                        <a href={`/profile/${props.taskList.content.partner}`}>
-                            <h3 className="task-title">{props.taskList.content.partnerName}</h3></a>
+                        <a href={`/profile/${taskData._id}`}>
+                            <h3 className="task-title">{taskData.taskId}</h3></a>
+                        {taskData.content?
+                        <a href={`/profile/${taskData.content}`}>
+                            <h3 className="task-title">{taskData.content}</h3></a>
                             :<></>}
+                    </div>
+                    <div className='editTask'
+                    onClick={()=>setTaskPop(1)}>
+                        Edit
                     </div>
                     <span className="task-date">
                         <span className="icon-calendar"></span>
-                        {dayFromNow(props.taskList.content.date)}</span>
+                        {dayFromNow(taskData.date)}</span>
                     <ul className="task-meta">
-                        <li><a href={`mailto:${props.taskList.content.email}`}>
+                        <li><a href={`mailto:${taskData.email}`}>
                             <span className="icon-envelope"></span> 
-                            {props.taskList.content.email}</a></li>
-                        <li><a href={`tel:${props.taskList.content.phone}`}>
+                            {taskData.email}</a></li>
+                        <li><a href={`tel:${taskData.phone}`}>
                             <span className="icon-phone"></span>
-                            {props.taskList.content.phone}</a></li>
+                            {taskData.phone}</a></li>
                     </ul>
-                    {props.taskList.content.tag?
-                    <span className={props.taskList.content.tag==="Active"?
+                    {taskData.tag?
+                    <span className={taskData.tag==="Active"?
                         "task-status status-active":"task-status status-deactive"}
-                        title={props.taskList.content.tag}>
-                            {props.taskList.content.tag}</span>:<></>}
+                        title={taskData.tag}>
+                            {taskData.tag}</span>:<></>}
                     <div className='task-handler'>
-                        <small>{props.taskList.content.agent}</small>
-                        <small>{props.taskList.content.agency}</small>
+                        <small>{taskData.agent}</small>
+                        <small>{taskData.agency}</small>
                     </div>
+                    {taskPop?<TaskPopUp title={"Edit Task"}
+                    btnText={"Update"} action={props.action}
+                    data={taskData} close={()=>setTaskPop(0)}
+                    />:<></>}
                     
                 </li>
             )}

@@ -697,3 +697,15 @@ checkbox-container label {
   z-index: 5;
   position: inherit;
 }
+
+.title-input .MuiOutlinedInput-root{
+  
+  width: 90%;
+  padding: 0.8em;
+  border: 1px solid #e6eaf0;
+  border-radius: 4px;
+  margin-left:5%;
+}
+.title-input .MuiTextField-root{
+  width: 100%;
+}
