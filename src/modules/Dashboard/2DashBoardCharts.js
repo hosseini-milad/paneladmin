@@ -19,12 +19,12 @@ function DashboardChart(props){
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">فروش RX</h6>
+              <p class="text-sm ">سفارشات سفارشی ثبت شده در هفته</p>
               <hr class="dark horizontal"/>
               <div class="d-flex ">
                 <i class="fas fa-history"></i>
-                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
+                <p class="mb-0 text-sm"> مشاهده جزئیات سفارشات </p>
               </div>
             </div>
           </div>
@@ -40,12 +40,12 @@ function DashboardChart(props){
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 "> Daily Sales </h6>
-              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <h6 class="mb-0 "> فروش Stock </h6>
+              <p class="text-sm "> سفارشات استوک ثبت شده در هفته </p>
               <hr class="dark horizontal"/>
               <div class="d-flex ">
                 <i class="fas fa-history"></i>
-                <p class="mb-0 text-sm"> updated 4 min ago </p>
+                <p class="mb-0 text-sm"> مشاهده جزئیات سفارشات </p>
               </div>
             </div>
           </div>
@@ -61,12 +61,12 @@ function DashboardChart(props){
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Completed Tasks</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">واحدهای فروش</h6>
+              <p class="text-sm ">ثبت سفارش کاربران فروش</p>
               <hr class="dark horizontal"/>
               <div class="d-flex ">
                 <i class="fas fa-history"></i>
-                <p class="mb-0 text-sm">just updated</p>
+                <p class="mb-0 text-sm">مشاهده جزئیات فروش </p>
               </div>
             </div>
           </div>

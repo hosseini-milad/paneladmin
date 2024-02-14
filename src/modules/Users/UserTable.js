@@ -28,10 +28,6 @@ function UserTable(props){
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.userCode[lang]}</p>
-              <i></i>
-            </th>
-            <th>
               <p>{tabletrans.status[lang]}</p>
               <i></i>
             </th>
@@ -41,7 +37,9 @@ function UserTable(props){
         <tbody>
           {(userList&&userList.filter)?userList.filter.map((user,i)=>(
             <UserTableRow detail={detail} showDetail={showDetail} 
-              user={user} index={i} key={i} lang={lang}/>
+              user={user} index={i} key={i} lang={lang}
+              setSelectedUser={props.setSelectedUser}
+              selectedUser={props.selectedUser}/>
           )):''}
           
         </tbody>

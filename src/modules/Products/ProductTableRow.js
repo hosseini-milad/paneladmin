@@ -14,13 +14,7 @@ function ProductTableRow(props){
             <td className="checkBoxStyle">
               <input type="checkbox" name="" id="" checked={checkState}
               onChange={(e)=>setCheckState(checkState?false:true)}/></td>
-            <td>
-                <div className="order-id">
-                  <p onClick={()=> window.location.href=
-                    "/orders/detail/"+product.rxOrderNo}>
-                    {product.rxOrderNo}</p>
-                </div>
-            </td>
+            
             <td>
               <div className="cu-avatar">
                   <img src={product?(env.siteApiUrl+product.imageUrl):''} 
@@ -35,30 +29,22 @@ function ProductTableRow(props){
                 </div>
               </td>
               <td>
-                <div className="or-date">
-                  <p className="date">{new Date(product.date)
-                  .toLocaleDateString(props.lang==="persian"?'fa':'en')}</p>
-                  <p className="time">{new Date(product.date)
-                  .toLocaleTimeString(props.lang==="persian"?'fa':'en')}</p>
+                <div className="order-num">
+                  <p>{product.catData?product.catData.title:''}</p>
                 </div>
               </td>
               <td>
                 <div className="order-num">
-                  <p>{product.brand}</p>
-                </div>
-              </td>
-              <td>
-                <div className="order-num">
-                  <p>{rxFindCount(product)}</p>
+                  <p>{product.brandData?product.brandData.title:''}</p>
                 </div>
               </td>
               <td>
                 <div className="order-price">
-                  <p>{normalPriceCount(product.totalPrice)}</p>
+                  <p>{normalPriceCount(product.price)}</p>
                 </div>
               </td>
               <td>
-                <Status status={product.status} class={"order-status"} 
+                <Status status={"available"} class={"order-status"} 
                   lang={props.lang}/>
               </td>
             <td>

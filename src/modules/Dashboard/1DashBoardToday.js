@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import env from "../../env"
+import dashtrans from "../../translate/dashboard"
 
 function DashBoardDaily(props){
   const [data,setData] = useState('')
@@ -12,7 +13,7 @@ function DashBoardDaily(props){
         },
           body:JSON.stringify(body)
         }
-    fetch(env.siteApi + "/report/totalOrders",postOptions)
+    fetch(env.siteApi + "/panel/lens/report-top")
     .then(res => res.json())
     .then(
       (result) => {
@@ -24,6 +25,7 @@ function DashBoardDaily(props){
       }
       
   )},[])
+  console.log(data)
     return(
         <div className="row">
             <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -34,13 +36,16 @@ function DashBoardDaily(props){
                     </div>
                     <div className={props.direction==="ltr"?
                       "text-end pt-1":"text-start pt-1"}>
-                        <p className="text-sm mb-0 text-capitalize">Today's Money</p>
-                        <h4 className="mb-0">{data&&data.totalPrice}</h4>
+                        <p className="text-sm mb-0 text-capitalize">{dashtrans.todayRx[props.lang]}</p>
+                        <h4 className="mb-0">{data&&data.rxCount}</h4>
                     </div>
                     </div>
                     <hr className="dark horizontal my-0"/>
                     <div className="card-footer p-3">
-                    <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
+                    <p className="mb-0">{dashtrans.weekRx[props.lang]}: 
+                      <span className="text-success text-sm font-weight-bolder">
+                      {data&&data.rxCountW}  
+                      </span></p>
                     </div>
                 </div>
             </div>
@@ -52,13 +57,15 @@ function DashBoardDaily(props){
               </div>
               <div className={props.direction==="ltr"?
                       "text-end pt-1":"text-start pt-1"}>
-                <p className="text-sm mb-0 text-capitalize">Today's Users</p>
-                <h4 className="mb-0">{data&&data.users}</h4>
+                <p className="text-sm mb-0 text-capitalize">{dashtrans.todayStock[props.lang]}</p>
+                <h4 className="mb-0">{data&&data.stockCount}</h4>
               </div>
             </div>
             <hr className="dark horizontal my-0"/>
             <div className="card-footer p-3">
-              <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
+              <p className="mb-0">{dashtrans.weekStock[props.lang]}: 
+              <span className="text-success text-sm font-weight-bolder">
+              {data&&data.stockCountW||0} </span></p>
             </div>
           </div>
         </div>
@@ -70,13 +77,15 @@ function DashBoardDaily(props){
               </div>
               <div className={props.direction==="ltr"?
                       "text-end pt-1":"text-start pt-1"}>
-                <p className="text-sm mb-0 text-capitalize">New Clients</p>
-                <h4 className="mb-0">3,462</h4>
+                <p className="text-sm mb-0 text-capitalize">{dashtrans.todayFrame[props.lang]}</p>
+                <h4 className="mb-0">{data&&data.frameCount||0}</h4>
               </div>
             </div>
             <hr className="dark horizontal my-0"/>
             <div className="card-footer p-3">
-              <p className="mb-0"><span className="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+              <p className="mb-0"> {dashtrans.weekFrame[props.lang]}: 
+              <span className="text-danger text-sm font-weight-bolder">
+              {data&&data.frameCountW||0}</span></p>
             </div>
           </div>
         </div>
@@ -88,13 +97,15 @@ function DashBoardDaily(props){
               </div>
               <div className={props.direction==="ltr"?
                       "text-end pt-1":"text-start pt-1"}>
-                <p className="text-sm mb-0 text-capitalize">Sales</p>
-                <h4 className="mb-0">$103,430</h4>
+                <p className="text-sm mb-0 text-capitalize">{dashtrans.todayAcc[props.lang]}</p>
+                <h4 className="mb-0">{data&&data.accCount||0}</h4>
               </div>
             </div>
             <hr className="dark horizontal my-0"/>
             <div className="card-footer p-3">
-              <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+              <p className="mb-0">{dashtrans.weekAcc[props.lang]}: 
+              <span className="text-success text-sm font-weight-bolder">
+              {data&&data.accCountW||0} </span></p>
             </div>
           </div>
         </div>

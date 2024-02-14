@@ -38,12 +38,12 @@ function Dashboard(props){
       ChartJS.defaults.color = '#eee'
     return(
     <div class="container-fluid py-4" style={{direction:direction}}>
-        <DashBoardDaily direction={direction}/>
+        <DashBoardDaily direction={direction} lang={lang}/>
         <DashboardChart />
-        <div class="row mb-4">
+        {/*<div class="row mb-4">
             <DashboardProject />
             <DashboardOverView />
-        </div>
+    </div>*/}
     </div>
     )
 }

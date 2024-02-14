@@ -1,10 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import StyleInput from "../../../components/Button/Input"
+import env from "../../../env"
+import StyleSelect from "../../../components/Button/AutoComplete"
 
 function TaskMainPart(props){
     const [showNote,setShowNote] = useState()
     const data = props.data
-    return(
+    const content = props.content
+    return( 
     <div className="nt-col-1">
         <div className="title-input center">
             <StyleInput label="Add Task title"
@@ -16,7 +19,7 @@ function TaskMainPart(props){
                 }))}/>
         </div>
         <div className="note-input-task center">
-        <label for="text-display" onClick={()=>setShowNote(showNote?0:1)}>
+        <label htmlFor="text-display" onClick={()=>setShowNote(showNote?0:1)}>
         {showNote?"Hide Task Notes":"Add Task Notes"}</label>
         {showNote?<textarea 
             onChange={(e)=>props.setData(prevState => ({
@@ -54,8 +57,14 @@ function TaskMainPart(props){
         <div className="assign-input">
         <i className="fa-solid fa-user-plus avatar" style={{color: "#ffffff"}}></i>
         <div className="assign-wrapper">
-            <p>Assigned to</p>
-            <p>Unassigned <span><i className="fa-solid fa-angle-down fa-2xs"></i></span></p>
+            <StyleSelect title={"Assigned To"}
+            options={content?content.profileList:[]} label="profileName" 
+            defaultValue={(content&&content.currentAssign)?
+                content.currentAssign:''}
+            action={(e)=>props.setData(prevState => ({
+                ...prevState,
+                profile:e._id
+            }))}/>
         </div>
         {/*<div className="assign-menu">
             <h6>Select Section</h6>

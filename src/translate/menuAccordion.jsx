@@ -24,16 +24,8 @@ menu:[
             url:"dashboard"
         },
         {
-            english: "Report",
-            persian: "گزارش",
-            index:1,
-            icon:"fa-bar-chart",
-            href:"/reports",
-            url:"reports"
-        },
-        {
-            english: "CRM",
-            persian: "مدیریت",
+            english: "Tasks",
+            persian: "وظایف و پیگیری",
             index:1,
             icon:"fa-bar-chart",
             href:"/crm",

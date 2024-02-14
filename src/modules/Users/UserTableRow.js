@@ -8,12 +8,39 @@ function UserTableRow(props){
   const [checkState,setCheckState] = useState(false)
   const activeAcc = props.index===props.detail
   const user=props.user
-  console.log(user)
+  const selectUser=()=>{
+    
+    if(!checkState){
+      //console.log(checkState)
+      props.setSelectedUser(existingItems => {
+        return [
+          ...existingItems.slice(0, props.selectedUser.length),
+          user._id,
+          ...existingItems.slice(props.selectedUser.length + 1),
+        ]
+      })
+    }
+    else{
+      var newArray = props.selectedUser
+      var index = newArray.indexOf(user._id);
+      if (index > -1) {
+        newArray.splice(index, 1);
+      }
+      props.setSelectedUser(newArray)
+    }
+    setCheckState(checkState?false:true)
+    
+    /*props.setSelectedUser(prevState => ({
+                ...prevState,
+                user:e
+              }))*/
+  }
+  console.log(props.selectedUser)
     return(
         <tr>
             <td className="checkBoxStyle">
               <input type="checkbox" name="" id="" checked={checkState}
-              onChange={(e)=>setCheckState(checkState?false:true)}/></td>
+              onChange={(e)=>selectUser()}/></td>
             <td>
               <div className="cu-avatar">
               <img src="/img/avatar/avatar_1.jpg" alt="avatar"/>
@@ -35,11 +62,6 @@ function UserTableRow(props){
             <td>
               <div className="cu-company">
                 <p className="phone-num">{user.phone}</p>
-              </div>
-            </td>
-            <td>
-              <div className="cu-company">
-                <p>{user.mobile}</p>
               </div>
             </td>
             <td>

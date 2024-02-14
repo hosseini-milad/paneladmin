@@ -12,7 +12,7 @@ function ClassUser(props){
     const users=props.users
     const userFilter = props.userFilter
     const [error,setError] = useState({errorText:'',errorColor:"brown"})
-    
+    const [selectedUser,setSelectedUser] = useState([])
     const [userSearch,setUserSearch] = useState('')
     const addUserToClass=()=>{
       var postOptions={
@@ -22,6 +22,36 @@ function ClassUser(props){
       }
     console.log(postOptions)
   fetch(env.siteApi + "/panel/user/update-user-class",postOptions)
+  .then(res => res.json())
+  .then(
+    (result) => {
+      if(result.error){
+        setError({errorText:result.error,
+          errorColor:"brown"})
+        setTimeout(()=>setError({errorText:'',
+          errorColor:"brown"}),3000)
+      }
+        else{
+          setError({errorText:"کلاس پیدا شد",
+            errorColor:"green"})
+          
+          setTimeout(()=>window.location.reload(),500)
+        }
+        
+    },
+    (error) => {
+      console.log(error);
+    })
+    }
+    //console.log(selectedUser)
+    const removeUserFromClass=()=>{
+      var postOptions={
+        method:'post',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify({users:selectedUser,
+          class:content})
+      }
+  fetch(env.siteApi + "/panel/user/remove-user-class",postOptions)
   .then(res => res.json())
   .then(
     (result) => {
@@ -76,6 +106,7 @@ function ClassUser(props){
     return(
         <div className="userItem">
           <strong>لیست مشتریان</strong>
+          {!props.readOnly?<>
           <div className='new-member newUser'>
             <StyleSelect title={formtrans.customer[props.lang]} direction={props.direction} 
               //defaultValue={content?content.userInfo[0].cName:''} class={"formInput"}
@@ -84,10 +115,16 @@ function ClassUser(props){
               textChange={(e)=>setUserClass(e)}
               action={(e)=>setUserSearch(e)}/>
             <div className="addClassBtn" onClick={addUserToClass}>
-              <i class="fa-solid fa-plus"></i></div>
+              <i className="fa-solid fa-plus"></i></div>
+            
           </div>
+          <div className="removeBtn leftItem" 
+              onClick={removeUserFromClass}>
+              حذف از لیست</div></>:<></>}
           <div className="user-list">
-          <UserTable userList={{filter:users}} lang={{lang:props.lang}}/>
+          <UserTable userList={{filter:users}} lang={{lang:props.lang}}
+          setSelectedUser={setSelectedUser} selectedUser={selectedUser}
+          />
           </div>
         </div>
     )

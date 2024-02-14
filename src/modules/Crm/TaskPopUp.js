@@ -1,8 +1,26 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import TaskMainPart from "./Tasks/TaskMainPart"
+import env from "../../env"
 
 function TaskPopUp(props){
     const [data,setData] = useState(props.data)
+    const [content,setContent] = useState()
+    useEffect(()=>{
+        const postOptions={
+            method:'post',
+            headers: {'Content-Type': 'application/json'},
+            body:JSON.stringify({taskId:data?data._id:''})
+          }
+      fetch(env.siteApi + "/panel/user/taskData",postOptions)
+      .then(res => res.json())
+      .then(
+        (result) => {
+            setContent(result)
+        },
+        (error) => {
+          console.log(error);
+        })
+    },[])
     return(
     <section className="delete-modal">
         <div className="modal-backdrop show-modal">
@@ -11,10 +29,10 @@ function TaskPopUp(props){
                 <h4>{props.title}</h4>
                 </div>
                 <div className="nt-wrapper">
-                <TaskMainPart data={data} setData={setData} crm={props.crm}
-                taskStep={props.taskStep}
-                btnText={"Update"} action={props.action} close={props.close}/>
-                <div className="nt-col-2">
+                {content?<TaskMainPart data={data} setData={setData} crm={props.crm}
+                taskStep={props.taskStep} content={content} setContent={setContent}
+                btnText={"Update"} action={props.action} close={props.close}/>:<></>}
+                {/*<div className="nt-col-2">
                     <div className="prob-wrapper">
                     <i className="fa-regular fa-calendar" style={{color: "#c0c0c0"}}></i>
                     <div className="prob-title">
@@ -54,7 +72,7 @@ function TaskPopUp(props){
                     <i className="fa-solid fa-repeat" style={{color: "#c0c0c0"}}></i>
                     <p>Repeat Task</p>
                     </div>
-                </div>
+                </div>*/}
                 </div>
             </div>
         </div>

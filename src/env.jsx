@@ -1,16 +1,16 @@
 const env={
-    //siteApi:'http://localhost:4000/api',
+    siteApi:'http://localhost:4000/api',
     //siteApi:'https://panel.mehrgaz.com/api',
-    siteApi:'https://orderadmin.deleves.com/api',
+    //siteApi:'https://orderadmin.deleves.com/api',
     //siteApi:'https://admin.mgmlens.com/api',
     
-    //siteApiUrl:'http://localhost:4000',
+    siteApiUrl:'http://localhost:4000',
     //siteApiUrl:'https://panel.mehrgaz.com',
-    siteApiUrl:'https://orderadmin.deleves.com',
+    //siteApiUrl:'https://orderadmin.deleves.com',
     //siteApiUrl:'https://admin.mgmlens.com',
 
-    //printUrl:"https://mgmlens.com",
-    printUrl:"https://order.deleves.com",
+    printUrl:"https://mgmlens.com",
+    //printUrl:"https://order.deleves.com",
 
     cookieName:'panel-login',
     //cookieName:'mehr-login',
@@ -107,7 +107,7 @@ export const dayFromNow=(originDate)=>{
       diffDays = new Date().getDate() - date,
       diffMonths = new Date().getMonth() - dt.getMonth(),
       diffYears = new Date().getFullYear() - dt.getFullYear();
-
+  //console.log(dt)
   if(diffYears === 0 && diffDays === 0 && diffMonths === 0){
     return `Today at ${time}` ;
   }else if(diffYears === 0 && diffDays === 1) {

@@ -12,24 +12,16 @@ function ProductTable(props){
         <tr>
           <th className="checkBoxStyle">
               <input type="checkbox" name="" id=""/></th>
-            <th>
-              <p>{tabletrans.order[lang]}</p>
+            <th style={{width:"300px"}}>
+              <p>{tabletrans.productTitle[lang]}</p>
               <i></i>
             </th>
-            <th>
-              <p>{tabletrans.customer[lang]}</p>
+            <th style={{width:"120px"}}>
+              <p>{tabletrans.category[lang]}</p>
               <i></i>
             </th>
-            <th>
-              <p>{tabletrans.date[lang]}</p>
-              <i></i>
-            </th>
-            <th>
+            <th style={{width:"120px"}}>
               <p>{tabletrans.brand[lang]}</p>
-              <i></i>
-            </th>
-            <th>
-              <p>{tabletrans.item[lang]}</p>
               <i></i>
             </th>
             <th>

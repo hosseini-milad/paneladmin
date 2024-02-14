@@ -2,13 +2,12 @@ import Cookies from 'universal-cookie';
 import StatusBar from '../modules/Components/StatusBar';
 import Paging from '../modules/Components/Paging';
 import errortrans from "../translate/error";
-import OrderTable from '../modules/Orders/OrderTable';
-import OrderFilters from '../modules/Orders/OrderComponent/OrderFilters';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import env from '../env';
 import ProductTable from '../modules/Products/ProductTable';
 import tabletrans from '../translate/tables';
+import ProductFilters from '../modules/Products/ProductComponent/ProductFilters';
 const cookies = new Cookies();
 
 function Products(props){
@@ -16,6 +15,7 @@ function Products(props){
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     const [content,setContent] = useState("")
     const [filters,setFilters] = useState("")
+    const [options,setOptions] = useState("")
     const [loading,setLoading] = useState(0)
     const token=cookies.get(env.cookieName)
     useEffect(() => {
@@ -23,13 +23,9 @@ function Products(props){
       const body={
           offset:filters.offset?filters.offset:"0",
           pageSize:filters.pageSize?filters.pageSize:"10",
-          customer:filters.customer,
-          orderNo:filters.orderNo,
-          status:filters.status,
           brand:filters.brand,
-          dateFrom:filters.date&&filters.date.dateFrom,
-          dateTo:filters.date&&filters.date.dateTo,
-          access:"manager"
+          category:filters.category,
+          title:filters.title
       }
       const postOptions={
           method:'post',
@@ -44,6 +40,7 @@ function Products(props){
       (result) => {
         setLoading(0)
           setContent('')
+          setOptions(result.options)
           setTimeout(()=> setContent(result),200)
       },
       (error) => {
@@ -74,12 +71,12 @@ function Products(props){
             <p>{tabletrans.edit[lang]}</p>
           </div>
         </div>
-      </div>
+      </div> 
       <div className="list-container">
         <StatusBar lang={lang} token={token} filters={filters}
          status={content.rxStatus} setFilters={setFilters}/>
-        <OrderFilters lang={props.lang} setFilters={setFilters}
-          options={content.brand} filters={filters}/>
+        <ProductFilters lang={props.lang} setFilters={setFilters}
+          options={options} filters={filters}/>
         <div className="user-list"> 
           {loading?env.loader:<ProductTable product={content} lang={lang}/>}
         </div>

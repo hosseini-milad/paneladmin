@@ -10,6 +10,7 @@ import ProductTable from '../modules/Products/ProductTable';
 import tabletrans from '../translate/tables';
 import BrandTable from '../modules/Brands/BrandTable';
 import PolicyTable from '../modules/Policy/PolicyTable';
+import PolicyFilters from '../modules/Policy/PolicyComponent/PolicyFilters';
 const cookies = new Cookies();
 
 function Policy(props){
@@ -62,7 +63,7 @@ function Policy(props){
           <div className="od-header-name">
             <p>{tabletrans.policies[lang]}</p>
           </div>
-          
+           
         </div>
         <div className="od-header-btn">
           <div className="edit-btn add-btn" 
@@ -79,7 +80,7 @@ function Policy(props){
       <div className="list-container">
         <StatusBar lang={lang} token={token} filters={filters}
          status={content.rxStatus} setFilters={setFilters}/>
-        <OrderFilters lang={props.lang} setFilters={setFilters}
+        <PolicyFilters lang={props.lang} setFilters={setFilters}
           options={content.brand} filters={filters}/>
         <div className="user-list"> 
           {loading?env.loader:<PolicyTable policy={content} lang={lang}/>}

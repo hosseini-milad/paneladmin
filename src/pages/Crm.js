@@ -45,7 +45,8 @@ function CRM(props){
         }
         const postOptions={
             method:'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json',
+            "x-access-token":token&&token.token,"userId":token&&token.userId},
             body:JSON.stringify(body)
           }
       fetch(env.siteApi + "/panel/crm/fetch-tasks",postOptions)
@@ -196,7 +197,8 @@ function CRM(props){
                     for(var i=0;i<tasks.length;i++){
                         newTasks.push(rawTasks.find(item=>item._id===tasks[i]))
                     }
-                    return(column?<Column key={column._id} column={column} tasks={newTasks}
+                    return(column?<Column key={column.id} column={column} 
+                        tasks={newTasks} token={token}
                         setBoardArray={setBoardArray} crm={boardArray.crm}/>:<></>)
                 })}
             </DragDropContext>:<div>Updating</div>}

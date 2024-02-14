@@ -29,8 +29,8 @@ function SideBarAccordion(props){
             <div className="sidenav-header">
             <i className="serviceIcon fas fa-close position-absolute end-0 top-0 "
             onClick={()=>props.setPinMenu(0)}/>
-            <a className="navbar-brand m-0" href={menuList.title.href} target="_blank">
-                <i className={`mainIcon fas ${menuList.title.icon}`}></i>
+            <a className="navbar-brand m-20" href={menuList.title.href} target="_blank">
+                <img src={"/img/logo-black.png"} alt ={menuList.title[props.lang.lang]}/>
                 <span className="ms-1 font-weight-bold text-dark">{menuList.title[props.lang.lang]}</span>
             </a>
             </div>

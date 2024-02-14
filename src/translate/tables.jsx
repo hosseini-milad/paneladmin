@@ -219,6 +219,10 @@ const tabletrans ={
         english:"Title",
         persian:"عنوان"
     },
+    enTitle:{
+        english:"En Title",
+        persian:"Title"
+    },
     code:{
         english:"Code",
         persian:"کد"
@@ -320,6 +324,14 @@ const tabletrans ={
         english:"Classes",
         persian:"کلاس مشتری"
     },
+    sendSms:{
+        english:"Send Sms",
+        persian:"ارسال پیامک"
+    },
+    message:{
+        english:"Message",
+        persian:"متن پیام"
+    },
     classManage:{
         english:"Class Manage",
         persian:"مدیریت کلاس"
@@ -337,5 +349,13 @@ const tabletrans ={
         persian:"غیر فعال"
     },
 
+    productTitle:{
+        english:"Product Title",
+        persian:"نام محصول"
+    },
+    productCategory:{
+        english:"Category",
+        persian:"دسته بندی"
+    },
 }
 export default tabletrans

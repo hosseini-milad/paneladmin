@@ -57,7 +57,6 @@ fetch(env.siteApi + "/panel/product/fetch-category",postOptions)
           body:JSON.stringify({catId:url,
             ...catChange,brands:userBrand})
         }
-       console.log(postOptions)
     fetch(env.siteApi + "/panel/product/editCats",postOptions)
     .then(res => res.json())
     .then(
@@ -80,7 +79,6 @@ fetch(env.siteApi + "/panel/product/fetch-category",postOptions)
       }
     )
   }
-console.log(content)
 return(
   <div className="new-item" style={{direction:direction}}>
       <div className="create-product">
@@ -94,7 +92,7 @@ return(
           </div>
         <div className="create-btn-wrapper">
           <div className="save-btn" onClick={saveCategory}>{formtrans.saveChanges[lang]}</div>
-          <div className="cancel-btn" onClick={()=>window.location.href="/brands"}>{formtrans.cancel[lang]}</div>
+          <div className="cancel-btn" onClick={()=>window.location.href="/category"}>{formtrans.cancel[lang]}</div>
         </div>
         
       </div>:<div>{env.loader}</div>}

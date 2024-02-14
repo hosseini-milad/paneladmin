@@ -709,3 +709,42 @@ checkbox-container label {
 .title-input .MuiTextField-root{
   width: 100%;
 }
+
+@media (min-width: 1200px) {
+  .sidenav.fixed-end + .main-content {
+    max-width: calc(100% - 17rem);
+  }
+}
+.m-20{
+  margin: 20px 10px 0;
+}
+.m-20 img{
+  margin:auto 10px
+}
+.removeBtn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: 0px;
+  border: 0px;
+  margin: 0px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  min-width: 164px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  width: auto;
+  height: auto;
+  background-color: rgb(221, 69, 49);
+  gap: 10px;
+}
+.userItem{
+  position: relative;
+}
+.leftItem{
+  left:20px;
+  position: absolute;
+  top: 30px;
+}

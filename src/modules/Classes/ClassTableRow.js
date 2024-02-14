@@ -38,16 +38,7 @@ function ClassTableRow(props){
                   <p>{classes.classCat}</p>
                 </div>
               </td>
-              <td>
-                <div className="order-num">
-                  <p>{"product"}</p>
-                </div>
-              </td>
-              <td>
-                <div className="order-price">
-                  <p>{normalPriceCount(classes.totalPrice)}</p>
-                </div>
-              </td>
+              
               <td>
                 <Status status={classes.status} class={"order-status"} 
                   lang={props.lang}/>
@@ -74,7 +65,8 @@ function ClassTableRow(props){
             </td>
           </tr>
           {activeAcc?<tr className="sub-order">
-        <td colSpan="9"><ClassQuickDetail classes={classes}/></td></tr>
+        <td colSpan="9"><ClassQuickDetail classes={classes}
+        direction={props.direction} lang={props.lang}/></td></tr>
           :<React.Fragment></React.Fragment>}
           </React.Fragment>
     )

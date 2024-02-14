@@ -127,5 +127,9 @@ export const serviceKind=[
     {
         english:'Cylinder',
         persian:"خدمات سیلندر"
+    },
+    {
+        english:'Stock',
+        persian:"خدمات استوک"
     }
 ]

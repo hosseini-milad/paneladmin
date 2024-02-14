@@ -13,7 +13,7 @@ function ClassTable(props){
           <th className="checkBoxStyle">
               <input type="checkbox" name="" id=""/></th>
             <th>
-              <p>{tabletrans.name[lang]}</p>
+              <p>{tabletrans.classes[lang]}</p>
               <i></i>
             </th>
             <th>
@@ -24,14 +24,7 @@ function ClassTable(props){
               <p>{tabletrans.category[lang]}</p>
               <i></i>
             </th>
-            <th>
-              <p>{tabletrans.item[lang]}</p>
-              <i></i>
-            </th>
-            <th>
-            <p>{tabletrans.price[lang]}</p>
-              <i></i>
-            </th>
+            
             <th>
             <p>{tabletrans.status[lang]}</p>
               <i></i>

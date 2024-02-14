@@ -14,13 +14,7 @@ function CatTableRow(props){
             <td className="checkBoxStyle">
               <input type="checkbox" name="" id="" checked={checkState}
               onChange={(e)=>setCheckState(checkState?false:true)}/></td>
-            <td>
-                <div className="order-id">
-                  <p onClick={()=> window.location.href=
-                    "/category/detail/"+cat._id}>
-                    {cat._id}</p>
-                </div>
-            </td>
+            
             <td>
               <div className="cu-avatar">
                   <img src="/img/avatar/avatar_1.jpg" alt="avatar"/>
@@ -43,27 +37,19 @@ function CatTableRow(props){
               </td>
               <td>
                 <div className="order-num">
-                  <p>{cat.brand}</p>
+                  <p>{cat.brands?
+                  cat.brands.map(item=>(
+                    <p>{item.title}</p>)):''}</p>
                 </div>
               </td>
-              <td>
-                <div className="order-num">
-                  <p>{"product"}</p>
-                </div>
-              </td>
-              <td>
-                <div className="order-price">
-                  <p>{normalPriceCount(cat.totalPrice)}</p>
-                </div>
-              </td>
+              
               <td>
                 <Status status={cat.status} class={"order-status"} 
                   lang={props.lang}/>
               </td>
             <td>
               <div className="more-btn">
-              <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
-                onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
+              
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/category/detail/"+cat._id}></i>
                 <i className="tableIcon fas fa-ellipsis-v" 

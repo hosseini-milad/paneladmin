@@ -7,6 +7,7 @@ import errortrans from "../translate/error";
 import UserFilters from '../modules/Users/UserComponent/UserFilters';
 import env from '../env'
 import tabletrans from '../translate/tables';
+import SMS from '../components/SMS';
 const cookies = new Cookies();
 
 function Users(props){
@@ -15,6 +16,7 @@ function Users(props){
     const [content,setContent] = useState("")
     const [filters,setFilters] = useState("")
     const [loading,setLoading] = useState(0)
+    const [showSms,setShowSMS] = useState(0)
     const [update,setUpdate] = useState(0)
     const token=cookies.get(env.cookieName)
     useEffect(() => {
@@ -25,6 +27,7 @@ function Users(props){
           customer:filters.customer,
           orderNo:filters.orderNo,
           status:filters.status,
+          profile:filters.profile,
           brand:filters.brand,
           dateFrom:filters.date&&filters.date.dateFrom,
           dateTo:filters.date&&filters.date.dateTo,
@@ -121,6 +124,10 @@ function Users(props){
           
         </div>
         <div className="od-header-btn">
+          <label className="edit-btn" onClick={()=>setShowSMS(1)}>
+            <i className="fa-solid fa-envelope-o"></i>
+            {tabletrans.sendSms[lang]}
+          </label>
           <label className="edit-btn" onClick={()=>window.location.href="/class"}>
             <i className="fa-solid fa-plus"></i>
             {tabletrans.classes[lang]}
@@ -137,13 +144,16 @@ function Users(props){
       <div className="list-container">
         <StatusBar />
         <UserFilters lang={props.lang} setFilters={setFilters} 
-          options={content.access}/>
+          options={content.access} profiles={content.profilesList}/>
         <div className="user-list">
           <UserTable userList={content} lang={props.lang} />
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters}
           lang={props.lang}/>
       </div>
+      {showSms?<SMS title="ارسال پیامک" close={setShowSMS}
+      text={`ارسال پیامک برای ${content.filter&&content.filter.length} مشترک`} lang={props.lang}
+      userList={content.filter}/>:<></>}
     </div>
     )
 }

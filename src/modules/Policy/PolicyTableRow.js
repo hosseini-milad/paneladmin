@@ -28,8 +28,9 @@ function PolicyTableRow(props){
               <div className="or-date">
                   <div className="cu-name" onClick={()=>
                   window.location.href="/policy/detail/"+policy._id}>
-                    <p className="name">{policy.userInfo[0]&&policy.userInfo[0].cName}</p>
-                    <p className="email">{policy.userInfo[0]&&policy.userInfo[0].phone}</p>
+                    <p className="name">{policy.userInfo[0]?policy.userInfo[0].cName:
+                    policy.class?policy.class.className:''}</p>
+                    <p className="email">{policy.userInfo[0]?policy.userInfo[0].phone:''}</p>
                   </div>
                   {policy.moreInformation?
                     <i className="fa fa-comment-o" title={policy.moreInformation}></i>:<></>}

@@ -35,7 +35,7 @@ function UserGeneral(props){
       {
         setError({errorText:result.success,
           errorColor:"green"})
-        setTimeout(()=>setError({errorText:'',errorColor:"brown"}),3000)
+        setTimeout(()=>window.location.href="/users",2000)
       }
       else {
         setError({errorText:result.message,

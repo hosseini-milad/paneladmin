@@ -11,6 +11,7 @@ import ProductTable from '../modules/Products/ProductTable';
 import tabletrans from '../translate/tables';
 import BrandTable from '../modules/Brands/BrandTable';
 import CatTable from '../modules/Category/CatTable';
+import CatFilters from '../modules/Category/CatComponent/CatFilters';
 const cookies = new Cookies();
 
 function Category(props){
@@ -61,7 +62,7 @@ function Category(props){
         <div className="od-header-info">
           
           <div className="od-header-name">
-            <p>{tabletrans.brands[lang]}</p>
+            <p>{tabletrans.category[lang]}</p>
           </div>
           
         </div>
@@ -78,10 +79,10 @@ function Category(props){
         </div>
       </div>
       <div className="list-container">
-        <StatusBar lang={lang} token={token} filters={filters}
+        {/*<StatusBar lang={lang} token={token} filters={filters}
          status={content.rxStatus} setFilters={setFilters}/>
-        <OrderFilters lang={props.lang} setFilters={setFilters}
-          options={content.brand} filters={filters}/>
+        <CatFilters lang={props.lang} setFilters={setFilters}
+   options={content.brand} filters={filters}/>*/}
         <div className="user-list"> 
           {loading?env.loader:<CatTable cat={content} lang={lang}/>}
         </div>

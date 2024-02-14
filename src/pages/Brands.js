@@ -10,6 +10,7 @@ import env from '../env';
 import ProductTable from '../modules/Products/ProductTable';
 import tabletrans from '../translate/tables';
 import BrandTable from '../modules/Brands/BrandTable';
+import BrandFilters from '../modules/Brands/BrandComponent/BrandFilters';
 const cookies = new Cookies();
 
 function Brands(props){
@@ -79,8 +80,8 @@ function Brands(props){
       <div className="list-container">
         <StatusBar lang={lang} token={token} filters={filters}
          status={content.rxStatus} setFilters={setFilters}/>
-        <OrderFilters lang={props.lang} setFilters={setFilters}
-          options={content.brand} filters={filters}/>
+        {/*<BrandFilters lang={props.lang} setFilters={setFilters}
+          options={content.brand} filters={filters}/>*/}
         <div className="user-list"> 
           {loading?env.loader:<BrandTable brand={content} lang={lang}/>}
         </div>

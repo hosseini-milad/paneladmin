@@ -11,6 +11,13 @@ function UserFilters(props){
               ...prevState,
               access:e
             }))}/>
+            <StyleSelect title={"Profile"} class="filterComponent" 
+            direction={props.lang.dir} label="profileName"
+            options={props.profiles} 
+            action={(e)=>props.setFilters(prevState => ({
+              ...prevState,
+              profile:e?e._id:''
+            }))}/>
           <div className="serach-input">
             <StyleInput title={"Customer"} direction={props.lang.dir} 
             action={(e)=>(e.length>3||e.length===0)&&props.setFilters(prevState => ({

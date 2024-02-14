@@ -5,6 +5,7 @@ import TaskPopUp from './TaskPopUp'
 function Task(props){
     const [taskPop,setTaskPop] = useState(0)
     const taskData = props.taskList
+    const taskUser = taskData.profileInfo
     return(<Draggable key={taskData._id}
         draggableId ={taskData._id} index={props.index}>
             {(provided,snapshot)=>(
@@ -37,15 +38,15 @@ function Task(props){
                             <span className="icon-phone"></span>
                             {taskData.phone}</a></li>
                     </ul>
-                    {taskData.tag?
-                    <span className={taskData.tag==="Active"?
+                    {/*<span className={taskData.tag==="Active"?
                         "task-status status-active":"task-status status-deactive"}
                         title={taskData.tag}>
-                            {taskData.tag}</span>:<></>}
+                    {taskData.tag}</span>:<></>}*/}
+                    {taskUser&&taskUser.length?
                     <div className='task-handler'>
-                        <small>{taskData.agent}</small>
+                        <small>{taskUser[0].profileName}</small>
                         <small>{taskData.agency}</small>
-                    </div>
+                    </div>:<></>}
                     {taskPop?<TaskPopUp title={"Edit Task"}
                     btnText={"Update"} action={props.action}
                     data={taskData} close={()=>setTaskPop(0)}

@@ -14,13 +14,7 @@ function BrandTableRow(props){
             <td className="checkBoxStyle">
               <input type="checkbox" name="" id="" checked={checkState}
               onChange={(e)=>setCheckState(checkState?false:true)}/></td>
-            <td>
-                <div className="order-id">
-                  <p onClick={()=> window.location.href=
-                    "/brands/detail/"+brand._id}>
-                    {brand._id}</p>
-                </div>
-            </td>
+            
             <td>
               <div className="cu-avatar">
                   <img src={brand?(env.siteApiUrl+brand.brandUrl):''} 
@@ -35,26 +29,8 @@ function BrandTableRow(props){
                 </div>
               </td>
               <td>
-                <div className="or-date">
-                  <p className="date">{new Date(brand.date)
-                  .toLocaleDateString(props.lang==="persian"?'fa':'en')}</p>
-                  <p className="time">{new Date(brand.date)
-                  .toLocaleTimeString(props.lang==="persian"?'fa':'en')}</p>
-                </div>
-              </td>
-              <td>
-                <div className="order-num">
-                  <p>{brand.brand}</p>
-                </div>
-              </td>
-              <td>
-                <div className="order-num">
-                  <p>{"product"}</p>
-                </div>
-              </td>
-              <td>
                 <div className="order-price">
-                  <p>{normalPriceCount(brand.totalPrice)}</p>
+                  <p>{brand.enTitle}</p>
                 </div>
               </td>
               <td>
@@ -63,8 +39,7 @@ function BrandTableRow(props){
               </td>
             <td>
               <div className="more-btn">
-              <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
-                onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
+              
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/brands/detail/"+brand._id}></i>
                 <i className="tableIcon fas fa-ellipsis-v" 
@@ -82,9 +57,7 @@ function BrandTableRow(props){
               </div>:<></>}
             </td>
           </tr>
-          {activeAcc?<tr className="sub-order">
-        <td colSpan="9"><BrandQuickDetail brand={brand}/></td></tr>
-          :<React.Fragment></React.Fragment>}
+          
           </React.Fragment>
     )
 }

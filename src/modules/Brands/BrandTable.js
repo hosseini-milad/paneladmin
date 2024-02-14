@@ -12,30 +12,16 @@ function BrandTable(props){
         <tr>
           <th className="checkBoxStyle">
               <input type="checkbox" name="" id=""/></th>
+            
             <th>
-              <p>{tabletrans.order[lang]}</p>
+              <p>{tabletrans.title[lang]}</p>
               <i></i>
             </th>
             <th>
-              <p>{tabletrans.customer[lang]}</p>
+              <p>{tabletrans.enTitle[lang]}</p>
               <i></i>
             </th>
-            <th>
-              <p>{tabletrans.date[lang]}</p>
-              <i></i>
-            </th>
-            <th>
-              <p>{tabletrans.brand[lang]}</p>
-              <i></i>
-            </th>
-            <th>
-              <p>{tabletrans.item[lang]}</p>
-              <i></i>
-            </th>
-            <th>
-            <p>{tabletrans.price[lang]}</p>
-              <i></i>
-            </th>
+            
             <th>
             <p>{tabletrans.status[lang]}</p>
               <i></i>

@@ -4,19 +4,19 @@ import TaskPopUp from "./TaskPopUp";
 import { useState } from "react";
 import env from "../../env";
 function Column(props){
+    const token = props.token
     const [taskPop,setTaskPop] = useState(0)
     const action =(data)=>{
         const postOptions={
             method:'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json',
+            "x-access-token":token&&token.token,"userId":token&&token.userId},
             body:JSON.stringify({...data,crmId:props.crm?props.crm._id:''})
           }
-          console.log(postOptions)
       fetch(env.siteApi + "/panel/crm/update-tasks",postOptions)
       .then(res => res.json())
       .then(
         (result) => {
-            console.log(result)
             if(result.error){}
             else{
                 props.setBoardArray(result.taskData)

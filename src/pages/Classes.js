@@ -69,10 +69,10 @@ function Classes(props){
         </div>
       </div>
       <div className="list-container">
-        <StatusBar lang={lang} token={token} filters={filters}
+        {/*<StatusBar lang={lang} token={token} filters={filters}
          status={content.rxStatus} setFilters={setFilters}/>
         <OrderFilters lang={props.lang} setFilters={setFilters}
-          options={content.brand} filters={filters}/>
+   options={content.brand} filters={filters}/>*/}
         <div className="user-list"> 
           {loading?env.loader:<ClassTable classes={content} lang={lang}/>}
         </div>
