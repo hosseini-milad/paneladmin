@@ -47,7 +47,7 @@ function BrandTableRow(props){
 
   const changeStatus = () => {
     var current = "true"
-    if(brand.active && brand.active == "true"){
+    if(brand.active == true){
       current = "false"
     } else {
       current = "true"
@@ -67,6 +67,7 @@ function BrandTableRow(props){
         (result) => {
           if (result.success) {
             setError({ errorText: result.success, errorColor: "green" });
+            props.setloading(1);
             setTimeout(
               () => setError({ errorText: "", errorColor: "brown" }),
               3000
