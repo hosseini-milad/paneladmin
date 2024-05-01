@@ -22,14 +22,16 @@ function UserTableRow(props){
     }
     else{
       var newArray = props.selectedUser
+      if(newArray){
       var index = newArray.indexOf(user._id);
       if (index > -1) {
         newArray.splice(index, 1);
       }
       props.setSelectedUser(newArray)
     }
-    setCheckState(checkState?false:true)
+    }
     
+    setCheckState(checkState?false:true)
     /*props.setSelectedUser(prevState => ({
                 ...prevState,
                 user:e

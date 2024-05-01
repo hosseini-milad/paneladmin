@@ -5,6 +5,7 @@ import tabletrans from "../../../translate/tables"
 import { useState } from "react"
 
 function OrderFilters(props){
+  const category = props.filters&&props.filters.category
     return(
         <div className="user-filter">
             
@@ -25,7 +26,13 @@ function OrderFilters(props){
                 ...prevState,
                 customer:e
               }))}/>
-
+            
+            {category&&category==="Stock"?<StyleSelect title={"گارانتی"} direction={props.lang.dir} 
+              options={["دارد","ندارد"]} 
+              action={(e)=>props.setFilters(prevState => ({
+                ...prevState,
+                gurantee:e
+              }))}/>:<></>}
             <StyleDatePicker title={tabletrans.selectDate[props.lang.lang]} class="filterComponent" 
               direction={props.lang.dir} local={props.lang.dir==="ltr"?"en":"fa"}
               action={(e)=>props.setFilters(prevState => ({

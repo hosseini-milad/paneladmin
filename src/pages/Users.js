@@ -146,7 +146,8 @@ function Users(props){
         <UserFilters lang={props.lang} setFilters={setFilters} 
           options={content.access} profiles={content.profilesList}/>
         <div className="user-list">
-          <UserTable userList={content} lang={props.lang} />
+          <UserTable userList={content} lang={props.lang} 
+          setSelectedUser={()=>{}}/>
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters}
           lang={props.lang}/>

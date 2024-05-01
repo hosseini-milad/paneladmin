@@ -90,6 +90,13 @@ const statustrans ={
         color: "rgb(17, 141, 87)",
         background: "rgba(34, 197, 94, 0.16)"
     },
+    qc:{
+        english: "Quality Control",
+        persian: "کنترل کارخانه",
+        index:5,
+        color: "rgb(17, 141, 87)",
+        background: "rgba(34, 197, 94, 0.16)"
+    },
     completed:{
         english: "Completed",
         persian: "تمام شده",

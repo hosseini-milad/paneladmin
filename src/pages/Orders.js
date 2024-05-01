@@ -27,6 +27,7 @@ function Orders(props){
           orderNo:filters.orderNo,
           status:filters.status,
           brand:filters.brand,
+          gurantee:filters.gurantee,
           dateFrom:filters.date&&filters.date.dateFrom,
           dateTo:filters.date&&filters.date.dateTo,
           access:"manager"
