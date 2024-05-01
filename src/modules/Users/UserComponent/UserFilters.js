@@ -1,17 +1,19 @@
 import StyleInput from "../../../components/Button/Input"
 import StyleSelect from "../../../components/Button/AutoComplete"
+import tabletrans from "../../../translate/tables"
+
 
 function UserFilters(props){
     console.log(props.options)
     return(
         <div className="user-filter">
-            <StyleSelect title={"Role"} class="filterComponent" direction={props.lang.dir}
+            <StyleSelect title={tabletrans.role[props.lang.lang]} class="filterComponent" direction={props.lang.dir}
             options={props.options} 
             action={(e)=>props.setFilters(prevState => ({
               ...prevState,
               access:e
             }))}/>
-            <StyleSelect title={"Profile"} class="filterComponent" 
+            <StyleSelect title={tabletrans.profile[props.lang.lang]} class="filterComponent" 
             direction={props.lang.dir} label="profileName"
             options={props.profiles} 
             action={(e)=>props.setFilters(prevState => ({
@@ -19,12 +21,12 @@ function UserFilters(props){
               profile:e?e._id:''
             }))}/>
           <div className="serach-input">
-            <StyleInput title={"Customer"} direction={props.lang.dir} 
+            <StyleInput title={tabletrans.customer[props.lang.lang]} direction={props.lang.dir} 
             action={(e)=>(e.length>3||e.length===0)&&props.setFilters(prevState => ({
               ...prevState,
               customer:e
             }))}/>
-            <i className="tableIcon fas fa-ellipsis-v"></i>
+            {/* <i className="tableIcon fas fa-ellipsis-v"></i> */}
           </div>
           <div className="option-sub">
             <div className="option">

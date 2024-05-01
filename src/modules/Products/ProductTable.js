@@ -28,11 +28,12 @@ function ProductTable(props){
             <p>{tabletrans.price[lang]}</p>
               <i></i>
             </th>
-            <th>
+            {/* <th>
             <p>{tabletrans.status[lang]}</p>
               <i></i>
-            </th>
+            </th> */}
             <th>
+            <p>{tabletrans.action[lang]}</p>
             </th>
           </tr>
         </thead>

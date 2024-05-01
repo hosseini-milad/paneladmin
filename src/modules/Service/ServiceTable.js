@@ -24,23 +24,26 @@ function ServiceTable(props){
               <p>{tabletrans.code[lang]}</p>
               <i></i>
             </th>
-            <th>
+            {/* <th>
               <p>{tabletrans.brand[lang]}</p>
               <i></i>
-            </th>
-            <th>
+            </th> */}
+            {/* <th>
               <p>{tabletrans.item[lang]}</p>
               <i></i>
-            </th>
-            <th>
+            </th> */}
+
+            {/* <th>
             <p>{tabletrans.price[lang]}</p>
               <i></i>
-            </th>
-            <th>
+            </th> */}
+            {/* <th>
             <p>{tabletrans.status[lang]}</p>
               <i></i>
-            </th>
+            </th> */}
             <th>
+            <p>{tabletrans.action[lang]}</p>
+
             </th>
           </tr>
         </thead>
