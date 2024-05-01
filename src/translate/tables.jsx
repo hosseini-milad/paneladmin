@@ -1,3 +1,5 @@
+import Profile from "../pages/Profile"
+
 const tabletrans ={
     dkmehrDashboard:{
         english: "DKMehr Dashboard",
@@ -7,9 +9,29 @@ const tabletrans ={
         english: "Name",
         persian: "نام"
     },
+    role:{
+        english: "Role",
+        persian: "نقش"
+    },
+    customer:{
+        english: "Customer",
+        persian: "مشتری"
+    },
+    type: {
+        english: "Type",
+        persian: "نوع"
+    },
+    profile: {
+        english: "Profile",
+        persian: "پروفایل"
+    },
     phoneNumber:{
         english: "Phone Number",
         persian: "شماره تماس"
+    },
+    action:{
+        english: "Action",
+        persian: "عملیات"
     },
     userCode:{
         english: "User Code",

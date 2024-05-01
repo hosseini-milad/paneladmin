@@ -75,8 +75,8 @@ function UserTableRow(props){
               <div className="more-btn">
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/users/detail/"+user._id}></i>
-                <i className="tableIcon fas fa-ellipsis-v" 
-                  onClick={()=>setOpenOption(openOption?0:1)}></i>
+                {/* <i className="tableIcon fas fa-ellipsis-v" 
+                  onClick={()=>setOpenOption(openOption?0:1)}></i> */}
               </div>
               {openOption?<div className={props.direction==="rtl"?
                 "sub-more-menu":"sub-more-menu sub-more-rtl"}>

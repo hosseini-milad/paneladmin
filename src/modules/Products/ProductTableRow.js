@@ -110,6 +110,7 @@ function ProductTableRow(props){
                   <p>{normalPriceCount(product.price)}</p>
                 </div>
               </td>
+<<<<<<< HEAD
               <td>
               <Status status={product.active} class={"order-status"} 
                   lang={props.lang}
@@ -117,14 +118,20 @@ function ProductTableRow(props){
                   text={product.active?tabletrans.activeText[props.lang]:tabletrans.deactiveText[props.lang]}
                   />
               </td>
+=======
+              {/* <td>
+                <Status status={"available"} class={"order-status"} 
+                  lang={props.lang}/>
+              </td> */}
+>>>>>>> 8c8f2e1b6380d69a430acbc0ab7feb7f619db7c1
             <td>
               <div className="more-btn">
               <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
                 onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/products/detail/"+product._id}></i>
-                <i className="tableIcon fas fa-ellipsis-v" 
-                  onClick={()=>setOpenOption(openOption?0:1)}></i>
+                {/* <i className="tableIcon fas fa-ellipsis-v" 
+                  onClick={()=>setOpenOption(openOption?0:1)}></i> */}
               </div>
               {openOption?<div className="sub-more-menu">
                 <div className="sub-option sub-delete" onClick={deleteProduct}>

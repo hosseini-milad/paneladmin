@@ -25,7 +25,7 @@ function CatTable(props){
               <i></i>
             </th>
             <th>
-            <p>{tabletrans.status[lang]}</p>
+            <p>{tabletrans.description[lang]}</p>
               <i></i>
             </th>
             <th>
