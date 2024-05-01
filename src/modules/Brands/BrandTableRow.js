@@ -27,16 +27,18 @@ function BrandTableRow(props){
         brandId: brand._id,
       }),
     };
-    fetch(env.siteApi + "/panel/product/delete-product", postOptions)
+    fetch(env.siteApi + "/panel/product/delete-brand", postOptions)
       .then((res) => res.json())
       .then(
         (result) => {
           if (result.success) {
             setError({ errorText: result.success, errorColor: "green" });
+            props.setFilters({reload:1});
             setTimeout(
               () => setError({ errorText: "", errorColor: "brown" }),
               3000
             );
+            
           } else console.log(result);
         },
         (error) => {
@@ -46,11 +48,11 @@ function BrandTableRow(props){
   };
 
   const changeStatus = () => {
-    var current = "true"
-    if(brand.active == true){
-      current = "false"
+    var current = true
+    if(brand.active){
+      current = false
     } else {
-      current = "true"
+      current = true
     }
     var postOptions = {
       method: "post",
@@ -67,7 +69,7 @@ function BrandTableRow(props){
         (result) => {
           if (result.success) {
             setError({ errorText: result.success, errorColor: "green" });
-            props.setloading(1);
+            props.setFilters({reload:1});
             setTimeout(
               () => setError({ errorText: "", errorColor: "brown" }),
               3000

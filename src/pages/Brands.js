@@ -20,6 +20,7 @@ function Brands(props){
     const [filters,setFilters] = useState("")
     const [loading,setLoading] = useState(0)
     const token=cookies.get(env.cookieName)
+    console.log(filters)
     useEffect(() => {
       setLoading(1)
       const body={
@@ -83,7 +84,8 @@ function Brands(props){
         {/*<BrandFilters lang={props.lang} setFilters={setFilters}
           options={content.brand} filters={filters}/>*/}
         <div className="user-list"> 
-          {loading?env.loader:<BrandTable setLoading={setLoading} brand={content} lang={lang}/>}
+          {loading?env.loader:<BrandTable setFilters={setFilters} 
+            brand={content} lang={lang}/>}
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters} 
           lang={props.lang}/>
