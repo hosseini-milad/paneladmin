@@ -6,8 +6,13 @@ import tabletrans from "../../../translate/tables"
 import formtrans from "../../../translate/forms"
 import BrandDetails from './BrandDetails';
 import BrandImage from './BrandImage';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function BrandDetailHolder(props){
+
+  const token=cookies.get(env.cookieName)
+
   const url = window.location.pathname.split('/')[3]
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
@@ -53,12 +58,13 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
     //if(newCustomer) {
       var postOptions={
           method:'post',
-          headers: {'Content-Type': 'application/json'},
+          headers: { "Content-Type": "application/json", 
+          "x-access-token":token&&token.token,"userId":token&&token.userId},
           body:JSON.stringify({brandId:url,
             ...brandChange,factory:userFactory})
         }
         console.log(postOptions)
-     fetch(env.siteApi + "/panel/product/editBrand",postOptions)
+    fetch(env.siteApi + "/panel/product/update-brand", postOptions)
     .then(res => res.json())
     .then(
       (result) => {

@@ -32,7 +32,7 @@ function BrandTable(props){
         </thead>
         <tbody>
           {brand&&brand.filter?brand.filter.map((brand,i)=>(
-            <BrandTableRow detail={detail} showDetail={showDetail} 
+            <BrandTableRow setLoading={props.setLoading} detail={detail} showDetail={showDetail} 
             brand={brand} index={i} key={i} lang={lang}/>
           )):''}
           

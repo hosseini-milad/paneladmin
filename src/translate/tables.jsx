@@ -115,14 +115,6 @@ const tabletrans ={
         english: "Customers",
         persian: "مشتریان"
     },
-    edit:{
-        english: "Edit",
-        persian: "ویرایش"
-    },
-    delete:{
-        english: "Delete",
-        persian: "حذف"
-    },
     update:{
         english: "Update",
         persian: "بروزرسانی"
@@ -323,6 +315,22 @@ const tabletrans ={
     classes:{
         english:"Classes",
         persian:"کلاس مشتری"
+    },
+    activeText:{
+        english: "Active",
+        persian: "فعال"
+    },
+    deactiveText:{
+        english: "Deactive",
+        persian: "غیر فعال"
+    },
+    delete:{
+        english: "delete",
+        persian: "حذف"
+    },
+    edit:{
+        english: "Edit",
+        persian: "ویرایش"
     },
     sendSms:{
         english:"Send Sms",
