@@ -1,9 +1,10 @@
-import React ,{ useState } from "react"
+import React, { useState, useEffect, useRef } from "react";
 import Status from "../Components/Status"
 import  env, { normalPriceCount, rxFindCount } from "../../env"
 import BrandQuickDetail from "./BrandComponent/BrandQuickDetail"
 import Cookies from 'universal-cookie';
 import tabletrans from "../../translate/tables"
+
 
 const cookies = new Cookies();
 
@@ -11,12 +12,32 @@ function BrandTableRow(props){
 
   const token=cookies.get(env.cookieName)
 
-  const [openOption,setOpenOption] = useState(0)
+  const [openOption, setOpenOption] = useState(false); // Initialize to false by default
   const [checkState,setCheckState] = useState(false)
   const [error, setError] = useState({ errorText: "", errorColor: "brown" });
 
   const activeAcc = props.index===props.detail
   const brand=props.brand
+
+  const subMoreMenuRef = useRef(null);
+
+  useEffect(() => {
+    // Function to close the submenu when clicking outside of it
+    const handleClickOutside = (event) => {
+        if (subMoreMenuRef.current && !subMoreMenuRef.current.contains(event.target)) {
+            setOpenOption(false);
+        }
+    };
+
+    // Add event listener when component mounts
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup function to remove event listener when component unmounts
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+}, []);
+
   
   const deleteBrand = () => {
     var postOptions = {
@@ -118,19 +139,21 @@ function BrandTableRow(props){
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/brands/detail/"+brand._id}></i>
                 <i className="tableIcon fas fa-ellipsis-v" 
-                  onClick={()=>setOpenOption(openOption?0:1)}></i>
+                  onClick={()=>setOpenOption(!openOption)}></i> {/* Toggle openOption */}
               </div>
-              {openOption?<div className="sub-more-menu">
-                <div className="sub-option sub-delete" onClick={deleteBrand}>
-                <i className="tableIcon fas fa-remove" style={{color: "#ff0000"}}></i>
-                <p>{tabletrans.delete[props.lang]}</p>
-                </div>
-                <div className="sub-option sub-edit" onClick={()=>
-                  window.location.href="/brands/detail/"+brand._id}>
-                  <i className="tableIcon fas fa-edit"></i>
-                  <p>{tabletrans.edit[props.lang]}</p>
-                </div>
-              </div>:<></>}
+              {openOption && (
+                        <div ref={subMoreMenuRef} className="sub-more-menu">
+                            <div className="sub-option sub-delete" onClick={deleteBrand}>
+                                <i className="tableIcon fas fa-remove" style={{ color: "#ff0000" }}></i>
+                                <p>{tabletrans.delete[props.lang]}</p>
+                            </div>
+                            <div className="sub-option sub-edit" onClick={() =>
+                                window.location.href = "/brands/detail/" + brand._id}>
+                                <i className="tableIcon fas fa-edit"></i>
+                                <p>{tabletrans.edit[props.lang]}</p>
+                            </div>
+                        </div>
+                    )}
             </td>
           </tr>
           

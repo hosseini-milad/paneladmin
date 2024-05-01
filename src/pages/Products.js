@@ -82,6 +82,7 @@ function Products(props){
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters} 
           lang={props.lang}/>
+          
       </div>
     </div>
     )
