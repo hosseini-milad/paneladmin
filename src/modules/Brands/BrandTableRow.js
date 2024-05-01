@@ -4,6 +4,8 @@ import  env, { normalPriceCount, rxFindCount } from "../../env"
 import BrandQuickDetail from "./BrandComponent/BrandQuickDetail"
 import Cookies from 'universal-cookie';
 import tabletrans from "../../translate/tables"
+import useCloseOnClickOutside from '../../hooks/useCloseOnClickOutside';
+
 
 
 const cookies = new Cookies();
@@ -13,13 +15,16 @@ function BrandTableRow(props){
   const token=cookies.get(env.cookieName)
 
   const [openOption, setOpenOption] = useState(false); // Initialize to false by default
+  const subMoreMenuRef = useRef(null);
+
   const [checkState,setCheckState] = useState(false)
   const [error, setError] = useState({ errorText: "", errorColor: "brown" });
 
   const activeAcc = props.index===props.detail
   const brand=props.brand
 
-  const subMoreMenuRef = useRef(null);
+  useCloseOnClickOutside(subMoreMenuRef, setOpenOption);
+
 
   useEffect(() => {
     // Function to close the submenu when clicking outside of it
