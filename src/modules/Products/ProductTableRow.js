@@ -110,7 +110,6 @@ function ProductTableRow(props){
                   <p>{normalPriceCount(product.price)}</p>
                 </div>
               </td>
-<<<<<<< HEAD
               <td>
               <Status status={product.active} class={"order-status"} 
                   lang={props.lang}
@@ -118,12 +117,6 @@ function ProductTableRow(props){
                   text={product.active?tabletrans.activeText[props.lang]:tabletrans.deactiveText[props.lang]}
                   />
               </td>
-=======
-              {/* <td>
-                <Status status={"available"} class={"order-status"} 
-                  lang={props.lang}/>
-              </td> */}
->>>>>>> 8c8f2e1b6380d69a430acbc0ab7feb7f619db7c1
             <td>
               <div className="more-btn">
               <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 

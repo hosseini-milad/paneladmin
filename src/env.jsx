@@ -83,12 +83,13 @@ export function PriceDiscount(priceText,count,discountText){
   }
 export function PageInfoFunction(orderInfo,filters){
   var totalPage =orderInfo.size?parseInt(parseInt(orderInfo.size)/
-  parseInt(filters&&filters.pageSize?filters.pageSize:"10")):0
-  var currentPage =filters&&filters.offset?filters.offset:0
+  parseInt(filters.pageSize?filters.pageSize:"10")):0
+  var currentPage =filters.offset?filters.offset:0
   if(currentPage>totalPage)currentPage=0
   return({
     show:true,
     totalPage:totalPage,
+    totalItem:orderInfo.size,
     currentPage:currentPage,
     allowNext:currentPage>0?true:false,
     allowPre:currentPage==totalPage?false:true

@@ -83,13 +83,13 @@ function BrandDetails(props){
     console.log(props.userFactory)
     return(
         <div className="serviceItem">
-          <StyleInput title={formtrans.title[props.lang]} direction={props.direction} 
+          <StyleInput title={formtrans.title[props.lang]+"(مانند: کداک)"} direction={props.direction} 
               defaultValue={content?content.title:''} class={"formInput"}
               action={(e)=>props.setBrandChange(prevState => ({
                 ...prevState,
                 title:e
               }))}/>
-          <StyleInput title={formtrans.brandCode[props.lang]} direction={props.direction} 
+          <StyleInput title={formtrans.brandCode[props.lang]+" (مانند: kodak)"} direction={props.direction} 
               defaultValue={content?content.brandCode:''} class={"formInput"}
               action={(e)=>props.setBrandChange(prevState => ({
                 ...prevState,
