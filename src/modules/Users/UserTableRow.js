@@ -74,7 +74,7 @@ function UserTableRow(props){
             <td>
               <div className="more-btn">
                 <i className="tableIcon fas fa-edit" onClick={()=>
-                  window.location.href="/users/detail/"+user._id}></i>
+                  window.location.href="/customers/detail/"+user._id}></i>
                 {/* <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i> */}
               </div>
