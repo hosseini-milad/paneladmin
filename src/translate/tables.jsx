@@ -1,3 +1,5 @@
+import Profile from "../pages/Profile"
+
 const tabletrans ={
     dkmehrDashboard:{
         english: "DKMehr Dashboard",
@@ -7,9 +9,29 @@ const tabletrans ={
         english: "Name",
         persian: "نام"
     },
+    role:{
+        english: "Role",
+        persian: "نقش"
+    },
+    customer:{
+        english: "Customer",
+        persian: "مشتری"
+    },
+    type: {
+        english: "Type",
+        persian: "نوع"
+    },
+    profile: {
+        english: "Profile",
+        persian: "پروفایل"
+    },
     phoneNumber:{
         english: "Phone Number",
         persian: "شماره تماس"
+    },
+    action:{
+        english: "Action",
+        persian: "عملیات"
     },
     userCode:{
         english: "User Code",
@@ -114,14 +136,6 @@ const tabletrans ={
     customers:{
         english: "Customers",
         persian: "مشتریان"
-    },
-    edit:{
-        english: "Edit",
-        persian: "ویرایش"
-    },
-    delete:{
-        english: "Delete",
-        persian: "حذف"
     },
     update:{
         english: "Update",
@@ -323,6 +337,22 @@ const tabletrans ={
     classes:{
         english:"Classes",
         persian:"کلاس مشتری"
+    },
+    activeText:{
+        english: "Active",
+        persian: "فعال"
+    },
+    deactiveText:{
+        english: "Deactive",
+        persian: "غیر فعال"
+    },
+    delete:{
+        english: "delete",
+        persian: "حذف"
+    },
+    edit:{
+        english: "Edit",
+        persian: "ویرایش"
     },
     sendSms:{
         english:"Send Sms",

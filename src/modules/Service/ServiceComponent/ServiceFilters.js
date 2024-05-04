@@ -11,13 +11,13 @@ function ServiceFilters(props){
         <div className="user-filter">
             
           <div className="serach-input">
-            <StyleSelect title={"Type"} direction={props.lang.dir} 
+            <StyleSelect title={tabletrans.type[props.lang.lang]} direction={props.lang.dir} 
             options={serviceKind} label={props.lang.lang}
             action={(e)=>props.setFilters(prevState => ({
               ...prevState,
               category:e?e.english:''
             }))}/>
-            <StyleInput title={"title"} direction={props.lang.dir} 
+            <StyleInput title={tabletrans.title[props.lang.lang]} direction={props.lang.dir} 
               action={(e)=>(e.length>7||e.length===0)&&props.setFilters(prevState => ({
                 ...prevState,
                 title:e

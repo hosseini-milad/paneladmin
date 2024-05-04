@@ -44,16 +44,15 @@ function CatTableRow(props){
               </td>
               
               <td>
-                <Status status={cat.status} class={"order-status"} 
-                  lang={props.lang}/>
+                    <p>{cat.description}</p>
               </td>
             <td>
               <div className="more-btn">
               
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/category/detail/"+cat._id}></i>
-                <i className="tableIcon fas fa-ellipsis-v" 
-                  onClick={()=>setOpenOption(openOption?0:1)}></i>
+                {/* <i className="tableIcon fas fa-ellipsis-v" 
+                  onClick={()=>setOpenOption(openOption?0:1)}></i> */}
               </div>
               {openOption?<div className="sub-more-menu">
                 <div className="sub-option sub-delete">

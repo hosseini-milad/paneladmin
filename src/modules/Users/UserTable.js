@@ -31,6 +31,10 @@ function UserTable(props){
               <p>{tabletrans.status[lang]}</p>
               <i></i>
             </th>
+            <th>
+              <p>{tabletrans.action[lang]}</p>
+              <i></i>
+            </th>
             <th></th>
           </tr>
         </thead>

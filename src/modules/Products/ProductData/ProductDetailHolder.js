@@ -103,7 +103,7 @@ fetch(env.siteApi + "/panel/product/list-filter",postOptions)
             ...productChange,filters:changeFilters})
         }
        console.log(postOptions)
-    fetch(env.siteApi + "/panel/product/editProduct",postOptions)
+    fetch(env.siteApi + "/panel/product/update-product",postOptions)
     .then(res => res.json())
     .then(
       (result) => {
@@ -136,8 +136,8 @@ return(
           productChange={productChange} setProductChange={setProductChange}
           brand={brand} category={category} filters={filters} 
           changeFilters={changeFilters} setChangeFilters={setChangeFilters}/>
-        <ProductPrice direction={direction} lang={lang} content={content} 
-          productChange={productChange} setProductChange={setProductChange}/>
+        {/* <ProductPrice direction={direction} lang={lang} content={content} 
+          productChange={productChange} setProductChange={setProductChange}/> */}
         <div className="create-btn-wrapper">
           <div className="dense-btn">
             <input className="switch-input" type="checkbox" id="switch-3" />

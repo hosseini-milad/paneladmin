@@ -40,25 +40,25 @@ function ServiceTableRow(props){
                   <p className="date">{service.serviceCode}</p>
                 </div>
               </td>
-              <td>
+              {/* <td>
                 <div className="order-num">
                   <p>{service.brand}</p>
                 </div>
-              </td>
-              <td>
+              </td> */}
+              {/* <td>
                 <div className="order-num">
                   <p>2</p>
                 </div>
-              </td>
-              <td>
+              </td> */}
+              {/* <td>
                 <div className="order-price">
-                  <p>{normalPriceCount(service.colorPrice)}</p>
+                  <p>{normalPriceCount(service.servicePurchase)}</p>
                 </div>
-              </td>
-              <td>
+              </td> */}
+              {/* <td>
                 <Status status={service.status} class={"order-status"} 
                   lang={props.lang}/>
-              </td>
+              </td> */}
               <td>
               <div className="more-btn">
                 <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
@@ -74,10 +74,10 @@ function ServiceTableRow(props){
                 <i className="tableIcon fas fa-remove" style={{color: "#ff0000"}}></i>
                   <p>Delete</p>
                 </div>
-                <div className="sub-option sub-edit">
+                {/* <div className="sub-option sub-edit">
                   <i className="tableIcon fas fa-edit"></i>
                   <p>Edit</p>
-                </div>
+                </div> */}
               </div>:<></>}
             </td>
           </tr>

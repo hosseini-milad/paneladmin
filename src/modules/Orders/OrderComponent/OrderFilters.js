@@ -5,27 +5,34 @@ import tabletrans from "../../../translate/tables"
 import { useState } from "react"
 
 function OrderFilters(props){
+  const category = props.filters&&props.filters.category
     return(
         <div className="user-filter">
             
           <div className="serach-input">
-            <StyleInput title={"Order No"} direction={props.lang.dir} 
+            <StyleInput title={tabletrans.order[props.lang.lang]} direction={props.lang.dir} 
             action={(e)=>(e.length>7||e.length===0)&&props.setFilters(prevState => ({
               ...prevState,
               orderNo:e
             }))}/>
-            <StyleSelect title={"Brand"} direction={props.lang.dir} 
+            <StyleSelect title={tabletrans.brand[props.lang.lang]} direction={props.lang.dir} 
               options={props.options} 
               action={(e)=>props.setFilters(prevState => ({
                 ...prevState,
                 brand:e
               }))}/>
-            <StyleInput title={"Customer"} direction={props.lang.dir} 
+            <StyleInput title={tabletrans.customer[props.lang.lang]} direction={props.lang.dir} 
               action={(e)=>(e.length>3||e.length===0)&&props.setFilters(prevState => ({
                 ...prevState,
                 customer:e
               }))}/>
-
+            
+            {category&&category==="Stock"?<StyleSelect title={"گارانتی"} direction={props.lang.dir} 
+              options={["دارد","ندارد"]} 
+              action={(e)=>props.setFilters(prevState => ({
+                ...prevState,
+                gurantee:e
+              }))}/>:<></>}
             <StyleDatePicker title={tabletrans.selectDate[props.lang.lang]} class="filterComponent" 
               direction={props.lang.dir} local={props.lang.dir==="ltr"?"en":"fa"}
               action={(e)=>props.setFilters(prevState => ({

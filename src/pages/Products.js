@@ -78,10 +78,12 @@ function Products(props){
         <ProductFilters lang={props.lang} setFilters={setFilters}
           options={options} filters={filters}/>
         <div className="user-list"> 
-          {loading?env.loader:<ProductTable product={content} lang={lang}/>}
+          {loading?env.loader:<ProductTable product={content} 
+          lang={lang} setFilters={setFilters} token={token}/>}
         </div>
         <Paging content={content} setFilters={setFilters} filters={filters} 
           lang={props.lang}/>
+          
       </div>
     </div>
     )
