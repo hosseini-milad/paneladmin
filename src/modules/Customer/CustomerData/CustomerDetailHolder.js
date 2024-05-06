@@ -10,8 +10,13 @@ import CustomerSecurity from "./CustomerSecurity";
 import CustomerGeneral from "./CustomerGeneral";
 import CustomerSupplementary from "./CustomerSupplementary";
 import CustomerClass from "./CustomerClass";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 
 function CustomerDetailHolder(props) {
+  const token = cookies.get(env.cookieName);
+
   const url = window.location.pathname.split("/")[3];
   const direction = props.lang ? props.lang.dir : errortrans.defaultDir;
   const lang = props.lang ? props.lang.lang : errortrans.defaultLang;
@@ -60,6 +65,7 @@ function CustomerDetailHolder(props) {
             userData={userData}
             accessList={accessList}
             profile={profile}
+            token={token}
 
           />
         ) : (
@@ -72,6 +78,8 @@ function CustomerDetailHolder(props) {
             userData={userData}
             accessList={accessList}
             profile={profile}
+            token={token}
+
           />
         ) : (
           <></>
@@ -96,6 +104,8 @@ function CustomerDetailHolder(props) {
             direction={direction}
             lang={lang}
             userData={userData}
+            token={token}
+
           />
         ) : (
           <></>
@@ -105,6 +115,8 @@ function CustomerDetailHolder(props) {
             direction={direction}
             lang={lang}
             userData={userData}
+            token={token}
+
           />
         ) : (
           <></>
