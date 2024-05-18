@@ -11,6 +11,7 @@ function PolicyDetails(props){
     const content=props.content
     const [catSelect,setCatSelect]=useState()
     const [factSelect,setFactSelect]=useState(0)
+    const [brandSelect,setBrandSelect]=useState(0)
     const [filterOptions,setFiltersOptions]=useState([])
     const [brandOptions,setBrandOptions] = useState([])
     const [factoryOptions,setFactoryOptions] = useState([])
@@ -70,6 +71,14 @@ function PolicyDetails(props){
       }))
 
     }
+    const updateBrand=(e)=>{
+      setBrandSelect(brandSelect+1)
+      props.setPolicyChange(prevState => ({
+        ...prevState,
+        brand:e
+      }))
+
+    }
     return(
         <div className="serviceItem">
             <StyleSelect title={formtrans.category[props.lang]} direction={props.direction} 
@@ -89,7 +98,7 @@ function PolicyDetails(props){
               options={brandOptions||[]}
               label={"title"||''}
               defaultValue={(content&&content.brand)} class={"formInput"}
-              action={(e)=>updateFactory(e)}/>:<></>}
+              action={(e)=>updateBrand(e)}/>:<></>}
             <PolicyFilters content={content} filters={props.filters} direction={props.direction}
             setFilters={props.setFilters} filterOptions={filterOptions}
             lang={props.lang} setPolicyChange={props.setPolicyChange}/>

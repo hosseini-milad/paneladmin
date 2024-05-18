@@ -32,7 +32,12 @@ function OrderFilters(props){
               action={(e)=>props.setFilters(prevState => ({
                 ...prevState,
                 gurantee:e
-              }))}/>:<></>}
+              }))}/>:<StyleSelect title={"فوری"} direction={props.lang.dir} 
+              options={["دارد","ندارد"]} 
+              action={(e)=>props.setFilters(prevState => ({
+                ...prevState,
+                expressPrice:e
+              }))}/>}
             <StyleDatePicker title={tabletrans.selectDate[props.lang.lang]} class="filterComponent" 
               direction={props.lang.dir} local={props.lang.dir==="ltr"?"en":"fa"}
               action={(e)=>props.setFilters(prevState => ({

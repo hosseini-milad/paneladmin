@@ -64,7 +64,7 @@ fetch(env.siteApi + "/panel/user/fetch-policy",postOptions)
             ...policyChange,filters:filters})
         }
       console.log(postOptions)
-     fetch(env.siteApi + "/panel/user/update-policy",postOptions)
+    fetch(env.siteApi + "/panel/user/update-policy",postOptions)
     .then(res => res.json())
     .then(
       (result) => {

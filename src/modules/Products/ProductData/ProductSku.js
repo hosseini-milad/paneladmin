@@ -57,7 +57,7 @@ function ProductSKU(props){
                     ...prevState,
                     brand:e?e._id:''
                   }))}/>
-                                  <StyleSelect title={tabletrans.category[props.lang]} direction={props.direction}
+                  <StyleSelect title={tabletrans.category[props.lang]} direction={props.direction}
                  class={"formInput halfWidth"} defaultValue={content?JSON.parse(content.category):''} 
                  options={category?category:[]} label="title"
                  action={(e)=>props.setProductChange(prevState => ({
@@ -73,6 +73,12 @@ function ProductSKU(props){
                      [filter.enTitle]:e
                    }))} key={i}/>
                 )):<></>}
+                <StyleInput title={"قیمت"} direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.price:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    price:e
+                  }))}/>
                 <div className="pd-tags info-input">
                   <label htmlFor="pd-tag">Tags</label>
                   <input type="text" name="" id="pd-tag"/>

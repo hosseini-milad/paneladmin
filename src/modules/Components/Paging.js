@@ -4,7 +4,7 @@ import Pagination from "material-ui-flat-pagination";
 
 function Paging(props){
   const pageInfo = props.content&&PageInfoFunction(props.content,props.filters)
-  console.log(pageInfo)
+  console.log(props.filters)
   const setOffset=(value)=>{
     var curPage = pageInfo&&pageInfo.currentPage
     var newPage = parseInt(curPage)+parseInt(value)
@@ -33,8 +33,8 @@ function Paging(props){
           </div>
           {pageInfo&&pageInfo.show?<div className="page-counter">
               <Pagination
-                    limit={props.filters.pageSize?props.filters.pageSize:10}
-                    offset={props.filters.offset?props.filters.offset:0}
+                    limit={props.filters&&props.filters.pageSize?props.filters.pageSize:10}
+                    offset={props.filters&&props.filters.offset?props.filters.offset:0}
                     otherPageColor={"default"}
                     currentPageColor={"primary"}
                     total={pageInfo.totalItem}
