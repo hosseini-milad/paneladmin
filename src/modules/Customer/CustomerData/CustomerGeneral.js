@@ -8,7 +8,6 @@ import ErrorAction from "../../../components/Modal/ErrorAction";
 import StyleRadio from "../../../components/Button/Radio";
 import StyleSelect from "../../../components/Button/AutoComplete";
 
-
 function CustomerGeneral(props) {
   const userData = props.userData;
   const token = props.token;
@@ -23,8 +22,7 @@ function CustomerGeneral(props) {
         ...prevState,
         active: userData.active,
       }));
-    }
-    else if (userData && userData.false) {
+    } else if (userData && userData.false) {
       setFormData((prevState) => ({
         ...prevState,
         active: userData.active,
@@ -32,7 +30,7 @@ function CustomerGeneral(props) {
     }
   }, [userData]);
 
-  const saveChanges = () => {
+  const saveChanges = (navigateBack) => {
     var postOptions = {
       method: "post",
       headers: {
@@ -51,10 +49,11 @@ function CustomerGeneral(props) {
         (result) => {
           if (result.success) {
             setError({ errorText: result.success, errorColor: "green" });
-            setTimeout(
-              () => setError({ errorText: "", errorColor: "brown" }),
-              3000
-            );
+            if (navigateBack) {
+              setTimeout(() => {
+                window.history.back();
+              }, 2000);
+            }
           } else console.log(result);
         },
         (error) => {
@@ -184,12 +183,18 @@ function CustomerGeneral(props) {
                 }))
               }
             />
-              <StyleInput title={"بودجه"} direction={props.direction} 
-                defaultValue={userData.badget} class={"formInput"}
-                action={(e)=>setFormData(prevState => ({
+            <StyleInput
+              title={"بودجه"}
+              direction={props.direction}
+              defaultValue={userData.badget}
+              class={"formInput"}
+              action={(e) =>
+                setFormData((prevState) => ({
                   ...prevState,
-                  badget:e
-                }))}/>
+                  badget: e,
+                }))
+              }
+            />
             <StyleInput
               title={formtrans.customercode[props.lang]}
               direction={props.direction}
@@ -202,12 +207,18 @@ function CustomerGeneral(props) {
                 }))
               }
             />
-            <StyleInput title={formtrans.credit[props.lang]} direction={props.direction} 
-                defaultValue={userData.credit} class={"formInput"}
-                action={(e)=>setFormData(prevState => ({
+            <StyleInput
+              title={formtrans.credit[props.lang]}
+              direction={props.direction}
+              defaultValue={userData.credit}
+              class={"formInput"}
+              action={(e) =>
+                setFormData((prevState) => ({
                   ...prevState,
-                  credit:e
-            }))}/>
+                  credit: e,
+                }))
+              }
+            />
             <StyleInput
               title={formtrans.postalCode[props.lang]}
               direction={props.direction}
@@ -266,25 +277,34 @@ function CustomerGeneral(props) {
               }
             />
 
-                <StyleSelect title={"فعال/غیرفعال"} direction={props.direction} 
-                defaultValue={userData.active} class={"formInput"}
-                options={["فعال","غیرفعال"]}
-                action={(e)=>setFormData(prevState => ({
+            <StyleSelect
+              title={"فعال/غیرفعال"}
+              direction={props.direction}
+              defaultValue={userData.active}
+              class={"formInput"}
+              options={["فعال", "غیرفعال"]}
+              action={(e) =>
+                setFormData((prevState) => ({
                   ...prevState,
-                  active:e
-                }))}/>
+                  active: e,
+                }))
+              }
+            />
 
-<StyleSelect title={formtrans.access[props.lang]} direction={props.direction} 
-                  defaultValue={props.profile?props.profile:''} class={"formInput"}
-                  options={props.accessList||[]}
-                  label={"profileName"}
-                  action={(e)=>setFormData(prevState => ({
-                    ...prevState,
-                    profile:e?e._id:''
-                  }))}/>
-              
-
-
+            <StyleSelect
+              title={formtrans.access[props.lang]}
+              direction={props.direction}
+              defaultValue={props.profile ? props.profile : ""}
+              class={"formInput"}
+              options={props.accessList || []}
+              label={"profileName"}
+              action={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  profile: e ? e._id : "",
+                }))
+              }
+            />
 
             <div className="info-input">
               <label htmlFor="address">{formtrans.address[props.lang]}</label>
@@ -317,8 +337,6 @@ function CustomerGeneral(props) {
                 {userData.about}
               </textarea>
             </div>
-
-
           </div>
           {userData.agent ? (
             <div
@@ -330,9 +348,9 @@ function CustomerGeneral(props) {
           ) : (
             <></>
           )}
-          <div className="save-btn" onClick={saveChanges}>
+          {/* <div className="save-btn" onClick={saveChanges}>
             {formtrans.saveChanges[props.lang]}
-          </div>
+          </div> */}
           <ErrorShow message={error.errorText} color={error.errorColor} />
           {formalShow ? (
             <ErrorAction
@@ -346,6 +364,18 @@ function CustomerGeneral(props) {
           ) : (
             <></>
           )}
+          <div className="create-btn-wrapper">
+            <div className="save-btn" onClick={() => saveChanges(false)}>
+              {formtrans.saveChanges[props.lang]}
+            </div>
+            <div
+              className="save-btn"
+              style={{ marginLeft: 10 + "em" }}
+              onClick={() => saveChanges(true)}
+            >
+              {formtrans.saveAndClose[props.lang]}
+            </div>
+          </div>
         </div>
       </div>
     );
