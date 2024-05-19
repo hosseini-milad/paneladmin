@@ -1,13 +1,19 @@
-import Cookies from 'universal-cookie';
-import StatusBar from '../modules/Components/StatusBar';
-import Paging from '../modules/Components/Paging';
+import Cookies from "universal-cookie";
+import StatusBar from "../modules/Components/StatusBar";
+import Paging from "../modules/Components/Paging";
 import errortrans from "../translate/error";
-import OrderTable from '../modules/Orders/OrderTable';
-import OrderFilters from '../modules/Orders/OrderComponent/OrderFilters';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import env from '../env';
-import OrderTab from '../modules/Orders/OrderComponent/OrderTab';
+import OrderTable from "../modules/Orders/OrderTable";
+import OrderFilters from "../modules/Orders/OrderComponent/OrderFilters";
+import { useEffect } from "react";
+import { useState } from "react";
+import env from "../env";
+import OrderTab from "../modules/Orders/OrderComponent/OrderTab";
+import {
+  getFiltersFromUrl,
+  updateUrlWithFilters,
+  defaultFilterValues,
+  handleFilterChange,
+} from "../utils/filterUtils"; // Import the utility functions
 const cookies = new Cookies();
 
 function Orders(props){
@@ -48,30 +54,54 @@ function Orders(props){
           setContent('')
           setTimeout(()=> setContent(result),200)
       },
-      (error) => {
-        setLoading(0)
-        console.log(error);
-      }
-      
-  )},[filters])
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+  }, [filters]);
+
   //window.scrollTo(0, 270);},[pageNumber,filters,perPage,refreshTable])
-   return(
-      <div className="user" style={{direction:direction}}>
+  return (
+    <div className="user" style={{ direction: direction }}>
       <h4>{errortrans.orders[lang]}</h4>
       <div className="list-container">
-        <StatusBar lang={lang} token={token} filters={filters}
-         status={content.rxStatus} setFilters={setFilters}/>
-         <OrderTab setFilters={setFilters} filters={filters}/>
-        <OrderFilters lang={props.lang} setFilters={setFilters}
-          options={content.brand} filters={filters}/>
+        <StatusBar
+          lang={lang}
+          token={token}
+          filters={filters}
+          status={content.rxStatus}
+          setFilters={setFilters}
+        />
+        <OrderTab setFilters={handleFilterChange} filters={filters} />
+
+        <OrderFilters
+          lang={props.lang}
+          setFilters={handleFilterChange}
+          updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
+          options={content.brand}
+          filters={filters}
+        />
         <div className="user-list">
-          {loading?env.loader:<OrderTable orders={content} lang={lang}
-          category={filters.category}/>}
+          {loading ? (
+            env.loader
+          ) : (
+            <OrderTable
+              orders={content}
+              lang={lang}
+              category={filters.category}
+            />
+          )}
         </div>
-        <Paging content={content} setFilters={setFilters} filters={filters} 
-          lang={props.lang}/>
+        <Paging
+          content={content}
+          setFilters={setFilters}
+          filters={filters}
+          lang={props.lang}
+          updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
+        />
       </div>
     </div>
-    )
+  );
 }
-export default Orders
+export default Orders;
