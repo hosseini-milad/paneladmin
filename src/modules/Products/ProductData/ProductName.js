@@ -54,6 +54,18 @@ function ProductName(props){
                     ...prevState,
                     title:e
                   }))}/>
+                <StyleInput title={tabletrans.productSku[props.lang]} direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.sku:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    sku:e
+                  }))}/>
+                <StyleInput title="hesabfa code" direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.hesabfa:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    hesabfa:e
+                  }))}/>
               <div className="contentTextEditor">
                 <label htmlFor="name">{tabletrans.description[props.lang]}</label>
                 <RichTextEditor content={content} value={"description"}
