@@ -59,6 +59,10 @@ const formtrans ={
         english: "Save Changes",
         persian: "ذخیره تغییرات"
     },
+    saveAndClose:{
+        english: "Save and Return",
+        persian: "ذخیره و بازگشت"
+    },
     brandCode:{
         english: "Brand Code",
         persian: "کد برند"

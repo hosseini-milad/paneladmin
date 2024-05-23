@@ -15,7 +15,10 @@ function ProductFilters(props) {
       [property]: newValue,
     }));
     // Update URL here
-    props.updateUrlWithFilters({ ...props.currentFilters, [property]: newValue });
+    props.updateUrlWithFilters({
+      ...props.currentFilters,
+      [property]: newValue,
+    });
   };
 
   return (
@@ -32,7 +35,6 @@ function ProductFilters(props) {
           label="title"
           options={options ? options.categories : []}
           action={(e) => handleFilterChange("category", e)}
-
         />
         <StyleSelect
           title={tabletrans.brand[lang.lang]}
