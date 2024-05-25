@@ -8,12 +8,12 @@ import { generateRandomString } from '../../../utils/utils.js';
 
 function ProductSKU(props){
     const content = props.content
-    const brand=props.brand
+    const brand=props.brand.filter(item=>item.title)
     const filters=props.filters
     const category = props.category
     const defFilters = content?content.filters:''
 
-
+console.log(brand)
   // Generate random sku and productCode
   const randomSku = generateRandomString(10)
   const randomProductCode = generateRandomString(10)
@@ -73,11 +73,32 @@ function ProductSKU(props){
                      [filter.enTitle]:e
                    }))} key={i}/>
                 )):<></>}
+                
                 <StyleInput title={"قیمت"} direction={props.direction}
                  class={"formInput"} defaultValue={content?content.price:''} 
                  action={(e)=>props.setProductChange(prevState => ({
                     ...prevState,
                     price:e
+                  }))}/>
+                <StyleInput title={"2/2قیمت"} direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.price2:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    price2:e
+                  }))}/>
+                  
+                <StyleInput title={"2/4قیمت"} direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.price4:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    price4:e
+                  }))}/>
+                  
+                <StyleInput title={"2/6قیمت"} direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.price6:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    price6:e
                   }))}/>
                 <div className="pd-tags info-input">
                   <label htmlFor="pd-tag">Tags</label>
