@@ -12,7 +12,7 @@ const env={
     printUrl:"https://mgmlens.com",
     //printUrl:"https://order.deleves.com",
 
-    cookieName:'panel-login',
+    cookieName:'panel-login', 
     //cookieName:'mehr-login',
     
     cookieLang:'panel-lang',
