@@ -52,6 +52,7 @@ import StockManage from './pages/StockManage';
 import Landing from './pages/Landing';
 import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
+import Discount from './pages/Discount';
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -104,6 +105,7 @@ root.render(
         <Route path="/category" element={<Layout><Category lang={lang}/></Layout>}/>
         <Route path="/category/detail/:orderId" element={<Layout><CatDetailHolder lang={lang}/></Layout>}/>
         <Route path="/class" element={<Layout><Classes lang={lang}/></Layout>}/>
+        <Route path="/Discount" element={<Layout><Discount lang={lang}/></Layout>}/>
         <Route path="/class/detail/:orderId" element={<Layout><ClassDetailHolder lang={lang}/></Layout>}/>
         <Route path="/policy" element={<Layout><Policy lang={lang}/></Layout>}/>
         <Route path="/policy/detail/:orderId" element={<Layout><PolicyDetailHolder lang={lang}/></Layout>}/>

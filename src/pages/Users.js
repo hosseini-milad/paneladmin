@@ -171,6 +171,13 @@ function Users(props) {
           </label>
           <label
             className="edit-btn"
+            onClick={() => (window.location.href = "/Discount")}
+          >
+            <i class="fa-solid fa-percent"></i>
+            {tabletrans.discount[lang]}
+          </label>
+          <label
+            className="edit-btn"
             onClick={() => (window.location.href = "/class")}
           >
             <i className="fa-solid fa-plus"></i>

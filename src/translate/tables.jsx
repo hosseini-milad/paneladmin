@@ -177,6 +177,10 @@ const tabletrans ={
         english:"Lens Size",
         persian:"سایز لنز"
     },
+    material:{
+        english:"Material",
+        persian:"متریال"
+    },
     rowsPerPage:{
         english:"Rows per page: ",
         persian:"تعداد در صفحه: "

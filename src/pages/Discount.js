@@ -1,0 +1,313 @@
+import { useEffect, useState } from "react";
+import Cookies from "universal-cookie";
+import DUserTable from "../modules/Users/DUserTable";
+import DTable from "../modules/Discount/DTable";
+import Paging from "../modules/Components/Paging";
+import errortrans from "../translate/error";
+import env from "../env";
+import tabletrans from "../translate/tables";
+import DUserFilters from "../modules/Users/UserComponent/DUserFilters";
+import { TextField } from "@material-ui/core"
+import StyleInput from "../components/Button/Input";
+import StyleSelect from "../components/Button/AutoComplete";
+
+
+
+const cookies = new Cookies();
+
+function Users(props) {
+  const direction = props.lang ? props.lang.dir : errortrans.defaultDir;
+  const lang = props.lang ? props.lang.lang : errortrans.defaultLang;
+  const [content, setContent] = useState("");
+  const [Dtable, setDtable] = useState(0);
+  const [AddDiscount, setAddDiscount] = useState(0);
+  const [RxStock, setRxstock] = useState(0);
+  const [offerStock,setOfferStock] = useState('')
+  const [filters, setFilters] = useState(getFiltersFromUrl());
+  const [loading, setLoading] = useState(0);
+  const [showSms, setShowSMS] = useState(0);
+  const [update, setUpdate] = useState(0);
+  const [offerParams,setOfferParams]= useState('')
+  
+  //console.log(Dtable)
+  const token = cookies.get(env.cookieName);
+  useEffect(() => {
+    setLoading(1);
+    const body = {
+      // offset:filters.offset?filters.offset:"0",
+      offset: filters.offset || "0",
+
+      // pageSize:filters.pageSize?filters.pageSize:"10",
+      pageSize: filters.pageSize || "10",
+
+      customer: filters.customer,
+      orderNo: filters.orderNo,
+      status: filters.status,
+      profile: filters.profile,
+      brand: filters.brand,
+      dateFrom: filters.date && filters.date.dateFrom,
+      dateTo: filters.date && filters.date.dateTo,
+      access: filters.access,
+    };
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify(body),
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + "/panel/user/list", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setLoading(0);
+          setContent("");
+          setTimeout(() => setContent(result), 200);
+        },
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+  }, [filters]);
+  useEffect(() => {
+    if (update === 0) return;
+    const body = {
+      url: update,
+    };
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify(body),
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + "/panel/user/parse-list", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, [update]);
+  useEffect(()=>{
+    setOfferStock('');
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({userId:Dtable}),
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + (RxStock?"/product/list/offers":"/product/list/offersstock"), postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          
+          setTimeout(() => setOfferStock(result.offers), 200);
+        },
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+  },[Dtable,RxStock])
+  // Function to get filters from URL
+  function getFiltersFromUrl() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const filters = {};
+    for (const [key, value] of searchParams.entries()) {
+      filters[key] = value;
+    }
+    return filters;
+  }
+
+  function updateUrlWithFilters(newFilters) {
+    const searchParams = new URLSearchParams(window.location.search);
+    for (const key in newFilters) {
+      if (newFilters[key]) {
+        searchParams.set(key, newFilters[key]);
+      } else {
+        searchParams.delete(key); // Remove the parameter if the value is falsy
+      }
+    }
+    const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+  }
+
+  // Function to handle filter changes
+  function handleFilterChange(newFilters) {
+    setFilters(newFilters);
+    updateUrlWithFilters(newFilters);
+  }
+
+  const resizeFile = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
+  const updateCustomers = async (event) => {
+    const uploadFile = event.target.files[0];
+    const tempfile = await resizeFile(uploadFile);
+    const token = props.token;
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({
+        base64image: tempfile,
+        folderName: "excel",
+        imgName: uploadFile.name.split(".")[0],
+      }),
+    };
+    fetch(env.siteApi + "/panel/user/upload", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          //console.log(result)
+          if (result.error) {
+          } else {
+            setUpdate(result.url);
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+  return (
+    <div className="user discount-page"  style={{ direction: direction }}>
+      {AddDiscount?<div className="add-discount">
+        <p className="close-discount-btn" onClick={()=>{setAddDiscount(0)}}>&#10006;</p>
+        <StyleSelect
+          title={tabletrans.brand[lang]}
+          class="filterComponent"
+          direction={direction}
+          options={["ESSENCE","KODAK","REVO","MGMPlus"]}
+        />
+        {RxStock?<StyleSelect
+          title={tabletrans.material[lang]}
+          class="filterComponent"
+          direction={direction}
+          options={["blue 2/2","clear 2/2"]}
+        />:<></>}
+        <StyleInput
+          title={tabletrans.discount[lang]}
+          direction={direction}
+        />
+        <input className="add-discount-btn"  type="button" value="اعمال تخفیف" 
+            />
+      </div>:<></>}
+
+      <div className="od-header">
+        <div className="od-header-info">
+          <div className="od-header-name">
+            <p>{tabletrans.discount[lang]}</p>
+          </div>
+          
+        </div>
+        <div class="search-wrapper">
+          <DUserFilters
+            lang={props.lang}
+            setFilters={handleFilterChange}
+            // setFilters={setFilters}
+            options={content.access}
+            profiles={content.profilesList}
+            currentFilters={filters}
+            updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
+
+          />
+
+        </div>
+      </div>
+      <div class="d-container">
+        <div className="list-container discount-user-list">
+        
+          <div className="grey"></div>
+          <div className="user-list">
+            <DUserTable
+              userList={content}
+              lang={props.lang}
+              setSelectedUser={() => {}}
+              discountUser={setDtable}
+              addDiscount={setAddDiscount}
+            />
+          </div>
+          <Paging
+            content={content}
+            setFilters={setFilters}
+            filters={filters}
+            lang={props.lang}
+            updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
+          />
+        </div>
+        <div className="list-container discount-list">
+          <div className="table-tab">
+            <nav className="slidemenu">
+
+              <input type="radio" name="slideItem" id="slide-item-1" className="slide-toggle" checked />
+              <label htmlFor="slide-item-1" onClick={()=>{setRxstock(0)}} className={RxStock===0?"sliderMenuSelect":"sliderMenu"}>
+                <span>RX</span>
+                <div className="sliderMenu"></div>
+              </label>
+                    
+              <input type="radio" name="slideItem" id="slide-item-2" className="slide-toggle" />
+              <label htmlFor="slide-item-2" onClick={()=>{setRxstock(1)}} className={RxStock===1?"sliderMenuSelect":""}>
+                <span>Stock</span>
+                <div className="sliderMenu"></div>
+              </label>
+              <input type="radio" name="slideItem" id="slide-item-3" className="slide-toggle" />
+              <label htmlFor="slide-item-3" >
+                <span>Lenz</span>
+                <div className="sliderMenu"></div>
+              </label>
+              <input type="radio" name="slideItem" id="slide-item-4" className="slide-toggle" />
+              <label htmlFor="slide-item-4" >
+                <span>Frame</span>
+                <div className="sliderMenu"></div>
+              </label>
+                    
+              
+              </nav>
+
+          </div>
+          {offerStock?<div className="user-list">
+            <DTable
+              
+              lang={props.lang}
+              offerStock={offerStock}
+              setSelectedUser={() => {}}
+              type={RxStock}
+            />
+          </div>:<>{env.loader}</>}
+          <Paging
+            content={content}
+            setFilters={setFilters}
+            filters={filters}
+            lang={props.lang}
+            updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
+          />
+        </div>
+      </div>
+      
+    </div>
+  );
+}
+export default Users;
