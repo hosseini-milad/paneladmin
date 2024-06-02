@@ -245,7 +245,7 @@ function Users(props) {
       
     };
     console.log(postOptions);
-    fetch(env.siteApi + "/product/set/offersstock", postOptions)
+    fetch(env.siteApi + "/product/set/stockoffers", postOptions)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -267,23 +267,24 @@ function Users(props) {
           title={tabletrans.brand[lang]}
           class="filterComponent"
           direction={direction}
-          onChange={(e)=>{setBrand(e.target.value)}}
+          action={(e)=>{setBrand(e)}}
           options={["ESSENCE","KODAK","REVO","MGMPlus"]}
         />
         {RxStock?<StyleSelect
           title={tabletrans.material[lang]}
           class="filterComponent"
           direction={direction}
-          onChange={(e)=>{setMaterial(e.target.value)}}
+          action={(e)=>{setMaterial(e)}}
           options={["blue 2/2","clear 2/2"]}
         />:<></>}
         <StyleInput
           title={tabletrans.discount[lang]}
           direction={direction}
+          action={(e)=>{setDiscountPer(e)}}
         />
-        {RxStock?<input className="add-discount-btn"  type="button" value="Stock اعمال تخفیف" onClick={()=>setOffer()}
+        {RxStock?<input className="add-discount-btn"  type="button" value="Stock اعمال تخفیف" onClick={()=>setOfferS()}
             />:
-        <input className="add-discount-btn"  type="button" value="RX اعمال تخفیف" onClick={()=>setOfferS()}
+        <input className="add-discount-btn"  type="button" value="RX اعمال تخفیف" onClick={()=>setOffer()}
             />}
       </div>:<></>}
 
