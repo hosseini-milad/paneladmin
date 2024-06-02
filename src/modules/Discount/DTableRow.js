@@ -30,7 +30,7 @@ function DTableRow(props){
                 <p>{user.discountPercent}</p>
               </div>
             </td>
-            <td>
+            <td onClick={()=>props.offerid(user._id)}>
               <i class="fa-solid fa-trash" style={{color: "#dd0005"}}></i>
             </td>
           </tr>

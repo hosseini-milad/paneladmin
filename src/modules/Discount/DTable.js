@@ -39,7 +39,8 @@ function DTable(props){
               user={user} index={i} key={i} lang={lang}
               setSelectedUser={props.setSelectedUser}
               selectedUser={props.selectedUser}
-              type={props.type}/>
+              type={props.type}
+              offerid={props.offerid}/>
           )):''}
           
         </tbody>

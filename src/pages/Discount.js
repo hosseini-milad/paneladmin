@@ -29,6 +29,7 @@ function Users(props) {
   const [Brand, setBrand] = useState('');
   const [Material, setMaterial] = useState('');
   const [DiscountPer, setDiscountPer] = useState('');
+  const [OfferId, setOfferId] = useState('');
   const [update, setUpdate] = useState(0);
   const [offerParams,setOfferParams]= useState('')
   
@@ -116,7 +117,7 @@ function Users(props) {
       
     };
     console.log(postOptions);
-    fetch(env.siteApi + (RxStock?"/product/list/offers":"/product/list/offersstock"), postOptions)
+    fetch(env.siteApi + (RxStock?"/product/list/offersstock":"/product/list/offers"), postOptions)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -260,6 +261,33 @@ function Users(props) {
       );
 
   }
+  const removeOffer=(OfferId)=>{
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify(OfferId),
+
+      
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + (RxStock?"/product/remove/offersstock":"/product/remove/offers"), postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          
+          setTimeout(() => setSaveD(SaveD+1), 200);
+        },
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+
+  }
   return (
     <div className="user discount-page"  style={{ direction: direction }}>
       {AddDiscount?<div className="add-discount">
@@ -368,6 +396,7 @@ function Users(props) {
               offerStock={offerStock}
               setSelectedUser={() => {}}
               type={RxStock}
+              offerid={removeOffer}
             />
           </div>:<>{env.loader}</>}
           <Paging
