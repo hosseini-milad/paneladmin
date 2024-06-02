@@ -25,6 +25,7 @@ function Users(props) {
   const [offerStock,setOfferStock] = useState('')
   const [filters, setFilters] = useState(getFiltersFromUrl());
   const [loading, setLoading] = useState(0);
+  const [SaveD, setSaveD] = useState(0);
   const [Brand, setBrand] = useState('');
   const [Material, setMaterial] = useState('');
   const [DiscountPer, setDiscountPer] = useState('');
@@ -127,7 +128,7 @@ function Users(props) {
           console.log(error);
         }
       );
-  },[Dtable,RxStock])
+  },[Dtable,RxStock.SaveD])
   // Function to get filters from URL
   function getFiltersFromUrl() {
     const searchParams = new URLSearchParams(window.location.search);
@@ -218,7 +219,7 @@ function Users(props) {
       .then(
         (result) => {
           
-          setTimeout(() => console.log(result.offers), 200);
+          setTimeout(() => setSaveD(SaveD+1), 200);
         },
         (error) => {
           setLoading(0);
@@ -250,7 +251,7 @@ function Users(props) {
       .then(
         (result) => {
           
-          setTimeout(() => console.log(result.offersstock), 200);
+          setTimeout(() => setSaveD(SaveD+1), 200);
         },
         (error) => {
           setLoading(0);
