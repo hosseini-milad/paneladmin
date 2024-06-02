@@ -128,7 +128,7 @@ function Users(props) {
           console.log(error);
         }
       );
-  },[Dtable,RxStock.SaveD])
+  },[Dtable,RxStock,SaveD])
   // Function to get filters from URL
   function getFiltersFromUrl() {
     const searchParams = new URLSearchParams(window.location.search);
