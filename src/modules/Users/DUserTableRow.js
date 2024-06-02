@@ -66,7 +66,7 @@ function DUserTableRow(props){
               </div>
             </td>
             <td>
-              <div className="more-btn" onClick={()=>props.addDiscount(1)}>
+              <div className="more-btn" onClick={()=>props.addDiscount(user._id)}>
                 <i className="fa-solid fa-plus"></i>
                 {/* <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i> */}

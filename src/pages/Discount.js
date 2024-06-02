@@ -25,7 +25,9 @@ function Users(props) {
   const [offerStock,setOfferStock] = useState('')
   const [filters, setFilters] = useState(getFiltersFromUrl());
   const [loading, setLoading] = useState(0);
-  const [showSms, setShowSMS] = useState(0);
+  const [Brand, setBrand] = useState('');
+  const [Material, setMaterial] = useState('');
+  const [DiscountPer, setDiscountPer] = useState('');
   const [update, setUpdate] = useState(0);
   const [offerParams,setOfferParams]= useState('')
   
@@ -109,6 +111,8 @@ function Users(props) {
         userId: token && token.userId,
       },
       body: JSON.stringify({userId:Dtable}),
+
+      
     };
     console.log(postOptions);
     fetch(env.siteApi + (RxStock?"/product/list/offers":"/product/list/offersstock"), postOptions)
@@ -192,6 +196,69 @@ function Users(props) {
         }
       );
   };
+  const setOffer=()=>{
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({
+        userId:AddDiscount,
+        brandName:Brand,
+        discountPercent:DiscountPer+"%"
+      }),
+
+      
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + "/product/set/offers", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          
+          setTimeout(() => console.log(result.offers), 200);
+        },
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+
+  }
+  const setOfferS=()=>{
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({
+        userId:AddDiscount,
+        brandName:Brand,
+        material:Material,
+        discountPercent:DiscountPer+"%"
+      }),
+
+      
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + "/product/set/offersstock", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          
+          setTimeout(() => console.log(result.offersstock), 200);
+        },
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+
+  }
   return (
     <div className="user discount-page"  style={{ direction: direction }}>
       {AddDiscount?<div className="add-discount">
@@ -200,20 +267,24 @@ function Users(props) {
           title={tabletrans.brand[lang]}
           class="filterComponent"
           direction={direction}
+          onChange={(e)=>{setBrand(e.target.value)}}
           options={["ESSENCE","KODAK","REVO","MGMPlus"]}
         />
         {RxStock?<StyleSelect
           title={tabletrans.material[lang]}
           class="filterComponent"
           direction={direction}
+          onChange={(e)=>{setMaterial(e.target.value)}}
           options={["blue 2/2","clear 2/2"]}
         />:<></>}
         <StyleInput
           title={tabletrans.discount[lang]}
           direction={direction}
         />
-        <input className="add-discount-btn"  type="button" value="اعمال تخفیف" 
-            />
+        {RxStock?<input className="add-discount-btn"  type="button" value="Stock اعمال تخفیف" onClick={()=>setOffer()}
+            />:
+        <input className="add-discount-btn"  type="button" value="RX اعمال تخفیف" onClick={()=>setOfferS()}
+            />}
       </div>:<></>}
 
       <div className="od-header">
