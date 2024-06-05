@@ -143,6 +143,10 @@ const tabletrans ={
         english: "Discount",
         persian: "تخفیف"
     },
+    discounts:{
+        english: "Discounts",
+        persian: "تخفیفات"
+    },
     taxes:{
         english: "Taxes",
         persian: "مالیات"

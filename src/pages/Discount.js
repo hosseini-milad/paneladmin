@@ -320,7 +320,7 @@ function Users(props) {
       <div className="od-header">
         <div className="od-header-info">
           <div className="od-header-name">
-            <p>{tabletrans.discount[lang]}</p>
+            <p>{tabletrans.discounts[lang]}</p>
           </div>
           
         </div>

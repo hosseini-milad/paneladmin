@@ -1,5 +1,7 @@
 import StyleInput from "../../../components/Button/Input";
 import tabletrans from "../../../translate/tables";
+import StyleSelect from "../../../components/Button/AutoComplete";
+
 
 function DUserFilters(props) {
 
@@ -20,6 +22,18 @@ function DUserFilters(props) {
           title={tabletrans.customer[props.lang.lang]}
           direction={props.lang.dir}
           action={(e) => handleFilterChange("customer", e)}
+
+        />
+        <StyleSelect
+          title={"عملیات"}
+          class="filterComponent"
+          direction={props.lang.dir}
+          options={[">","=","<"]}
+        />
+        <StyleInput
+          title={tabletrans.discount[props.lang.lang]}
+          direction={props.lang.dir}
+          action={(e) => handleFilterChange("discount", e)}
 
         />
         {/* <i className="tableIcon fas fa-ellipsis-v"></i> */}
