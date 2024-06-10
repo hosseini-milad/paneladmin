@@ -5,7 +5,6 @@ import Status from "../Components/Status"
 function DTableRow(props){ 
   const activeAcc = props.index===props.detail
   const user =props.user
-  console.log(user.userInfo)
     return(
         <tr>
             <td className="checkBoxStyle">
@@ -13,8 +12,8 @@ function DTableRow(props){
             <td>
               <div className="cu-avatar">
                 <div className="cu-name">
-                  <p className="name">{user.userInfo[0].cName}</p>
-                  <p className="email">کد مشتری: {user.userInfo[0].cCode}</p>
+                  <p className="name">{user.userInfo[0]&&user.userInfo[0].cName&&user.userInfo[0].cName}</p>
+                  <p className="email">کد مشتری: {user.userInfo[0]&&user.userInfo[0].cCode&&user.userInfo[0].cCode}</p>
                 </div>
               </div>
             </td>

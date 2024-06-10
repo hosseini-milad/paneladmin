@@ -10,7 +10,7 @@ import tabletrans from "../translate/tables";
 import SMS from "../components/SMS";
 const cookies = new Cookies();
 
-function Users(props) {
+function NewUsers(props) {
   const direction = props.lang ? props.lang.dir : errortrans.defaultDir;
   const lang = props.lang ? props.lang.lang : errortrans.defaultLang;
   const [content, setContent] = useState("");
@@ -161,50 +161,8 @@ function Users(props) {
       <div className="od-header">
         <div className="od-header-info">
           <div className="od-header-name">
-            <p>{tabletrans.customers[lang]}</p>
+            <p>{tabletrans.newCu[lang]}</p>
           </div>
-        </div>
-        <div className="od-header-btn">
-          <label className="edit-btn" onClick={() => setShowSMS(1)}>
-            <i className="fa-solid fa-envelope-o"></i>
-            {tabletrans.sendSms[lang]}
-          </label>
-          <label className="edit-btn" onClick={() => setShowSMS(1)}>
-          <i className="fa-solid fa-bell"></i>
-            {tabletrans.sendPop[lang]}
-          </label>
-          <label
-            className="edit-btn"
-            onClick={() => (window.location.href = "/Discount")}
-          >
-            <i className="fa-solid fa-percent"></i>
-            {tabletrans.discount[lang]}
-          </label>
-          <label
-            className="edit-btn"
-            onClick={() => (window.location.href = "/newusers")}
-          >
-            <i className="fa-solid fa-user"></i>
-            {tabletrans.newCu[lang]}
-          </label>
-          <label
-            className="edit-btn"
-            onClick={() => (window.location.href = "/class")}
-          >
-            <i className="fa-solid fa-plus"></i>
-            {tabletrans.classes[lang]}
-          </label>
-          <label htmlFor="upFiles" className="edit-btn">
-            <i className="fa-solid fa-refresh"></i>
-            {tabletrans.update[lang]}
-          </label>
-          <input
-            id="upFiles"
-            type="file"
-            accept=".*"
-            className="hidden"
-            onChange={updateCustomers}
-          />
         </div>
       </div>
       <div className="list-container">
@@ -249,4 +207,4 @@ function Users(props) {
     </div>
   );
 }
-export default Users;
+export default NewUsers;

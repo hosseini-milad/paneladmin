@@ -28,7 +28,9 @@ function DUserFilters(props) {
           title={"عملیات"}
           class="filterComponent"
           direction={props.lang.dir}
-          options={[">","=","<"]}
+          label="title"
+          options={[{title:"کوچیکتر",value:"-1"},{title:"برابر",value:"0"},{title:"بزرگتر",value:"1"}]}
+          action={(e) => handleFilterChange("type", e.value)}
         />
         <StyleInput
           title={tabletrans.discount[props.lang.lang]}

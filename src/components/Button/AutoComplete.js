@@ -22,7 +22,7 @@ function StyleSelect(props){
             <Autocomplete
             getOptionLabel={(option) => (option&&option[props.label])?
                 option[props.label]:option}
-            className={stylisRTLPlugin}
+            //className={stylisRTLPlugin}
             isOptionEqualToValue={(option, value) => option&&(option.id === value.id)}
             options={testOptions||[]}
             className={props.class}
