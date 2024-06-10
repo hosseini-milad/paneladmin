@@ -28,6 +28,7 @@ import UserDetailHolder from './modules/Users/UserData/UserDetailHolder';
 import CustomerDetailHolder from './modules/Customer/CustomerData/CustomerDetailHolder';
 
 import Orders from './pages/Orders';
+import CanOrders from './pages/CanOrders';
 import OrderDetailHolder from './modules/Orders/OrderData/OrderDetailHolder';
 import Profile from './pages/Profile';
 import Services from './pages/Services';
@@ -93,6 +94,7 @@ root.render(
         <Route path="/filter/detail/:filtereId" element={<Layout><FilterAdd lang={lang}/></Layout>}/>
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
+        <Route path="/cancelorders" element={<Layout><CanOrders lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
         <Route path="/stock" element={<Layout><StockManage lang={lang}/></Layout>}/>
         <Route path="/stock/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import UserTable from "../modules/Users/UserTable";
+import NUserTable from "../modules/Users/NUserTable";
 import StatusBar from "../modules/Components/StatusBar";
 import Paging from "../modules/Components/Paging";
 import errortrans from "../translate/error";
@@ -53,7 +53,7 @@ function NewUsers(props) {
         (result) => {
           setLoading(0);
           setContent("");
-          setTimeout(() => setContent(result), 200);
+          setTimeout(() => setContent(result.newUsers), 200);
         },
         (error) => {
           setLoading(0);
@@ -117,45 +117,6 @@ function NewUsers(props) {
     updateUrlWithFilters(newFilters);
   }
 
-  const resizeFile = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = reject;
-    });
-  const updateCustomers = async (event) => {
-    const uploadFile = event.target.files[0];
-    const tempfile = await resizeFile(uploadFile);
-    const token = props.token;
-    const postOptions = {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        "x-access-token": token && token.token,
-        userId: token && token.userId,
-      },
-      body: JSON.stringify({
-        base64image: tempfile,
-        folderName: "excel",
-        imgName: uploadFile.name.split(".")[0],
-      }),
-    };
-    fetch(env.siteApi + "/panel/user/upload", postOptions)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          //console.log(result)
-          if (result.error) {
-          } else {
-            setUpdate(result.url);
-          }
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  };
   return (
     <div className="user" style={{ direction: direction }}>
       <div className="od-header">
@@ -177,7 +138,7 @@ function NewUsers(props) {
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
         />
         <div className="user-list">
-          <UserTable
+          <NUserTable
             userList={content}
             lang={props.lang}
             setSelectedUser={() => {}}
@@ -191,19 +152,6 @@ function NewUsers(props) {
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
         />
       </div>
-      {showSms ? (
-        <SMS
-          title="ارسال پیامک"
-          close={setShowSMS}
-          text={`ارسال پیامک برای ${
-            content.filter && content.filter.length
-          } مشترک`}
-          lang={props.lang}
-          userList={content.filter}
-        />
-      ) : (
-        <></>
-      )}
     </div>
   );
 }

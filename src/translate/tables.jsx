@@ -79,6 +79,10 @@ const tabletrans ={
         english: "Order",
         persian: "سفارش"
     },
+    ordercan:{
+        english: "Canceled Order",
+        persian: "سفارشات کنسل شده"
+    },
     orderReg:{
         english: "Order Reg",
         persian: "ثبت سفارش"

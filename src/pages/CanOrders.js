@@ -3,7 +3,8 @@ import StatusBar from "../modules/Components/StatusBar";
 import Paging from "../modules/Components/Paging";
 import errortrans from "../translate/error";
 import tabletrans from "../translate/tables";
-import OrderTable from "../modules/Orders/OrderTable";
+
+import CanOrderTable from "../modules/Orders/CanOrderTable";
 import OrderFilters from "../modules/Orders/OrderComponent/OrderFilters";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -17,7 +18,7 @@ import {
 } from "../utils/filterUtils"; // Import the utility functions
 const cookies = new Cookies();
 
-function Orders(props){
+function CanOrders(props){
     const direction = props.lang?props.lang.dir:errortrans.defaultDir;
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     const [content,setContent] = useState("")
@@ -65,26 +66,7 @@ function Orders(props){
   //window.scrollTo(0, 270);},[pageNumber,filters,perPage,refreshTable])
   return (
     <div className="user" style={{ direction: direction }}>
-      
-      <div className="od-header">
-        <div className="od-header-info">
-          <div className="od-header-name">
-            <p>{errortrans.orders[lang]}</p>
-          </div>
-        </div>
-        <div className="od-header-btn">
-          
-          <label
-            className="edit-btn"
-            onClick={() => (window.location.href = "/cancelorders")}
-          >
-            <i class="fa-solid fa-ban"></i>
-            {tabletrans.ordercan[lang]}
-          </label>
-
-        </div>
-      </div>
-
+      <h4>{tabletrans.ordercan[lang]}</h4>
       <div className="list-container">
         <StatusBar
           lang={lang}
@@ -106,7 +88,7 @@ function Orders(props){
           {loading ? (
             env.loader
           ) : (
-            <OrderTable
+            <CanOrderTable
               orders={content}
               lang={lang}
               category={filters.category}
@@ -124,4 +106,4 @@ function Orders(props){
     </div>
   );
 }
-export default Orders;
+export default CanOrders;
