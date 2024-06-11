@@ -19,6 +19,7 @@ import Dashboard from './pages/Dashboard'
 import Layout from './components/Layout'
 import Login from './pages/Login';
 import Users from './pages/Users';
+import NewUsers from './pages/NewUsers';
 import Cookies from 'universal-cookie';
 import errortrans from './translate/error';
 import LayoutLogin from './components/LayoutLogin';
@@ -27,6 +28,7 @@ import UserDetailHolder from './modules/Users/UserData/UserDetailHolder';
 import CustomerDetailHolder from './modules/Customer/CustomerData/CustomerDetailHolder';
 
 import Orders from './pages/Orders';
+import CanOrders from './pages/CanOrders';
 import OrderDetailHolder from './modules/Orders/OrderData/OrderDetailHolder';
 import Profile from './pages/Profile';
 import Services from './pages/Services';
@@ -82,6 +84,7 @@ root.render(
 
 
         <Route path="/users" element={<Layout><Users lang={lang}/></Layout>}/>
+        <Route path="/newusers" element={<Layout><NewUsers lang={lang}/></Layout>}/>
         <Route path="/users/detail/:userId" element={<Layout><UserDetailHolder lang={lang}/></Layout>}/>
         <Route path="/customers/detail/:userId" element={<Layout><CustomerDetailHolder lang={lang}/></Layout>}/>
 
@@ -91,6 +94,7 @@ root.render(
         <Route path="/filter/detail/:filtereId" element={<Layout><FilterAdd lang={lang}/></Layout>}/>
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
+        <Route path="/cancelorders" element={<Layout><CanOrders lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
         <Route path="/stock" element={<Layout><StockManage lang={lang}/></Layout>}/>
         <Route path="/stock/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>

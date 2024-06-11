@@ -32,6 +32,8 @@ function Users(props) {
   const [OfferId, setOfferId] = useState('');
   const [update, setUpdate] = useState(0);
   const [offerParams,setOfferParams]= useState('')
+  const [OffType,setOffType]= useState('')
+  const [OffNum,setOffNum]= useState('')
   
   //console.log(Dtable)
   const token = cookies.get(env.cookieName);
@@ -103,6 +105,7 @@ function Users(props) {
         }
       );
   }, [update]);
+  console.log(Dtable)
   useEffect(()=>{
     setOfferStock('');
     const postOptions = {
@@ -130,6 +133,33 @@ function Users(props) {
         }
       );
   },[Dtable,RxStock,SaveD])
+  useEffect(()=>{
+    if(!filters.discount || filters.discount.length<2) return
+    setOfferStock('');
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({type:filters.type,value:filters.discount}),
+
+      
+    };
+    fetch(env.siteApi + (RxStock?"/panel/user/offerFind":"/panel/user/offerRXFind"), postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          
+          setTimeout(() => setContent(result), 200);
+        },
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+  },[filters])
   // Function to get filters from URL
   function getFiltersFromUrl() {
     const searchParams = new URLSearchParams(window.location.search);
