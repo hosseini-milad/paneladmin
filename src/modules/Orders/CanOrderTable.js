@@ -1,5 +1,5 @@
 import { useState } from "react"
-import OrderTableRow from "./OrderTableRow"
+import CanOrderTableRow from "./CanOrderTableRow"
 import tabletrans from "../../translate/tables"
 
 function CanOrderTable(props){
@@ -14,16 +14,10 @@ function CanOrderTable(props){
             <p>{tabletrans.rowNumber[lang]}</p>
           </th>
           <th>
-            <p>{tabletrans.user[lang]}</p>
-          </th>
-          <th>
             <p>{tabletrans.order[lang]}</p>
           </th>
           <th>
             <p>{tabletrans.productName[lang]}</p>
-          </th>
-          <th>
-            <p>{tabletrans.invoice[lang]}</p>
           </th>
           <th>
             <p>{tabletrans.customer[lang]}</p>
@@ -32,17 +26,14 @@ function CanOrderTable(props){
             <p>{tabletrans.date[lang]}</p>
           </th>
           <th>
-          <p>{tabletrans.status[lang]}</p>
-          </th>
-          <th>
-          <p>{tabletrans.statusFactory[lang]}</p>
+          <p>{tabletrans.canceltype[lang]}</p>
           </th>
 
         </tr>
       </thead>
       <tbody>
         {orders&&orders.cancelList?orders.cancelList.map((order,i)=>(
-          <OrderTableRow detail={detail} showDetail={showDetail} 
+          <CanOrderTableRow detail={detail} showDetail={showDetail} 
             order={order} index={i} key={i} lang={lang} category={props.category}/>
         )):''}
         

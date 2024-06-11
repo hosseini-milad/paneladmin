@@ -83,6 +83,10 @@ const tabletrans ={
         english: "Canceled Order",
         persian: "سفارشات کنسل شده"
     },
+    canceltype:{
+        english: "Cancel Type",
+        persian: "نوی کنسلی"
+    },
     orderReg:{
         english: "Order Reg",
         persian: "ثبت سفارش"
@@ -400,8 +404,8 @@ const tabletrans ={
         persian:"ارسال پیامک"
     },
     sendPop:{
-        english:"Send Popups",
-        persian:"ارسال اعلان"
+        english:"Popups",
+        persian:"پاپ آپ"
     },
     classManage:{
         english:"Class Manage",

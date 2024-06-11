@@ -51,7 +51,7 @@ function CustomerDetailHolder(props) {
           className={`fa-solid fa-angle-${
             direction === "rtl" ? "right" : "left"
           }`}
-          onClick={() => (window.location.href = "/customers")}
+          onClick={() => (window.location.href = "/users")}
         ></i>
         {tabletrans.account[lang]}
       </h4>
