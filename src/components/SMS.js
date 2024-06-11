@@ -42,15 +42,16 @@ function SMS(props){
           </div> 
         </div>
         <div className="modalFooter">
-        <StyleInput title={tabletrans.message[props.lang]}
-            class="modalNew" direction={props.direction}
-            action={(e)=>setMessage(e)}
-        />
-        <div className="add-brand-btn" onClick={smsSent}>
-            <i className="fa-solid fa-plus fa-sm" style={{color: "#00dbdb"}}></i>
-            {tabletrans.sendSms[props.lang]}</div>
-      </div>
-      <small>{content?content.sentStatus:""}</small>
+          <StyleInput title={tabletrans.message[props.lang]}
+              class="modalNew" direction={props.direction}
+              action={(e)=>setMessage(e)}
+          />
+          <div className="add-brand-btn" onClick={smsSent}>
+              <i className="fa-solid fa-plus fa-sm" style={{color: "#00dbdb"}}></i>
+              ارسال
+          </div>
+        </div>
+        <small>{content?content.sentStatus:""}</small>
       </div>
     </dialog>
     )

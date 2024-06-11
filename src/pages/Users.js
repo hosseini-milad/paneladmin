@@ -169,7 +169,7 @@ function Users(props) {
             <i className="fa-solid fa-envelope-o"></i>
             {tabletrans.sendSms[lang]}
           </label>
-          <label className="edit-btn" onClick={() => setShowSMS(1)}>
+          <label className="edit-btn">
           <i className="fa-solid fa-bell"></i>
             {tabletrans.sendPop[lang]}
           </label>

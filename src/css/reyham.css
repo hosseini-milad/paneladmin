@@ -278,8 +278,13 @@ textarea {
   flex-direction: column;
   background-color: #fff;
   border-radius: 0 0 15px 15px;
-  padding: 5px 10px;
   margin: auto;
+}
+.popup-brand small{
+  width: 100%;
+  font-size: 0.85rem;
+  color: red;
+  padding: 1rem;
 }
 
 dialog {
@@ -521,9 +526,11 @@ dialog {
 }
 .modalFooter {
   display: flex;
+  flex-direction: column;
+  padding-inline: 0.5rem;
 }
 .modalNew {
-  width: 50% !important;
+  width: 100% !important;
 }
 .classNamePlace {
   width: 30%;
