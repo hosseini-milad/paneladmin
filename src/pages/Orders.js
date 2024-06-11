@@ -97,7 +97,7 @@ function Orders(props){
 
         <OrderFilters
           lang={props.lang}
-          setFilters={handleFilterChange}
+          setFilters={setFilters}
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
           options={content.brand}
           filters={filters}

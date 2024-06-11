@@ -62,24 +62,17 @@ function CanOrders(props){
         }
       );
   }, [filters]);
-
+  console.log(filters)
   //window.scrollTo(0, 270);},[pageNumber,filters,perPage,refreshTable])
   return (
     <div className="user" style={{ direction: direction }}>
       <h4>{tabletrans.ordercan[lang]}</h4>
       <div className="list-container">
-        <StatusBar
-          lang={lang}
-          token={token}
-          filters={filters}
-          status={content.rxStatus}
-          setFilters={setFilters}
-        />
         <OrderTab setFilters={handleFilterChange} filters={filters} />
 
         <OrderFilters
           lang={props.lang}
-          setFilters={handleFilterChange}
+          setFilters={setFilters}
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
           options={content.brand}
           filters={filters}
