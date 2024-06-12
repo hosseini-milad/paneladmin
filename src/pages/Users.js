@@ -17,6 +17,7 @@ function Users(props) {
   const [filters, setFilters] = useState(getFiltersFromUrl());
   const [loading, setLoading] = useState(0);
   const [showSms, setShowSMS] = useState(0);
+  const [showPop, setShowPop] = useState(0);
   const [update, setUpdate] = useState(0);
   const token = cookies.get(env.cookieName);
   useEffect(() => {
@@ -169,7 +170,7 @@ function Users(props) {
             <i className="fa-solid fa-envelope-o"></i>
             {tabletrans.sendSms[lang]}
           </label>
-          <label className="edit-btn">
+          <label className="edit-btn" onClick={() => setShowPop(1)}>
           <i className="fa-solid fa-bell"></i>
             {tabletrans.sendPop[lang]}
           </label>
@@ -238,6 +239,19 @@ function Users(props) {
           title="ارسال پیامک"
           close={setShowSMS}
           text={`ارسال پیامک برای ${
+            content.filter && content.filter.length
+          } مشترک`}
+          lang={props.lang}
+          userList={content.filter}
+        />
+      ) : (
+        <></>
+      )}
+      {showPop ? (
+        <SMS
+          title="پاپ آپ"
+          close={setShowPop}
+          text={`ارسال پاپ آپ برای ${
             content.filter && content.filter.length
           } مشترک`}
           lang={props.lang}
