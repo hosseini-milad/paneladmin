@@ -21,9 +21,15 @@ function Orders(props){
     const direction = props.lang?props.lang.dir:errortrans.defaultDir;
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     const [content,setContent] = useState("")
-    const [filters,setFilters] = useState("")
+    const [filters, setFilters] = useState(getFiltersFromUrl());
     const [loading,setLoading] = useState(0)
     const token=cookies.get(env.cookieName)
+
+    function handleFilterChange(newFilters) {
+      setFilters(newFilters);
+      updateUrlWithFilters(newFilters);
+    }
+    
     useEffect(() => {
       setLoading(1)
       const body={
@@ -115,7 +121,7 @@ function Orders(props){
         </div>
         <Paging
           content={content}
-          setFilters={setFilters}
+          setFilters={handleFilterChange}
           filters={filters}
           lang={props.lang}
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop

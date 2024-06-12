@@ -34,6 +34,7 @@ function Users(props) {
   const [offerParams,setOfferParams]= useState('')
   const [OffType,setOffType]= useState('')
   const [OffNum,setOffNum]= useState('')
+  const [OptionBrand,setOptionBrand]= useState('')
   
   //console.log(Dtable)
   const token = cookies.get(env.cookieName);
@@ -105,6 +106,29 @@ function Users(props) {
         }
       );
   }, [update]);
+  useEffect(() => {
+    
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify(),
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + "/panel/product/list-brands", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setTimeout(() => setOptionBrand(result.filter), 200);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, [AddDiscount]);
   console.log(Dtable)
   useEffect(()=>{
     setOfferStock('');
@@ -318,6 +342,9 @@ function Users(props) {
       );
 
   }
+  // const BrandArray = OptionBrand.map((title , enTitle)=>{
+  //   [{"title":title,"value":enTitle}]
+  // })
   return (
     <div className="user discount-page"  style={{ direction: direction }}>
       {AddDiscount?<div className="add-discount">
@@ -327,7 +354,8 @@ function Users(props) {
           class="filterComponent"
           direction={direction}
           action={(e)=>{setBrand(e)}}
-          options={["ESSENCE","KODAK","REVO","MGMPlus"]}
+          options={OptionBrand}
+          label="enTitle"
         />
         {RxStock?<StyleSelect
           title={tabletrans.material[lang]}

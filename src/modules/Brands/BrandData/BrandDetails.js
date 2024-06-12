@@ -104,8 +104,14 @@ function BrandDetails(props){
                 ...props.userFactory,
                 e
               ]):props.setUserFactory([e])}/>
+          <StyleSelect title={formtrans.status[props.lang]} direction={props.direction} 
+              //defaultValue={content?content.brandCode:''} class={"formInput"}
+              options={["فعال","غیرفعال"]}
+              />
+              <div className="addClassBtn"><i className="tableIcon fas fa-edit"></i></div>
               <div className="addClassBtn" onClick={()=>setManageFactory(1)}>
               <i className="fa-solid fa-cog"></i></div>
+              
             </div>
           <div className='factoryList'>
             {(props.userFactory&&props.userFactory.length)&&props.userFactory.map
