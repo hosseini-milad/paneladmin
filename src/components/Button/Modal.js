@@ -5,6 +5,7 @@ import StyleInput from "./Input"
 
 function Modal(props){
     const [newItem,setNewItem] = useState()
+    const [ad,setad] = useState(true)
     return(
     <dialog id="modal">
       <div className="popup-brand">
@@ -20,8 +21,7 @@ function Modal(props){
             <div className="brand-name-icon">
               <i className="fa-solid fa-pen fa-sm" style={{color: "#00dbdb"}}></i>
               <p>{tabletrans.edit[props.lang]}</p>
-              <i className="fa-solid fa-trash fa-sm" style={{color: "#00dbdb"}}></i>
-              <p>{tabletrans.delete[props.lang]}</p>
+              <p onClick={()=>setad(!ad)}>{ad?"فعال":"غیرفعال"}</p>
             </div>
           </div>
           ))}

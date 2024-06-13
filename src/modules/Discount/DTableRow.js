@@ -24,6 +24,11 @@ function DTableRow(props){
                 <p className="phone-num">{user.brandName}</p>
               </div>
             </td>
+            {props.type?<td>
+              <div className="cu-company">
+                <p className="phone-num">{user.material}</p>
+              </div>
+            </td>:<></>}
             <td>
               <div className="pen-status order-status">
                 <p>{user.discountPercent}</p>

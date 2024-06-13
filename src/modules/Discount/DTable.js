@@ -22,6 +22,10 @@ function DTable(props){
               <p>{tabletrans.brand[lang]}</p>
               <i></i>
             </th>
+            {props.type?<th>
+              <p>{tabletrans.material[lang]}</p>
+              <i></i>
+            </th>:<></>}
             <th>
               <p>{tabletrans.discount[lang]}</p>
               <i></i>
