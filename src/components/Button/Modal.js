@@ -21,7 +21,7 @@ function Modal(props){
             <div className="brand-name-icon">
               <i className="fa-solid fa-pen fa-sm" style={{color: "#00dbdb"}}></i>
               <p>{tabletrans.edit[props.lang]}</p>
-              <p onClick={()=>(props.setFactoryCode(opt._id),props.setFactoryState(!(props.factoryState)))}>{props.factoryState?"فعال":"غیرفعال"}</p>
+              <p onClick={()=>(props.setFactoryCode(opt._id),props.setFactoryState(!(opt.active)))}>{opt.active?"فعال":"غیرفعال"}</p>
             </div>
           </div>
           ))}

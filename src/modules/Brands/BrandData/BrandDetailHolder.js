@@ -23,7 +23,7 @@ function BrandDetailHolder(props){
   const [brandChange,setBrandChange] = useState('')
   const [SaveD, setSaveD] = useState(0);
   const [factoryCode, setFactoryCode] = useState("");
-  const [factoryState, setFactoryState] = useState(false);
+  const [factoryState, setFactoryState] = useState("");
 
   
   useEffect(()=>{
@@ -115,8 +115,7 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
         }
       );
 
-  },[factoryCode])
-  console.log(factoryState)
+  },[factoryCode,factoryState])
   
 return(
   <div className="new-item" style={{direction:direction}}>
