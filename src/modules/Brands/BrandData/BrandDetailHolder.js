@@ -21,9 +21,9 @@ function BrandDetailHolder(props){
   const [userFactory,setUserFactory] = useState([])
   const [content,setContent] = useState('')
   const [brandChange,setBrandChange] = useState('')
-  const [SaveD, setSaveD] = useState(0);
+  const [SaveD, setSaveD] = useState("2");
   const [factoryCode, setFactoryCode] = useState("");
-  const [factoryState, setFactoryState] = useState("");
+  const [factoryState, setFactoryState] = useState(false);
 
   
   useEffect(()=>{
@@ -67,7 +67,6 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
           body:JSON.stringify({brandId:url,
             ...brandChange,factory:userFactory})
         }
-        console.log(postOptions)
     fetch(env.siteApi + "/panel/product/update-brand", postOptions)
     .then(res => res.json())
     .then(
@@ -90,32 +89,6 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
       }
     )
   }
-  useEffect(()=>{
-    const postOptions = {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        "x-access-token": token && token.token,
-        userId: token && token.userId,
-      },
-      body: JSON.stringify({factoryId:factoryCode,active:factoryState}),
-
-      
-    };
-    console.log(postOptions);
-    fetch(env.siteApi + "/panel/product/update-factory", postOptions)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          
-          setTimeout(() => setSaveD(result), 200);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-
-  },[factoryCode,factoryState])
   
 return(
   <div className="new-item" style={{direction:direction}}>
@@ -123,10 +96,10 @@ return(
       <h4>{tabletrans.addBrand[lang]}</h4>
       {content||url==="new"?<div className="pages-wrapper">
         <div className="item-box">
-          <BrandDetails direction={direction} lang={lang} content={content}
+          <BrandDetails direction={direction} lang={lang} content={content} token= {token}
             setBrandChange={setBrandChange} brandChange={brandChange}
             userFactory={userFactory} setUserFactory={setUserFactory}
-            setFactoryState={setFactoryState} setFactoryCode={setFactoryCode} factoryState={factoryState}/>
+            setFactoryState={setFactoryState} setFactoryCode={setFactoryCode} factoryState={factoryState} saveD={SaveD}/>
             <div className='imageHolder'>
               <label>Thumbnail</label>
               <BrandImage lang={lang} content={content} value="brandUrl"

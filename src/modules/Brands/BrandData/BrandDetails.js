@@ -12,9 +12,10 @@ function BrandDetails(props){
     const content=props.content
     const [factoryList,setFactoryList] = useState()
     const [manageFacory,setManageFactory] = useState(0)
+    const [loader,setLoader] = useState(0)
     const [error,setError] = useState({errorText:'',errorColor:"brown"})
     useEffect(()=>{
-      if(manageFacory)return
+      //if(manageFacory)return
       var postOptions={
         method:'post',
         headers: {'Content-Type': 'application/json'},
@@ -38,7 +39,7 @@ function BrandDetails(props){
     (error) => {
       console.log(error);
     })
-    },[manageFacory])
+    },[loader])
     const addItem=(factory)=>{
       var postOptions={
         method:'post',
@@ -50,7 +51,7 @@ function BrandDetails(props){
   .then(res => res.json())
   .then(
     (result) => {
-      console.log(result)
+      
       if(result.error){
         setError({errorText:result.error,
           errorColor:"brown"})
@@ -80,7 +81,7 @@ function BrandDetails(props){
       }
       //props.userFactory
     }
-    console.log(props.userFactory)
+    console.log(loader)
     return(
         <div className="serviceItem">
           <StyleInput title={formtrans.title[props.lang]+"(مانند: کداک)"} direction={props.direction} 
@@ -150,8 +151,8 @@ function BrandDetails(props){
             description:e.target.value
           }))}/>
           {manageFacory?<Modal title={formtrans.factoryManage[props.lang]} 
-            lang={props.lang} direction={props.direction}
-            addItem={addItem} close={setManageFactory}
+            lang={props.lang} direction={props.direction} setLoader={setLoader}
+            addItem={addItem} close={setManageFactory} token={props.token}
             options={factoryList} setFactoryState={props.setFactoryState} setFactoryCode={props.setFactoryCode} factoryState={props.factoryState}/>:<></>}
     </div>
     )
