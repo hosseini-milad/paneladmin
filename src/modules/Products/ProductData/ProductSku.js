@@ -8,7 +8,7 @@ import { generateRandomString } from '../../../utils/utils.js';
 
 function ProductSKU(props){
     const content = props.content
-    const brand=props.brand.filter(item=>item.title)
+    const brand=props.brand&&props.brand.filter(item=>item.title)
     const filters=props.filters
     const category = props.category
     const defFilters = content?content.filters:''

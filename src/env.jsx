@@ -1,13 +1,18 @@
 const env={
-    //siteApi:'http://localhost:4000/api',
+    siteApi:'http://localhost:4000/api',
     //siteApi:'https://panel.mehrgaz.com/api',
+<<<<<<< HEAD
     // siteApi:'https://orderadmin.deleves.com/api',
     siteApi:'https://admin.mgmlens.com/api',
+=======
+    //siteApi:'https://orderadmin.deleves.com/api',
+    //siteApi:'https://admin.mgmlens.com/api',
+>>>>>>> edb8bb3eb6d58af06586540cac9a6c3264abb2a2
     
-    //siteApiUrl:'http://localhost:4000',
+    siteApiUrl:'http://localhost:4000',
     //siteApiUrl:'https://panel.mehrgaz.com',
-    siteApiUrl:'https://orderadmin.deleves.com',
-    // siteApiUrl:'https://admin.mgmlens.com',
+    //siteApiUrl:'https://orderadmin.deleves.com',
+    //siteApiUrl:'https://admin.mgmlens.com',
 
     printUrl:"https://mgmlens.com",
     //printUrl:"https://order.deleves.com",
