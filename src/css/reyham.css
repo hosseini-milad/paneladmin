@@ -862,3 +862,11 @@ checkbox-container label {
     cursor: pointer;
   }
 }
+.cancel-wrapper{
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+  border-radius: 9999px;
+  background-color: rgb(255, 71, 71);
+  text-align: center;
+  color: rgb(255, 255, 255);
+}

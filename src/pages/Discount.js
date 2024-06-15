@@ -122,13 +122,36 @@ function Users(props) {
       .then((res) => res.json())
       .then(
         (result) => {
-          setTimeout(() => setOptionBrand(result.filter), 200);
+          setTimeout(() => setOptionBrand(result), 200);
         },
         (error) => {
           console.log(error);
         }
       );
   }, [AddDiscount]);
+  useEffect(() => {
+    
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({category:"62e89544cffae602eb7213a2"}),
+    };
+    console.log(postOptions);
+    fetch("https://admin.mgmlens.com/api/panel/product/list-filter", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setTimeout(() => setOptionBrand(result.filter), 200);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, [filters]);
   console.log(Dtable)
   useEffect(()=>{
     setOfferStock('');
@@ -143,7 +166,6 @@ function Users(props) {
 
       
     };
-    console.log(postOptions);
     fetch(env.siteApi + (RxStock?"/product/list/offersstock":"/product/list/offers"), postOptions)
       .then((res) => res.json())
       .then(
@@ -342,9 +364,7 @@ function Users(props) {
       );
 
   }
-  // const BrandArray = OptionBrand.map((title , enTitle)=>{
-  //   [{"title":title,"value":enTitle}]
-  // })
+  const materialOption = OptionBrand.materialList
   return (
     <div className="user discount-page"  style={{ direction: direction }}>
       {AddDiscount?<div className="add-discount">
@@ -354,7 +374,7 @@ function Users(props) {
           class="filterComponent"
           direction={direction}
           action={(e)=>{setBrand(e)}}
-          options={OptionBrand}
+          options={OptionBrand.filter}
           label="enTitle"
         />
         {RxStock?<StyleSelect
@@ -362,7 +382,8 @@ function Users(props) {
           class="filterComponent"
           direction={direction}
           action={(e)=>{setMaterial(e)}}
-          options={["blue 2/2","clear 2/2"]}
+          options={materialOption.optionsP}
+          label="value"
         />:<></>}
         <StyleInput
           title={tabletrans.discount[lang]}

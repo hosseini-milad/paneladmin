@@ -1,8 +1,8 @@
 const env={
     //siteApi:'http://localhost:4000/api',
     //siteApi:'https://panel.mehrgaz.com/api',
-    siteApi:'https://orderadmin.deleves.com/api',
-    // siteApi:'https://admin.mgmlens.com/api',
+    // siteApi:'https://orderadmin.deleves.com/api',
+    siteApi:'https://admin.mgmlens.com/api',
     
     //siteApiUrl:'http://localhost:4000',
     //siteApiUrl:'https://panel.mehrgaz.com',

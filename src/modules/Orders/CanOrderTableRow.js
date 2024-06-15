@@ -53,8 +53,12 @@ function OrderTableRow(props){
               </td>
               
               <td>
-                <Status status={order.status} class={"order-status"} 
-                  lang={props.lang}/>
+                
+                <p class="cancel-wrapper">
+                  {
+                    order.serial_number?"کارخانه":(order.status.slice(-4)=="sale"?"واحد فروش":"کاربر")
+                  }
+                </p>
               </td>
             <td>
               <div className="more-btn">

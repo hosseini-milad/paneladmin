@@ -152,7 +152,7 @@ function BrandDetails(props){
           {manageFacory?<Modal title={formtrans.factoryManage[props.lang]} 
             lang={props.lang} direction={props.direction}
             addItem={addItem} close={setManageFactory}
-            options={factoryList}/>:<></>}
+            options={factoryList} setFactoryState={props.setFactoryState} setFactoryCode={props.setFactoryCode} factoryState={props.factoryState}/>:<></>}
     </div>
     )
 }

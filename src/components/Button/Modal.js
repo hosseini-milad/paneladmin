@@ -2,10 +2,10 @@ import { useState } from "react"
 import formtrans from "../../translate/forms"
 import tabletrans from "../../translate/tables"
 import StyleInput from "./Input"
-
 function Modal(props){
     const [newItem,setNewItem] = useState()
     const [ad,setad] = useState(true)
+    
     return(
     <dialog id="modal">
       <div className="popup-brand">
@@ -21,7 +21,7 @@ function Modal(props){
             <div className="brand-name-icon">
               <i className="fa-solid fa-pen fa-sm" style={{color: "#00dbdb"}}></i>
               <p>{tabletrans.edit[props.lang]}</p>
-              <p onClick={()=>setad(!ad)}>{ad?"فعال":"غیرفعال"}</p>
+              <p onClick={()=>(props.setFactoryCode(opt._id),props.setFactoryState(!(props.factoryState)))}>{props.factoryState?"فعال":"غیرفعال"}</p>
             </div>
           </div>
           ))}
