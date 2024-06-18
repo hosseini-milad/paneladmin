@@ -75,7 +75,8 @@ function OrderTableRow(props){
               <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
                 onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
                 <i className="tableIcon fas fa-edit" onClick={()=>
-                  window.location.href="/orders/detail/"+order.rxOrderNo}></i>
+                  window.location.href="/orders/"+(order.rxOrderNo?"detail/":"stock/")+
+                    (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
                 {/* <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i> */}
               </div>

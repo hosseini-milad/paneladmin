@@ -855,3 +855,21 @@ checkbox-container label {
     cursor: pointer;
   }
 }
+
+.countEditStock{
+  position: relative;
+  min-width: 150px
+}
+.countEdit{
+  width: 100px;
+  padding-left: 50px;
+}
+.countEditStock i{
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  padding: 7px 11px;
+  background-color: lightgreen;
+  color: green;
+  border-radius: 50%;
+}
