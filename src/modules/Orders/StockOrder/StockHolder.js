@@ -24,11 +24,12 @@ function StockHolder(){
         }
       )
     },[])
-    const updateValue=(sku,count)=>{
+    const updateValue=(sku,sph,cyl,count)=>{
         var postOptions={
             method:'post',
             headers: {'Content-Type': 'application/json'},
-            body:JSON.stringify({stockOrderNo:url,sku:sku,count:count?count:newCount})
+            body:JSON.stringify({stockOrderNo:url,
+              sku:sku,cyl:cyl,sph:sph,count:count?count:newCount})
           }
       fetch(env.siteApi + "/panel/order/editStockOrder",postOptions)
       .then(res => res.json())
@@ -81,9 +82,9 @@ function StockHolder(){
                             defaultValue={item.count} 
                             action={(e)=>(setCount(e),setEditRow(i))}/>
                             {i==editRow?
-                            <i className="fa fa-check" onClick={()=>updateValue(item.sku)}></i>:<></>}
+                            <i className="fa fa-check" onClick={()=>updateValue(item.sku,item.sph,item.cyl)}></i>:<></>}
                         </td>
-                        <td><i className="fa fa-trash" onClick={()=>updateValue(item.sku,0)}></i></td>
+                        <td><i className="fa fa-trash" onClick={()=>updateValue(item.sku,item.sph,item.cyl,0)}></i></td>
                     </tr>
                 ))}
                 
