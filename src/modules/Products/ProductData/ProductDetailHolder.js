@@ -44,7 +44,7 @@ function ProductDetailHolder(props) {
             setCategory(result.categoryList);
             setBrand(result.brandList);
             setContent(result.filter);
-            setChangeFilters(result.filter.filters);
+            setChangeFilters(result.filter&&result.filter.filters);
             setTimeout(
               () => setError({ errorText: "", errorColor: "brown" }),
               2000

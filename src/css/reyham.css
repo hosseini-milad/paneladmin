@@ -278,8 +278,13 @@ textarea {
   flex-direction: column;
   background-color: #fff;
   border-radius: 0 0 15px 15px;
-  padding: 5px 10px;
   margin: auto;
+}
+.popup-brand small{
+  width: 100%;
+  font-size: 0.85rem;
+  color: red;
+  padding: 1rem;
 }
 
 dialog {
@@ -521,9 +526,11 @@ dialog {
 }
 .modalFooter {
   display: flex;
+  flex-direction: column;
+  padding-inline: 0.5rem;
 }
 .modalNew {
-  width: 50% !important;
+  width: 100% !important;
 }
 .classNamePlace {
   width: 30%;
@@ -713,9 +720,16 @@ checkbox-container label {
 }
 
 @media (min-width: 1200px) {
+
+
   .sidenav.fixed-end + .main-content {
     max-width: calc(100% - 17rem);
   }
+  .sidenav.fixed-end + .wide-main {
+    max-width: calc(100% - 8rem);
+    margin-right: 8.125rem;
+  }
+
 }
 .m-20 {
   margin: 20px 10px 0;
@@ -855,21 +869,40 @@ checkbox-container label {
     cursor: pointer;
   }
 }
+.cancel-wrapper{
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+  border-radius: 9999px;
+  background-color: rgb(255, 71, 71);
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
 
-.countEditStock{
-  position: relative;
-  min-width: 150px
+/* mini sidebar */
+.navbar-vertical.mini-sidebar{
+  max-width: 7rem !important;
+
+  .sidenav-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      margin: 0;
+    }
+    span{
+      display: none;
+    }
+  }
+  .nav-item{
+    span{
+      display: none;
+    }
+  }
 }
-.countEdit{
-  width: 100px;
-  padding-left: 50px;
-}
-.countEditStock i{
+.mini-arrow{
   position: absolute;
-  left: 10px;
-  top: 20px;
-  padding: 7px 11px;
-  background-color: lightgreen;
-  color: green;
-  border-radius: 50%;
+  top: 0;
+  left: 5px;
+  font-size: 2rem;
+  cursor: pointer;
 }

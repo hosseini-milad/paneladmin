@@ -264,6 +264,25 @@ function CustomerGeneral(props) {
                 }))
               }
             />
+            <div className="dense-btn">
+              <label htmlFor="view">
+                {/* Text indicating the radio button */}
+                {formtrans.status[props.lang]}
+              </label>
+              <input
+                className="switch-input"
+                type="checkbox"
+                id="view"
+                defaultChecked={userData.active === true ? true : false}
+                onClick={activityStatusHandler}
+              />
+              <label
+                htmlFor="view"
+                className={true ? "switch-label" : "switch-label disable-label"}
+              ></label>
+            </div>
+            <span style={{ whiteSpace: "pre-wrap" }}></span>
+
             <StyleInput
               title={formtrans.city[props.lang]}
               direction={props.direction}
@@ -277,7 +296,7 @@ function CustomerGeneral(props) {
               }
             />
 
-            <StyleSelect
+            {/* <StyleSelect
               title={"فعال/غیرفعال"}
               direction={props.direction}
               defaultValue={userData.active}
@@ -289,7 +308,7 @@ function CustomerGeneral(props) {
                   active: e,
                 }))
               }
-            />
+            /> */}
 
             <StyleSelect
               title={formtrans.access[props.lang]}
@@ -305,6 +324,7 @@ function CustomerGeneral(props) {
                 }))
               }
             />
+            <span style={{ whiteSpace: "pre-wrap" }}></span>
 
             <div className="info-input">
               <label htmlFor="address">{formtrans.address[props.lang]}</label>

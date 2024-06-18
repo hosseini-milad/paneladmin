@@ -37,15 +37,24 @@ function Paging(props) {
         <select
           name="page"
           id=""
-          onChange={(e) =>
-            updateUrlWithPagination(props.filters.offset, e.target.value)
-          }
+          onChange={(e) => {
+            const pageSize = e.target.value;
+            props.setFilters((prevState) => ({
+              ...prevState,
+              pageSize: pageSize.toString(),
+            }));
+            props.updateUrlWithFilters({
+              ...props.filters,
+              pageSize: pageSize.toString(),
+            });
+          }}
         >
           <option value="5">5</option>
           <option value="10" selected={true}>
             10
           </option>
           <option value="25">25</option>
+          <option value="50">50</option>
         </select>
       </div>
       {pageInfo && pageInfo.show ? (
@@ -55,7 +64,7 @@ function Paging(props) {
             offset={parseInt(props.filters.offset) || 0}
             otherPageColor={"default"}
             currentPageColor={"primary"}
-            total={pageInfo.totalItem}
+            total={props.size?props.size:pageInfo.totalItem}
             onClick={(e, offset) => {
               props.setFilters((prevState) => ({
                 ...prevState,

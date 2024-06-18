@@ -3,7 +3,7 @@ import UserClassInTable from "./UserComponent/UserClassInTable"
 import tabletrans from "../../translate/tables"
 import Status from "../Components/Status"
 
-function UserTableRow(props){ 
+function NUserTableRow(props){ 
   const [openOption,setOpenOption] = useState(0)
   const [checkState,setCheckState] = useState(false)
   const activeAcc = props.index===props.detail
@@ -68,7 +68,7 @@ function UserTableRow(props){
             </td>
             <td>
               <div className="pen-status order-status">
-                <Status text={user.active === true ?"فعال":"قفل شده"} />
+                <Status text={user.lock!=="3"?"فعال":"قفل شده"} />
               </div>
             </td>
             <td>
@@ -93,4 +93,4 @@ function UserTableRow(props){
           </tr>
     )
 }
-export default UserTableRow
+export default NUserTableRow

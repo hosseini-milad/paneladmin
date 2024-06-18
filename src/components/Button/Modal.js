@@ -2,9 +2,35 @@ import { useState } from "react"
 import formtrans from "../../translate/forms"
 import tabletrans from "../../translate/tables"
 import StyleInput from "./Input"
-
+import env from "../../env"
 function Modal(props){
     const [newItem,setNewItem] = useState()
+    const token = props.token
+    const [ad,setad] = useState(true)
+    const updateFactory=(factoryId,value)=>{
+      const postOptions = {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token && token.token,
+          userId: token && token.userId,
+        },
+        body: JSON.stringify({factoryId:factoryId,active:!value}),
+  
+        
+      };
+      fetch(env.siteApi + "/panel/product/update-factory", postOptions)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            props.setLoader(Math.random())
+            console.log("updated")
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
     return(
     <dialog id="modal">
       <div className="popup-brand">
@@ -20,8 +46,7 @@ function Modal(props){
             <div className="brand-name-icon">
               <i className="fa-solid fa-pen fa-sm" style={{color: "#00dbdb"}}></i>
               <p>{tabletrans.edit[props.lang]}</p>
-              <i className="fa-solid fa-trash fa-sm" style={{color: "#00dbdb"}}></i>
-              <p>{tabletrans.delete[props.lang]}</p>
+              <p onClick={()=>(updateFactory(opt._id,opt.active))}>{opt.active?"فعال":"غیرفعال"}</p>
             </div>
           </div>
           ))}

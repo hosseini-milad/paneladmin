@@ -9,6 +9,10 @@ const tabletrans ={
         english: "Customer",
         persian: "مشتری"
     },
+    newCu:{
+        english: "New Customers",
+        persian: "مشتریان جدید"
+    },
     classes:{
         english: "Classes",
         persian: "کلاس ها"
@@ -74,6 +78,14 @@ const tabletrans ={
     order:{
         english: "Order",
         persian: "سفارش"
+    },
+    ordercan:{
+        english: "Canceled Order",
+        persian: "سفارشات کنسل شده"
+    },
+    canceltype:{
+        english: "Cancel Type",
+        persian: "نوی کنسلی"
     },
     orderReg:{
         english: "Order Reg",
@@ -142,6 +154,10 @@ const tabletrans ={
     discount:{
         english: "Discount",
         persian: "تخفیف"
+    },
+    discounts:{
+        english: "Discounts",
+        persian: "تخفیفات"
     },
     taxes:{
         english: "Taxes",
@@ -386,6 +402,10 @@ const tabletrans ={
     sendSms:{
         english:"Send SMS",
         persian:"ارسال پیامک"
+    },
+    sendPop:{
+        english:"Popups",
+        persian:"پاپ آپ"
     },
     classManage:{
         english:"Class Manage",

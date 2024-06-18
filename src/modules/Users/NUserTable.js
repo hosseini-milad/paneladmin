@@ -1,14 +1,13 @@
 import { useState } from "react";
 import tabletrans from "../../translate/tables"
-import DTableRow from "./DTableRow"
+import NUserTableRow from "./NUserTableRow"
 
-function DTable(props){
-  const userList = props.offerStock
+function NUserTable(props){
+  const userList = props.userList
   const lang=props.lang.lang;
   const [detail,showDetail] = useState(-1)
     return( 
         <table>
-          
         <thead>
           <tr>
             <th><input type="checkbox" name="" id=""/></th>
@@ -16,35 +15,35 @@ function DTable(props){
               <p>{tabletrans.name[lang]}</p>
               <i></i>
             </th>
-            
-            
             <th>
-              <p>{tabletrans.brand[lang]}</p>
+              <p>{tabletrans.credit[lang]}</p>
               <i></i>
             </th>
-            {props.type?<th>
-              <p>{tabletrans.material[lang]}</p>
-              <i></i>
-            </th>:<></>}
             <th>
-              <p>{tabletrans.discount[lang]}</p>
+              <p>{tabletrans.classes[lang]}</p>
+              <i></i>
+            </th>
+            <th>
+              <p>{tabletrans.phoneNumber[lang]}</p>
+              <i></i>
+            </th>
+            <th>
+              <p>{tabletrans.status[lang]}</p>
               <i></i>
             </th>
             <th>
               <p>{tabletrans.action[lang]}</p>
               <i></i>
             </th>
-            
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {(userList)?userList.map((user,i)=>(
-            <DTableRow detail={detail} showDetail={showDetail} 
+          {(userList&&userList)?userList.map((user,i)=>(
+            <NUserTableRow detail={detail} showDetail={showDetail} 
               user={user} index={i} key={i} lang={lang}
               setSelectedUser={props.setSelectedUser}
-              selectedUser={props.selectedUser}
-              type={props.type}
-              offerid={props.offerid}/>
+              selectedUser={props.selectedUser}/>
           )):''}
           
         </tbody>
@@ -52,4 +51,4 @@ function DTable(props){
 
     )
 }
-export default DTable
+export default NUserTable

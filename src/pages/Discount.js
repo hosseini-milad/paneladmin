@@ -32,6 +32,9 @@ function Users(props) {
   const [OfferId, setOfferId] = useState('');
   const [update, setUpdate] = useState(0);
   const [offerParams,setOfferParams]= useState('')
+  const [OffType,setOffType]= useState('')
+  const [OffNum,setOffNum]= useState('')
+  const [OptionBrand,setOptionBrand]= useState('')
   
   //console.log(Dtable)
   const token = cookies.get(env.cookieName);
@@ -103,6 +106,53 @@ function Users(props) {
         }
       );
   }, [update]);
+  useEffect(() => {
+    
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify(),
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + "/panel/product/list-brands", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setTimeout(() => setOptionBrand(result), 200);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, [AddDiscount]);
+  useEffect(() => {
+    
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({category:"62e89544cffae602eb7213a2"}),
+    };
+    console.log(postOptions);
+    fetch("https://admin.mgmlens.com/api/panel/product/list-filter", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setTimeout(() => setOptionBrand(result.filter), 200);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, [filters]);
+  console.log(Dtable)
   useEffect(()=>{
     setOfferStock('');
     const postOptions = {
@@ -116,7 +166,6 @@ function Users(props) {
 
       
     };
-    console.log(postOptions);
     fetch(env.siteApi + (RxStock?"/product/list/offersstock":"/product/list/offers"), postOptions)
       .then((res) => res.json())
       .then(
@@ -130,6 +179,33 @@ function Users(props) {
         }
       );
   },[Dtable,RxStock,SaveD])
+  useEffect(()=>{
+    if(!filters.discount || filters.discount.length<2) return
+    setOfferStock('');
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({type:filters.type,value:filters.discount}),
+
+      
+    };
+    fetch(env.siteApi + (RxStock?"/panel/user/offerFind":"/panel/user/offerRXFind"), postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          
+          setTimeout(() => setContent(result), 200);
+        },
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+  },[filters])
   // Function to get filters from URL
   function getFiltersFromUrl() {
     const searchParams = new URLSearchParams(window.location.search);
@@ -289,6 +365,7 @@ function Users(props) {
       );
 
   }
+  const materialOption = OptionBrand.materialList
   return (
     <div className="user discount-page"  style={{ direction: direction }}>
       {AddDiscount?<div className="add-discount">
@@ -298,14 +375,16 @@ function Users(props) {
           class="filterComponent"
           direction={direction}
           action={(e)=>{setBrand(e)}}
-          options={["ESSENCE","KODAK","REVO","MGMPlus"]}
+          options={OptionBrand.filter}
+          label="enTitle"
         />
         {RxStock?<StyleSelect
           title={tabletrans.material[lang]}
           class="filterComponent"
           direction={direction}
           action={(e)=>{setMaterial(e)}}
-          options={["blue 2/2","clear 2/2"]}
+          options={materialOption.optionsP}
+          label="value"
         />:<></>}
         <StyleInput
           title={tabletrans.discount[lang]}
@@ -321,7 +400,7 @@ function Users(props) {
       <div className="od-header">
         <div className="od-header-info">
           <div className="od-header-name">
-            <p>{tabletrans.discount[lang]}</p>
+            <p>{tabletrans.discounts[lang]}</p>
           </div>
           
         </div>

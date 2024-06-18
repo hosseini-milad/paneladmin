@@ -21,6 +21,10 @@ function BrandDetailHolder(props){
   const [userFactory,setUserFactory] = useState([])
   const [content,setContent] = useState('')
   const [brandChange,setBrandChange] = useState('')
+  const [SaveD, setSaveD] = useState("2");
+  const [factoryCode, setFactoryCode] = useState("");
+  const [factoryState, setFactoryState] = useState(false);
+
   
   useEffect(()=>{
     if(url==="new")return
@@ -63,7 +67,6 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
           body:JSON.stringify({brandId:url,
             ...brandChange,factory:userFactory})
         }
-        console.log(postOptions)
     fetch(env.siteApi + "/panel/product/update-brand", postOptions)
     .then(res => res.json())
     .then(
@@ -86,15 +89,17 @@ fetch(env.siteApi + "/panel/product/fetch-brand",postOptions)
       }
     )
   }
+  
 return(
   <div className="new-item" style={{direction:direction}}>
       <div className="create-product">
       <h4>{tabletrans.addBrand[lang]}</h4>
       {content||url==="new"?<div className="pages-wrapper">
         <div className="item-box">
-          <BrandDetails direction={direction} lang={lang} content={content}
+          <BrandDetails direction={direction} lang={lang} content={content} token= {token}
             setBrandChange={setBrandChange} brandChange={brandChange}
-            userFactory={userFactory} setUserFactory={setUserFactory}/>
+            userFactory={userFactory} setUserFactory={setUserFactory}
+            setFactoryState={setFactoryState} setFactoryCode={setFactoryCode} factoryState={factoryState} saveD={SaveD}/>
             <div className='imageHolder'>
               <label>Thumbnail</label>
               <BrandImage lang={lang} content={content} value="brandUrl"
