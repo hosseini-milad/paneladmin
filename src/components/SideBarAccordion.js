@@ -31,8 +31,8 @@ function SideBarAccordion(props){
             onClick={()=>props.setPinMenu(0)}/>
             {props.MiniMenu?<i onClick={()=>props.setMiniMenu(false)} className="fa-solid fa-caret-right mini-arrow"></i>:<i onClick={()=>props.setMiniMenu(true)} class="fa-solid fa-caret-left mini-arrow"></i>}
             <a className="navbar-brand m-20" href={menuList.title.href} target="_blank">
-                <img src={"/img/logo-black.png"} alt ={menuList.title[props.lang.lang]}/>
-                <span className="ms-1 font-weight-bold text-dark">{menuList.title[props.lang.lang]}</span>
+                <img src={"/img/MGM Lens.svg"} alt ={menuList.title[props.lang.lang]}/>
+                
             </a>
             </div>
             <hr className="horizontal light mt-0 mb-2"/>
