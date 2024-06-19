@@ -99,7 +99,7 @@ function Orders(props){
           status={content.rxStatus}
           setFilters={setFilters}
         />
-        <OrderTab setFilters={handleFilterChange} filters={filters} />
+        <OrderTab setFilters={setFilters} filters={filters} />
 
         <OrderFilters
           lang={props.lang}

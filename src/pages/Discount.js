@@ -345,12 +345,13 @@ function Users(props) {
         "x-access-token": token && token.token,
         userId: token && token.userId,
       },
-      body: JSON.stringify(OfferId),
+      body: JSON.stringify({offerCode:OfferId}),
 
       
     };
     console.log(postOptions);
-    fetch(env.siteApi + (RxStock?"/product/remove/offersstock":"/product/remove/offers"), postOptions)
+    fetch(env.siteApi + (RxStock?"/product/remove/offersstock":"/product/remove/offers"), 
+    postOptions)
       .then((res) => res.json())
       .then(
         (result) => {
