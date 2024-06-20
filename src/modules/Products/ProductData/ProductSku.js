@@ -100,6 +100,12 @@ console.log(brand)
                     ...prevState,
                     price6:e
                   }))}/>
+                <StyleInput title={"قیمت تراش"} direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.tarashPrice:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    tarashPrice:e
+                  }))}/>
                 <div className="pd-tags info-input">
                   <label htmlFor="pd-tag">Tags</label>
                   <input type="text" name="" id="pd-tag"/>
