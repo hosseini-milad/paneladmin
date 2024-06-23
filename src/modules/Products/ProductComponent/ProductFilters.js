@@ -29,11 +29,6 @@ function ProductFilters(props) {
           direction={props.lang.dir}
           action={(e) => handleFilterChange("title", e)}
         />
-        <StyleInput
-          title="SKU"
-          direction={props.lang.dir}
-          action={(e) => handleFilterChange("sku", e)}
-        />
         <StyleSelect
           title={tabletrans.productCategory[lang.lang]}
           direction={props.lang.dir}
