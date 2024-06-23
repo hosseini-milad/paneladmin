@@ -29,6 +29,7 @@ import CustomerDetailHolder from './modules/Customer/CustomerData/CustomerDetail
 
 import Orders from './pages/Orders';
 import CanOrders from './pages/CanOrders';
+import Lathe from './pages/lathe';
 import OrderDetailHolder from './modules/Orders/OrderData/OrderDetailHolder';
 import Profile from './pages/Profile';
 import Services from './pages/Services';
@@ -96,6 +97,7 @@ root.render(
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/cancelorders" element={<Layout><CanOrders lang={lang}/></Layout>}/>
+        <Route path="/LatheService" element={<Layout><Lathe lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
         <Route path="/orders/stock/:orderId" element={<Layout><StockHolder lang={lang}/></Layout>}/>
         <Route path="/stock" element={<Layout><StockManage lang={lang}/></Layout>}/>

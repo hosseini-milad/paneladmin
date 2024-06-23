@@ -87,6 +87,13 @@ function Orders(props){
             <i class="fa-solid fa-ban"></i>
             {tabletrans.ordercan[lang]}
           </label>
+          <label
+            className="edit-btn"
+            onClick={() => (window.location.href = "/LatheService")}
+          >
+            <i class="fa-solid fa-plus"></i>
+            {tabletrans.lathe[lang]}
+          </label>
 
         </div>
       </div>
