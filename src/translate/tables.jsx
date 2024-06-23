@@ -83,6 +83,10 @@ const tabletrans ={
         english: "Canceled Order",
         persian: "سفارشات کنسل شده"
     },
+    lathe:{
+        english: "Lathe service",
+        persian: "خدمات تراش"
+    },
     canceltype:{
         english: "Cancel Type",
         persian: "نوی کنسلی"
@@ -250,6 +254,10 @@ const tabletrans ={
     code:{
         english:"Code",
         persian:"کد"
+    },
+    barcode:{
+        english:"Barcode",
+        persian:"بارکد"
     },
 
     /*Products*/
