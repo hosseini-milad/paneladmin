@@ -13,7 +13,7 @@ function OrderTableRow(props){
   //console.log(order)
     return(<React.Fragment>
         <tr 
-            className={activeAcc?"activeAccordion":"accordion"}>
+            className={activeAcc?"activeAccordion order-tr":"accordion order-tr"}>
             <td className="checkBoxStyle">
               {props.index+1}</td>
             <td>
