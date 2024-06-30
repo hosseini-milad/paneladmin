@@ -56,6 +56,7 @@ import Landing from './pages/Landing';
 import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
 import Discount from './pages/Discount';
+import AccessUser from './pages/access-user';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
 
 const cookies = new Cookies();
@@ -86,6 +87,7 @@ root.render(
 
 
         <Route path="/users" element={<Layout><Users lang={lang}/></Layout>}/>
+        <Route path="/user" element={<Layout><AccessUser lang={lang}/></Layout>}/>
         <Route path="/newusers" element={<Layout><NewUsers lang={lang}/></Layout>}/>
         <Route path="/users/detail/:userId" element={<Layout><UserDetailHolder lang={lang}/></Layout>}/>
         <Route path="/customers/detail/:userId" element={<Layout><CustomerDetailHolder lang={lang}/></Layout>}/>

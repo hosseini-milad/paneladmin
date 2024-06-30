@@ -158,6 +158,14 @@ setting:[
         icon:"fa-key",
         href:"/filter",
         url:"filter"
+    },
+    {
+        english: "User Management",
+        persian: "مدیریت کاربران",
+        index:2,
+        icon:"fa-key",
+        href:"/user",
+        url:"user"
     }
 ]
 }
