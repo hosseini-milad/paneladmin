@@ -9,12 +9,10 @@ const lang = JSON.parse(localStorage.getItem(env.cookieLang));
 
 function Layout(props){
     const [pinMenu,setPinMenu] = useState(0)
-    const [MiniMenu,setMiniMenu] = useState((localStorage.getItem("sidebar")) || true)
+    const [MiniMenu,setMiniMenu] = useState((localStorage.getItem("sidebar")=="true") && true)
     useEffect(()=>{
-        console.log(MiniMenu)
         localStorage.setItem("sidebar",MiniMenu)
     },[MiniMenu])
-    console.log(Boolean(MiniMenu))
     return(
         <div className={`holder g-sidenav-show bg-gray-200 ${pinMenu?" g-sidenav-pinned":""}
         ${lang.dir==="rtl"?" rtl":""}`}>
