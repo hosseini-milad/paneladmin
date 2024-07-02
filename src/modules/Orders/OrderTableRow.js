@@ -3,6 +3,10 @@ import Status from "../Components/Status"
 import  { normalPriceCount, rxFindCount } from "../../env"
 import OrderQuickDetail from "./OrderComponent/OrderQuickDetail"
 import StockQuickDetail from "./OrderComponent/StockQuickDetail"
+import tabletrans from "../../translate/tables";
+import StyleSelect from "../../components/Button/AutoComplete";
+
+
 
 function OrderTableRow(props){
   const [openOption,setOpenOption] = useState(0)
@@ -92,11 +96,23 @@ function OrderTableRow(props){
               </div>:<></>}
             </td>
           </tr>
-          {activeAcc?<tr className="sub-order">
-        <td colSpan="9">{category==="rx"?
-        <OrderQuickDetail order={order}/>:
-        <StockQuickDetail order={order}/>}
-        </td></tr>
+          {activeAcc?
+          <tr className="sub-order">
+            <td colSpan="7">{category==="rx"?
+              <OrderQuickDetail order={order}/>:
+              <StockQuickDetail order={order}/>}
+            </td>
+            <td colSpan="3" className="status-td">
+              <div className="status-wrapper">
+                <h5>تعیین وضعیت</h5>
+                <StyleSelect
+                  title={tabletrans.status[props.lang]}
+                  direction={props.lang.dir}
+                />  
+                <button className="edit-btn" type="button">ثبت وضعیت</button>
+              </div>
+            </td>
+          </tr>
           :<React.Fragment></React.Fragment>}
           </React.Fragment>
     )

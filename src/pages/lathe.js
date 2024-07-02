@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import errortrans from "../translate/error";
 import tabletrans from "../translate/tables";
 import env from "../env";
 import StyleInput from "../components/Button/Input";
 import StyleSelect from "../components/Button/AutoComplete";
 
-const lathe = (props) => {
+const Lathe = (props) => {
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
-
+  const [RxStock,setRxStock] = useState("r")
   return (
     <div className="user lathe-page" style={{ direction: direction }}>
       <h4>{tabletrans.lathe[lang]}</h4>
@@ -26,18 +26,23 @@ const lathe = (props) => {
               <button className="search-btn">جستجو<i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <div className="rx-stock">
-              <div className="tab-btn">Stock</div>
-              <div className="tab-btn active-tab">Rx</div>
+              <div className={RxStock=="s"?"tab-btn active-tab":"tab-btn"} onClick={()=>{setRxStock("s")}}>Stock</div>
+              <div className={RxStock=="r"?"tab-btn active-tab":"tab-btn"} onClick={()=>{setRxStock("r")}}>Rx</div>
             </div>
             <div className="brand-container">
               <StyleSelect
               title={tabletrans.brand[lang]}
               direction={lang.dir}
               />
-              <StyleSelect
+              {RxStock=="s"?<StyleSelect
               title={tabletrans.material[lang]}
               direction={lang.dir}
+              />:
+              <StyleInput
+                title={tabletrans.material[lang]}
+                direction={lang.dir}
               />
+              }
             </div>
           </div>
           <div className="image-wrapper">
@@ -47,49 +52,49 @@ const lathe = (props) => {
         <div className="lathe-container">
           <div className="input-index-wrapper">
             <p className="title">OD</p>
-            <StyleInput
+            <StyleSelect
               title="Sphere"
               direction={lang.dir}
             />
-            <StyleInput
+            <StyleSelect
               title="Cylinder"
               direction={lang.dir}
             />
-            <StyleInput
+            <StyleSelect
               title="Axis"
               direction={lang.dir}
             />
-            <StyleInput
+            <StyleSelect
               title="PD"
               direction={lang.dir}
             />
-            <StyleInput
+            {RxStock=="r"?<StyleSelect
               title="Addition"
               direction={lang.dir}
-            />
+            />:<></>}
           </div>
           <div className="input-index-wrapper">
           <p className="title">OS</p>
-            <StyleInput
+            <StyleSelect
               title="Sphere"
               direction={lang.dir}
             />
-            <StyleInput
+            <StyleSelect
               title="Cylinder"
               direction={lang.dir}
             />
-            <StyleInput
+            <StyleSelect
               title="Axis"
               direction={lang.dir}
             />
-            <StyleInput
+            <StyleSelect
               title="PD"
               direction={lang.dir}
             />
-            <StyleInput
+            {RxStock=="r"?<StyleSelect
               title="Addition"
               direction={lang.dir}
-            />
+            />:<></>}
           </div>
         </div>
         <div className="info-container">
@@ -123,4 +128,4 @@ const lathe = (props) => {
   )
 }
 
-export default lathe
+export default Lathe
