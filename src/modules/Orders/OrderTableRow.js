@@ -5,16 +5,44 @@ import OrderQuickDetail from "./OrderComponent/OrderQuickDetail"
 import StockQuickDetail from "./OrderComponent/StockQuickDetail"
 import tabletrans from "../../translate/tables";
 import StyleSelect from "../../components/Button/AutoComplete";
+import env from "../../env";
 
 
 
 function OrderTableRow(props){
   const [openOption,setOpenOption] = useState(0)
   const [checkState,setCheckState] = useState(false)
+  const [OrderStatus,setOrderStatus] = useState("")
   const category = props.category==="Stock"?"stock":"rx"
   const activeAcc = props.index===props.detail
   const order=props.order
+  const token = props.token
   //console.log(order)
+  const UpdateStatus = (rxOrderNo,status)=>{
+    const body={
+      rxOrderNo:rxOrderNo,
+      status:status,
+    }
+    const postOptions={
+      method:'post',
+      headers: {'Content-Type': 'application/json',
+      "x-access-token":token&&token.token,"userId":token&&token.userId},
+      body:JSON.stringify(body)
+    }
+    
+    fetch(env.siteApi + "/order/manage/addrx",postOptions)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        windows.location.reload()
+      },
+        (error) => {
+          
+          console.log(error);
+        }
+      );
+    }
+  
     return(<React.Fragment>
         <tr 
             className={activeAcc?"activeAccordion order-tr":"accordion order-tr"}>
@@ -103,14 +131,17 @@ function OrderTableRow(props){
               <StockQuickDetail order={order}/>}
             </td>
             <td colSpan="3" className="status-td">
-              <div className="status-wrapper">
+              {order.status!==("faktor"||"cancel")?<div className="status-wrapper">
                 <h5>تعیین وضعیت</h5>
                 <StyleSelect
                   title={tabletrans.status[props.lang]}
                   direction={props.lang.dir}
+                  label="label"
+                  action={(e)=>{setOrderStatus(e.value)}}
+                  options={(order.status=="inproduction")?[{label:"اتمام",value:"faktor"}]:[{label:"تایید",value:"inproduction"},{label:"لغو",value:"cancel"}]}
                 />  
-                <button className="edit-btn" type="button">ثبت وضعیت</button>
-              </div>
+                <button className="edit-btn" type="button" onClick={()=>{UpdateStatus(order.rxOrderNo,OrderStatus)}}>ثبت وضعیت</button>
+              </div>:<></>}
             </td>
           </tr>
           :<React.Fragment></React.Fragment>}
