@@ -31,6 +31,14 @@ menu:[
             href:"/crm",
             url:"crm"
         },
+        {
+            english: "CRM-ORDERS",
+            persian: "مدیریت سفارشات",
+            index:1,
+            icon:"fa-check",
+            href:"/crm-orders",
+            url:"crm-orders"
+        },
         ]
     },
     {
