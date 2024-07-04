@@ -374,7 +374,7 @@ function Users(props) {
           title={tabletrans.brand[lang]}
           class="filterComponent"
           direction={direction}
-          action={(e)=>{setBrand(e)}}
+          action={(e)=>{setBrand(e.enTitle)}}
           options={OptionBrand.filter}
           label="enTitle"
         />

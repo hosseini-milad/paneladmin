@@ -34,7 +34,7 @@ function OrderTableRow(props){
     .then(res => res.json())
     .then(
       (result) => {
-        windows.location.reload()
+        window.location.reload()
       },
         (error) => {
           
