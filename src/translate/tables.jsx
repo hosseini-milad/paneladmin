@@ -18,6 +18,10 @@ const tabletrans ={
         persian: "کلاس ها"
     },
     
+    garantee:{
+        english: "Garantee",
+        persian: "گارانتی"
+    },
     activeText:{
         english: "Active",
         persian: "فعال"

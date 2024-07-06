@@ -57,6 +57,7 @@ import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
 import Discount from './pages/Discount';
 import AccessUser from './pages/access-user';
+import Garantee from './pages/Garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
 
 const cookies = new Cookies();
@@ -81,6 +82,7 @@ root.render(
         <Route path="/" element={<Layout><Landing lang={lang}/></Layout>}/>
         <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
         <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
+        <Route path="/garantee" element={<Layout><Garantee lang={lang}/></Layout>}/>
         <Route path="/crm" element={<Layout><CRM lang={lang}/></Layout>}/>
         <Route path="/crmlist" element={<Layout><CRMList lang={lang}/></Layout>}/>
         <Route path="/crmlist/detail/:crmId" element={<Layout><CRMAdd lang={lang}/></Layout>}/>
