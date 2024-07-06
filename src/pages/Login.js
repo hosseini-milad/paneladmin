@@ -91,8 +91,9 @@ function Login(props){
                     token:user.token,
                     username:(user.cName+" "+result.sName)
                 }, { path: '/' });
-                window.location.href=("/")
+                //window.location.href=("/")
         //setAllowMenu(result.data)
+        console.log(result)
       }
       else console.log(result)
     },
