@@ -150,12 +150,15 @@ catch{return}
 export const hasChild=(menu,valid)=>{
   if(!menu) return(0)
   var child = menu.children
+  try{
   for(var i=0;i<child.length;i++){
     var index = valid.findIndex(item=>item.title == child[i].english)
     if(index!==-1)
       return(1)
   }
   return(0)
+  }
+  catch{return(1)}
 }
   
 export default env
