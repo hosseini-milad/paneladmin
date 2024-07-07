@@ -24,11 +24,11 @@ function CustomerSecurity(props) {
       },
       body: JSON.stringify({
         userId: userData._id,
-        ...formData,
+        password:formData.confPass,
       }),
     };
     console.log(postOptions);
-    fetch(env.siteApi + "/api/auth/change-password", postOptions)
+    fetch(env.siteApi + "/user/password", postOptions)
       .then((res) => res.json())
       .then(
         (result) => {

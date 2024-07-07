@@ -954,3 +954,11 @@ checkbox-container label {
     outline: none;
   }
 }
+.order-table td{
+  padding: 8px !important;
+}
+.order-table td:nth-child(4){
+  width: fit-content;
+  white-space: nowrap;
+  text-align: center;
+}
