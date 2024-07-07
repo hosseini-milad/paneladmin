@@ -93,6 +93,7 @@ function Login(props){
                 }, { path: '/' });
                 window.location.href=("/")
         //setAllowMenu(result.data)
+        //console.log(result)
       }
       else console.log(result)
     },

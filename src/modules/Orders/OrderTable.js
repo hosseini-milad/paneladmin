@@ -7,7 +7,7 @@ function OrderTable(props){
   const lang=props.lang;
   const [detail,showDetail] = useState(-1)
     return(
-    <table>
+    <table className="order-table">
       <thead>
         <tr>
           <th>

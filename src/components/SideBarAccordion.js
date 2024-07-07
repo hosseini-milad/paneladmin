@@ -1,4 +1,4 @@
-import env from "../env";
+import env, { hasChild } from "../env";
 import errortrans from "../translate/error";
 import menutrans from "../translate/menuAccordion"
 import React, { useState } from "react";
@@ -20,6 +20,7 @@ function SideBarAccordion(props){
         cookies.remove(env.cookieName,{ path: '/' });
        setTimeout(()=>(window.location.reload(),1000))
     }
+    console.log(token)
     return(
         <aside className={
             `sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3
@@ -63,12 +64,13 @@ function SideBarAccordion(props){
             autoHideTimeout={1000}
             autoHideDuration={200}>
             <ul className="navbar-nav">
-            
+                
                 {menuList?menuList.menu.map((menu,i)=>(
+                    hasChild(menu,token.profile)?
                     <MenuItems menu={menu} key={i} domain={url}
                     lang={props.lang} profile={token.profile}
                     access={token.access}/>
-                )):''}
+                :<></>)):''}
                 
             </ul>
             </Scrollbars>

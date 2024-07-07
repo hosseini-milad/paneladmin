@@ -1,13 +1,13 @@
 const env={
-    // siteApi:'http://localhost:4000/api',
+    //siteApi:'http://localhost:4000/api',
     //siteApi:'https://panel.mehrgaz.com/api',
-    siteApi:'https://orderadmin.deleves.com/api',
-    // siteApi:'https://admin.mgmlens.com/api',
+    // siteApi:'https://orderadmin.deleves.com/api',
+    siteApi:'https://admin.mgmlens.com/api',
     
-    // siteApiUrl:'http://localhost:4000',
+   // siteApiUrl:'http://localhost:4000',
     //siteApiUrl:'https://panel.mehrgaz.com',
-    siteApiUrl:'https://orderadmin.deleves.com',
-    // siteApiUrl:'https://admin.mgmlens.com',
+    // siteApiUrl:'https://orderadmin.deleves.com',
+    siteApiUrl:'https://admin.mgmlens.com',
 
     printUrl:"https://mgmlens.com",
     //printUrl:"https://order.deleves.com",
@@ -146,6 +146,19 @@ return({year:parseInt(dateArray[0]),
   day:parseInt(dateArray[2])})
 }
 catch{return}
+}
+export const hasChild=(menu,valid)=>{
+  if(!menu) return(0)
+  var child = menu.children
+  try{
+  for(var i=0;i<child.length;i++){
+    var index = valid.findIndex(item=>item.title == child[i].english)
+    if(index!==-1)
+      return(1)
+  }
+  return(0)
+  }
+  catch{return(1)}
 }
   
 export default env
