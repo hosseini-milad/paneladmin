@@ -7,6 +7,7 @@ import './css/salimi.css';
 import './css/reyham.css';
 import './css/board.css';
 import './css/responsive.css';
+import './css/order.css';
 
 import {
   BrowserRouter as Router,
@@ -57,7 +58,7 @@ import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
 import Discount from './pages/Discount';
 import AccessUser from './pages/access-user';
-import Garantee from './pages/Garantee';
+import Garantee from './pages/garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
 
 const cookies = new Cookies();

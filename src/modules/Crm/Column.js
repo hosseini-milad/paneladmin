@@ -47,6 +47,8 @@ function Column(props){
                     {props.tasks.map((task,i)=>(
                         <Task key={task._id} 
                             taskList={task}
+                            token={token} 
+                            setBoardArray={props.setBoardArray}
                             action={action} 
                             index={i}/>
                     ))}

@@ -2,8 +2,10 @@ import {Draggable} from 'react-beautiful-dnd'
 import { dayFromNow } from '../../env'
 import { useState } from 'react'
 import TaskPopUp from './TaskPopUp'
+import OrderPopUp from './orderPopUp'
 function Task(props){
     const [taskPop,setTaskPop] = useState(0)
+    const [orderPop,setOrderPop] = useState(0)
     const taskData = props.taskList
     const taskUser = taskData.profileInfo
     return(<Draggable key={taskData._id}
@@ -25,7 +27,11 @@ function Task(props){
                     </div>
                     <div className='editTask'
                     onClick={()=>setTaskPop(1)}>
-                        Edit
+                        <i className='fa fa-info-circle'></i>اطلاعات تسک
+                    </div>
+                    <div className='editTask'
+                    onClick={()=>setOrderPop(1)}>
+                        <i className='fa fa-eye'></i>مشاهده سفارش
                     </div>
                     <span className="task-date">
                         <span className="icon-calendar"></span>
@@ -51,7 +57,13 @@ function Task(props){
                     btnText={"Update"} action={props.action}
                     data={taskData} close={()=>setTaskPop(0)}
                     />:<></>}
-                    
+                    {orderPop?<OrderPopUp title={"ویرایش سفارش"}
+                    btnText={"بروزرسانی"} action={props.action}
+                    token={props.token} crm={props.crm}
+                    direction={props.direction} access={props.access}
+                    setBoardArray={props.setBoardArray}
+                    data={taskData} close={()=>setOrderPop(0)}
+                    />:<></>}
                 </li>
             )}
         

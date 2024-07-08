@@ -19,6 +19,50 @@ textarea {
   top: 5px;
 }
 
+.crmAction {
+  background-color: var(--dark-blue-main);
+  padding: 20px;
+}
+.taskAction {
+  display: grid;
+  gap: 10px;
+}
+.taskBtn {
+  display: flex;
+  gap: 10px;
+}
+.btn-crm {
+  border-radius: 4px;
+  padding: 3px 15px;
+  border: none;
+}
+.btn-crm-accept {
+  background-color: lightgreen;
+}
+.btn-crm-cancel {
+  background-color: lightsalmon;
+}
+.btn-crm-edit {
+  background-color: orange;
+}
+
+.taskDetail {
+  display: flex;
+  gap: 10px;
+}
+.taskComment {
+  width: 50%;
+}
+.searchOrder {
+  display: flex;
+  gap: 10px;
+}
+.searchOrder .miniText {
+  width: 70%;
+}
+.searchOrder .miniBtn {
+  width: 30%;
+}
 .input-group div {
   width: 100%;
 }
