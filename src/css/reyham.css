@@ -955,7 +955,7 @@ checkbox-container label {
   }
 }
 .order-table td{
-  padding: 8px !important;
+  padding:0 8px !important;
 }
 .order-table td:nth-child(4){
   width: fit-content;

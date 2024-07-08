@@ -46,36 +46,35 @@ function OrderTableRow(props){
     return(<React.Fragment>
         <tr 
             className={activeAcc?"activeAccordion order-tr":"accordion order-tr"}>
-            <td className="checkBoxStyle">
-              {props.index+1}</td>
-            <td>
+              <td className="checkBoxStyle">
+                {props.index+1}
+              </td>
+              <td>
               <small>
                 {order.managerInfo&&order.managerInfo[0]?
                 order.managerInfo[0].cName:''}
               </small>
-            </td>
-            <td>
+              </td>
+              <td>
                   <p onClick={()=> window.location.href=
                     "/orders/detail/"+category==="rx"?order.rxOrderNo:order.stockOrderNo}>
                     {category==="rx"?order.rxOrderNo:order.stockOrderNo}</p>
                 
-            </td>
-            <td>
+              </td>
+              <td>
                 <div className="listTd">{order.singleLens?
                 order.singleLens.title:''}
                 </div>
-            </td>
-            <td>
-                <div className="order-num">
-                  <p>{order.ghabz}</p>
-                </div>
               </td>
               <td>
-              <div className="cu-avatar">
+                <small></small>
+              </td>
+              <td>
+                <div className="cu-avatar">
                   <img src={order.expressPrice?"/img/avatar/urgent.png":
-                   order.moreInformation?"/img/avatar/comment.png":
-                   "/img/avatar/defaultProduct.png"} alt="MGM"
-                   title={order.moreInformation}/>
+                    order.moreInformation?"/img/avatar/comment.png":
+                    "/img/avatar/defaultProduct.png"} alt="MGM"
+                    title={order.moreInformation}/>
                   <div className="cu-name">
                     <p className="name">{order.userInfo[0]?
                     order.userInfo[0].cName:''}</p>

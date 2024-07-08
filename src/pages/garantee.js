@@ -26,7 +26,7 @@ const Garantee = (props) => {
     setLoading(1)
     const body={
       orderNo:OrderID,
-  }
+    }
     const postOptions={
         method:'post',
         headers: {'Content-Type': 'application/json',
@@ -50,7 +50,34 @@ const Garantee = (props) => {
       }
       );
 }, [OrderID]);
-console.log(RxStock)
+  const sendGarantee =()=>{
+  setLoading(1)
+    const body={
+      orderNo:OrderID,
+      guranteeName:content.userData.cName,
+      guranteePrice:content.price,
+    }
+    const postOptions={
+        method:'post',
+        headers: {'Content-Type': 'application/json',
+        "x-access-token":token&&token.token,"userId":token&&token.userId},
+        body:JSON.stringify(body)
+      }
+
+      fetch(env.siteApi + "/panel/order/setGuranteeOrder",postOptions)
+      .then(res => res.json())
+      .then(
+        (result) => {
+        setLoading(0)
+      },
+        (error) => {
+        setLoading(0);
+        console.log(error);
+      }
+      );
+  }
+
+
 if(!content)
   return(
       <div >Waiting</div>
@@ -70,6 +97,7 @@ if(!content)
                 className="search-input"
                 action={(e)=>{setSearch(e)}}
                 doAction={(e)=>e.keyCode===13?setOrderID(search):console.log("common")}
+                defaultValue={content.orderData&&content.orderData.rxOrderNo}
               />
               <button onClick={()=>{setOrderID(search)}}  className="search-btn">جستجو<i class="fa-solid fa-magnifying-glass" ></i></button>
             </div>
@@ -83,16 +111,13 @@ if(!content)
               direction={lang.dir}
               defaultValue={content.lData&&content.lData.brandName}
               />
-              {RxStock=="stock"?<StyleSelect
-              title={tabletrans.material[lang]}
-              direction={lang.dir}
-              />:
+              
               <StyleInput
                 title={tabletrans.material[lang]}
                 direction={lang.dir}
                 defaultValue={content.lData&&content.lData.material}
               />
-              }
+              
             </div>
           </div>
           <div className="image-wrapper">

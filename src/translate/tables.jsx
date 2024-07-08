@@ -71,6 +71,10 @@ const tabletrans ={
         english: "Brand",
         persian: "برند"
     },
+    express:{
+        english: "Express",
+        persian: "فوری"
+    },
     transport:{
         english: "Transport",
         persian: "نحوه ارسال"
@@ -494,7 +498,7 @@ const tabletrans ={
     },
     invoice:{
         english: "Invoice",
-        persian: "قبض/فروشگاه"
+        persian: "قبض فروشگاه/نام بیمار"
     },
     bugCount:{
         english: "Bug Count",
