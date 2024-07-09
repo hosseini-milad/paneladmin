@@ -84,8 +84,7 @@ root.render(
         <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
         <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
         <Route path="/garantee" element={<Layout><Garantee lang={lang}/></Layout>}/>
-        <Route path="/crm" element={<Layout><CRM lang={lang}/></Layout>}/>
-        
+                
         <Route path="/crm" element={<Layout><CRM crm="mainCrm" lang={lang}/></Layout>}/>
         <Route path="/crm-orders" element={<Layout><CRM crm="orders" lang={lang}/></Layout>}/>
         <Route path="/crmlist" element={<Layout><CRMList lang={lang}/></Layout>}/>

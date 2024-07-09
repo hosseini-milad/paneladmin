@@ -941,10 +941,12 @@ margin-left: auto;
 }
 .btn-wrappper .del-btn{
   width: 45%;
+  min-width: 100px;
   text-align: center;
-  margin: 0 auto;
+  margin: 0 auto 0 10px;
   border-radius: 4px;
-  font-size: 20px;
+  font-size: 16px;
+  padding: 3px 10px;
   color: #fff;
   font-weight: bold;
   line-height: 2;
