@@ -7,6 +7,7 @@ import './css/salimi.css';
 import './css/reyham.css';
 import './css/board.css';
 import './css/responsive.css';
+import './css/order.css';
 
 import {
   BrowserRouter as Router,
@@ -56,6 +57,8 @@ import Landing from './pages/Landing';
 import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
 import Discount from './pages/Discount';
+import AccessUser from './pages/access-user';
+import Garantee from './pages/garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
 
 const cookies = new Cookies();
@@ -80,12 +83,16 @@ root.render(
         <Route path="/" element={<Layout><Landing lang={lang}/></Layout>}/>
         <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
         <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
-        <Route path="/crm" element={<Layout><CRM lang={lang}/></Layout>}/>
+        <Route path="/garantee" element={<Layout><Garantee lang={lang}/></Layout>}/>
+                
+        <Route path="/crm" element={<Layout><CRM crm="mainCrm" lang={lang}/></Layout>}/>
+        <Route path="/crm-orders" element={<Layout><CRM crm="orders" lang={lang}/></Layout>}/>
         <Route path="/crmlist" element={<Layout><CRMList lang={lang}/></Layout>}/>
         <Route path="/crmlist/detail/:crmId" element={<Layout><CRMAdd lang={lang}/></Layout>}/>
 
 
         <Route path="/users" element={<Layout><Users lang={lang}/></Layout>}/>
+        <Route path="/user" element={<Layout><AccessUser lang={lang}/></Layout>}/>
         <Route path="/newusers" element={<Layout><NewUsers lang={lang}/></Layout>}/>
         <Route path="/users/detail/:userId" element={<Layout><UserDetailHolder lang={lang}/></Layout>}/>
         <Route path="/customers/detail/:userId" element={<Layout><CustomerDetailHolder lang={lang}/></Layout>}/>

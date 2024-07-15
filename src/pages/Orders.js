@@ -123,6 +123,7 @@ function Orders(props){
               orders={content}
               lang={lang}
               category={filters.category}
+              token={token}
             />
           )}
         </div>

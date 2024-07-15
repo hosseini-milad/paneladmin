@@ -13,8 +13,8 @@ function ErrorAction(props){
             <div className="d-m-content">
               <p className="popTitle">{props.title}</p>
               <div className="sure-checkbox">
-                <input type="checkbox" name="sure checkbox" id="sure"/>
-                <label for="sure">{props.text}</label>
+                {/*<input type="checkbox" name="sure checkbox" id="sure"/>*/}
+                <label htmlFor="sure" dangerouslySetInnerHTML={{__html:props.text}}></label>
 
               </div>
               <div className="btn-wrappper">

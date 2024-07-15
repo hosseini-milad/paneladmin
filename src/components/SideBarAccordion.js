@@ -1,4 +1,4 @@
-import env from "../env";
+import env, { hasChild } from "../env";
 import errortrans from "../translate/error";
 import menutrans from "../translate/menuAccordion"
 import React, { useState } from "react";
@@ -63,12 +63,13 @@ function SideBarAccordion(props){
             autoHideTimeout={1000}
             autoHideDuration={200}>
             <ul className="navbar-nav">
-            
+                
                 {menuList?menuList.menu.map((menu,i)=>(
+                    hasChild(menu,token.profile)?
                     <MenuItems menu={menu} key={i} domain={url}
                     lang={props.lang} profile={token.profile}
                     access={token.access}/>
-                )):''}
+                :<></>)):''}
                 
             </ul>
             </Scrollbars>
