@@ -61,7 +61,7 @@ function OrderPopUp(props){
             
             <div className="crmAction">
                 <TaskAction content={content} token={token} taskData={content.taskData}
-                data={props.data} setBoard={(e)=>props.setBoardArray(e)}
+                data={props.data} setBoard={(e)=>props.setBoardArray(e)} store={props.store}
                 close={props.close}/>
             </div>
             </div>

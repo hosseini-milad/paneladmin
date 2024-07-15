@@ -125,12 +125,12 @@ function TaskAction(props){
                 <p>لغو سفارش</p></button>
                 </div>
             </div> )}
-        if(data.taskStep==="outVehicle"){
+        if(props.store){
             return(
             <div className="taskAction">
                 <button type="button" className="btn-crm btn-crm-accept"
                 onClick={()=>updateTask()}>
-                    تایید
+                    رسید سفارش
                 </button>
                 
             </div> )}

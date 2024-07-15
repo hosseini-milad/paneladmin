@@ -4,28 +4,35 @@ import dashtrans from "../../translate/dashboard"
 
 function DashBoardDaily(props){
   const [data,setData] = useState('')
+  const token=props.token
     useEffect(() => {
-      const body={}
       const postOptions={
-          method:'post',
+          method:'get',
           headers: {'Content-Type': 'application/json',
-          //"x-access-token":token&&token.token,"userId":token&&token.userId
-        },
-          body:JSON.stringify(body)
+          "x-access-token":token&&token.token,"userId":token&&token.userId
         }
-    fetch(env.siteApi + "/panel/lens/report-top")
+        }
+    fetch(env.siteApi + "/panel/lens/report-top",postOptions)
     .then(res => res.json())
     .then(
       (result) => {
-        setData('')
-        setTimeout(()=> setData(result),200)
+        if(result.error){
+          if(result.error.includes("Invalid")){
+            props.cookies.remove(env.cookieName,{ path: '/' });
+            setTimeout(()=>(document.location.reload(),500))
+          }
+        }
+        else{
+          setData('')
+          setTimeout(()=> setData(result),200)
+        }
       },
       (error) => {
-        console.log(error);
+          console.log(error);
       }
       
   )},[])
-  console.log(data)
+  //console.log(data)
     return(
         <div className="row">
             <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">

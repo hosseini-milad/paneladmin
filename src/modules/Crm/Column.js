@@ -3,6 +3,7 @@ import {Droppable} from 'react-beautiful-dnd';
 import TaskPopUp from "./TaskPopUp";
 import { useState } from "react";
 import env from "../../env";
+import SearchOrder from "./SearchOrder";
 function Column(props){
     const token = props.token
     const [taskPop,setTaskPop] = useState(0)
@@ -37,8 +38,9 @@ function Column(props){
             <i className="fa fa-plus addTask" 
                 onClick={()=>setTaskPop(1)}></i>:<></>}
             </h2>
-            
-            <Droppable droppableId={props.column.enTitle}>
+            {(props.column.enTitle=="sending"||props.column.enTitle=="shop")?
+                <SearchOrder data={props}/>:
+                <Droppable droppableId={props.column.enTitle}>
                 {(provided,snapshot)=>(
                 <ul className={snapshot.isDraggingOver?"board-list-item dragCol":"board-list-item"}
                     ref={provided.innerRef}
@@ -55,7 +57,7 @@ function Column(props){
                 {provided.placeholder}
                 </ul>
                 )}
-            </Droppable>
+            </Droppable>}
             {taskPop?<TaskPopUp title={"Create New Task"}
             btnText={"Create"} action={action}
             taskStep={props.column.enTitle}
