@@ -67,7 +67,7 @@ function Orders(props){
         }
       );
   }, [filters]);
-
+  console.log(filters)
   //window.scrollTo(0, 270);},[pageNumber,filters,perPage,refreshTable])
   return (
     <div className="user" style={{ direction: direction }}>

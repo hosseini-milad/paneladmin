@@ -49,8 +49,8 @@ const createConditionalAction = (property, minLength) => {
           title={tabletrans.express[props.lang.lang]}
           label="label"
           direction={props.lang.dir}
-          options={[{label:"فوری",value:"0"},{label:"معمولی",value:""}]}
-          action={(e) => handleFilterChange("expressPrice", e.value)}
+          options={[{label:"فوری",value:"1"},{label:"معمولی",value:"2"}]}
+          action={(e) => handleFilterChange("expressPrice", e?e.value:"")}
         />
         <StyleInput
           title={tabletrans.customer[props.lang.lang]}

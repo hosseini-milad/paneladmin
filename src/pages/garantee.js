@@ -202,7 +202,8 @@ if(!content)
             <label className="switch-label" htmlFor="switch"></label>
             <p>فوری</p>
           </div>
-          <button className="submit">ثبت<i class="fa-solid fa-plus"></i></button>
+          <button className="submit">ذخیره</button>
+          <button className="submit">ذخیره و چاپ</button>
         </div>
       </div>
     </div>
