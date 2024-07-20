@@ -83,9 +83,14 @@ root.render(
         <Route path="/" element={<Layout><Landing lang={lang}/></Layout>}/>
         <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
         <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
+<<<<<<< HEAD
         <Route path="/Garantee" element={<Layout><Garantee lang={lang}/></Layout>}/>
         <Route path="/crm" element={<Layout><CRM lang={lang}/></Layout>}/>
         
+=======
+        <Route path="/garantee" element={<Layout><Garantee lang={lang}/></Layout>}/>
+                
+>>>>>>> 82da55e0f51b968ea4a16384768ef994b92964e2
         <Route path="/crm" element={<Layout><CRM crm="mainCrm" lang={lang}/></Layout>}/>
         <Route path="/crm-orders" element={<Layout><CRM crm="orders" lang={lang}/></Layout>}/>
         <Route path="/crmlist" element={<Layout><CRMList lang={lang}/></Layout>}/>

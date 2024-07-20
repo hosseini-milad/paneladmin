@@ -39,16 +39,15 @@ const initalDataStatic = {
 function CRM(props){
     const [boardArray,setBoardArray] = useState()
     const token=cookies.get(env.cookieName)
+    
     useEffect(()=>{
-        const body={
-            crmId:"65b7c4bf4df713a2e74544c0"
-        }
         const postOptions={
             method:'post',
             headers: {'Content-Type': 'application/json',
             "x-access-token":token&&token.token,"userId":token&&token.userId},
-            body:JSON.stringify(body)
+            body:JSON.stringify({crmId:props.crm})
           }
+          //console.log(postOptions)
       fetch(env.siteApi + "/panel/crm/fetch-tasks",postOptions)
       .then(res => res.json())
       .then(
@@ -180,13 +179,14 @@ function CRM(props){
         document.body.style.backgroundColor=`rgba(153,141,217,${opacity})`*/
     }
     return(
-    <div className="crm">
+    <div className="crm" style={{direction:"rtl"}}>
         <div className='reyham-board board-list'>
             {boardArray?<DragDropContext
             onDragStart={DragStart}
             onDragUpdate={DragUpdate}
             onDragEnd={DragEnd}>
-                {boardArray.columnOrder.map((columnId)=>{
+                {boardArray.columnOrder&&
+                    boardArray.columnOrder.map((columnId)=>{
                     const column = boardArray.columnOrder.find
                         (item=>item.enTitle===columnId.enTitle);
                     const tasks = boardArray.columns[columnId.enTitle];
