@@ -57,7 +57,7 @@ const Garantee = (props) => {
   const sendGarantee =()=>{
   setLoading(1)
     const body={
-      orderNo:content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo,
+      orderNo:content.orderData.rxOrderNo,
       guranteeName:Customer,
     }
     const postOptions={
@@ -70,7 +70,7 @@ const Garantee = (props) => {
       .then(res => res.json())
       .then(
         (result) => {
-        const OrderNum =content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo
+        const OrderNum =content.orderData.rxOrderNo
         const OrderType = (OrderNum.includes("S"))?"stock":"rx"
         setLoading(0)
         {RxStock=="stock"?window.open("/print-guaranteeStock/"+OrderNum,'_blank'):window.open("/print-guaranteeRx/"+OrderNum,'_blank')}
@@ -81,6 +81,7 @@ const Garantee = (props) => {
       }
       );
   }
+
 if(!content)
   return(
       <div >Waiting</div>
@@ -100,7 +101,7 @@ if(!content)
                 className="search-input"
                 action={(e)=>{setSearch(e)}}
                 doAction={(e)=>e.keyCode===13?setOrderID(search):console.log("common")}
-                defaultValue={content.orderData&&content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo}
+                defaultValue={content.orderData&&content.orderData.rxOrderNo}
               />
               <button onClick={()=>{setOrderID(search)}}  className="search-btn">جستجو<i class="fa-solid fa-magnifying-glass" ></i></button>
             </div>

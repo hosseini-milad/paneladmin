@@ -65,7 +65,7 @@ function PrintGurantee(props){
         <table className="hesabfaMainTable">
           <tbody>
             <tr>
-              <td colSpan={5}>Order No:{rxOrderNo} 
+              <td colSpan={5} className="padding-td">Order No:{rxOrderNo} 
                _Dt.{pDate}</td>
             </tr>
             <tr className="guranteeRow">
@@ -99,11 +99,11 @@ function PrintGurantee(props){
               <td>{items.add}</td>
             </tr>))} */}
             <tr>
-              <td colSpan={5}>{OrderRdetail.title}</td>
+              <td colSpan={5} className="padding-td">{OrderRdetail.brand+" "+OrderRdetail.index+" "+OrderRdetail.material}</td>
             </tr>
             <tr>
-              <td colSpan={5}>{orderInfo&&orderInfo.stockGuranteeName?
-                orderInfo.stockGuranteeName:UserInfo.cName}</td>
+              <td colSpan={5} className="padding-td">{orderInfo&&orderInfo.orderData.stockGuranteeName?
+                orderInfo.orderData.stockGuranteeName:UserInfo.cName}</td>
             </tr>
           </tbody>
         </table>
