@@ -60,6 +60,9 @@ import Discount from './pages/Discount';
 import AccessUser from './pages/access-user';
 import Garantee from './pages/Garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
+import PrintGuranteeStock from "./modules/Orders/printGuranteeStock";
+import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
+
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -103,6 +106,8 @@ root.render(
         <Route path="/access/detail/:profileId" element={<Layout><ProfileAdd lang={lang}/></Layout>}/>
         <Route path="/filter" element={<Layout><FilterHolder lang={lang}/></Layout>}/>
         <Route path="/filter/detail/:filtereId" element={<Layout><FilterAdd lang={lang}/></Layout>}/>
+        <Route path="/print-guaranteeStock/:orderId" element={<PrintGuranteeStock />} />
+        <Route path="/print-guaranteeRx/:orderId" element={<PrintGuranteeRx />} />
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/cancelorders" element={<Layout><CanOrders lang={lang}/></Layout>}/>
