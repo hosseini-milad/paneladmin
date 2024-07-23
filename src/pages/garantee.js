@@ -17,7 +17,7 @@ const Garantee = (props) => {
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [RxStock,setRxStock] = useState("")
-  const [OrderID,setOrderID] = useState("")
+  const [OrderID,setOrderID] = useState(document.location.pathname.split('/')[2]?document.location.pathname.split('/')[2]:"")
   const [loading,setLoading] = useState(0)
   const [search,setSearch] = useState('')
   const [content,setContent] = useState("")
@@ -43,6 +43,7 @@ const Garantee = (props) => {
       .then(
         (result) => {
         setLoading(0)
+        
         setContent('')
         setTimeout(()=> setContent(result),200)
         setTimeout(()=> setRxStock(result.status),200)
@@ -53,7 +54,7 @@ const Garantee = (props) => {
         console.log(error);
       }
       );
-}, [OrderID]);
+}, [search]);
   const sendGarantee =()=>{
   setLoading(1)
     const body={
@@ -192,7 +193,7 @@ if(!content)
             
             <div className="fake-input">
                 <p>{content.price&&content.price}</p>
-                <span>هزینه تراش به تومان</span>
+                <span>هزینه گارانتی به تومان</span>
             </div>
           </div>
           {/* <StyleInput
