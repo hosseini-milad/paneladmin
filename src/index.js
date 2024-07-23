@@ -58,7 +58,7 @@ import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
 import Discount from './pages/Discount';
 import AccessUser from './pages/access-user';
-import Garantee from './pages/Garantee';
+import Garantee from './pages/garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
 import PrintGuranteeStock from "./modules/Orders/printGuranteeStock";
 import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
@@ -87,9 +87,7 @@ root.render(
         <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
         <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
         <Route path="/Garantee" element={<Layout><Garantee lang={lang}/></Layout>}/>
-        <Route path="/crm" element={<Layout><CRM lang={lang}/></Layout>}/>
         
-                
         <Route path="/crm" element={<Layout><CRM crm="mainCrm" lang={lang}/></Layout>}/>
         <Route path="/crm-orders" element={<Layout><CRM crm="orders" lang={lang}/></Layout>}/>
         <Route path="/crmlist" element={<Layout><CRMList lang={lang}/></Layout>}/>

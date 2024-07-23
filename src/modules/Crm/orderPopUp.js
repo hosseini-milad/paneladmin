@@ -11,6 +11,7 @@ import OrderShow from "./OrderShow"
 
 function OrderPopUp(props){
     const data =props.data
+    console.log(data)
     const token = props.token
     const [content,setContent] = useState()
     const [error,setError] = useState({message:'',color:"brown"})
@@ -32,7 +33,7 @@ function OrderPopUp(props){
           console.log(error);
         })
     },[])
-    if(!content){
+    if(!content||!data){
         return
     } else
     return(
