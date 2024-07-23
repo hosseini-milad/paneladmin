@@ -1205,10 +1205,18 @@ margin-left: auto;
   padding: 5px 10px;
   margin-bottom: 5px;
   transition: .3s all;
+  position: relative;
 }
 .orderRow:hover{
   background-color: #63c353;
   color:#111;
   transition: .3s all;
   cursor: pointer;
+}
+.checkStatus{
+  position: absolute;
+  left: 0;
+}
+.greenIcon{
+  color:lightgreen;
 }

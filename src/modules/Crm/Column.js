@@ -4,6 +4,7 @@ import TaskPopUp from "./TaskPopUp";
 import { useState } from "react";
 import env from "../../env";
 import SearchOrder from "./SearchOrder";
+import ShopOrder from "./ShopOrder";
 function Column(props){
     const token = props.token
     const [taskPop,setTaskPop] = useState(0)
@@ -38,8 +39,11 @@ function Column(props){
             <i className="fa fa-plus addTask" 
                 onClick={()=>setTaskPop(1)}></i>:<></>}
             </h2>
-            {(props.column.enTitle=="sending"||props.column.enTitle=="shop")?
+            {props.column.enTitle=="sending"?
                 <SearchOrder data={props}/>:
+                props.column.enTitle=="shop"?
+                <ShopOrder data={props}
+                setBoardArray={props.setBoardArray}/>:
                 <Droppable droppableId={props.column.enTitle}>
                 {(provided,snapshot)=>(
                 <ul className={snapshot.isDraggingOver?"board-list-item dragCol":"board-list-item"}

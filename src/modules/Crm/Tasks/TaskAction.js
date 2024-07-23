@@ -21,8 +21,7 @@ function TaskAction(props){
                 status:action?action:'',
                 changeData:{...changeData,factory:factoryData}})
           }
-        //console.log(postOptions)
-      fetch(env.siteApi + "/panel/crmOrder/check-status",postOptions)
+        fetch(env.siteApi + "/panel/crmOrder/check-status",postOptions)
       .then(res => res.json())
       .then(
         (result) => {
@@ -31,7 +30,7 @@ function TaskAction(props){
             }
             else{
 
-                setTimeout(()=>props.close(),3000)
+                setTimeout(()=>props.close(),2000)
                 props.setBoard(result)
             }
         },
@@ -71,58 +70,31 @@ function TaskAction(props){
                 text={error.text} color={error.color} icon={error.icon}
                 action={()=>updateTask(error.state,error.data)} close={(e)=>showError()}/>:<></>}
         </div> )}
-        if(data.taskStep==="inVehicle"){
+        if(data.taskStep.includes("suspend")){
             return(
             <div className="taskAction">
                 <div className="taskBtn">
-                    <input type="input" placeholder="پلاک خودرو" 
-                onChange={(e)=>setChangeData(prevState => ({
-                    ...prevState,
-                    carNo:e?e.target.value:''
-                  }))}/>
-                <input type="input" placeholder="توضیحات" />
                 <button type="button" className="btn-crm btn-crm-accept"
-                onClick={()=>updateTask()}>
-                    تایید
+                onClick={()=>showError({state:'',data:'',color:"#8DA750",title:"ثبت در کارخانه",
+                    text:`آیا از ثبت سفارش اطمینان دارید؟`,buttonText:"ثبت مجدد "})}>
+                ثبت مجدد فاکتور
                 </button>
-                <button type="button" className="btn-crm btn-crm-info"
-                    onClick={()=>window.location.href="/orders/print/"+data.orderNo}>
-                    <p>چاپ سفارش</p></button>
-                    </div>
-            </div> )}
-        if(data.taskStep==="saleControl"){
-            return(
-            <div className="taskAction">
-                <div className="taskDetail">
-                    <input type="input" placeholder="قبض دریافت" 
-                    onChange={(e)=>setChangeData(prevState => ({
-                        ...prevState,
-                        ghabzIn:e?e.target.value:''
-                      }))}/>
-                    <input type="input" placeholder="قبض پرداخت" 
-                    onChange={(e)=>setChangeData(prevState => ({
-                        ...prevState,
-                        ghabzOut:e?e.target.value:''
-                      }))}/>
-                    <input type="input" placeholder="شماره مجوز" 
-                    onChange={(e)=>setChangeData(prevState => ({
-                        ...prevState,
-                        cert:e?e.target.value:''
-                      }))}/>
-                    <input className="taskComment" 
-                        type="input" placeholder="توضیحات" />
                 </div>
+                {error?<ErrorAction title={error.title} buttonText={error.buttonText}
+                text={error.text} color={error.color} icon={error.icon}
+                action={()=>updateTask(error.state,error.data)} close={(e)=>showError()}/>:<></>}
+            </div> )}
+        if(data.taskStep==="shop"){
+            return(
+            <div className="taskAction">
                 <div className="taskBtn">
                 <button type="button" className="btn-crm btn-crm-accept"
-                onClick={()=>updateTask("outVehicle")}>
+                onClick={()=>updateTask("")}>
                     تایید
                 </button>
                 <button type="button" className="btn-crm btn-crm-info"
                     onClick={()=>window.location.href="/orders/print/"+data.orderNo}>
                     <p>چاپ سفارش</p></button>
-                <button type="button" className="btn-crm btn-crm-cancel"
-                onClick={()=>window.location.href="/orders/print/"+data.orderNo}>
-                <p>لغو سفارش</p></button>
                 </div>
             </div> )}
         if(props.store){
