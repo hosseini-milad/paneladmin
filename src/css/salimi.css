@@ -3543,8 +3543,6 @@ input:checked + .switch-label:after {
   align-items: center;
 }
 
-.radio-wrapper input {
-}
 .return-input {
   padding-inline: 1rem;
 }
@@ -4997,13 +4995,12 @@ table {
   position: relative;
   width: 350px;
 
-
-  .user-btn{
+  .user-btn {
     position: absolute;
     top: 0;
     left: 0;
 
-    i{
+    i {
       font-size: 1rem;
     }
   }
@@ -6419,7 +6416,7 @@ slide-toggle {
 }
 /*End task*/
 /* lathe page */
-.lathe-page button{
+.lathe-page button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6450,42 +6447,42 @@ slide-toggle {
     align-items: flex-start;
     justify-content: flex-start;
   }
-  .input-index-wrapper{
+  .input-index-wrapper {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     direction: ltr;
+    gap: 0.5rem;
     padding-inline: 1rem;
     margin-top: 1rem;
-    p{
+    p {
       margin: 0;
     }
   }
 }
-.lathe-page .lathe-container .search-container{
+.lathe-page .lathe-container .search-container {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   gap: 1rem;
 
-  .search-btn{
+  .search-btn {
     width: 10%;
     padding: 0.5rem 0.5rem;
-    background-color:#4bcc4b;
+    background-color: #4bcc4b;
     border: none;
     outline: none;
     color: white;
-    border-radius:4px;
+    border-radius: 4px;
   }
   .MuiFormControl-root {
     border-radius: 1rem;
     width: 100%;
   }
-
 }
-.lathe-page .lathe-container .rx-stock{
+.lathe-page .lathe-container .rx-stock {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6493,42 +6490,42 @@ slide-toggle {
   width: 100%;
   margin-top: 1rem;
 
-  .tab-btn{
+  .tab-btn {
     width: 100%;
-    border-radius:4px;
-    border:2px solid #cfcfcf;
+    border-radius: 4px;
+    border: 2px solid #cfcfcf;
     padding: 0.35rem;
     text-align: end;
     color: #cfcfcf;
     cursor: pointer;
   }
-  .active-tab{
+  .active-tab {
     color: blue;
     border-color: blue;
   }
 }
-.lathe-page .lathe-container .brand-container{
+.lathe-page .lathe-container .brand-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 0.5rem;
   margin-top: 1rem;
 }
-.lathe-page .info-container{
+.lathe-page .info-container {
   display: flex;
-  align-items: center ;
+  align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
   width: 100%;
   gap: 1rem;
   padding-inline: 1rem;
-  .MuiFormControl-root{
+  .MuiFormControl-root {
     width: 80%;
   }
-  .dense-btn{
+  .dense-btn {
     width: 18%;
   }
-  .submit{
+  .submit {
     margin-bottom: 0.5rem;
     padding: 0.2rem 1rem;
     border: none;
@@ -6536,16 +6533,38 @@ slide-toggle {
     outline: none;
     color: grey;
   }
-  .container{
+  .container {
     flex-direction: row;
     width: 100%;
     gap: 1rem;
     padding: 0;
 
-    .MuiFormControl-root{
+    .MuiFormControl-root {
       width: 100%;
     }
   }
+}
 
+.fake-input {
+  width: 100%;
+  height: 40px;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 0.2rem;
+  direction: ltr;
+  position: relative;
 
+  span {
+    padding: 2px 5px;
+    background: #fff;
+    position: absolute;
+    top: -4px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 9px;
+    line-height: 0px;
+  }
+
+  p{
+    margin: 0;
+  }
 }

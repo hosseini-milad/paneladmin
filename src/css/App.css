@@ -27924,3 +27924,42 @@
     }
   }
   
+
+
+  .guranteePrint.guranteePrint {
+    font-family: "Arial";
+    width: 321px;
+    direction: ltr;
+    text-align: center;
+    position: static;
+    .hesabSection{
+      height: 36.8px;
+    }
+    .hesabSection .hesabfaSection{
+      width: calc(100% - 20px);
+    }
+  }
+  .guranteePrint table {
+    font-family: "Arial";
+    width: 100%;
+
+    tbody tr td{
+      width:unset;
+      height: unset;
+      text-align: unset;
+      font-weight: unset;
+      padding: 0px 7px !important;
+      line-height: normal;
+    }
+    .padding-td{
+      padding: 2px 7px !important;
+    }
+  }
+  .footerGurantee {
+    font-size: 12px;
+    display: block;
+    width: 95%;
+    text-align: center;
+    margin: 10px auto;
+  }
+  
