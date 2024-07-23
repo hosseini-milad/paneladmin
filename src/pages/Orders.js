@@ -89,6 +89,13 @@ function Orders(props){
           </label>
           <label
             className="edit-btn"
+            onClick={() => (window.location.href = "/Garantee")}
+          >
+            <i class="fa-solid fa-certificate"></i>
+            {tabletrans.garantee[lang]}
+          </label>
+          <label
+            className="edit-btn"
             onClick={() => (window.location.href = "/LatheService")}
           >
             <i class="fa-solid fa-plus"></i>
