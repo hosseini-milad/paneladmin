@@ -59,7 +59,7 @@ const createConditionalAction = (property, minLength) => {
 
         />
 
-        {category && category === "Stock" ? (
+        
           <StyleSelect
             title={"گارانتی"}
             direction={props.lang.dir}
@@ -73,9 +73,7 @@ const createConditionalAction = (property, minLength) => {
             action={(e) => handleFilterChange("gurantee", e)}
 
           />
-        ) : (
-          <></>
-        )}
+        
         <StyleDatePicker
           title={tabletrans.selectDate[props.lang.lang]}
           class="filterComponent"

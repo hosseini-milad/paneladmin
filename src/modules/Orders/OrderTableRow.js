@@ -97,10 +97,10 @@ function OrderTableRow(props){
                 <Status status={order.status} class={"order-status"} 
                   lang={props.lang}/>
               </td>
-              <td>
+              {/* <td>
                 <Status status={order.status} class={"order-status"} 
                   lang={props.lang}/>
-              </td>
+              </td> */}
             <td>
               <div className="more-btn">
               <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
@@ -123,7 +123,7 @@ function OrderTableRow(props){
               </div>:<></>}
             </td>
           </tr>
-          {activeAcc?
+          {activeAcc?<>
           <tr className="sub-order">
             <td colSpan="7">{category==="rx"?
               <OrderQuickDetail order={order}/>:
@@ -141,8 +141,19 @@ function OrderTableRow(props){
                 />  
                 <button className="edit-btn" type="button" onClick={()=>{UpdateStatus(order.rxOrderNo,OrderStatus)}}>ثبت وضعیت</button>
               </div>:<></>}
+              <div className="gurantee-status">
+                <div className="title">
+                  <h6>وضعیت گارانتی:</h6>
+                  {order.stockGurantee?<span className="yes-g">دارد</span>:<span className="no-g">ندارد</span>}
+                </div>
+                <button className="add-gutantee edit-btn" onClick={()=>
+                  window.location.href="/Garantee/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}>{order.stockGurantee?"بررسی گارانتی":"ثبت گارنتی +"}</button>
+              </div>
+              
             </td>
           </tr>
+          
+          </>
           :<React.Fragment></React.Fragment>}
           </React.Fragment>
     )

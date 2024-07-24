@@ -42,10 +42,10 @@ function OrderTable(props){
           <p>{tabletrans.status[lang]}</p>
             <i></i>
           </th>
-          <th>
+          {/* <th>
           <p>{tabletrans.statusFactory[lang]}</p>
             <i></i>
-          </th>
+          </th> */}
           <th>
           </th>
         </tr>
