@@ -62,6 +62,7 @@ import Garantee from './pages/Garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
 import PrintGuranteeStock from "./modules/Orders/printGuranteeStock";
 import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
+import PrintLabel from "./modules/Orders/printLabel";
 
 
 const cookies = new Cookies();
@@ -107,6 +108,7 @@ root.render(
         <Route path="/filter/detail/:filtereId" element={<Layout><FilterAdd lang={lang}/></Layout>}/>
         <Route path="/print-guaranteeStock/:orderId" element={<PrintGuranteeStock />} />
         <Route path="/print-guaranteeRx/:orderId" element={<PrintGuranteeRx />} />
+        <Route path="/printLabel/:orderId" element={<PrintLabel />} />
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/cancelorders" element={<Layout><CanOrders lang={lang}/></Layout>}/>

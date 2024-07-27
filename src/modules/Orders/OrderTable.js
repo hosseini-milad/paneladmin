@@ -46,7 +46,7 @@ function OrderTable(props){
           <p>{tabletrans.statusFactory[lang]}</p>
             <i></i>
           </th> */}
-          <th>
+          <th><p>سایر امکانات</p>
           </th>
         </tr>
       </thead>

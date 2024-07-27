@@ -99,7 +99,7 @@ function PrintGurantee(props){
               <td>{items.add}</td>
             </tr>))} */}
             <tr>
-              <td colSpan={5} className="padding-td">{OrderLdetail.brand.toUpperCase()+" "+OrderLdetail.index+" "+OrderLdetail.material}</td>
+              <td colSpan={5} className="padding-td">{OrderLdetail.brandName&& OrderLdetail.brandName.toUpperCase()+" "+OrderLdetail.lenzIndex+" "+OrderLdetail.material}</td>
             </tr>
             <tr>
               <td colSpan={5} className="padding-td">{orderInfo&&orderInfo.orderData.stockGuranteeName?

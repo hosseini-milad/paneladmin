@@ -17,6 +17,7 @@
     "material-ui-flat-pagination": "^4.1.2",
     "npm": "^10.2.3",
     "react": "^18.2.0",
+    "react-barcode": "^1.5.3",
     "react-beautiful-dnd": "^13.1.1",
     "react-chartjs-2": "^5.2.0",
     "react-custom-scrollbars": "^4.2.1",

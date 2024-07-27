@@ -110,6 +110,9 @@ function OrderTableRow(props){
                     (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
                 {/* <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i> */}
+                <i className="fas fa-tag" onClick={()=>window.open("/printLabel/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank')}></i>
+                <i className="fa-solid fa-certificate" onClick={()=>
+                  window.location.href="/Garantee/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
               </div>
               {openOption?<div className="sub-more-menu">
                 <div className="sub-option sub-delete">
