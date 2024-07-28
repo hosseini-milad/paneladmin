@@ -103,8 +103,8 @@ function OrderTableRow(props){
               </td> */}
             <td>
               <div className="more-btn">
-              <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
-                onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
+              {/* <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
+                onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i> */}
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/orders/"+(order.rxOrderNo?"detail/":"stock/")+
                     (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
