@@ -6513,14 +6513,20 @@ slide-toggle {
 }
 .lathe-page .info-container {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-end;
+  justify-content:space-between;
   flex-wrap: wrap;
   width: 100%;
-  gap: 1rem;
+  margin-bottom: 1rem;
+  gap: 1rem 0;
+  
   padding-inline: 1rem;
   .MuiFormControl-root {
-    width: 80%;
+    width: 48%;
+  }
+  .fake-input{
+    width: 48%;
+    height: 45px;
   }
   .dense-btn {
     width: 18%;
@@ -6567,4 +6573,11 @@ slide-toggle {
   p {
     margin: 0;
   }
+}
+.product-title{
+  width: 95%;
+  margin-inline: 1rem 0.8rem;
+}
+.btn-wrapper{
+  width: 100%;
 }

@@ -12,7 +12,7 @@ function OrderDetails(props){
             <i class="fa-solid fa-pen pen"></i>
         </div>
         <OrderQuickDetail order={order} />
-        <div class="details-price">
+        {/* <div class="details-price">
             <div class="price-col-1">
             <p>{tabletrans.subTotal[props.lang]}</p>
             <p>{tabletrans.shipping[props.lang]}</p>
@@ -27,7 +27,7 @@ function OrderDetails(props){
             <p>0</p>
             <p>{PriceDiscount(detail.lenzPrice,rxFindCount(order),order.totalDiscount)}</p>
             </div>
-        </div>
+        </div> */}
         </div>
     )
 }

@@ -56,8 +56,9 @@ function OrderTableRow(props){
               </small>
               </td>
               <td>
-                  <p onClick={()=> window.location.href=
-                    "/orders/detail/"+category==="rx"?order.rxOrderNo:order.stockOrderNo}>
+                  <p onClick={()=>
+                  window.location.href="/orders/"+(order.rxOrderNo?"detail/":"stock/")+
+                    (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}>
                     {category==="rx"?order.rxOrderNo:order.stockOrderNo}</p>
                 
               </td>

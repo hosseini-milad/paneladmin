@@ -126,6 +126,7 @@ if(!content)
             <img src="../lathe-sample.jpeg" alt="Lenz" />
           </div>
         </div>
+        <div className="fake-input product-title"><p>{content.lData.facoryName+"|"+content.lData.lenzType+"|"+content.lData.lenzDesign+"|"+content.lData.lenzIndex+"|"+content.lData.material}</p><span>نام محصول</span></div>
         <div className="lathe-container">
           <div className="input-index-wrapper">
             <p className="title">OD</p>
@@ -181,7 +182,7 @@ if(!content)
           </div>
         </div>
         <div className="info-container">
-          <div className="container">
+          
             
             <TextField label="(به انگلیسی)نام مشتری" id="Customer"
                   value = {Customer?Customer:""}
@@ -195,7 +196,7 @@ if(!content)
                 <p>{content.price&&content.price}</p>
                 <span>هزینه گارانتی به تومان</span>
             </div>
-          </div>
+          
           {/* <StyleInput
               title="توضیحات"
               direction={lang.dir}
@@ -205,7 +206,7 @@ if(!content)
             <label className="switch-label" htmlFor="switch"></label>
             <p>فوری</p>
           </div> */}
-          <button onClick={()=>sendGarantee()} className="submit">ذخیره و چاپ</button>
+          <div className="btn-wrapper"><button onClick={()=>sendGarantee()} className="submit">ذخیره و چاپ</button></div>
         </div>
       </div>
     </div>
