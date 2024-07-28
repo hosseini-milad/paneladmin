@@ -54,7 +54,7 @@ const Garantee = (props) => {
         console.log(error);
       }
       );
-}, [search]);
+}, [OrderID]);
   const sendGarantee =()=>{
   setLoading(1)
     const body={
