@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import env, { normalPrice } from "../../env";
-import ImagePop from "../Stock/Stock01/ImagePop";
 
 function PreviewStock(props){
     const [stockDetail,setStockDetail] = useState([])

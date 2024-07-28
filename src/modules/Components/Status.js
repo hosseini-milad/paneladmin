@@ -1,7 +1,7 @@
 import statustrans from "../../translate/status"
 
 function Status(props){
-  var pureStatus = props.status&&props.status.split('|')[0]
+    var pureStatus = props.status&&props.status.split('|')[0]
     var status = statustrans[pureStatus]
     const text = props.text?props.text:status&&status[props.lang]
       // Handler to call the changeStatus function passed from props
