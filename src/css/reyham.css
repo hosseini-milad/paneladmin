@@ -1062,3 +1062,55 @@ checkbox-container label {
     }
   }
 }
+.printArea {
+  position: relative;
+}
+.userInfo {
+  display: flex;
+  min-height: 100px;
+}
+.userSection {
+  display: grid;
+  margin: auto;
+
+  strong,small,span{
+    color: black !important;
+  }
+}
+.userSection small {
+  display: flex;
+  justify-content: flex-end;
+  margin: 3px 5px;
+}
+.userSection b {
+  border: 1px solid #002a54 !important;
+  border-radius: 6px;
+  margin: 0 10px;
+  padding: 0 10px;
+  width: 100px !important;
+}
+.printError {
+  color: #ff4500;
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+}
+.orderDataHolder {
+  overflow-x: auto;
+  padding: 10px 5%;
+  width: 100%;
+}
+.tableHolder {
+  overflow-x: auto;
+}
+.orderTable.orderTable {
+  align-items: baseline;
+  border: 1px solid silver;
+  border-collapse: collapse;
+  direction: ltr;
+  width: 100%;
+  background-color: unset;
+}
+.orderTable tr:nth-child(2n), .orderTable tr:nth-child(2n+1) {
+  background-color: #fff;
+}
