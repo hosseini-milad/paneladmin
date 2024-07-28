@@ -9,6 +9,7 @@ import tabletrans from "../../../translate/tables"
 import errortrans from "../../../translate/error"
 import OrderOptions from "./OrderOptions"
 import StyleSelect from "../../../components/Button/AutoComplete";
+import ErrorAction from "../../../components/Modal/ErrorAction"
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -22,8 +23,11 @@ function OrderDetailHolder(props){
   const [content,setContent] = useState('')
   const [user,setUser] = useState('')
   const [sku,setSku] = useState('')
+  const [OrderNum,setOrderNum] = useState('')
+  const [OrderStatus,setOrderStatus] = useState('')
   const [log,setLog] = useState('')
-  const [OrderStatus,setOrderStatus] = useState("")
+  const [error,showError] = useState()
+
 
   useEffect(() => {
     var sku=''
@@ -122,21 +126,24 @@ return(
         <div class="od-header-btn">
           
           {/* <div class="print-btn">
-            <i class="fa-solid fa-print" onClick={()=>window.open("/print-guaranteeStock/"+OrderNum,'_blank')}></i>
+            <i class="fa-solid fa-print" onClick={()=>window.open("/orders/print/"+url,'_blank')}></i>
             <p>{tabletrans.print[lang]}</p>
           </div> */}
           {content.status!==("faktor"||"cancel")?<div className="status-wrapper">
-                <StyleSelect
-                  title={tabletrans.status[props.lang]}
-                  direction={props.lang.dir}
-                  label="label"
-                  action={(e)=>{setOrderStatus(e.value)}}
-                  options={(content.status=="inproduction")?[{label:"اتمام",value:"faktor"}]:[{label:"تایید",value:"inproduction"},{label:"لغو",value:"cancel"}]}
-                />  
-                <button className="edit-btn" type="button" onClick={()=>{UpdateStatus(content.rxOrderNo,OrderStatus)}}>تغییر وضعیت</button>
+                
+                {(content.status=="inproduction")?
+                <button className="accept-btn print-btn" onClick={()=>showError({OrderNum:url,OrderStatus:"faktor",color:"#8DA750",title:"اتمام سفارش",
+                  text:"آیا مطعن هستید؟",buttonText:"تایید"})}>اتمام</button>:
+                <>
+                <button className="accept-btn print-btn" onClick={()=>showError({OrderNum:url,OrderStatus:"inproduction",color:"#8DA750",title:"تایید سفارش",
+                  text:"آیا مطعن هستید؟",buttonText:"تایید"})}>تایید</button>
+                <button className="deny-btn print-btn" onClick={()=>showError({OrderNum:url,OrderStatus:"cancel",color:"#8DA750",title:"لغو سفارش",
+                  text:"آیا مطعن هستید؟",buttonText:"تایید"})}>لغو</button>
+                </>}
               </div>:<></>}
         </div>
       </div>
+
       <div class="od-wrapper">
         <div class="od-col-1">
           <OrderDetails data={sku} content={content} lang={lang}/>
@@ -146,6 +153,9 @@ return(
           {/* <OrderUser user={user} lang={lang} direction={direction} orderNo={content.rxOrderNo}/> */}
           <OrderOptions data={sku} content={content} lang={lang} direction={direction} />
         </div>
+        {error?<ErrorAction title={error.title} buttonText={error.buttonText}
+                text={error.text} color={error.color} icon={error.icon}
+                action={()=>UpdateStatus(error.OrderNum,error.OrderStatus)} close={(e)=>showError()}/>:<></>}
       </div>
     </div>
     )

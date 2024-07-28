@@ -6,7 +6,7 @@ import PreviewStock from "./PreviewStock";
 var token = JSON.parse(localStorage.getItem('token-lenz'));
 
 function PrintArea(props){
-    const rxOrderNo = document.location.pathname.split('/')[2];
+    const rxOrderNo = document.location.pathname.split('/')[3];
     const [orderInfo, setOrderInfo] = useState('');
     const [rxInfo , setRxInfo] = useState('')
     const type = rxOrderNo.charAt(0)==="S"?"Stock":"RX";

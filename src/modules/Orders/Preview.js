@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ImagePop from "../Stock/Stock01/ImagePop";
+import ImagePop from "./ImagePop";
 import Barcode from 'react-barcode';
 import env, { standardService } from "../../env";
 

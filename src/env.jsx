@@ -147,6 +147,31 @@ return({year:parseInt(dateArray[0]),
 }
 catch{return}
 }
+export const standardService=(serviceTitle)=>{
+  if(!serviceTitle||serviceTitle==='[]') return
+  if(serviceTitle.includes('{')){
+    const serviceParse = JSON.parse(serviceTitle)
+    return(
+      serviceParse.map((item,i)=><>
+      <span key={i}>{item.title}</span><br/>
+      </>))
+  }
+  else
+      return serviceTitle
+}
+export function normalPrice(priceText,xtra){
+  if(!priceText||priceText === null||priceText === undefined) return("")
+  
+  try{priceText =priceText.split(' ')[0];}catch{}
+  if(priceText === "0"||priceText === 0)return("رایگان");
+  var rawPrice = priceText.toString().split('.')[0]
+   rawPrice = rawPrice.replace(/\D/g,'')
+  
+  // console.log(rowPrice)
+  return(
+    (rawPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace( /^\D+/g, '')+(xtra?xtra:''))
+  )
+}
 export const hasChild=(menu,valid)=>{
   if(!menu) return(0)
   var child = menu.children
