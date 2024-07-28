@@ -25,8 +25,10 @@ function PrintLabel(props){
             (result) => {
               setTimeout(()=> setLensInfo(result[0]),500)
               setTimeout(()=> setOrderInfo(result[0].rxData),500)
+              setTimeout(()=> window.print(),500)
               // setLensInfo(result);
               //totalValues(result.data.Result.InvoiceItems)
+              setTimeout(()=> window.close(),1000)
             },
             (error) => {
               console.log({error:error});

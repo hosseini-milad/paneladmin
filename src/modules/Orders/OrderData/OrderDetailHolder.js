@@ -125,10 +125,10 @@ return(
         </div>
         <div class="od-header-btn">
           
-          {/* <div class="print-btn">
+          <div class="print-btn">
             <i class="fa-solid fa-print" onClick={()=>window.open("/orders/print/"+url,'_blank')}></i>
             <p>{tabletrans.print[lang]}</p>
-          </div> */}
+          </div>
           {content.status!==("faktor"||"cancel")?<div className="status-wrapper">
                 
                 {(content.status=="inproduction")?

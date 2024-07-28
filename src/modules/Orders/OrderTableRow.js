@@ -12,11 +12,17 @@ import env from "../../env";
 function OrderTableRow(props){
   const [openOption,setOpenOption] = useState(0)
   const [checkState,setCheckState] = useState(false)
+  const [windowOpen,setWindowOpen] = useState('')
   const [OrderStatus,setOrderStatus] = useState("")
   const category = props.category==="Stock"?"stock":"rx"
   const activeAcc = props.index===props.detail
   const order=props.order
   const token = props.token
+  const printGarantee = (status,orderNo)=>{
+    var url =status?"/print-guaranteeRx/":"/print-guaranteeStock/"
+    setWindowOpen(window.open(url+orderNo,'_blank'))
+    setTimeout(()=>windowOpen&&windowOpen.close())
+  }
   //console.log(order)
   const UpdateStatus = (rxOrderNo,status)=>{
     const body={
@@ -112,8 +118,9 @@ function OrderTableRow(props){
                 {/* <i className="tableIcon fas fa-ellipsis-v" 
                   onClick={()=>setOpenOption(openOption?0:1)}></i> */}
                 <i className="fas fa-tag" onClick={()=>window.open("/printLabel/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank')}></i>
-                <i className="fa-solid fa-certificate" onClick={()=>
-                  window.location.href="/Garantee/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
+                {(order.orderType==="single"||order.rxOrderNo)?<i className="fa-solid fa-certificate" onClick={()=>
+                  
+                  order.rxOrderNo?printGarantee(order.rxOrderNo,order.rxOrderNo):printGarantee(order.rxOrderNo,order.stockOrderNo)}></i>:<></>}
               </div>
               {openOption?<div className="sub-more-menu">
                 <div className="sub-option sub-delete">
