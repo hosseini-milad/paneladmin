@@ -64,6 +64,7 @@ import PrintGuranteeStock from "./modules/Orders/printGuranteeStock";
 import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
 import PrintLabel from "./modules/Orders/printLabel";
 import PrintArea from "./modules/Orders/PrintArea";
+import PreviewRx from "./modules/Orders/orderPreview/PreViewRX";
 
 
 const cookies = new Cookies();
@@ -115,6 +116,7 @@ root.render(
         <Route path="/cancelorders" element={<Layout><CanOrders lang={lang}/></Layout>}/>
         <Route path="/LatheService" element={<Layout><Lathe lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/orders/detail/previewRx/:orderId" element={<PreviewRx lang={lang}/>}/>
         <Route path="/orders/print/:orderId" element={<PrintArea lang={lang}/>}/>
         <Route path="/orders/stock/:orderId" element={<Layout><StockHolder lang={lang}/></Layout>}/>
         <Route path="/stock" element={<Layout><StockManage lang={lang}/></Layout>}/>

@@ -147,6 +147,28 @@ return({year:parseInt(dateArray[0]),
 }
 catch{return}
 }
+export function sumPrice(priceText,count){
+  
+  if(priceText === null||priceText === undefined) return(priceText)
+  var rawPrice = priceText.toString().replaceAll(',', '')
+  var tempSum = rawPrice.split('+');
+  var TotalSum = 0
+  for(var i=0;i<tempSum&&tempSum.length;i++)
+    TotalSum += tempSum[i]?parseInt(tempSum[i])|| 0:0;
+  return(
+    (TotalSum*(count?count:1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace( /^\D+/g, ''))
+  )
+}
+export function sumPriceNew(priceText,minusPrice){
+  if(!priceText||priceText === null||priceText === undefined) return("")
+  
+  var minusPrice2 = minusPrice?parseInt(minusPrice.toString().replace(/\D/g,'')):0
+  var rawPrice = parseInt(priceText.toString().replace(/\D/g,''))
+  //console.log(rawPrice,minusPrice)
+  return(
+    ((rawPrice+minusPrice2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace( /^\D+/g, ''))
+  )
+}
 export const standardService=(serviceTitle)=>{
   if(!serviceTitle||serviceTitle==='[]') return
   if(serviceTitle.includes('{')){
@@ -158,6 +180,14 @@ export const standardService=(serviceTitle)=>{
   }
   else
       return serviceTitle
+}
+export function purePrice(priceText){
+  if(!priceText)return(0)
+  var rawPrice = priceText.toString().replaceAll(',', '')
+  //console.log(rawPrice,priceText)
+  return(
+    (rawPrice.toString().replace( /^\D+/g, ''))
+  )
 }
 export function normalPrice(priceText,xtra){
   if(!priceText||priceText === null||priceText === undefined) return("")
