@@ -26,7 +26,7 @@ function PrintLabel(props){
               setTimeout(()=> setLensInfo(result[0]),500)
               setTimeout(()=> setOrderInfo(result[0].rxData),500)
               setTimeout(()=> window.print(),500)
-              // setTimeout(()=> window.close(),1000)
+              setTimeout(()=> window.close(),1000)
             },
             (error) => {
               console.log({error:error});
