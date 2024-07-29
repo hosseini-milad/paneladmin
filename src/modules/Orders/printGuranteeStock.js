@@ -10,7 +10,7 @@ function PrintGurantee(props){
   const [OrderRdetail , setOrderRdetail] = useState("")
   const [UserInfo , setUserInfo] = useState("")
   const type = rxOrderNo.charAt(0)==="S"?"Stock":"RX";
-  const[pDate,setPDate] = useState('');
+  const [pDate,setPDate] = useState('');
   //console.log(orderInfo)
   //console.log(userInfo)
   useEffect(() => {
