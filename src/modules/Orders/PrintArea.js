@@ -159,12 +159,12 @@ function PrintArea(props){
             orderInfo.status.split('|')[1]:''}</h4>
             {type==="RX"?<Preview defData={orderInfo} lenzDetail={rxInfo} colorList={color}/>:
               <PreviewStock defData={orderInfo} lenzDetail={rxInfo}/>}
-            <div style={{width:"92%",margin:"auto"}}>
+            {/* <div style={{width:"92%",margin:"auto"}}>
               <button className="printBtn" onClick={()=>printNow()}>چاپ A5</button>
               <button className="printBtn" onClick={()=>window.location.href="/status/"+rxOrderNo}>مشاهده سابقه</button>
               <button className="printBtn" onClick={()=>window.location.href="/fishprint/"+rxOrderNo}>فیش پرینت</button>
               <button className="printBtn" onClick={()=>window.location.href="/printStore/"+rxOrderNo}>حواله خروج</button>
-            </div>
+            </div> */}
         </div>
     )
 }

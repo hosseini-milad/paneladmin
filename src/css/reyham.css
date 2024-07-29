@@ -977,29 +977,27 @@ checkbox-container label {
   justify-content: flex-start;
   border-radius: 10px;
   gap: 0.5rem;
-  
-  .accept-btn{
+
+  .accept-btn {
     background-color: green;
     color: white;
   }
-  .deny-btn{
+  .deny-btn {
     background-color: red;
   }
-  input{
+  input {
     margin-right: 1rem;
   }
   .MuiAutocomplete-root {
     min-width: 150px !important;
     background-color: white;
-
-
   }
-  .MuiAutocomplete-endAdornment{
+  .MuiAutocomplete-endAdornment {
     width: 95%;
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
-    button{
+    button {
       width: unset;
       height: unset;
     }
@@ -1010,7 +1008,6 @@ checkbox-container label {
     width: 100%;
     border: none;
     outline: none;
-    
   }
 }
 .order-table td {
@@ -1073,7 +1070,9 @@ checkbox-container label {
   display: grid;
   margin: auto;
 
-  strong,small,span{
+  strong,
+  small,
+  span {
     color: black !important;
   }
 }
@@ -1088,6 +1087,12 @@ checkbox-container label {
   margin: 0 10px;
   padding: 0 10px;
   width: 100px !important;
+}
+.userSection h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  color: #000000;
 }
 .printError {
   color: #ff4500;
@@ -1110,7 +1115,46 @@ checkbox-container label {
   direction: ltr;
   width: 100%;
   background-color: unset;
+  margin-bottom: 0;
+  height: unset;
 }
-.orderTable tr:nth-child(2n), .orderTable tr:nth-child(2n+1) {
+.orderTable tr:nth-child(2n),
+.orderTable tr:nth-child(2n + 1) {
   background-color: #fff;
+}
+.orderTable td,
+.orderTable th {
+  border: 1px solid #ddd;
+  font-size: 14px;
+  max-width: 120px;
+  padding: 2px 8px;
+  text-align: center;
+  height: unset;
+  width: unset;
+  font-weight: 400;
+}
+.orderTable th {
+  background-color: #e5e5e5;
+  color: #5e5e5e;
+}
+.orderTable td {
+  max-width: 150px;
+  position: relative;
+}
+.title-tr td:nth-child(1) {
+  width: 75%;
+}
+.title-tr td:last-child {
+  width: 25%;
+}
+.moreInfoStyle.moreInfoStyle {
+  width: 60%;
+
+  hr {
+    height: 2px;
+    color: #626262;
+    margin: 15px auto;
+    border: unset;
+    opacity: unset;
+  }
 }

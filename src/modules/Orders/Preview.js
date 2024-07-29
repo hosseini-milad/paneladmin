@@ -74,7 +74,7 @@ function Preview(props){
             {lenzDetail?<div className="tableHolder">
                 <table className={!props.print?"orderTable":"orderTable fishTable"} style={{direction:"ltr"}}>
                 <tbody>
-                    <tr style={{height:"40px"}}>
+                    <tr className="title-tr" style={{height:"40px"}}>
                         <td width="75%" style={{direction: "ltr"}}>
                             {lenzDetail.facoryName + " | "+
                             lenzDetail.lenzType + " | "+
@@ -87,7 +87,7 @@ function Preview(props){
             </table></div>:<></>}
             {(!props.print)&&<div className="tableHolder"><table className="orderTable" style={{marginTop:"8px"}}>
                 <tbody>
-                    <tr>
+                    <tr className="title-tr">
                         {frameOptions.map((th,i)=>(
                             (!hesabLimit||i<4)&& 
                             <th key={i}>{th}</th>))}
