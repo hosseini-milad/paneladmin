@@ -115,7 +115,7 @@ function OrderTableRow(props){
                     (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
                 {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>
                   window.open("/orders/detail/previewRx/"+(order.rxOrderNo),'_blank')}></i>:<></>}
-                {order.rxOrderNo?<i className="fas fa-tag" onClick={()=>window.open("/printLabel/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank')}></i>:<></>}
+                {order.rxOrderNo?<i className="fas fa-tag" onClick={()=>{window.open("/printLabel/R/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank');window.open("/printLabel/L/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank')}}></i>:<></>}
                 {(order.orderType==="single"||order.rxOrderNo)?<i className="fa-solid fa-certificate" onClick={()=>
                   
                   order.rxOrderNo?printGarantee(order.rxOrderNo,order.rxOrderNo):printGarantee(order.rxOrderNo,order.stockOrderNo)}></i>:<></>}

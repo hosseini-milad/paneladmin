@@ -110,7 +110,7 @@ root.render(
         <Route path="/filter/detail/:filtereId" element={<Layout><FilterAdd lang={lang}/></Layout>}/>
         <Route path="/print-guaranteeStock/:orderId" element={<PrintGuranteeStock />} />
         <Route path="/print-guaranteeRx/:orderId" element={<PrintGuranteeRx />} />
-        <Route path="/printLabel/:orderId" element={<PrintLabel />} />
+        <Route path="/printLabel/:align/:orderId/" element={<PrintLabel />} />
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/cancelorders" element={<Layout><CanOrders lang={lang}/></Layout>}/>
