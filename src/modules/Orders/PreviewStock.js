@@ -69,7 +69,7 @@ function PreviewStock(props){
                     <tr key={i}>
                         <td>{i+1}</td>
                         <td dangerouslySetInnerHTML={{__html:
-                        "<strong>"+faktorItem.brand.toUpperCase()+"</strong>"+"-"+
+                        "<strong>"+(faktorItem.brand&&faktorItem.brand.toUpperCase())+"</strong>"+"-"+
                             faktorItem.index+"-"+faktorItem.material}}></td>
                         <td style={{direction:"ltr"}}>{faktorItem.sph}</td>
                         <td style={{direction:"ltr"}}>{faktorItem.cyl}</td>
