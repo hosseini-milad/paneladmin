@@ -28981,11 +28981,13 @@ pre[class*="language-"] {
 }
 
 .barcode-wrapper {
-  width: 100%;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 2rem;
+  margin-inline: auto;
 }
 .barcodeNew {
   width: auto;

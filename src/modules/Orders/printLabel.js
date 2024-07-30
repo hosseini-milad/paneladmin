@@ -25,8 +25,8 @@ function PrintLabel(props){
             (result) => {
               setTimeout(()=> setLensInfo(result[0]),500)
               setTimeout(()=> setOrderInfo(result[0].rxData),500)
-              // setTimeout(()=> window.print(),500)
-              // setTimeout(()=> window.close(),1000)
+              setTimeout(()=> window.print(),500)
+              setTimeout(()=> window.close(),1000)
             },
             (error) => {
               console.log({error:error});
@@ -54,7 +54,7 @@ function PrintLabel(props){
                         width={2} textMargin={-2}
                         format="CODE128" height= {27} textAlign="left"/>
             </div>
-            <div className="title"><strong>R-</strong>{OrderInfo.brandName+" "+OrderInfo.lenzIndex+" "+OrderInfo.material+" "+OrderInfo.lenzDesign}</div>
+            <div className="title"><strong>R-</strong>{OrderInfo.brandName+" "+OrderInfo.lenzIndex+" "+OrderInfo.material+" "+OrderInfo.lenzDesign+"-"+LensInfo.coverCode}</div>
             <div className="info-wrapper">
               <div className="info-item"><p>Sph:</p>
               <p>{row01[0]}</p></div>
@@ -77,7 +77,7 @@ function PrintLabel(props){
                         width={2} textMargin={-2}
                         format="CODE128" height= {27} textAlign="left"/>
             </div>
-            <div className="title"><strong>L-</strong>{OrderInfo.brandName+" "+OrderInfo.lenzIndex+" "+OrderInfo.material+" "+OrderInfo.lenzDesign}</div>
+            <div className="title"><strong>L-</strong>{OrderInfo.brandName+" "+OrderInfo.lenzIndex+" "+OrderInfo.material+" "+OrderInfo.lenzDesign+"-"+LensInfo.coverCode}</div>
             <div className="info-wrapper">
               <div className="info-item"><p>Sph:</p>
               <p>{row02[0]}</p></div>
