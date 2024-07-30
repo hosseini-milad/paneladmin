@@ -327,7 +327,9 @@ function Users(props) {
       .then((res) => res.json())
       .then(
         (result) => {
-          
+          setMaterial('')
+          setBrand('')
+          setDiscountPer('')
           setTimeout(() => setSaveD(SaveD+1), 200);
         },
         (error) => {

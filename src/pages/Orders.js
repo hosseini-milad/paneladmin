@@ -67,7 +67,7 @@ function Orders(props){
         }
       );
   }, [filters]);
-
+  console.log(filters)
   //window.scrollTo(0, 270);},[pageNumber,filters,perPage,refreshTable])
   return (
     <div className="user" style={{ direction: direction }}>
@@ -86,6 +86,13 @@ function Orders(props){
           >
             <i class="fa-solid fa-ban"></i>
             {tabletrans.ordercan[lang]}
+          </label>
+          <label
+            className="edit-btn"
+            onClick={() => (window.location.href = "/Garantee")}
+          >
+            <i class="fa-solid fa-certificate"></i>
+            {tabletrans.garantee[lang]}
           </label>
           <label
             className="edit-btn"

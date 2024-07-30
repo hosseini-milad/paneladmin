@@ -1,7 +1,8 @@
 import statustrans from "../../translate/status"
 
 function Status(props){
-    var status = statustrans[props.status]
+    var pureStatus = props.status&&props.status.toString().split('|')[0]
+    var status = statustrans[pureStatus]
     const text = props.text?props.text:status&&status[props.lang]
       // Handler to call the changeStatus function passed from props
   const handleClick = () => {

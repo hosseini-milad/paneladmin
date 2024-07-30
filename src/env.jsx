@@ -1,13 +1,13 @@
 const env={
-    siteApi:'http://localhost:4000/api',
+    // siteApi:'http://localhost:4000/api',
     //siteApi:'https://panel.mehrgaz.com/api',
     //siteApi:'https://orderadmin.deleves.com/api',
-    //siteApi:'https://admin.mgmlens.com/api',
+    siteApi:'https://admin.mgmlens.com/api',
     
-    siteApiUrl:'http://localhost:4000',
+    // siteApiUrl:'http://localhost:4000',
     //siteApiUrl:'https://panel.mehrgaz.com',
     //siteApiUrl:'https://orderadmin.deleves.com',
-    //siteApiUrl:'https://admin.mgmlens.com',
+    siteApiUrl:'https://admin.mgmlens.com',
 
     printUrl:"https://mgmlens.com",
     //printUrl:"https://order.deleves.com",
@@ -146,6 +146,61 @@ return({year:parseInt(dateArray[0]),
   day:parseInt(dateArray[2])})
 }
 catch{return}
+}
+export function sumPrice(priceText,count){
+  
+  if(priceText === null||priceText === undefined) return(priceText)
+  var rawPrice = priceText.toString().replaceAll(',', '')
+  var tempSum = rawPrice.split('+');
+  var TotalSum = 0
+  for(var i=0;i<tempSum&&tempSum.length;i++)
+    TotalSum += tempSum[i]?parseInt(tempSum[i])|| 0:0;
+  return(
+    (TotalSum*(count?count:1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace( /^\D+/g, ''))
+  )
+}
+export function sumPriceNew(priceText,minusPrice){
+  if(!priceText||priceText === null||priceText === undefined) return("")
+  
+  var minusPrice2 = minusPrice?parseInt(minusPrice.toString().replace(/\D/g,'')):0
+  var rawPrice = parseInt(priceText.toString().replace(/\D/g,''))
+  //console.log(rawPrice,minusPrice)
+  return(
+    ((rawPrice+minusPrice2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace( /^\D+/g, ''))
+  )
+}
+export const standardService=(serviceTitle)=>{
+  if(!serviceTitle||serviceTitle==='[]') return
+  if(serviceTitle.includes('{')){
+    const serviceParse = JSON.parse(serviceTitle)
+    return(
+      serviceParse.map((item,i)=><>
+      <span key={i}>{item.title}</span><br/>
+      </>))
+  }
+  else
+      return serviceTitle
+}
+export function purePrice(priceText){
+  if(!priceText)return(0)
+  var rawPrice = priceText.toString().replaceAll(',', '')
+  //console.log(rawPrice,priceText)
+  return(
+    (rawPrice.toString().replace( /^\D+/g, ''))
+  )
+}
+export function normalPrice(priceText,xtra){
+  if(!priceText||priceText === null||priceText === undefined) return("")
+  
+  try{priceText =priceText.split(' ')[0];}catch{}
+  if(priceText === "0"||priceText === 0)return("رایگان");
+  var rawPrice = priceText.toString().split('.')[0]
+   rawPrice = rawPrice.replace(/\D/g,'')
+  
+  // console.log(rowPrice)
+  return(
+    (rawPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",").replace( /^\D+/g, '')+(xtra?xtra:''))
+  )
 }
 export const hasChild=(menu,valid)=>{
   if(!menu) return(0)

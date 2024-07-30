@@ -30,6 +30,13 @@ function StatusBar(props){
   */
     return(
         <div className="user-statue">
+           <div className="statue-all statue-div" 
+              onClick={()=>props.setFilters(prevState => ({
+                ...prevState,
+                status:""
+              }))}>
+              <p>{statustrans["all"][lang]}</p>
+            </div>
           {content&&content.map((status,i)=>(status.count?
             <div className="statue-all statue-div" key={i} 
               onClick={()=>props.setFilters(prevState => ({

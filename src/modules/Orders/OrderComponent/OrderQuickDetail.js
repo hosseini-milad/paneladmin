@@ -38,7 +38,7 @@ function OrderQuickDetail(props){
                     </div>
                     </div>
                     <div className="sub-num">{rxFindCount(order)}</div>
-                    <div className="sub-price">{normalPriceCount(order.rxLenz.split(',')[0])}</div>
+                    {/* <div className="sub-price">{normalPriceCount(order.rxLenz.split(',')[0])}</div> */}
                 </div>
                 <div className="sub-row">
                     <div className="sub-avatar">
@@ -52,7 +52,7 @@ function OrderQuickDetail(props){
                     </div>
                     </div>
                     <div className="sub-num">{rxFindCount(order)}</div>
-                    <div className="sub-price">{normalPriceCount(order.coverPrice)}</div>
+                    {/* <div className="sub-price">{normalPriceCount(order.coverPrice)}</div> */}
                 </div>
                 {order.colorCode?<div className="sub-row">
                     <div className="sub-avatar">
@@ -66,7 +66,7 @@ function OrderQuickDetail(props){
                     </div>
                     </div>
                     <div className="sub-num">{rxFindCount(order)}</div>
-                    <div className="sub-price">{normalPriceCount(order.colorPrice)}</div>
+                    {/* <div className="sub-price">{normalPriceCount(order.colorPrice)}</div> */}
                 </div>:<></>}
                 {order.mirrorCode?<div className="sub-row">
                     <div className="sub-avatar">
@@ -80,7 +80,7 @@ function OrderQuickDetail(props){
                     </div>
                     </div>
                     <div className="sub-num">{rxFindCount(order)}</div>
-                    <div className="sub-price">{normalPriceCount(order.mirrorPrice)}</div>
+                    {/* <div className="sub-price">{normalPriceCount(order.mirrorPrice)}</div> */}
                 </div>:<></>}
                 {order.NazokTigh?<div className="sub-row">
                     <div className="sub-avatar">
@@ -94,7 +94,7 @@ function OrderQuickDetail(props){
                     </div>
                     </div>
                     <div className="sub-num">{rxFindCount(order)}</div>
-                    <div className="sub-price">{normalPriceCount(order.NazokTighPrice)}</div>
+                    {/* <div className="sub-price">{normalPriceCount(order.NazokTighPrice)}</div> */}
                 </div>:<></>}
                 {order.moreInformation?<div className="sub-row">
                     <div className="sub-avatar">

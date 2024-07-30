@@ -8,28 +8,40 @@ import OrderUser from "./OrderUser"
 import tabletrans from "../../../translate/tables"
 import errortrans from "../../../translate/error"
 import OrderOptions from "./OrderOptions"
+import StyleSelect from "../../../components/Button/AutoComplete";
+import ErrorAction from "../../../components/Modal/ErrorAction"
+
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 function OrderDetailHolder(props){
   const url = window.location.pathname.split('/')[3]
+  const token=cookies.get(env.cookieName)
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
 
   const [content,setContent] = useState('')
   const [user,setUser] = useState('')
   const [sku,setSku] = useState('')
+  const [OrderNum,setOrderNum] = useState('')
+  const [OrderStatus,setOrderStatus] = useState('')
   const [log,setLog] = useState('')
+  const [error,showError] = useState()
+
+
   useEffect(() => {
     var sku=''
     var postOptions={
         method:'post',
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json',
+            "x-access-token":token&&token.token,"userid":token&&token.userId},
         body:JSON.stringify({rxOrderNo:url})
       }
-  fetch(env.siteApi + "/order/fetch-order",postOptions)
+  fetch(env.siteApi + "/panel/order/fetch-order",postOptions)
   .then(res => res.json())
   .then(
     (result) => {
-      console.log(result)
+        console.log(result)
         setContent(result.data)
         setUser(result.user)
         sku = result.data.rxLenz.split(',')[2]
@@ -70,7 +82,31 @@ function OrderDetailHolder(props){
   }
   )
 },[])
+const UpdateStatus = (rxOrderNo,status)=>{
+  const body={
+    rxOrderNo:rxOrderNo,
+    status:status,
+  }
+  const postOptions={
+    method:'post',
+    headers: {'Content-Type': 'application/json',
+    "x-access-token":token&&token.token,"userId":token&&token.userId},
+    body:JSON.stringify(body)
+  }
   
+  fetch(env.siteApi + "/order/manage/addrx",postOptions)
+  .then(res => res.json())
+  .then(
+    (result) => {
+      window.location.reload()
+    },
+      (error) => {
+        
+        console.log(error);
+      }
+    );
+  }
+
 if(content)
 return(
     <div class="order-detail" style={{direction:direction}}>
@@ -88,31 +124,38 @@ return(
           lang={props.lang.lang}/>
         </div>
         <div class="od-header-btn">
-          <select class="status-btn" name="" id="">
-            <option value="completed">completed</option>
-            <option value="pending">Pending</option>
-            <option value="cancelled">cancelled</option>
-            <option value="refunded">Refunded</option>
-          </select>
+          
           <div class="print-btn">
-            <i class="fa-solid fa-print"></i>
+            <i class="fa-solid fa-print" onClick={()=>window.open("/orders/print/"+url,'_blank')}></i>
             <p>{tabletrans.print[lang]}</p>
           </div>
-          <div class="edit-btn">
-            <i class="fa-solid fa-pen"></i>
-            <p>{tabletrans.edit[lang]}</p>
-          </div>
+          {content.status!==("faktor"||"cancel")?<div className="status-wrapper">
+                
+                {(content.status=="inproduction")?
+                <button className="accept-btn print-btn" onClick={()=>showError({OrderNum:url,OrderStatus:"faktor",color:"#8DA750",title:"اتمام سفارش",
+                  text:"آیا مطعن هستید؟",buttonText:"تایید"})}>اتمام</button>:
+                <>
+                <button className="accept-btn print-btn" onClick={()=>showError({OrderNum:url,OrderStatus:"inproduction",color:"#8DA750",title:"تایید سفارش",
+                  text:"آیا مطعن هستید؟",buttonText:"تایید"})}>تایید</button>
+                <button className="deny-btn print-btn" onClick={()=>showError({OrderNum:url,OrderStatus:"cancel",color:"#8DA750",title:"لغو سفارش",
+                  text:"آیا مطعن هستید؟",buttonText:"تایید"})}>لغو</button>
+                </>}
+              </div>:<></>}
         </div>
       </div>
+
       <div class="od-wrapper">
         <div class="od-col-1">
           <OrderDetails data={sku} content={content} lang={lang}/>
           <OrderHistory log={log} lang={lang}/>
         </div>
         <div class="od-col-2">
-          <OrderUser user={user} lang={lang} direction={direction} orderNo={content.rxOrderNo}/>
+          {/* <OrderUser user={user} lang={lang} direction={direction} orderNo={content.rxOrderNo}/> */}
           <OrderOptions data={sku} content={content} lang={lang} direction={direction} />
         </div>
+        {error?<ErrorAction title={error.title} buttonText={error.buttonText}
+                text={error.text} color={error.color} icon={error.icon}
+                action={()=>UpdateStatus(error.OrderNum,error.OrderStatus)} close={(e)=>showError()}/>:<></>}
       </div>
     </div>
     )

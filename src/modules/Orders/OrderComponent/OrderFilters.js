@@ -49,8 +49,8 @@ const createConditionalAction = (property, minLength) => {
           title={tabletrans.express[props.lang.lang]}
           label="label"
           direction={props.lang.dir}
-          options={[{label:"فوری",value:"0"},{label:"معمولی",value:""}]}
-          action={(e) => handleFilterChange("expressPrice", e.value)}
+          options={[{label:"فوری",value:"1"},{label:"معمولی",value:"2"}]}
+          action={(e) => handleFilterChange("expressPrice", e?e.value:"")}
         />
         <StyleInput
           title={tabletrans.customer[props.lang.lang]}
@@ -59,7 +59,7 @@ const createConditionalAction = (property, minLength) => {
 
         />
 
-        {category && category === "Stock" ? (
+        
           <StyleSelect
             title={"گارانتی"}
             direction={props.lang.dir}
@@ -73,9 +73,7 @@ const createConditionalAction = (property, minLength) => {
             action={(e) => handleFilterChange("gurantee", e)}
 
           />
-        ) : (
-          <></>
-        )}
+        
         <StyleDatePicker
           title={tabletrans.selectDate[props.lang.lang]}
           class="filterComponent"

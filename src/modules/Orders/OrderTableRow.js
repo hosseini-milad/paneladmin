@@ -12,11 +12,17 @@ import env from "../../env";
 function OrderTableRow(props){
   const [openOption,setOpenOption] = useState(0)
   const [checkState,setCheckState] = useState(false)
+  const [windowOpen,setWindowOpen] = useState('')
   const [OrderStatus,setOrderStatus] = useState("")
   const category = props.category==="Stock"?"stock":"rx"
   const activeAcc = props.index===props.detail
   const order=props.order
   const token = props.token
+  const printGarantee = (status,orderNo)=>{
+    var url =status?"/print-guaranteeRx/":"/print-guaranteeStock/"
+    setWindowOpen(window.open(url+orderNo,'_blank'))
+    setTimeout(()=>windowOpen&&windowOpen.close())
+  }
   //console.log(order)
   const UpdateStatus = (rxOrderNo,status)=>{
     const body={
@@ -56,8 +62,9 @@ function OrderTableRow(props){
               </small>
               </td>
               <td>
-                  <p onClick={()=> window.location.href=
-                    "/orders/detail/"+category==="rx"?order.rxOrderNo:order.stockOrderNo}>
+                  <p onClick={()=>
+                  window.location.href="/orders/"+(order.rxOrderNo?"detail/":"stock/")+
+                    (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}>
                     {category==="rx"?order.rxOrderNo:order.stockOrderNo}</p>
                 
               </td>
@@ -97,19 +104,21 @@ function OrderTableRow(props){
                 <Status status={order.status} class={"order-status"} 
                   lang={props.lang}/>
               </td>
-              <td>
+              {/* <td>
                 <Status status={order.status} class={"order-status"} 
                   lang={props.lang}/>
-              </td>
+              </td> */}
             <td>
               <div className="more-btn">
-              <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
-                onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i>
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/orders/"+(order.rxOrderNo?"detail/":"stock/")+
                     (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
-                {/* <i className="tableIcon fas fa-ellipsis-v" 
-                  onClick={()=>setOpenOption(openOption?0:1)}></i> */}
+                {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>
+                  window.open("/orders/detail/previewRx/"+(order.rxOrderNo),'_blank')}></i>:<></>}
+                {order.rxOrderNo?<i className="fas fa-tag" onClick={()=>window.open("/printLabel/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank')}></i>:<></>}
+                {(order.orderType==="single"||order.rxOrderNo)?<i className="fa-solid fa-certificate" onClick={()=>
+                  
+                  order.rxOrderNo?printGarantee(order.rxOrderNo,order.rxOrderNo):printGarantee(order.rxOrderNo,order.stockOrderNo)}></i>:<></>}
               </div>
               {openOption?<div className="sub-more-menu">
                 <div className="sub-option sub-delete">
@@ -123,7 +132,7 @@ function OrderTableRow(props){
               </div>:<></>}
             </td>
           </tr>
-          {activeAcc?
+          {activeAcc?<>
           <tr className="sub-order">
             <td colSpan="7">{category==="rx"?
               <OrderQuickDetail order={order}/>:
@@ -141,8 +150,19 @@ function OrderTableRow(props){
                 />  
                 <button className="edit-btn" type="button" onClick={()=>{UpdateStatus(order.rxOrderNo,OrderStatus)}}>ثبت وضعیت</button>
               </div>:<></>}
+              <div className="gurantee-status">
+                <div className="title">
+                  <h6>وضعیت گارانتی:</h6>
+                  {order.stockGurantee?<span className="yes-g">دارد</span>:<span className="no-g">ندارد</span>}
+                </div>
+                <button className="add-gutantee edit-btn" onClick={()=>
+                  window.location.href="/Garantee/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}>{order.stockGurantee?"بررسی گارانتی":"ثبت گارنتی +"}</button>
+              </div>
+              
             </td>
           </tr>
+          
+          </>
           :<React.Fragment></React.Fragment>}
           </React.Fragment>
     )
