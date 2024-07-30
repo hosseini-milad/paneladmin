@@ -110,14 +110,12 @@ function OrderTableRow(props){
               </td> */}
             <td>
               <div className="more-btn">
-              {/* <i className={`tableIcon fas ${activeAcc?"fa-chevron-up":"fa-chevron-down"}`} 
-                onClick={()=>props.showDetail(activeAcc?"-1":props.index)} ></i> */}
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/orders/"+(order.rxOrderNo?"detail/":"stock/")+
                     (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
-                {/* <i className="tableIcon fas fa-ellipsis-v" 
-                  onClick={()=>setOpenOption(openOption?0:1)}></i> */}
-                <i className="fas fa-tag" onClick={()=>window.open("/printLabel/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank')}></i>
+                {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>
+                  window.open("/orders/detail/previewRx/"+(order.rxOrderNo),'_blank')}></i>:<></>}
+                {order.rxOrderNo?<i className="fas fa-tag" onClick={()=>{window.open("/printLabel/R/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank');window.open("/printLabel/L/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank')}}></i>:<></>}
                 {(order.orderType==="single"||order.rxOrderNo)?<i className="fa-solid fa-certificate" onClick={()=>
                   
                   order.rxOrderNo?printGarantee(order.rxOrderNo,order.rxOrderNo):printGarantee(order.rxOrderNo,order.stockOrderNo)}></i>:<></>}

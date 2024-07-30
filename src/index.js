@@ -64,6 +64,7 @@ import PrintGuranteeStock from "./modules/Orders/printGuranteeStock";
 import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
 import PrintLabel from "./modules/Orders/printLabel";
 import PrintArea from "./modules/Orders/PrintArea";
+import PreviewRx from "./modules/Orders/orderPreview/PreViewRX";
 
 
 const cookies = new Cookies();
@@ -109,12 +110,13 @@ root.render(
         <Route path="/filter/detail/:filtereId" element={<Layout><FilterAdd lang={lang}/></Layout>}/>
         <Route path="/print-guaranteeStock/:orderId" element={<PrintGuranteeStock />} />
         <Route path="/print-guaranteeRx/:orderId" element={<PrintGuranteeRx />} />
-        <Route path="/printLabel/:orderId" element={<PrintLabel />} />
+        <Route path="/printLabel/:align/:orderId/" element={<PrintLabel />} />
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>
         <Route path="/cancelorders" element={<Layout><CanOrders lang={lang}/></Layout>}/>
         <Route path="/LatheService" element={<Layout><Lathe lang={lang}/></Layout>}/>
         <Route path="/orders/detail/:orderId" element={<Layout><OrderDetailHolder lang={lang}/></Layout>}/>
+        <Route path="/orders/detail/previewRx/:orderId" element={<PreviewRx lang={lang}/>}/>
         <Route path="/orders/print/:orderId" element={<PrintArea lang={lang}/>}/>
         <Route path="/orders/stock/:orderId" element={<Layout><StockHolder lang={lang}/></Layout>}/>
         <Route path="/stock" element={<Layout><StockManage lang={lang}/></Layout>}/>

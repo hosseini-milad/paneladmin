@@ -28969,6 +28969,7 @@ pre[class*="language-"] {
   }
   .barcodeNew {
     margin-bottom: 0;
+    padding: 0;
   }
   .info-wrapper {
     display: flex;
@@ -28978,13 +28979,13 @@ pre[class*="language-"] {
     gap: 1rem;
   }
 }
-
 .barcode-wrapper {
-  width: 100%;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  margin-inline: auto;
 }
 .barcodeNew {
   width: auto;
@@ -29041,13 +29042,14 @@ pre[class*="language-"] {
   overflow: hidden;
   .title {
     line-height: 1;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
     color: black;
+    padding-left: 8px;
   }
   .info-item p{
     margin: 0; 
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
     color: black;
   }
@@ -29058,8 +29060,10 @@ pre[class*="language-"] {
     display: flex;
     align-items: flex-start;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 1rem;
     margin: 0;
+    margin-left: 8px;
+    width: 205px;
   }
 }
