@@ -29,8 +29,8 @@ function PrintLabel(props){
               setTimeout(()=> setLensInfo(result[0]),500)
               setTimeout(()=> setOrderInfo(result[0].rxData),500)
               setRow(align=="R"?(tempInfo.odMain&&tempInfo.odMain.split(',')):(tempInfo.odMain&&tempInfo.osMain.split(',')))
-              // setTimeout(()=> window.print(),500)
-              // setTimeout(()=> window.close(),1000)
+              setTimeout(()=> window.print(),1000)
+              setTimeout(()=> window.close(),1000)
               
             },
             (error) => {

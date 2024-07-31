@@ -31,9 +31,13 @@
       width: 100%;
       padding: 0.5rem 0px;
     }
+    
     .info-wrapper {
       flex-direction: column;
       flex-wrap: nowrap;
+    }
+    .stock-label .info-wrapper{
+      flex-direction: row;
     }
     .info-input {
       width: 100%;

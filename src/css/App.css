@@ -29045,7 +29045,6 @@ pre[class*="language-"] {
     font-weight: 400;
     color: black;
     padding-left: 8px;
-    width: 205px;
   }
   .info-item p{
     margin: 0; 
@@ -29059,13 +29058,11 @@ pre[class*="language-"] {
   .info-wrapper {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     width: 100%;
     margin: 0;
     margin-left: 8px;
     width: 205px;
 
-    .info-item{
-      width: calc(100%/4);
-    }
   }
 }
