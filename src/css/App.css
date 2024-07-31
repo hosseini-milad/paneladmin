@@ -28976,7 +28976,6 @@ pre[class*="language-"] {
     align-items: flex-start;
     width: 100%;
     justify-content: flex-start;
-    gap: 1rem;
   }
 }
 .barcode-wrapper {
@@ -29046,6 +29045,7 @@ pre[class*="language-"] {
     font-weight: 400;
     color: black;
     padding-left: 8px;
+    width: 205px;
   }
   .info-item p{
     margin: 0; 
@@ -29060,10 +29060,12 @@ pre[class*="language-"] {
     display: flex;
     align-items: flex-start;
     width: 100%;
-    justify-content: space-between;
-    gap: 1rem;
     margin: 0;
     margin-left: 8px;
     width: 205px;
+
+    .info-item{
+      width: calc(100%/4);
+    }
   }
 }
