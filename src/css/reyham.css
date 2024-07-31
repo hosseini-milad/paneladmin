@@ -1167,3 +1167,6 @@ checkbox-container label {
   border: none;
   font-weight: 600;
 }
+.page-break{
+  break-after: always;
+}
