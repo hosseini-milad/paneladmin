@@ -29,8 +29,8 @@ function PrintLabel(props){
               setTimeout(()=> setLensInfo(result[0]),500)
               setTimeout(()=> setOrderInfo(result[0].rxData),500)
               setRow(align=="R"?(tempInfo.odMain&&tempInfo.odMain.split(',')):(tempInfo.odMain&&tempInfo.osMain.split(',')))
-              setTimeout(()=> window.print(),500)
-              setTimeout(()=> window.close(),1000)
+              // setTimeout(()=> window.print(),500)
+              // setTimeout(()=> window.close(),1000)
               
             },
             (error) => {
@@ -54,7 +54,7 @@ function PrintLabel(props){
     console.log(align)
     if(LensInfo)
     return(
-        <div className="barcode-wrapper">
+        <>
           {Row?<div class="barcode-new stock-label">
             <div class="barcodeNew flex-center">
               <Barcode value={orderNo} fontSize="12px"
@@ -101,7 +101,7 @@ function PrintLabel(props){
                         format="CODE128" height= {27} textAlign="left"/>
             </div>
           </div>:<></>} */}
-        </div>
+        </>
     )
 }
 export default PrintLabel
