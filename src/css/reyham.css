@@ -1170,3 +1170,13 @@ checkbox-container label {
 .page-break{
   break-after: always;
 }
+.preview-rx{
+  overflow-y: auto;
+  background-color: white;
+  max-width: 1000px;
+  margin-inline: auto;
+
+  .factor-view{
+    width: 100%;
+  }
+}

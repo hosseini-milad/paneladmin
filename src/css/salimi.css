@@ -6632,6 +6632,7 @@ slide-toggle {
 /* main */
 .factor-main {
   width: auto;
+  
 }
 .factor-main .lens-sec {
   width: 100%;
@@ -6643,6 +6644,15 @@ slide-toggle {
   display: flex;
   align-items: flex-start;
   margin-bottom: 36px;
+  position: relative;
+  .desc{
+    position: absolute;
+    bottom: 50px;
+    right: 35px;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+  }
 }
 .factor-main .order-info {
   width: 267px;
@@ -6700,6 +6710,7 @@ slide-toggle {
   font-style: normal;
   font-weight: 400;
   line-height: 27px;
+  text-align: center;
 }
 .factor-main .lens-prob {
   display: flex;

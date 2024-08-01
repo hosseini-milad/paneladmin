@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import env from "../env";
 import OrderTab from "../modules/Orders/OrderComponent/OrderTab";
+import PreviewPopup from "../modules/Orders/orderPreview/PreviewPopup"
+
 import {
   getFiltersFromUrl,
   updateUrlWithFilters,
@@ -23,6 +25,8 @@ function Orders(props){
     const [content,setContent] = useState("")
     const [filters, setFilters] = useState(getFiltersFromUrl());
     const [loading,setLoading] = useState(0)
+    const [Popup,setPopup] = useState(0)
+    const [Rxnum,setRxnum] = useState("")
     const token=cookies.get(env.cookieName)
 
     function handleFilterChange(newFilters) {
@@ -67,7 +71,8 @@ function Orders(props){
         }
       );
   }, [filters]);
-  console.log(filters)
+  console.log(Popup)
+  console.log(Rxnum)
   //window.scrollTo(0, 270);},[pageNumber,filters,perPage,refreshTable])
   return (
     <div className="user" style={{ direction: direction }}>
@@ -131,6 +136,8 @@ function Orders(props){
               lang={lang}
               category={filters.category}
               token={token}
+              popup={setPopup}
+              Rxnum={setRxnum}
             />
           )}
         </div>
@@ -142,6 +149,7 @@ function Orders(props){
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
         />
       </div>
+      {Popup?<PreviewPopup close={setPopup} Rxnum={Rxnum}/>:<></>}
     </div>
   );
 }

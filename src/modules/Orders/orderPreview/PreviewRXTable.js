@@ -1,30 +1,22 @@
-import PreviewTop from "./PreviewTop"
 
 function PreviewRXTable(props){
-    const order = props.lenzDetail
+    const order = props.defData
     const lens = props.lenzDetail
     const user = props.user
     if(!order) return
-    const odMain = lens.odMain?
-        lens.odMain.split(','):[,,,,,]
-    const osMain = lens.osMain?
-        lens.osMain.split(','):[,,,,,]
-    const odMore = lens.odMore?
-        lens.odMore.split(','):[,,,]
-    const osMore = lens.osMore?
-        lens.osMore.split(','):[,,,]
-    console.log(odMain)
-    // const frameSize = lens.frameSize?
-    //     lens.frameSize.split(','):[,,,,,]
-    // const services = lens.NazokTigh?JSON.parse(lens.NazokTigh):''
+    const odMain = order.odMain?
+        order.odMain.split(','):[,,,,,]
+    const osMain = order.osMain?
+        order.osMain.split(','):[,,,,,]
+    const odMore = order.odMore?
+        order.odMore.split(','):[,,,]
+    const osMore = order.osMore?
+        order.osMore.split(','):[,,,]
+    const frameSize = order.frameSize?
+        order.frameSize.split(','):[,,,,,]
+    const services = order.NazokTigh?JSON.parse(order.NazokTigh):''
     return(
         <body className="factor-view">
-            {/* <header>
-                <div className="header-btn-wrapper">
-                <div className="h-btn grey-btn">پیش‌نمایش سفارش</div>
-                <div className="h-btn white-btn">پیوست</div>
-                </div>
-            </header> */}
             <div className="factor-main">
                 <section className="lens-sec">
                 <div className="order-info">
@@ -34,29 +26,27 @@ function PreviewRXTable(props){
                     <li>فروشگاه/قبض:</li>
                     <li>شماره سفارش قبل:</li>
                     <li>نام بیمار:</li>
-                    <li>توضیحات:</li>
                     </ul>
                     <ul className="l-list">
-                    <li>{order.rxOrderNo?order.rxOrderNo:"-"}</li>
-                    <li>{user.cName?user.cName:'-'}</li>
+                    <li>{props.Rxnum}</li>
+                    <li>{user?user.cName:'MGM'}</li>
                     <li>{order.ghabz?order.ghabz:'-'}</li>
                     <li>{order.oldOrderNo?order.oldOrderNo:'-'}</li>
                     <li>{order.consumer?order.consumer:'-'}</li>
-                    <li>{order.moreInformation?order.moreInformation:' '}</li>
                     </ul>
                 </div>
                 <div className="lens-info">
                     <div className="lens-prob">
                     <div className="properties-box">
-                        <div className="l-box">{order.coverCode&&order.coverCode}</div>
+                        <div className="l-box">{order.coverCode}</div>
                         <div className="r-box">پوشش</div>
                     </div>
                     <div className="properties-box">
-                        <div className="l-box">{order.coridor&&order.coridor}</div>
+                        <div className="l-box">{order.coridor}</div>
                         <div className="r-box">کریدور</div>
                     </div>
                     <div className="properties-box">
-                        <div className="l-box">{order.frameType&&order.frameType}</div>
+                        <div className="l-box">{order.frameType}</div>
                         <div className="r-box">نوع فریم</div>
                     </div>
                     {order.expressPrice?
@@ -73,13 +63,13 @@ function PreviewRXTable(props){
                 </div>
                 <div className="lens-img">
                     <div className="lens-title">
-                        <p>{lens?(lens.brand+" "+lens.lenzDid):''}</p>
-                        {/* <span>{lens?(lens.lenzIndex+" "+
-                        lens.material+" "+lens.lenzDesign):''}</span> */}
+                        <p>{lens?(lens.brandName+" "+lens.lenzType):''}</p>
+                        <span>{lens?(lens.lenzIndex+" "+
+                        lens.material+" "+lens.lenzDesign):''}</span>
                     </div>
-                    {/* <img src={`/img/brands/${lens?lens.brandName:''}.svg`}
-                     alt={lens&&lens.brandName}/> */}
-                </div>
+                    <img src={`/img/brands/${lens?lens.brandName:''}.svg`}
+                     alt={lens&&lens.brandName}/></div>
+                <div className="desc">توضیحات: {order.moreInformation?order.moreInformation:' '}</div>
                 </section>
                 <div className="section-title">
                 <p>اطلاعات نسخه</p>
@@ -167,16 +157,16 @@ function PreviewRXTable(props){
                     <th>Base</th>
                     </tr>
                     <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{frameSize[0]}</td>
+                    <td>{frameSize[1]}</td>
+                    <td>{frameSize[2]}</td>
+                    <td>{frameSize[3]}</td>
+                    <td>{frameSize[4]}</td>
+                    <td>{frameSize[5]}</td>
+                    <td>{frameSize[6]}</td>
+                    <td>{frameSize[7]}</td>
+                    <td>{frameSize[8]}</td>
+                    <td>{frameSize[9]}</td>
                     </tr>
                 </table>
                 </section>
@@ -189,9 +179,9 @@ function PreviewRXTable(props){
                     
                     <div className="properties-box">
                     <div className="r-box">خدمات رنگ</div>
-                    <div className="l-box"></div>
+                    <div className="l-box">{order.colorCode}</div>
                     </div>
-                    {/* {services&&services.map((service,i)=>(
+                    {services&&services.map((service,i)=>(
                         <div className="properties-box" key={i}>
                             <div className="r-box">{service.title}</div>
                             <div className="l-box">دارد</div>
@@ -203,7 +193,7 @@ function PreviewRXTable(props){
                                 {service.title.replace('خدمات ','')}</div>
                             <div className="l-box">دارد</div>
                         </div>
-                    ))} */}
+                    ))}
                     
                 </div>
                 </section>
