@@ -7,7 +7,7 @@ import OrderTable from "../modules/Orders/OrderTable";
 import OrderFilters from "../modules/Orders/OrderComponent/OrderFilters";
 import { useEffect } from "react";
 import { useState } from "react";
-import env from "../env";
+import env, { CheckAccess } from "../env";
 import OrderTab from "../modules/Orders/OrderComponent/OrderTab";
 import PreviewPopup from "../modules/Orders/orderPreview/PreviewPopup"
 
@@ -28,6 +28,7 @@ function Orders(props){
     const [Popup,setPopup] = useState(0)
     const [Rxnum,setRxnum] = useState("")
     const token=cookies.get(env.cookieName)
+    var access = CheckAccess(token,"Orders List")
 
     function handleFilterChange(newFilters) {
       setFilters(newFilters);
@@ -71,9 +72,7 @@ function Orders(props){
         }
       );
   }, [filters]);
-  console.log(Popup)
-  console.log(Rxnum)
-  //window.scrollTo(0, 270);},[pageNumber,filters,perPage,refreshTable])
+  
   return (
     <div className="user" style={{ direction: direction }}>
       
@@ -83,6 +82,7 @@ function Orders(props){
             <p>{errortrans.orders[lang]}</p>
           </div>
         </div>
+        {(access=="full"||access=="edit")?
         <div className="od-header-btn">
           
           <label
@@ -107,7 +107,7 @@ function Orders(props){
             {tabletrans.lathe[lang]}
           </label>
 
-        </div>
+        </div>:<></>}
       </div>
 
       <div className="list-container">
