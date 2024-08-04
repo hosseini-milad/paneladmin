@@ -111,7 +111,6 @@ function Users(props) {
     const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
     window.history.replaceState({}, "", newUrl);
   }
-
   // Function to handle filter changes
   function handleFilterChange(newFilters) {
     setFilters(newFilters);
@@ -165,6 +164,7 @@ function Users(props) {
             <p>{tabletrans.customers[lang]}</p>
           </div>
         </div>
+
         <div className="od-header-btn">
           <label className="edit-btn" onClick={() => setShowSMS(1)}>
             <i className="fa-solid fa-envelope-o"></i>

@@ -1158,3 +1158,25 @@ checkbox-container label {
     opacity: unset;
   }
 }
+.rtl {
+  direction: rtl !important;
+}
+.stockTable th {
+  background-color: #002a54;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+.page-break{
+  break-after: always;
+}
+.preview-rx{
+  overflow-y: auto;
+  background-color: white;
+  max-width: 1000px;
+  margin-inline: auto;
+
+  .factor-view{
+    width: 100%;
+  }
+}

@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react"
 import env from "../../../env"
 import StyleInput from "../../../components/Button/Input"
+import tabletrans from "../../../translate/tables"
+import errortrans from "../../../translate/error"
 
-function StockHolder(){
+
+function StockHolder(props){
+    const lang = props.lang?props.lang.lang:errortrans.defaultLang;
+
     const url = window.location.pathname.split('/')[3]
     const [editRow , setEditRow] = useState(-1)
     const [newCount , setCount] = useState(0)
@@ -44,6 +49,17 @@ function StockHolder(){
     }
     return(
     <div className="user-list" style={{direction:"rtl"}}>
+        <div class="od-header">
+            <div className="od-header-info"></div>
+            <div class="od-header-btn ">
+            
+              <div class="print-btn" onClick={()=>window.open("/orders/print/"+url,'_blank')}>
+                <i class="fa-solid fa-print" ></i>
+                <p>{tabletrans.print[lang]}</p>
+              </div>
+            </div>
+        </div>
+
         <table>
             <thead>
                 <tr>

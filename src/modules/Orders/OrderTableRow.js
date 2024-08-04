@@ -6,7 +6,7 @@ import StockQuickDetail from "./OrderComponent/StockQuickDetail"
 import tabletrans from "../../translate/tables";
 import StyleSelect from "../../components/Button/AutoComplete";
 import env from "../../env";
-
+import PreviewPopup from "./orderPreview/PreviewPopup"
 
 
 function OrderTableRow(props){
@@ -14,6 +14,7 @@ function OrderTableRow(props){
   const [checkState,setCheckState] = useState(false)
   const [windowOpen,setWindowOpen] = useState('')
   const [OrderStatus,setOrderStatus] = useState("")
+  const popup = props.popup
   const category = props.category==="Stock"?"stock":"rx"
   const activeAcc = props.index===props.detail
   const order=props.order
@@ -22,6 +23,14 @@ function OrderTableRow(props){
     var url =status?"/print-guaranteeRx/":"/print-guaranteeStock/"
     setWindowOpen(window.open(url+orderNo,'_blank'))
     setTimeout(()=>windowOpen&&windowOpen.close())
+  }
+  const OpenPop=(category)=>{
+    if(category==="rx"){
+      popup(1)
+    }
+    else{
+      popup(0)
+    }
   }
   //console.log(order)
   const UpdateStatus = (rxOrderNo,status)=>{
@@ -55,28 +64,26 @@ function OrderTableRow(props){
               <td className="checkBoxStyle">
                 {props.index+1}
               </td>
-              <td>
+              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
               <small>
                 {order.managerInfo&&order.managerInfo[0]?
                 order.managerInfo[0].cName:''}
               </small>
               </td>
-              <td>
-                  <p onClick={()=>
-                  window.location.href="/orders/"+(order.rxOrderNo?"detail/":"stock/")+
-                    (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}>
+              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
+                  <p>
                     {category==="rx"?order.rxOrderNo:order.stockOrderNo}</p>
                 
               </td>
-              <td>
+              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
                 <div className="listTd">{order.singleLens?
                 order.singleLens.title:''}
                 </div>
               </td>
-              <td>
+              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
                 <small></small>
               </td>
-              <td>
+              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
                 <div className="cu-avatar">
                   <img src={order.expressPrice?"/img/avatar/urgent.png":
                     order.moreInformation?"/img/avatar/comment.png":
@@ -91,7 +98,7 @@ function OrderTableRow(props){
                     <i className="fa fa-comment-o" title={order.moreInformation}></i>:<></>}
                 </div>
               </td>
-              <td>
+              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
                 <div className="or-date">
                   <p className="date">{new Date(order.date)
                   .toLocaleDateString(props.lang==="persian"?'fa':'en')}</p>
@@ -100,7 +107,7 @@ function OrderTableRow(props){
                 </div>
               </td>
               
-              <td>
+              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
                 <Status status={order.status} class={"order-status"} 
                   lang={props.lang}/>
               </td>
@@ -113,9 +120,10 @@ function OrderTableRow(props){
                 <i className="tableIcon fas fa-edit" onClick={()=>
                   window.location.href="/orders/"+(order.rxOrderNo?"detail/":"stock/")+
                     (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
-                {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>
-                  window.open("/orders/detail/previewRx/"+(order.rxOrderNo),'_blank')}></i>:<></>}
-                {order.rxOrderNo?<i className="fas fa-tag" onClick={()=>{window.open("/printLabel/R/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank');window.open("/printLabel/L/"+(order.rxOrderNo?order.rxOrderNo:order.stockOrderNo),'_blank')}}></i>:<></>}
+                {/* {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>
+                  window.open("/orders/detail/previewRx/"+(order.rxOrderNo),'_blank')}></i>:<></>} */}
+                {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}></i>:<></>}
+                {order.rxOrderNo?<i className="fas fa-tag" onClick={()=>{window.open("/printLabel/"+(order.rxOrderNo),'_blank');}}></i>:<></>}
                 {(order.orderType==="single"||order.rxOrderNo)?<i className="fa-solid fa-certificate" onClick={()=>
                   
                   order.rxOrderNo?printGarantee(order.rxOrderNo,order.rxOrderNo):printGarantee(order.rxOrderNo,order.stockOrderNo)}></i>:<></>}
@@ -161,7 +169,7 @@ function OrderTableRow(props){
               
             </td>
           </tr>
-          
+          <PreviewPopup/>
           </>
           :<React.Fragment></React.Fragment>}
           </React.Fragment>

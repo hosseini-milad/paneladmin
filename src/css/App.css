@@ -28927,7 +28927,7 @@ pre[class*="language-"] {
   text-align: center;
   position: static;
   .hesabSection {
-    height: 36.8px;
+    height: 32px;
   }
   .hesabSection .hesabfaSection {
     width: calc(100% - 20px);
@@ -28976,7 +28976,6 @@ pre[class*="language-"] {
     align-items: flex-start;
     width: 100%;
     justify-content: flex-start;
-    gap: 1rem;
   }
 }
 .barcode-wrapper {
@@ -29059,11 +29058,11 @@ pre[class*="language-"] {
   .info-wrapper {
     display: flex;
     align-items: flex-start;
-    width: 100%;
     justify-content: space-between;
-    gap: 1rem;
+    width: 100%;
     margin: 0;
     margin-left: 8px;
     width: 205px;
+
   }
 }

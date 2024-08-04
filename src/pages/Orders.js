@@ -7,8 +7,10 @@ import OrderTable from "../modules/Orders/OrderTable";
 import OrderFilters from "../modules/Orders/OrderComponent/OrderFilters";
 import { useEffect } from "react";
 import { useState } from "react";
-import env from "../env";
+import env, { CheckAccess } from "../env";
 import OrderTab from "../modules/Orders/OrderComponent/OrderTab";
+import PreviewPopup from "../modules/Orders/orderPreview/PreviewPopup"
+
 import {
   getFiltersFromUrl,
   updateUrlWithFilters,
@@ -23,7 +25,10 @@ function Orders(props){
     const [content,setContent] = useState("")
     const [filters, setFilters] = useState(getFiltersFromUrl());
     const [loading,setLoading] = useState(0)
+    const [Popup,setPopup] = useState(0)
+    const [Rxnum,setRxnum] = useState("")
     const token=cookies.get(env.cookieName)
+    var access = CheckAccess(token,"Orders List")
 
     function handleFilterChange(newFilters) {
       setFilters(newFilters);
@@ -67,8 +72,7 @@ function Orders(props){
         }
       );
   }, [filters]);
-  console.log(filters)
-  //window.scrollTo(0, 270);},[pageNumber,filters,perPage,refreshTable])
+  
   return (
     <div className="user" style={{ direction: direction }}>
       
@@ -78,6 +82,7 @@ function Orders(props){
             <p>{errortrans.orders[lang]}</p>
           </div>
         </div>
+        {(access=="full"||access=="edit")?
         <div className="od-header-btn">
           
           <label
@@ -102,7 +107,7 @@ function Orders(props){
             {tabletrans.lathe[lang]}
           </label>
 
-        </div>
+        </div>:<></>}
       </div>
 
       <div className="list-container">
@@ -131,6 +136,8 @@ function Orders(props){
               lang={lang}
               category={filters.category}
               token={token}
+              popup={setPopup}
+              Rxnum={setRxnum}
             />
           )}
         </div>
@@ -142,6 +149,7 @@ function Orders(props){
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
         />
       </div>
+      {Popup?<PreviewPopup close={setPopup} Rxnum={Rxnum} access={access}/>:<></>}
     </div>
   );
 }

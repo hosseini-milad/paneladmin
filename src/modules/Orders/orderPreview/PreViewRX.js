@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 // import ButtonLoader from "../../Components/BtnLoader";
-import env, { normalPrice, normalPriceCount, purePrice, sumPrice, sumPriceNew } from "../../../env";
+import env, { normalPrice, normalPriceCount, purePrice, sumPrice, sumPriceNew , rxFindCount} from "../../../env";
+
 
 // import Autocomplete from '@material-ui/lab/Autocomplete';
 // import TextField from '@material-ui/core/TextField';
@@ -11,7 +12,7 @@ const cookies = new Cookies();
 const token=cookies.get(env.cookieName)
 
 function PreViewRX(props){
-    const url = window.location.pathname.split('/')[4]
+    const url = props.Rxnum
     const [content,setContent] = useState('')
     const [user,setUser] = useState('')
 
@@ -41,15 +42,21 @@ function PreViewRX(props){
           method:'post',
           headers: {'Content-Type': 'application/json',
               "x-access-token":token&&token.token,"userid":token&&token.userId},
-          body:JSON.stringify({rxOrderNo:url})
+          body:JSON.stringify({orderNo:url})
         }
-    fetch(env.siteApi + "/panel/order/fetch-order",postOptions)
+    fetch(env.siteApi + "/order/rxlistInit",postOptions)
     .then(res => res.json())
     .then(
       (result) => {
-          setContent(result.data)
-          setUser(result.user)
-          console.log(content)
+        console.log(result)
+        setDefData(result.rxData);
+        setServices(result.services)
+        setMoreService(result.rxData&&
+          result.rxData.NazokTigh&&
+          JSON.parse(result.rxData.NazokTigh))
+        setCylinder(result.cylinder)
+        setData(result)
+        setRepOrder(result.reOrder)
           }
         )
         
@@ -59,67 +66,69 @@ function PreViewRX(props){
       }
     ,[])
   
-    return(<>
-        <PreviewRXTable lenzDetail={content} user={user}/>
-        <div className="factor-view">
-          <div className="factor-main">
-            {content?<section className="sum-sec">
-                <div className="sum-box">
+    return(
+        <div class="preview-rx">
+          <PreviewRXTable lenzDetail={data.lenzData} defData={defData}  colorList={color}
+            services = {data.services} cylinder={cylinder} Rxnum={url} user={data.userData} access={props.access}/>
+          <div className="factor-view">
+            <div className="factor-main">
+            {defData?<section className="sum-sec">
+                  <div className="sum-box">
                     <ul className="r-list">
-                      <li>قیمت محصول</li>
-                      <li>هزینه پوشش</li>
-                      <li>هزینه رنگ</li>
-                      {/* {moreService&&moreService.map((service,i)=>(
-                        <li key={i}>
-                          هزینه {service.title}
-                        </li>
-                      ))}
-                      {cylinder&&cylinder.map((service,i)=>(
-                        <li key={i}>
-                          {service.title}
-                        </li>
-                      ))} */}
-                      <li>تعداد: </li>
-                      <li>جمع: </li>
-                      <li>تخفیف: </li>
-                      <li>جمع کل:</li>
+                    <li>قیمت محصول</li>
+                    <li>هزینه پوشش</li>
+                    <li>هزینه رنگ</li>
+                    {moreService&&moreService.map((service,i)=>(
+                      <li key={i}>
+                        هزینه {service.title}
+                      </li>
+                    ))}
+                    {cylinder&&cylinder.map((service,i)=>(
+                      <li key={i}>
+                        {service.title}
+                      </li>
+                    ))}
+                    <li>تعداد: </li>
+                    <li>جمع: </li>
+                    <li>تخفیف: </li>
+                    <li>جمع کل:</li>
                     </ul>
                     <ul className="l-list">
-                      <li>-</li>
-                      <li>{content.coverPrice?normalPriceCount(content.coverPrice,content.singleLens):"-"}</li>
-                      <li>{content.colorPrice?normalPriceCount(content.colorPrice,content.singleLens):"-"}</li>
-                      {/* {moreService&&moreService.map((service,i)=>(
-                        <li key={i}>
-                          {normalPriceCount(service.price?service.price:"0",data.singleLens)}
-                        </li>
-                      ))}
-                      {cylinder&&cylinder.map((service,i)=>(
-                        <li key={i}>
-                          {service.price?normalPrice(service.price):'-'}
-                        </li>
-                      ))} */}
-                      <li>{content.singleLens?content.singleLens:"-"}</li>
-                      <li>{content?sumPriceNew(content.totalPrice,content.totalDiscount):'-'}</li>
-                      <li>{content.totalDiscount?normalPrice(content.totalDiscount):'-'}</li>
-                      <li>{content?normalPrice(content.totalPrice):'-'}</li>
+                    <li>{data?normalPrice(data.price):'-'}</li>
+                    <li>{defData.coverPrice?normalPriceCount(defData.coverPrice,data.single):"-"}</li>
+                    <li>{defData.colorPrice?normalPriceCount(defData.colorPrice,data.single):"-"}</li>
+                    {moreService&&moreService.map((service,i)=>(
+                      <li key={i}>
+                        {normalPriceCount(service.price?service.price:"0",data.single)}
+                      </li>
+                    ))}
+                    {cylinder&&cylinder.map((service,i)=>(
+                      <li key={i}>
+                        {service.price?normalPrice(service.price):'-'}
+                      </li>
+                    ))}
+                    <li>{data.single}</li>
+                    <li>{data?sumPriceNew(data.totalPrice,data.offer):'-'}</li>
+                    <li>{data.offer?normalPrice(data.offer):'-'}</li>
+                    <li>{data?normalPrice(data.totalPrice):'-'}</li>
                     
                     </ul>
-                </div>
-                <div className="sum-box">
+                  </div>
+                  <div className="sum-box">
                     <ul className="r-list">
                     <li>تاریخ ثبت:</li>
                     </ul>
                     <ul className="l-list">
-                    <li>{new Date(content.date).toLocaleDateString('fa')}</li>
+                    <li>{new Date(defData.date).toLocaleDateString('fa')}</li>
                     </ul>
-                </div>
-                
-            
+                  </div>
+                    
+                    
             </section> :<></>}
+            </div>
           </div>
         </div>
         
-        </>
     )
 }
 export default PreViewRX

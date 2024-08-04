@@ -215,5 +215,12 @@ export const hasChild=(menu,valid)=>{
   }
   catch{return(1)}
 }
+export const CheckAccess=(token,pageUrl)=>{
+  if(!token) return('')
+  if(token.access=="manager")return("full")
+  var access= token.profile&&
+    token.profile.find(item=>item.title===pageUrl)
+  return(access?access.state:"")
+}
   
 export default env
