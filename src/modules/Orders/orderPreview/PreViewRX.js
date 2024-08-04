@@ -69,7 +69,7 @@ function PreViewRX(props){
     return(
         <div class="preview-rx">
           <PreviewRXTable lenzDetail={data.lenzData} defData={defData}  colorList={color}
-            services = {data.services} cylinder={cylinder} Rxnum={url} user={data.userData}/>
+            services = {data.services} cylinder={cylinder} Rxnum={url} user={data.userData} access={props.access}/>
           <div className="factor-view">
             <div className="factor-main">
             {defData?<section className="sum-sec">

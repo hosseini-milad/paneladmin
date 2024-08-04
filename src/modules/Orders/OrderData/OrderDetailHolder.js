@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import env from "../../../env"
+import env , { CheckAccess }from "../../../env"
 import Status from "../../Components/Status"
 import OrderDetails from "./OrderDetails"
 import OrderHistory from "./OrderHistory"
@@ -11,9 +11,11 @@ import OrderOptions from "./OrderOptions"
 import StyleSelect from "../../../components/Button/AutoComplete";
 import ErrorAction from "../../../components/Modal/ErrorAction"
 
+
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
-
+const token=cookies.get(env.cookieName)
+var access = CheckAccess(token,"Orders List")
 function OrderDetailHolder(props){
   const url = window.location.pathname.split('/')[3]
   const token=cookies.get(env.cookieName)
@@ -150,7 +152,7 @@ return(
           <OrderHistory log={log} lang={lang}/>
         </div>
         <div class="od-col-2">
-          {/* <OrderUser user={user} lang={lang} direction={direction} orderNo={content.rxOrderNo}/> */}
+          {(access=="full"||access=="edit")?<OrderUser user={user} lang={lang} direction={direction} orderNo={content.rxOrderNo}/>:<></>}
           <OrderOptions data={sku} content={content} lang={lang} direction={direction} />
         </div>
         {error?<ErrorAction title={error.title} buttonText={error.buttonText}

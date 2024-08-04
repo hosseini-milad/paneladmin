@@ -9,7 +9,7 @@ function PreviewPopup(props){
             <div className="task-popup fullPopUp">
                 <i className="fa fa-remove closeModal" 
                     onClick={()=>props.close(0)}></i>
-                <PreViewRX Rxnum={props.Rxnum}/>
+                <PreViewRX Rxnum={props.Rxnum} access={props.access}/>
             </div>
             
         </div>

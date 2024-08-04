@@ -3,6 +3,7 @@ function PreviewRXTable(props){
     const order = props.defData
     const lens = props.lenzDetail
     const user = props.user
+    const access = props.access
     if(!order) return
     const odMain = order.odMain?
         order.odMain.split(','):[,,,,,]
@@ -22,14 +23,14 @@ function PreviewRXTable(props){
                 <div className="order-info">
                     <ul className="r-list">
                     <li>شماره سفارش:</li>
-                    <li>نام مشتری:</li>
+                    {(access=="full"||access=="edit")?<li>نام مشتری:</li>:<></>}
                     <li>فروشگاه/قبض:</li>
                     <li>شماره سفارش قبل:</li>
-                    <li>نام بیمار:</li>
+                    <li>نام بیمار:</li>    
                     </ul>
                     <ul className="l-list">
                     <li>{props.Rxnum}</li>
-                    <li>{user?user.cName:'MGM'}</li>
+                    {(access=="full"||access=="edit")?<li>{user?user.cName:'MGM'}</li>:<></>}
                     <li>{order.ghabz?order.ghabz:'-'}</li>
                     <li>{order.oldOrderNo?order.oldOrderNo:'-'}</li>
                     <li>{order.consumer?order.consumer:'-'}</li>

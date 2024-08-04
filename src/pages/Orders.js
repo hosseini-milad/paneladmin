@@ -149,7 +149,7 @@ function Orders(props){
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
         />
       </div>
-      {Popup?<PreviewPopup close={setPopup} Rxnum={Rxnum}/>:<></>}
+      {Popup?<PreviewPopup close={setPopup} Rxnum={Rxnum} access={access}/>:<></>}
     </div>
   );
 }
