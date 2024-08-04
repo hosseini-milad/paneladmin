@@ -28932,6 +28932,9 @@ pre[class*="language-"] {
   .hesabSection .hesabfaSection {
     width: calc(100% - 20px);
   }
+  td{
+    line-height: 1rem;
+  }
 }
 .guranteePrint table {
   font-family: "Arial";
