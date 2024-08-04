@@ -28999,6 +28999,7 @@ pre[class*="language-"] {
   height: 5cm;
   direction: ltr;
   background-color: white;
+  padding-top: 5px;
 }
 
 .barcodeNew img {
@@ -29065,4 +29066,7 @@ pre[class*="language-"] {
     width: 205px;
 
   }
+}
+.paging .MuiButton-textPrimary {
+  border: 1px solid #0a58ca !important;
 }

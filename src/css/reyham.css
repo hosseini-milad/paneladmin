@@ -1180,3 +1180,7 @@ checkbox-container label {
     width: 100%;
   }
 }
+.page-counter .MuiButton-textPrimary {
+  border: 1px solid #0a58ca !important;
+  padding: 0.25rem 0.5rem;
+}

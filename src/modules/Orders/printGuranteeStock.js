@@ -33,8 +33,8 @@ function PrintGurantee(props){
               // setOrderRdetail(result.rData)
               setPDate(new Date(result.orderData.date).toLocaleDateString());
               //totalValues(result.data.Result.InvoiceItems)
-              // setTimeout(()=> window.print(),200)
-              // setTimeout(()=> window.close(),1000)
+              setTimeout(()=> window.print(),200)
+              setTimeout(()=> window.close(),1000)
             },
             (error) => {
               console.log({error:error});
