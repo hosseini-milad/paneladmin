@@ -29073,3 +29073,55 @@ pre[class*="language-"] {
 .paging .MuiButton-textPrimary {
   border: 1px solid #0a58ca !important;
 }
+
+/* preview Stock */
+.preview-stock-wrapper{
+  direction: ltr;
+  width: auto;
+  padding: 2rem 3rem;
+}
+.preview-stock-wrapper .preview-stock-item{
+  display: flex;
+  flex-direction:column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .title{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+
+    strong{
+      color: black;
+      font-size: 1rem;
+    }
+  }
+}
+.preview-stock-wrapper .table-wrapper{
+  width: 100%;
+
+  table{
+    width: 100%;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    border-collapse: separate;
+  }
+  th,td{
+    padding: 0.5rem 2rem;
+    color: black;
+  }
+  th{
+    color: grey;
+  }
+  td{
+    border-top: 1px solid black;
+    
+  }
+  thead tr{
+    background-color:rgba(0, 0, 0, 0.06);
+    
+  }
+  tbody tr:hover{
+    background-color: #fff2d6;
+  }
+}

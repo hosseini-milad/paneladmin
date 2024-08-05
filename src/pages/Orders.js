@@ -137,7 +137,6 @@ function Orders(props){
               category={filters.category}
               token={token}
               popup={setPopup}
-              Rxnum={setRxnum}
             />
           )}
         </div>
@@ -149,7 +148,7 @@ function Orders(props){
           updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
         />
       </div>
-      {Popup?<PreviewPopup close={setPopup} Rxnum={Rxnum} access={access}/>:<></>}
+      {Popup?<PreviewPopup ordernum={Popup} close={setPopup}  access={access}/>:<></>}
     </div>
   );
 }
