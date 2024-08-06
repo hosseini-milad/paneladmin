@@ -24,12 +24,12 @@ function OrderTableRow(props){
     setWindowOpen(window.open(url+orderNo,'_blank'))
     setTimeout(()=>windowOpen&&windowOpen.close())
   }
-  const OpenPop=(category)=>{
-    if(category==="rx"){
-      popup(1)
+  const OpenPop=(orderNum)=>{
+    if(orderNum==order.rxOrderNo){
+      popup(order.rxOrderNo)
     }
-    else{
-      popup(0)
+    if(orderNum==order.stockOrderNo){
+      popup(order.stockOrderNo)
     }
   }
   //console.log(order)
@@ -64,26 +64,26 @@ function OrderTableRow(props){
               <td className="checkBoxStyle">
                 {props.index+1}
               </td>
-              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
+              <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
               <small>
                 {order.managerInfo&&order.managerInfo[0]?
                 order.managerInfo[0].cName:''}
               </small>
               </td>
-              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
+              <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
                   <p>
                     {category==="rx"?order.rxOrderNo:order.stockOrderNo}</p>
                 
               </td>
-              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
+              <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
                 <div className="listTd">{order.singleLens?
                 order.singleLens.title:''}
                 </div>
               </td>
-              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
+              <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
                 <small></small>
               </td>
-              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
+              <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
                 <div className="cu-avatar">
                   <img src={order.expressPrice?"/img/avatar/urgent.png":
                     order.moreInformation?"/img/avatar/comment.png":
@@ -98,7 +98,7 @@ function OrderTableRow(props){
                     <i className="fa fa-comment-o" title={order.moreInformation}></i>:<></>}
                 </div>
               </td>
-              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
+              <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
                 <div className="or-date">
                   <p className="date">{new Date(order.date)
                   .toLocaleDateString(props.lang==="persian"?'fa':'en')}</p>
@@ -107,7 +107,7 @@ function OrderTableRow(props){
                 </div>
               </td>
               
-              <td onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}>
+              <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
                 <Status status={order.status} class={"order-status"} 
                   lang={props.lang}/>
               </td>
@@ -122,7 +122,7 @@ function OrderTableRow(props){
                     (order.rxOrderNo?order.rxOrderNo:order.stockOrderNo)}></i>
                 {/* {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>
                   window.open("/orders/detail/previewRx/"+(order.rxOrderNo),'_blank')}></i>:<></>} */}
-                {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>{OpenPop(category);props.Rxnum(order.rxOrderNo)}}></i>:<></>}
+                {order.rxOrderNo?<i class="fa-solid fa-eye" onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}></i>:<></>}
                 {order.rxOrderNo?<i className="fas fa-tag" onClick={()=>{window.open("/printLabel/"+(order.rxOrderNo),'_blank');}}></i>:<></>}
                 {(order.orderType==="single"||order.rxOrderNo)?<i className="fa-solid fa-certificate" onClick={()=>
                   
