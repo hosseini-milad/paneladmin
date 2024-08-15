@@ -18,8 +18,10 @@ function Task(props){
                     data-dragging={snapshot.isDragging}>
                         
                     <div className='titles'>
-                        <a href={`/profile/${taskData._id}`}>
-                            <h3 className="task-title">{taskData.taskId}</h3></a>
+                        <a onClick={()=>navigator.clipboard.writeText(taskData.orderNo)}>
+                            <h3 className="task-title">
+                            <i className='fa fa-copy'></i>{taskData.taskId}
+                            </h3></a>
                         {taskData.content?
                         <a href={`/profile/${taskData.content}`}>
                             <h3 className="task-title">{taskData.content}</h3></a>
