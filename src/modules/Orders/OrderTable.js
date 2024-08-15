@@ -53,7 +53,7 @@ function OrderTable(props){
       <tbody>
         {orders&&orders.filter?orders.filter.map((order,i)=>(
           <OrderTableRow detail={detail} showDetail={showDetail} 
-            order={order} index={i} key={i} lang={lang} category={props.category} token={props.token} popup={props.popup} Rxnum={props.Rxnum}/>
+            order={order} index={i} key={i} lang={lang} category={props.category} token={props.token} popup={props.popup} />
         )):''}
         
       </tbody>
