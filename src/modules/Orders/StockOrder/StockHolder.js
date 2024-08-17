@@ -60,7 +60,7 @@ function StockHolder(props){
             </div>
         </div>
 
-        <table>
+        {/*<table>
             <thead>
                 <tr>
                     <th>آیتم 1</th>
@@ -73,7 +73,7 @@ function StockHolder(props){
                     <td></td>
                 </tr>
             </thead>
-        </table>
+        </table>*/}
         <table>
             <tbody>
                 <tr>
@@ -93,12 +93,13 @@ function StockHolder(props){
                         </td>
                         <td>{item.sph}</td>
                         <td>{item.cyl}</td>
-                        <td className="countEditStock">
+                        <td className={item.isEdit?"countEditStock editCount":"countEditStock"}>
                             <StyleInput label="تعداد" class={"countEdit"}
                             defaultValue={item.count} 
                             action={(e)=>(setCount(e),setEditRow(i))}/>
                             {i==editRow?
                             <i className="fa fa-check" onClick={()=>updateValue(item.sku,item.sph,item.cyl)}></i>:<></>}
+                            <sub>{item.oldCount}</sub>
                         </td>
                         <td><i className="fa fa-trash" onClick={()=>updateValue(item.sku,item.sph,item.cyl,0)}></i></td>
                     </tr>
