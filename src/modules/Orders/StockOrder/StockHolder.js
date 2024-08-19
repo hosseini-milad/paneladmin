@@ -74,13 +74,14 @@ function StockHolder(props){
                 </tr>
             </thead>
         </table>*/}
-        <table>
+        <table className="stock-detail-table">
             <tbody>
                 <tr>
                     <th>شناسه</th>
                     <th>نام محصول</th>
-                    <th>sph</th>
                     <th>cyl</th>
+                    <th>sph</th>
+                    
                     <th>تعداد</th>
                     <th>عملیات</th>
 
@@ -91,8 +92,9 @@ function StockHolder(props){
                         <td  className="countEditStock"><strong>{item.brand}</strong><br/>
                             <small>{item.material} - {item.index}</small>
                         </td>
-                        <td>{item.sph}</td>
-                        <td>{item.cyl}</td>
+                        <td style={{direction:"ltr"}}>{item.cyl}</td>
+                        <td style={{direction:"ltr"}}>{item.sph}</td>
+                        
                         <td className={item.isEdit?"countEditStock editCount":"countEditStock"}>
                             <StyleInput label="تعداد" class={"countEdit"}
                             defaultValue={item.count} 
