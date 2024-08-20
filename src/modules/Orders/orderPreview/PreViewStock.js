@@ -15,7 +15,8 @@ const token=cookies.get(env.cookieName)
 function PreViewStock(props){
     const url = props.Stocknum
     const [Content,setContent] = useState('')
-    const [user,setUser] = useState('')
+    const [actions,setActions] = useState('')
+    const [orderNo,setOrderNo] = useState('')
     
 
     useEffect(() => {
@@ -29,8 +30,9 @@ function PreViewStock(props){
     .then(res => res.json())
     .then(
       (result) => {
-        console.log(result)
         setContent(result.classResult)
+        setActions(result.statusActions)
+        setOrderNo(result.stockOrderNo)
         }
         )
         
@@ -42,7 +44,8 @@ function PreViewStock(props){
   
     return(
         <div class="preview-rx">
-          <PreviewStockTable Stocknum={url} content={Content} access={props.access}/>
+          <PreviewStockTable Stocknum={url} content={Content} orderNo={orderNo}
+            access={props.access} actions={actions} token={token}/>
         </div>
         
     )
