@@ -1188,3 +1188,9 @@ checkbox-container label {
 .editCount{
   background-color: khaki;
 }
+.stock-detail-table{
+  th,td{
+    text-align: center !important;
+    width: fit-content !important;
+  }
+}

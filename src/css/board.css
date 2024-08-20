@@ -808,9 +808,9 @@ margin-left: auto;
 }
 
 @media (min-width: 1200px) {
-  .sidenav.fixed-end + .main-content {
+  /* .sidenav.fixed-end + .main-content {
     max-width: calc(100% - 17rem);
-  }
+  } */
 }
 .m-20{
   margin: 20px 10px 0;
