@@ -83,7 +83,7 @@ const PreviewStockTable = (props) => {
         ))}
         <div className='actionBtn'>
             {actions&&actions.map((btn,i)=>(
-                <input type='button' value={btn.title} key={i}
+                <input className={`${btn.title=="لغو"?"cancel-btn":""} preview-btn`} type='button' value={btn.title} key={i}
                 onClick={()=>actionbtn(btn.value)} />
             ))}
         </div>

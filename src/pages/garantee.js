@@ -103,7 +103,8 @@ if(!content)
                 doAction={(e)=>e.keyCode===13?setOrderID(search):console.log("common")}
                 defaultValue={content.orderData&&content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo}
               />
-              <button onClick={()=>{setOrderID(search)}}  className="search-btn">جستجو<i class="fa-solid fa-magnifying-glass" ></i></button>
+              <button onClick={()=>{setOrderID(search)}}  className="search-btn">جستجو</button>
+              <button onClick={()=>{}}  className="search-btn garantee-btn">گارانتی دستی</button>
             </div>
             <div className="rx-stock">
               <div className={`tab-btn ${RxStock=="stock"?"active-tab":""} `} >Stock</div>

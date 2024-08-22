@@ -2410,6 +2410,9 @@
   .fa-meetup:before {
     content: "\f2e0";
   }
+  .fa-boxes-stacked:before{
+    content: "\f468"
+  }
   .sr-only {
     position: absolute;
     width: 1px;

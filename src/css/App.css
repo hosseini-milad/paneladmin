@@ -28932,7 +28932,7 @@ pre[class*="language-"] {
   .hesabSection .hesabfaSection {
     width: calc(100% - 20px);
   }
-  td{
+  td {
     line-height: 1rem;
   }
 }
@@ -29050,8 +29050,8 @@ pre[class*="language-"] {
     color: black;
     padding-left: 8px;
   }
-  .info-item p{
-    margin: 0; 
+  .info-item p {
+    margin: 0;
     font-size: 0.9rem;
     font-weight: 400;
     color: black;
@@ -29067,7 +29067,6 @@ pre[class*="language-"] {
     margin: 0;
     margin-left: 8px;
     width: 205px;
-
   }
 }
 .paging .MuiButton-textPrimary {
@@ -29075,53 +29074,68 @@ pre[class*="language-"] {
 }
 
 /* preview Stock */
-.preview-stock-wrapper{
+.preview-stock-wrapper {
   direction: ltr;
   width: auto;
   padding: 2rem 3rem;
+  .actionBtn{
+    display: flex;
+  }
+  .preview-btn {
+    min-width: 64px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    margin-right: 6px;
+    background-color: green;
+    color: white;
+  }
+  .cancel-btn{
+    background-color: red;
+  }
 }
-.preview-stock-wrapper .preview-stock-item{
+.preview-stock-wrapper .preview-stock-item {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 
-  .title{
+  .title {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 6px;
 
-    strong{
+    strong {
       color: black;
       font-size: 1rem;
     }
   }
 }
-.preview-stock-wrapper .table-wrapper{
+.preview-stock-wrapper .table-wrapper {
   width: 100%;
 
-  table{
+  table {
     width: 100%;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     border-collapse: separate;
   }
-  th,td{
+  th,
+  td {
     padding: 0.5rem 2rem;
     color: black;
   }
-  th{
+  th {
     color: grey;
   }
-  td{
+  td {
     border-top: 1px solid black;
-    
   }
-  thead tr{
-    background-color:rgba(0, 0, 0, 0.06);
-    
+  thead tr {
+    background-color: rgba(0, 0, 0, 0.06);
   }
-  tbody tr:hover{
+  tbody tr:hover {
     background-color: #fff2d6;
   }
 }

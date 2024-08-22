@@ -60,6 +60,7 @@ import Discount from './pages/Discount';
 import AccessUser from './pages/access-user';
 import Garantee from './pages/Garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
+import PrintGurantee from "./modules/Orders/printGurantee";
 import PrintGuranteeStock from "./modules/Orders/printGuranteeStock";
 import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
 import PrintLabel from "./modules/Orders/printLabel";
@@ -110,6 +111,7 @@ root.render(
         <Route path="/filter/detail/:filtereId" element={<Layout><FilterAdd lang={lang}/></Layout>}/>
         <Route path="/print-guaranteeStock/:orderId" element={<PrintGuranteeStock />} />
         <Route path="/print-guaranteeRx/:orderId" element={<PrintGuranteeRx />} />
+        <Route path="/print-guarantee" element={<PrintGurantee />} />
         <Route path="/printLabel/:orderId/" element={<PrintLabel />} />
 
         <Route path="/orders" element={<Layout><Orders lang={lang}/></Layout>}/>

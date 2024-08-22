@@ -61,6 +61,12 @@ function ProductName(props){
                     sku:e
                   }))}/>
                   <div className='inLine'>
+                <StyleInput title="hesabfa" direction={props.direction}
+                 class={"formInput"} defaultValue={content?content.hesabfa:''} 
+                 action={(e)=>props.setProductChange(prevState => ({
+                    ...prevState,
+                    hesabfa:e
+                  }))}/>
                 <StyleInput title="hesabfa code 2/2" direction={props.direction}
                  class={"formInput"} defaultValue={content?content.hesabfa2:''} 
                  action={(e)=>props.setProductChange(prevState => ({

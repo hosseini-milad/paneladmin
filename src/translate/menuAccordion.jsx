@@ -94,7 +94,7 @@ menu:[
                 english: "Products List",
                 persian: "لیست محصولات",
                 index:0,
-                icon:"fa-dashboard",
+                icon:"fa-dropbox",
                 href:"/products",
                 url:"products"
             },
@@ -102,7 +102,7 @@ menu:[
                 english: "Stock Product",
                 persian: "محصولات استوک",
                 index:0,
-                icon:"fa-dashboard",
+                icon:"fa-stack-exchange",
                 href:"/stock",
                 url:"stock"
             },
@@ -110,7 +110,7 @@ menu:[
                 english: "Services",
                 persian: "خدمات",
                 index:1,
-                icon:"fa-bar-chart",
+                icon:"fa-trello ",
                 href:"/services",
                 url:"services"
             },
@@ -118,7 +118,7 @@ menu:[
                 english: "Brands",
                 persian: "برندها",
                 index:1,
-                icon:"fa-bar-chart",
+                icon:"fa-font-awesome",
                 href:"/brands",
                 url:"brands"
             },
@@ -126,7 +126,7 @@ menu:[
                 english: "Category",
                 persian: "دسته بندی ها",
                 index:1,
-                icon:"fa-bar-chart",
+                icon:"fa-stack-overflow ",
                 href:"/category",
                 url:"category"
             },
