@@ -4,11 +4,31 @@ import env, { normalPrice, normalPriceCount, purePrice, sumPrice, sumPriceNew , 
 
 const PreviewStockTable = (props) => {
     const content = props.content
-    console.log(content)
+    const actions= props.actions
+    
+    console.log(actions)
+    const actionbtn =(status)=>{
+        const token = props.token
+        var postOptions={
+            method:'post',
+            headers: {'Content-Type': 'application/json',
+                "x-access-token":token&&token.token,"userid":token&&token.userId},
+            body:JSON.stringify({status,stockOrderNo:props.orderNo})
+          }
+      fetch(env.siteApi + "/panel/order/editOrderStatus",postOptions)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result)
+          }
+          )
+          
+        
+    }
     return (
         <div className="preview-stock-wrapper">
         {content&&content.map((Brand , i)=>(
-            <div className="preview-stock-item">
+            <div className="preview-stock-item" key={i}>
                 {Brand.data.map((Index,i)=>(<>
                     {Index.data.map((Material,m)=>(<>
                 
@@ -61,6 +81,12 @@ const PreviewStockTable = (props) => {
 
             </div>
         ))}
+        <div className='actionBtn'>
+            {actions&&actions.map((btn,i)=>(
+                <input className={`${btn.title=="لغو"?"cancel-btn":""} preview-btn`} type='button' value={btn.title} key={i}
+                onClick={()=>actionbtn(btn.value)} />
+            ))}
+        </div>
         </div>
     )
 }
