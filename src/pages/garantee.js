@@ -104,7 +104,7 @@ if(!content)
                 defaultValue={content.orderData&&content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo}
               />
               <button onClick={()=>{setOrderID(search)}}  className="search-btn">جستجو</button>
-              <button onClick={()=>{}}  className="search-btn garantee-btn">گارانتی دستی</button>
+              <button onClick={()=>window.open("/print-guarantee/")}  className="search-btn garantee-btn">گارانتی دستی</button>
             </div>
             <div className="rx-stock">
               <div className={`tab-btn ${RxStock=="stock"?"active-tab":""} `} >Stock</div>
