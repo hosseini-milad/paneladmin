@@ -159,6 +159,8 @@ function PrintArea(props){
             orderInfo.status.split('|')[1]:''}</h4>
             {type==="RX"?<Preview defData={orderInfo} lenzDetail={rxInfo} colorList={color}/>:
               <PreviewStock defData={orderInfo} lenzDetail={rxInfo}/>}
+            <p className="info"><span>توضیحات:</span>{orderInfo.description&&orderInfo.description}</p>
+
             {/* <div style={{width:"92%",margin:"auto"}}>
               <button className="printBtn" onClick={()=>printNow()}>چاپ A5</button>
               <button className="printBtn" onClick={()=>window.location.href="/status/"+rxOrderNo}>مشاهده سابقه</button>

@@ -6940,3 +6940,11 @@ slide-toggle {
     gap: 14px;
   }
 }
+.info{
+  width: 100%;
+  padding: 5px 5%;
+
+  span{
+    margin-left: 6px;
+  }
+}
