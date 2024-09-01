@@ -1,4 +1,4 @@
-import React ,{ useState }from 'react'
+import React ,{ useState ,useRef}from 'react'
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
 import { TextField } from "@material-ui/core"
@@ -207,7 +207,9 @@ if(!content)
             <label className="switch-label" htmlFor="switch"></label>
             <p>فوری</p>
           </div> */}
-          <div className="btn-wrapper"><button onClick={()=>sendGarantee()} className="submit">ذخیره و چاپ</button></div>
+          <div className="btn-wrapper"><button onClick={()=>sendGarantee()} className="submit">ذخیره و چاپ</button>
+          </div>
+
         </div>
       </div>
     </div>

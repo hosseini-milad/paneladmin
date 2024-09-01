@@ -57,6 +57,7 @@ import Landing from './pages/Landing';
 import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
 import Discount from './pages/Discount';
+import Sample from './pages/sample';
 import AccessUser from './pages/access-user';
 import Garantee from './pages/Garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
@@ -89,6 +90,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Layout><Landing lang={lang}/></Layout>}/>
         <Route path="/login" element={<Layout><Profile lang={lang}/></Layout>}/>
+        <Route path="/sample" element={<Layout><Sample lang={lang}/></Layout>}/>
         <Route path="/dashboard" element={<Layout><Dashboard lang={lang}/></Layout>}/>
         <Route path="/Garantee/:orderId" element={<Layout><Garantee lang={lang}/></Layout>}/>
         <Route path="/Garantee" element={<Layout><Garantee lang={lang}/></Layout>}/>
