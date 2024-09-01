@@ -22,9 +22,12 @@ function OrderTab(props){
       </label>
 
       <input type="radio" name="slideItem" id="slide-item-3" className="slide-toggle" />
-      <label htmlFor="slide-item-3"
+      <label htmlFor="slide-item-3" onClick={()=>{props.setFilters(prevState => ({
+                ...prevState, category:"Accessories"
+              }));setTab(2)}}
         className={tab===2?"sliderMenuSelect":""}>
-        <span>Frame</span>
+        <span>Accessories</span>
+        <div className="sliderMenu"></div>
       </label>
 
       <input type="radio" name="slideItem" id="slide-item-4" className="slide-toggle" />

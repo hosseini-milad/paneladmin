@@ -4,6 +4,7 @@ import Paging from "../modules/Components/Paging";
 import errortrans from "../translate/error";
 import tabletrans from "../translate/tables";
 import OrderTable from "../modules/Orders/OrderTable";
+import StOrderTable from "../modules/Orders/Standard/Tables/StOrderTable";
 import OrderFilters from "../modules/Orders/OrderComponent/OrderFilters";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -23,6 +24,7 @@ function Orders(props){
     const direction = props.lang?props.lang.dir:errortrans.defaultDir;
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     const [content,setContent] = useState("")
+    const [Accontent,setAcContent] = useState("")
     const [filters, setFilters] = useState(getFiltersFromUrl());
     const [loading,setLoading] = useState(0)
     const [Popup,setPopup] = useState(0)
@@ -37,6 +39,8 @@ function Orders(props){
     
     useEffect(() => {
       setLoading(1)
+      setContent('')
+      setAcContent("")
       const body={
           offset:filters.offset?filters.offset:"0",
           pageSize:filters.pageSize?filters.pageSize:"10",
@@ -58,13 +62,13 @@ function Orders(props){
           body:JSON.stringify(body)
         }
         console.log(postOptions)
-    fetch(env.siteApi + "/panel/order/list",postOptions)
+    fetch(env.siteApi + (filters.category=="Accessories"?"/xtra/list-order":"/panel/order/list"),postOptions)
     .then(res => res.json())
     .then(
       (result) => {
         setLoading(0)
-          setContent('')
-          setTimeout(()=> setContent(result),200)
+          
+          {filters.category=="Accessories"?setAcContent(result.data):setContent(result)}
       },
         (error) => {
           setLoading(0);
@@ -72,7 +76,7 @@ function Orders(props){
         }
       );
   }, [filters]);
-  
+  console.log(Accontent)
   return (
     <div className="user" style={{ direction: direction }}>
       
@@ -131,7 +135,15 @@ function Orders(props){
           {loading ? (
             env.loader
           ) : (
-            <OrderTable
+            Accontent&&filters.category=="Accessories"?
+              <StOrderTable
+              lang={lang}
+              category={filters.category}
+              token={token}
+              content={Accontent}
+              popup={setPopup}
+              />
+              :<OrderTable
               orders={content}
               lang={lang}
               category={filters.category}
