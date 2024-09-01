@@ -66,6 +66,7 @@ import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
 import PrintLabel from "./modules/Orders/printLabel";
 import PrintArea from "./modules/Orders/PrintArea";
 import PreviewRx from "./modules/Orders/orderPreview/PreViewRX";
+import Sample from './pages/Sample';
 
 
 const cookies = new Cookies();
@@ -142,6 +143,8 @@ root.render(
  
         <Route path="/reports" element={<Layout><Reports lang={lang}/></Layout>}/>
         <Route path="/find-bugs" element={<Layout><FindBug lang={lang}/></Layout>}/>
+        <Route path="/sample" element={<Layout><Sample lang={lang}/></Layout>}/>
+        
 
       </Routes>:
         <Routes>
