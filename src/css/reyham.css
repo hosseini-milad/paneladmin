@@ -1242,4 +1242,10 @@ checkbox-container label {
   align-items: center;
   flex-direction: row-reverse;
   justify-content: space-between;
+  gap: 1rem;
+
+  .MuiAutocomplete-root{
+    min-width:unset;
+    width: 100%;
+  }
 }

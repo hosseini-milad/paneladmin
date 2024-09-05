@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Cookies from "universal-cookie";
 import { TextField } from "@material-ui/core"
 import ReactToPrint from "react-to-print";
+import DatePickerSingle from "../components/Button/DatePickerSingle";
 
 import errortrans from "../translate/error";
 import tabletrans from "../translate/tables";
@@ -215,9 +216,16 @@ if(!content||!List)
                 <div className={`tab-btn ${RxStock=="stock"?"active-tab":""} `} >Stock</div>
                 <div className={`tab-btn ${RxStock=="rx"?"active-tab":""} `} >Rx</div>
               </>:<>
-              
+              <DatePickerSingle
+                title="تاریخ"
+                class="filterComponent"
+                direction={props.lang.dir}
+                local={props.lang.dir === "ltr" ? "en" : "fa"}
+                action={(e) =>handleTableChange("date",e)}
+              />
               <div onClick={()=>setRxStock("stock")} className={`tab-btn ${RxStock=="stock"?"active-tab":""} `} >Stock</div>
               <div onClick={()=>setRxStock("rx")} className={`tab-btn ${RxStock=="rx"?"active-tab":""} `} >Rx</div>
+              
               </>
               }
             </div>

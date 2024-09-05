@@ -14,7 +14,7 @@ function PrintGurantee(props){
             <tr>
               <td colSpan={5} className="padding-td">
                 Order No: 
-               _Dt.
+               _Dt.<span>{Table.date?(Table.date.year+"/"+Table.date.month+"/"+Table.date.day):""}</span>
                </td>
             </tr>
             <tr className="guranteeRow">
