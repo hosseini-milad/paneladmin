@@ -57,7 +57,7 @@ import Landing from './pages/Landing';
 import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
 import Discount from './pages/Discount';
-import Sample from './pages/sample';
+import Sample from './pages/Sample';
 import AccessUser from './pages/access-user';
 import Garantee from './pages/Garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';
@@ -67,7 +67,6 @@ import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
 import PrintLabel from "./modules/Orders/printLabel";
 import PrintArea from "./modules/Orders/PrintArea";
 import PreviewRx from "./modules/Orders/orderPreview/PreViewRX";
-
 
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
@@ -144,6 +143,8 @@ root.render(
  
         <Route path="/reports" element={<Layout><Reports lang={lang}/></Layout>}/>
         <Route path="/find-bugs" element={<Layout><FindBug lang={lang}/></Layout>}/>
+        <Route path="/sample" element={<Layout><Sample lang={lang}/></Layout>}/>
+        
 
       </Routes>:
         <Routes>

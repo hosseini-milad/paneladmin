@@ -1,4 +1,4 @@
-import React ,{ useState }from 'react'
+import React ,{ useState ,useRef}from 'react'
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
 import { TextField } from "@material-ui/core"
@@ -8,6 +8,7 @@ import tabletrans from "../translate/tables";
 import env from "../env";
 import StyleInput from "../components/Button/Input";
 import StyleSelect from "../components/Button/AutoComplete";
+import PrintGurantee from '../modules/Orders/printGurantee';
 const cookies = new Cookies();
 
 
@@ -17,7 +18,7 @@ const Garantee = (props) => {
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [RxStock,setRxStock] = useState("")
-  const [OrderID,setOrderID] = useState("")
+  const [OrderID,setOrderID] = useState(document.location.pathname.split('/')[2]?document.location.pathname.split('/')[2]:"")
   const [loading,setLoading] = useState(0)
   const [search,setSearch] = useState('')
   const [content,setContent] = useState("")
@@ -43,6 +44,7 @@ const Garantee = (props) => {
       .then(
         (result) => {
         setLoading(0)
+        
         setContent('')
         setTimeout(()=> setContent(result),200)
         setTimeout(()=> setRxStock(result.status),200)
@@ -57,7 +59,7 @@ const Garantee = (props) => {
   const sendGarantee =()=>{
   setLoading(1)
     const body={
-      orderNo:content.orderData.rxOrderNo,
+      orderNo:content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo,
       guranteeName:Customer,
     }
     const postOptions={
@@ -70,7 +72,7 @@ const Garantee = (props) => {
       .then(res => res.json())
       .then(
         (result) => {
-        const OrderNum =content.orderData.rxOrderNo
+        const OrderNum =content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo
         const OrderType = (OrderNum.includes("S"))?"stock":"rx"
         setLoading(0)
         {RxStock=="stock"?window.open("/print-guaranteeStock/"+OrderNum,'_blank'):window.open("/print-guaranteeRx/"+OrderNum,'_blank')}
@@ -81,7 +83,6 @@ const Garantee = (props) => {
       }
       );
   }
-
 if(!content)
   return(
       <div >Waiting</div>
@@ -101,9 +102,10 @@ if(!content)
                 className="search-input"
                 action={(e)=>{setSearch(e)}}
                 doAction={(e)=>e.keyCode===13?setOrderID(search):console.log("common")}
-                defaultValue={content.orderData&&content.orderData.rxOrderNo}
+                defaultValue={content.orderData&&content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo}
               />
-              <button onClick={()=>{setOrderID(search)}}  className="search-btn">جستجو<i class="fa-solid fa-magnifying-glass" ></i></button>
+              <button onClick={()=>{setOrderID(search)}}  className="search-btn">جستجو</button>
+              <button onClick={()=>window.open("/print-guarantee/")}  className="search-btn garantee-btn">گارانتی دستی</button>
             </div>
             <div className="rx-stock">
               <div className={`tab-btn ${RxStock=="stock"?"active-tab":""} `} >Stock</div>
@@ -126,6 +128,7 @@ if(!content)
             <img src="../lathe-sample.jpeg" alt="Lenz" />
           </div>
         </div>
+        <div className="fake-input product-title"><p>{content.lData.facoryName+"|"+content.lData.lenzType+"|"+content.lData.lenzDesign+"|"+content.lData.lenzIndex+"|"+content.lData.material}</p><span>نام محصول</span></div>
         <div className="lathe-container">
           <div className="input-index-wrapper">
             <p className="title">OD</p>
@@ -181,7 +184,7 @@ if(!content)
           </div>
         </div>
         <div className="info-container">
-          <div className="container">
+          
             
             <TextField label="(به انگلیسی)نام مشتری" id="Customer"
                   value = {Customer?Customer:""}
@@ -193,9 +196,9 @@ if(!content)
             
             <div className="fake-input">
                 <p>{content.price&&content.price}</p>
-                <span>هزینه تراش به تومان</span>
+                <span>هزینه گارانتی به تومان</span>
             </div>
-          </div>
+          
           {/* <StyleInput
               title="توضیحات"
               direction={lang.dir}
@@ -205,7 +208,9 @@ if(!content)
             <label className="switch-label" htmlFor="switch"></label>
             <p>فوری</p>
           </div> */}
-          <button onClick={()=>sendGarantee()} className="submit">ذخیره و چاپ</button>
+          <div className="btn-wrapper"><button onClick={()=>sendGarantee()} className="submit">ذخیره و چاپ</button>
+          </div>
+
         </div>
       </div>
     </div>

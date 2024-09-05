@@ -2,18 +2,20 @@ import React ,{ useState ,useRef}from 'react'
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
 import { TextField } from "@material-ui/core"
+import ReactToPrint from "react-to-print";
 
 import errortrans from "../translate/error";
 import tabletrans from "../translate/tables";
 import env from "../env";
 import StyleInput from "../components/Button/Input";
 import StyleSelect from "../components/Button/AutoComplete";
+import PrintGurantee from '../modules/Orders/printGurantee';
 const cookies = new Cookies();
 
 
 const Garantee = (props) => {
+  var contentRef = useRef<HTMLDivElement>(null);
   var regex = new RegExp("^[a-zA-Z0-9,._ ]+$");
-
   const direction = props.lang?props.lang.dir:errortrans.defaultDir;
   const lang = props.lang?props.lang.lang:errortrans.defaultLang;
   const [RxStock,setRxStock] = useState("")
@@ -22,10 +24,31 @@ const Garantee = (props) => {
   const [search,setSearch] = useState('')
   const [content,setContent] = useState("")
   const [Customer,setCustomer] = useState("")
+  const [Table,setTable] = useState("")
+  const [List,setList] = useState("")
+  const [ListOption,setListOption] = useState("")
+  const [PageType,setPageType] = useState("hand")
+  const [manufactureList,setManufactureList] = useState()
+  const [filterItems,setfilterItems] = useState()
+  const [filterBrand,setfilterBrand] = useState()
+  const [filterMaterial,setfilterMaterial] = useState()
+  const [filterIndex,setfilterIndex] = useState()
+  const [coridor , setCoridor]= useState(0)
 
   const token=cookies.get(env.cookieName)
-  
-  
+  const handleTableChange = (property, value) => {
+    const newValue = value ? (value._id ? value._id : value) : "";
+    setTable((prevState) => ({
+      ...prevState,
+      [property]: newValue,
+    }));
+  };
+  // const ListArray = List.map((item)=>(
+  //   setListOption((prevState) => ({
+  //     ...prevState,
+  //     [item.title]: item.paramValue,
+  //   }));
+  // ));
   useEffect(() => {
     setLoading(1)
     const body={
@@ -55,6 +78,70 @@ const Garantee = (props) => {
       }
       );
 }, [OrderID]);
+  useEffect(() => {
+    const postOptions={
+        method:'get',
+        headers: {'Content-Type': 'application/json',
+        "x-access-token":token&&token.token,"userId":token&&token.userId},
+        body:JSON.stringify()
+      }
+
+      fetch(env.siteApi + "/order/params",postOptions)
+      .then(res => res.json())
+      .then(
+        (result) => {
+        setLoading(0)
+        setList(result)
+        // /setList(result.map((item)=>(
+        //    JSON.parse(`{${item.title}:${item.paramValue.split(',')}}`)
+        //  )));
+        
+      },
+        (error) => {
+        setLoading(0);
+        console.log(error);
+      }
+      );
+}, []);
+useEffect(() => {
+  var body=filterBrand?{
+      brand:filterBrand,
+      lenzIndex:filterIndex,
+      material:filterMaterial,
+  }:{}
+  const postOptions={
+      method:'post',
+      headers: {'Content-Type': 'application/json',
+      'x-access-token':token.token,
+      'userId':token.userId},
+      body:JSON.stringify(body)
+    }
+    fetch(env.siteApi+"/order/manufacture/list",postOptions)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setManufactureList(result)
+        },
+        (error) => {
+          console.log({error:error});
+        }
+      )
+      .catch((error)=>{
+        console.log(error)
+      })
+},[filterBrand,filterMaterial,filterIndex])
+
+  const getListSC =(titleValue)=>{
+  var  paramOut= List.find(item=>item.title==titleValue)
+  if(!paramOut)return([])
+    const paramNeg = paramOut.paramNegative.split(',')
+    const paramPos = paramOut.paramValue.split(',')
+  return(paramNeg.concat(paramPos))}
+  const getList =(titleValue)=>{
+  var  paramOut= List.find(item=>item.title==titleValue)
+  if(!paramOut)return([])
+  return(paramOut.paramValue.split(','))}
+
   const sendGarantee =()=>{
   setLoading(1)
     const body={
@@ -82,7 +169,23 @@ const Garantee = (props) => {
       }
       );
   }
-if(!content)
+//   const clearForm=(fName,value)=>{
+//     const newJson = value?(JSON.parse(`{"${fName}":"${value}"}`)):''
+    
+
+//     if(fName==='brandName'){setFilterItems(newJson);}
+//     if(fName==='material'){setFilterItems(
+//       { facoryName:filterItems.brandName,
+//          facoryName:filterItems.material, ...newJson })
+//     }
+//     if(fName==='lenzIndex'){setFilterItems(
+//         { facoryName:filterItems.brandName,
+//           brandName:filterItems.material,   ...newJson })
+        
+//         }
+//     /**/
+// }
+if(!content||!List)
   return(
       <div >Waiting</div>
     )
@@ -103,23 +206,81 @@ if(!content)
                 doAction={(e)=>e.keyCode===13?setOrderID(search):console.log("common")}
                 defaultValue={content.orderData&&content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo}
               />
-              <button onClick={()=>{setOrderID(search)}}  className="search-btn">جستجو</button>
-              <button onClick={()=>window.open("/print-guarantee/")}  className="search-btn garantee-btn">گارانتی دستی</button>
+              <button onClick={()=>{(setOrderID(search));setPageType("search")}}  className="search-btn">جستجو</button>
+              <button onClick={()=>setPageType("hand")}  className="search-btn garantee-btn">گارانتی دستی</button>
             </div>
+            
             <div className="rx-stock">
-              <div className={`tab-btn ${RxStock=="stock"?"active-tab":""} `} >Stock</div>
-              <div className={`tab-btn ${RxStock=="rx"?"active-tab":""} `} >Rx</div>
+              {PageType!=="hand"?<>
+                <div className={`tab-btn ${RxStock=="stock"?"active-tab":""} `} >Stock</div>
+                <div className={`tab-btn ${RxStock=="rx"?"active-tab":""} `} >Rx</div>
+              </>:<>
+              
+              <div onClick={()=>setRxStock("stock")} className={`tab-btn ${RxStock=="stock"?"active-tab":""} `} >Stock</div>
+              <div onClick={()=>setRxStock("rx")} className={`tab-btn ${RxStock=="rx"?"active-tab":""} `} >Rx</div>
+              </>
+              }
             </div>
             <div className="brand-container">
-              <div className="fake-input">
-                <p>{content.lData&&content.lData.brandName}</p>
-                <span>{tabletrans.brand[lang]}</span>
-              </div>
-              <div className="fake-input">
-                <p>{content.lData&&content.lData.material}</p>
-                <span>{tabletrans.material[lang]}</span>
-              </div>
-              
+              {PageType!=="hand"?
+              <>
+                <div className="fake-input">
+                  <p>{content.lData&&content.lData.brandName}</p>
+                  <span>{tabletrans.brand[lang]}</span>
+                </div>
+                <div className="fake-input">
+                  <p>{content.lData&&content.lData.material}</p>
+                  <span>{tabletrans.material[lang]}</span>
+                </div>
+              </>:
+              <>
+                <TextField label="(به انگلیسی)نام مشتری" id="Customer"
+                  value = {Customer?Customer:""}
+                  onChange={(e)=>(regex.test(e.target.value)&&
+                  e.target.value.length<19||e.target.value==='')&&
+                  (setCustomer(e.target.value),console.log(e.target.value))}
+                    variant="outlined"
+                />
+                <div className="brand-select-wrapper">
+                  
+                  <StyleSelect
+                    title="Brand"
+                    options={manufactureList&&manufactureList.brandList||[]}
+                    style={{ width: "100%"}}
+                    value={filterBrand&&filterBrand||''}
+                    action={(e,value)=>{handleTableChange("brand", e);
+                      setfilterBrand(e?e:'')
+                      }
+                    }
+                    />
+                    <StyleSelect
+                    title="Material"
+                    options={manufactureList&&manufactureList.material||[]}
+                    style={{ width: "100%"}}
+                    disabled={filterBrand&&filterBrand?false:true}
+                    value={filterMaterial&&filterMaterial||''}
+                    action={(e,value)=>{handleTableChange("material", e);
+                        setfilterMaterial(e?e:'')}}
+                        
+                    
+                    
+                    />
+                  <StyleSelect
+                    title="Index"
+                    options={manufactureList&&manufactureList.lenzIndex||[]}
+                    style={{ width: "100%"}}
+                    disabled={filterMaterial&&filterMaterial?false:true}
+                    value={filterIndex&&filterIndex||''}
+                    action={(e,value)=>{handleTableChange("Index", e);
+                      setfilterIndex(e?e:'')}}
+                    />
+                  
+                  {/* <StyleSelect
+                    title="Design"
+                    action={(e) => handleTableChange("design", e)}
+                    /> */}
+                </div>
+              </>}
               
             </div>
           </div>
@@ -127,61 +288,126 @@ if(!content)
             <img src="../lathe-sample.jpeg" alt="Lenz" />
           </div>
         </div>
-        <div className="fake-input product-title"><p>{content.lData.facoryName+"|"+content.lData.lenzType+"|"+content.lData.lenzDesign+"|"+content.lData.lenzIndex+"|"+content.lData.material}</p><span>نام محصول</span></div>
+        
+          {PageType!=="hand"?<div className="fake-input product-title"><p>{content.lData.facoryName+"|"+content.lData.lenzType+"|"+content.lData.lenzDesign+"|"+content.lData.lenzIndex+"|"+content.lData.material}</p><span>نام محصول</span>
+          </div>:<>
+          
+          
+          </>}
+        
         <div className="lathe-container">
           <div className="input-index-wrapper">
             <p className="title">OD</p>
-            
-            <div className="fake-input">
+            {PageType!=="hand"?
+            <>
+              <div className="fake-input">
                 <p>{content.lData&&content.lData.sph}</p>
                 <span>Sphere</span>
-            </div>
-            <div className="fake-input">
+              </div>
+              <div className="fake-input">
                 <p>{content.lData&&content.lData.cyl}</p>
                 <span>Cylinder</span>
-            </div>
-            <div className="fake-input">
+              </div>
+              <div className="fake-input">
                 <p>{content.lData&&content.lData.axis}</p>
                 <span>Axis</span>
-            </div>
-            <div className="fake-input">
+              </div>
+              <div className="fake-input">
                 <p>{content.lData&&content.lData.pd}</p>
                 <span>PD</span>
-            </div>
-            
-            {RxStock=="rx"?
-            <div className="fake-input">
-              <p>{content.lData&&content.lData.add}</p>
-              <span>Add</span>
-            </div>:<></>}
+              </div>
+              {RxStock=="rx"?
+              <div className="fake-input">
+                <p>{content.lData&&content.lData.add}</p>
+                <span>Add</span>
+              </div>:<></>}
+            </>:
+            <>
+              <StyleSelect
+              title="Sphere"
+              options={getListSC("SPH")}  
+              action={(e) => handleTableChange("Lsph", e)}
+              />
+              <StyleSelect
+              title="Cylinder"
+              options={getListSC("CYL")} 
+              action={(e) => handleTableChange("Lcyl", e)}
+              />
+              <StyleSelect
+              title="Axis"
+              options={getList("Axis")}
+              action={(e) => handleTableChange("Laxis", e)}
+              />
+              <StyleSelect
+              title="PD"
+              options={getList("PDFar")}
+              action={(e) => handleTableChange("Lpd", e)}
+              />
+              <StyleSelect
+              title="Add"
+              options={getList("ADD")}
+              action={(e) => handleTableChange("Ladd", e)}
+              />
+
+            </>}
           </div>
           <div className="input-index-wrapper">
             <p className="title">OS</p>
-            
-            <div className="fake-input">
-                <p>{content.rData&&content.rData.sph}</p>
-                <span>Sphere</span>
-            </div>
-            <div className="fake-input">
-                <p>{content.rData&&content.rData.cyl}</p>
-                <span>Cylinder</span>
-            </div>
-            <div className="fake-input">
-                <p>{content.rData&&content.rData.axis}</p>
-                <span>Axis</span>
-            </div>
-            <div className="fake-input">
-                <p>{content.rData&&content.rData.pd}</p>
-                <span>PD</span>
-            </div>
-            
-            {RxStock=="rx"?
-            <div className="fake-input">
-              <p>{content.rData&&content.rData.add}</p>
-              <span>Add</span>
-            </div>:<></>}
+            {PageType!=="hand"?
+            <>
+              <div className="fake-input">
+                  <p>{content.rData&&content.rData.sph}</p>
+                  <span>Sphere</span>
+              </div>
+              <div className="fake-input">
+                  <p>{content.rData&&content.rData.cyl}</p>
+                  <span>Cylinder</span>
+              </div>
+              <div className="fake-input">
+                  <p>{content.rData&&content.rData.axis}</p>
+                  <span>Axis</span>
+              </div>
+              <div className="fake-input">
+                  <p>{content.rData&&content.rData.pd}</p>
+                  <span>PD</span>
+              </div>
+              
+              {RxStock=="rx"?
+              <div className="fake-input">
+                <p>{content.rData&&content.rData.add}</p>
+                <span>Add</span>
+              </div>:<></>}
+            </>:
+            <>
+              <StyleSelect
+              title="Sphere"
+              options={getListSC("SPH")}
+              action={(e) => handleTableChange("Rsph", e)}
+              />
+              <StyleSelect
+              title="Cylinder"
+              options={getListSC("CYL")} 
+              action={(e) => handleTableChange("Rcyl", e)}
+              />
+              <StyleSelect
+              title="Axis"
+              options={getList("Axis")}
+              action={(e) => handleTableChange("Raxis", e)}
+              />
+              <StyleSelect
+              title="PD"
+              options={getList("PDFar")}
+              action={(e) => handleTableChange("Rpd", e)}
+              />
+              <StyleSelect
+              title="Add"
+              options={getList("ADD")}
+              action={(e) => handleTableChange("Radd", e)}
+              />
+            </>}
           </div>
         </div>
+        {PageType!=="hand"?
         <div className="info-container">
           
             
@@ -197,19 +423,25 @@ if(!content)
                 <p>{content.price&&content.price}</p>
                 <span>هزینه گارانتی به تومان</span>
             </div>
-          
-          {/* <StyleInput
-              title="توضیحات"
-              direction={lang.dir}
-          /> */}
-          {/* <div className="dense-btn">
-            <input className="switch-input" type="checkbox" id="switch" />
-            <label className="switch-label" htmlFor="switch"></label>
-            <p>فوری</p>
-          </div> */}
-          <div className="btn-wrapper"><button onClick={()=>sendGarantee()} className="submit">ذخیره و چاپ</button>
+          <div className="btn-wrapper">
+            <button onClick={()=>sendGarantee()} className="submit">ذخیره و چاپ</button>
           </div>
 
+        </div>:
+        <div className="info-container">
+          <div className="btn-wrapper">
+            <ReactToPrint
+            trigger={() => {
+              return <button className="submit">پزینت</button>;
+            }}
+            content={() => contentRef}
+            />
+          </div>
+        </div>}
+      </div>
+      <div className="print-table">
+        <div ref={el => (contentRef = el)}>
+          <PrintGurantee Table={Table} customer={Customer}/>
         </div>
       </div>
     </div>

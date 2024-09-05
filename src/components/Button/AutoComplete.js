@@ -23,6 +23,7 @@ function StyleSelect(props){
             getOptionLabel={(option) => (option&&option[props.label])?
                 option[props.label]:option}
             //className={stylisRTLPlugin}
+            disabled={props.disabled}
             isOptionEqualToValue={(option, value) => option&&(option.id === value.id)}
             options={testOptions||[]}
             className={props.class}

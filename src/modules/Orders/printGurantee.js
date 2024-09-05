@@ -1,7 +1,7 @@
 import { useState ,useEffect } from "react";
 
 function PrintGurantee(props){
-    
+      const Table = props.Table
       return(
       <div className="printArea fishPrintArea guranteePrint">
       <div className="hesabSection">
@@ -13,8 +13,9 @@ function PrintGurantee(props){
           <tbody>
             <tr>
               <td colSpan={5} className="padding-td">
-                Order No:<input type="text" className="grantee-input-title" placeholder="شماره سفارش"/> 
-               _Dt.<input type="text" className="grantee-input-title" placeholder="تاریخ"/></td>
+                Order No: 
+               _Dt.
+               </td>
             </tr>
             <tr className="guranteeRow">
               <td>#</td>
@@ -25,23 +26,23 @@ function PrintGurantee(props){
             </tr>
             <tr  className="guranteeRow">
               <td>R</td>
-              <td><input type="text" className="grantee-input" placeholder="Sph"/></td>
-              <td><input type="text" className="grantee-input" placeholder="Cyl"/></td>
-              <td><input type="text" className="grantee-input" placeholder="Axis"/></td>
-              <td><input type="text" className="grantee-input" placeholder="Add"/></td>
+              <td>{Table&&Table.Rsph}</td>
+              <td>{Table&&Table.Rcyl}</td>
+              <td>{Table&&Table.Raxis}</td>
+              <td>{Table&&Table.Radd}</td>
             </tr>
             <tr  className="guranteeRow">
               <td>L</td>
-              <td><input type="text" className="grantee-input" placeholder="Sph"/></td>
-              <td><input type="text" className="grantee-input" placeholder="Cyl"/></td>
-              <td><input type="text" className="grantee-input" placeholder="Axis"/></td>
-              <td><input type="text" className="grantee-input" placeholder="Add"/></td>
+              <td>{Table&&Table.Lsph}</td>
+              <td>{Table&&Table.Lcyl}</td>
+              <td>{Table&&Table.Laxis}</td>
+              <td>{Table&&Table.Ladd}</td>
             </tr>
             <tr>
-              <td colSpan={5} className="padding-td"><input type="text" className="grantee-input-text" placeholder="نام محصول"/></td>
+              <td colSpan={5} className="padding-td">{Table.brand?(Table.brand+" "+Table.material+" "+Table.Index):"-"}</td>
             </tr>
             <tr>
-              <td colSpan={5} className="padding-td"><input type="text" className="grantee-input-text" placeholder="نام مشتری"/></td>
+              <td colSpan={5} className="padding-td">{props.customer?props.customer:"-"}</td>
             </tr>
           </tbody>
         </table>

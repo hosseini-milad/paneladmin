@@ -11,9 +11,8 @@ function Sample(){
           content={() => contentRef}
         />
         <div ref={el => (contentRef = el)} >
-          <small style={{fontSize:"200px"}}>Here</small>
-        </div>
-        <div>hi</div>
+          <small>Here</small>
+          </div>
       </div>
     )
 }
