@@ -170,6 +170,14 @@ useEffect(() => {
       }
       );
   }
+  console.log(filterMaterial)
+  useEffect(()=>{
+    setfilterIndex('')
+    setfilterMaterial('')
+  },[filterBrand])
+  useEffect(()=>{ 
+    setfilterIndex('')
+  },[filterMaterial])
 //   const clearForm=(fName,value)=>{
 //     const newJson = value?(JSON.parse(`{"${fName}":"${value}"}`)):''
     

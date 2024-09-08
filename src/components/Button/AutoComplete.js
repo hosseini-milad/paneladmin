@@ -27,6 +27,7 @@ function StyleSelect(props){
             isOptionEqualToValue={(option, value) => option&&(option.id === value.id)}
             options={testOptions||[]}
             className={props.class}
+            value={props.value}
             defaultValue={props.defaultValue||null}
             style={{minWidth:"200px"}}
             onChange={(e,value)=>props.action(value)}
