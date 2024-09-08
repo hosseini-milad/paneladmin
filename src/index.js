@@ -57,7 +57,7 @@ import Landing from './pages/Landing';
 import CRMList from './modules/Crm/CRMList/crmList';
 import CRMAdd from './modules/Crm/CRMList/crmAdd';
 import Discount from './pages/Discount';
-import Sample from './pages/sample';
+import Sample from './pages/Sample';
 import AccessUser from './pages/access-user';
 import Garantee from './pages/garantee';
 import StockHolder from './modules/Orders/StockOrder/StockHolder';

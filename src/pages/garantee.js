@@ -30,11 +30,10 @@ const Garantee = (props) => {
   const [ListOption,setListOption] = useState("")
   const [PageType,setPageType] = useState("hand")
   const [manufactureList,setManufactureList] = useState()
-  const [filterItems,setfilterItems] = useState()
   const [filterBrand,setfilterBrand] = useState()
   const [filterMaterial,setfilterMaterial] = useState()
   const [filterIndex,setfilterIndex] = useState()
-  const [coridor , setCoridor]= useState(0)
+  const [Calc , setCalc]= useState("pos")
 
   const token=cookies.get(env.cookieName)
   const handleTableChange = (property, value) => {
@@ -44,12 +43,6 @@ const Garantee = (props) => {
       [property]: newValue,
     }));
   };
-  // const ListArray = List.map((item)=>(
-  //   setListOption((prevState) => ({
-  //     ...prevState,
-  //     [item.title]: item.paramValue,
-  //   }));
-  // ));
   useEffect(() => {
     setLoading(1)
     const body={
@@ -78,7 +71,7 @@ const Garantee = (props) => {
         console.log(error);
       }
       );
-}, [OrderID]);
+  }, [OrderID]);
   useEffect(() => {
     const postOptions={
         method:'get',
@@ -103,8 +96,8 @@ const Garantee = (props) => {
         console.log(error);
       }
       );
-}, []);
-useEffect(() => {
+  }, []);
+  useEffect(() => {
   var body=filterBrand?{
       brand:filterBrand,
       lenzIndex:filterIndex,
@@ -117,7 +110,7 @@ useEffect(() => {
       'userId':token.userId},
       body:JSON.stringify(body)
     }
-    fetch(env.siteApi+"/order/manufacture/list",postOptions)
+    fetch(env.siteApi+(RxStock=="rx"?"/order/manufacture/list":"/order/stock/adminlist"),postOptions)
       .then(res => res.json())
       .then(
         (result) => {
@@ -130,14 +123,14 @@ useEffect(() => {
       .catch((error)=>{
         console.log(error)
       })
-},[filterBrand,filterMaterial,filterIndex])
+  },[filterBrand,filterMaterial,filterIndex,RxStock])
 
   const getListSC =(titleValue)=>{
   var  paramOut= List.find(item=>item.title==titleValue)
   if(!paramOut)return([])
     const paramNeg = paramOut.paramNegative.split(',')
     const paramPos = paramOut.paramValue.split(',')
-  return(paramNeg.concat(paramPos))}
+  return(Calc=="neg"?paramNeg:paramPos)}
   const getList =(titleValue)=>{
   var  paramOut= List.find(item=>item.title==titleValue)
   if(!paramOut)return([])
@@ -178,22 +171,6 @@ useEffect(() => {
   useEffect(()=>{ 
     setfilterIndex('')
   },[filterMaterial])
-//   const clearForm=(fName,value)=>{
-//     const newJson = value?(JSON.parse(`{"${fName}":"${value}"}`)):''
-    
-
-//     if(fName==='brandName'){setFilterItems(newJson);}
-//     if(fName==='material'){setFilterItems(
-//       { facoryName:filterItems.brandName,
-//          facoryName:filterItems.material, ...newJson })
-//     }
-//     if(fName==='lenzIndex'){setFilterItems(
-//         { facoryName:filterItems.brandName,
-//           brandName:filterItems.material,   ...newJson })
-        
-//         }
-//     /**/
-// }
 if(!content||!List)
   return(
       <div >Waiting</div>
@@ -216,7 +193,7 @@ if(!content||!List)
                 defaultValue={content.orderData&&content.orderData.rxOrderNo?content.orderData.rxOrderNo:content.orderData.stockOrderNo}
               />
               <button onClick={()=>{(setOrderID(search));setPageType("search")}}  className="search-btn">جستجو</button>
-              <button onClick={()=>setPageType("hand")}  className="search-btn garantee-btn">گارانتی دستی</button>
+              <button onClick={()=>setPageType("hand")}  className="search-btn garantee-btn">گارانتی المثنی</button>
             </div>
             
             <div className="rx-stock">
@@ -271,7 +248,7 @@ if(!content||!List)
                     />
                     <StyleSelect
                     title="Material"
-                    options={manufactureList&&manufactureList.material||[]}
+                    options={manufactureList&&(RxStock=="rx"?manufactureList.material:manufactureList.materialList)||[]}
                     style={{ width: "100%"}}
                     disabled={filterBrand&&filterBrand?false:true}
                     value={filterMaterial&&filterMaterial||''}
@@ -283,7 +260,7 @@ if(!content||!List)
                     />
                   <StyleSelect
                     title="Index"
-                    options={manufactureList&&manufactureList.lenzIndex||[]}
+                    options={manufactureList&&(RxStock=="rx"?manufactureList.lenzIndex:manufactureList.lenzIndexList)||[]}
                     style={{ width: "100%"}}
                     disabled={filterMaterial&&filterMaterial?false:true}
                     value={filterIndex&&filterIndex||''}
@@ -328,10 +305,10 @@ if(!content||!List)
                 <p>{content.lData&&content.lData.axis}</p>
                 <span>Axis</span>
               </div>
-              <div className="fake-input">
+              {/* <div className="fake-input">
                 <p>{content.lData&&content.lData.pd}</p>
                 <span>PD</span>
-              </div>
+              </div> */}
               {RxStock=="rx"?
               <div className="fake-input">
                 <p>{content.lData&&content.lData.add}</p>
@@ -339,6 +316,10 @@ if(!content||!List)
               </div>:<></>}
             </>:
             <>
+              <div className="calc-btn">
+                <div onClick={()=>setCalc("pos")} className={Calc=="pos"?"d-btn pos-btn":"d-btn"}>+</div>
+                <div onClick={()=>setCalc("neg")} className={Calc=="neg"?"d-btn neg-btn":"d-btn"}>-</div>
+              </div>
               <StyleSelect
               title="Sphere"
               options={getListSC("SPH")}  
@@ -354,11 +335,11 @@ if(!content||!List)
               options={getList("Axis")}
               action={(e) => handleTableChange("Laxis", e)}
               />
-              <StyleSelect
+              {/* <StyleSelect
               title="PD"
               options={getList("PDFar")}
               action={(e) => handleTableChange("Lpd", e)}
-              />
+              /> */}
               <StyleSelect
               title="Add"
               options={getList("ADD")}
@@ -383,10 +364,10 @@ if(!content||!List)
                   <p>{content.rData&&content.rData.axis}</p>
                   <span>Axis</span>
               </div>
-              <div className="fake-input">
+              {/* <div className="fake-input">
                   <p>{content.rData&&content.rData.pd}</p>
                   <span>PD</span>
-              </div>
+              </div> */}
               
               {RxStock=="rx"?
               <div className="fake-input">
@@ -395,6 +376,10 @@ if(!content||!List)
               </div>:<></>}
             </>:
             <>
+              <div className="calc-btn">
+                <div onClick={()=>setCalc("pos")} className={Calc=="pos"?"d-btn pos-btn":"d-btn"}>+</div>
+                <div onClick={()=>setCalc("neg")} className={Calc=="neg"?"d-btn neg-btn":"d-btn"}>-</div>
+              </div>
               <StyleSelect
               title="Sphere"
               options={getListSC("SPH")}
@@ -410,11 +395,11 @@ if(!content||!List)
               options={getList("Axis")}
               action={(e) => handleTableChange("Raxis", e)}
               />
-              <StyleSelect
+              {/* <StyleSelect
               title="PD"
               options={getList("PDFar")}
               action={(e) => handleTableChange("Rpd", e)}
-              />
+              /> */}
               <StyleSelect
               title="Add"
               options={getList("ADD")}

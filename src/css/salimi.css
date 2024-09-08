@@ -6451,13 +6451,44 @@ slide-toggle {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     direction: ltr;
     gap: 0.5rem;
     padding-inline: 1rem;
     margin-top: 1rem;
     p {
       margin: 0;
+      margin-right: 1rem;
+    }
+    .calc-btn{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .d-btn{
+        border: 1px solid silver;
+        box-shadow: 1px 1px 2px silver;
+        height: 18px;
+        margin: 3px 0;
+        width: 18px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 1.2rem;
+      }
+      .pos-btn{
+        border: 2px solid green !important;
+        color: green;
+      }
+      .neg-btn{
+        border: 2px solid red !important;
+        color: red;
+
+      }
+
     }
   }
 }
