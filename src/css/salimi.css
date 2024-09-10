@@ -6416,7 +6416,7 @@ slide-toggle {
 }
 /*End task*/
 /* lathe page */
-.lathe-page button {
+.lathe-page button :not(.MuiButtonBase-root) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6447,6 +6447,11 @@ slide-toggle {
     align-items: flex-start;
     justify-content: flex-start;
   }
+  .input-index-wrapper .d-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .input-index-wrapper {
     width: 100%;
     display: flex;
@@ -6472,9 +6477,7 @@ slide-toggle {
         margin: 3px 0;
         width: 18px;
         text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        
         cursor: pointer;
         font-weight: 400;
         font-size: 1.2rem;
