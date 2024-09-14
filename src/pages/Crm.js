@@ -5,6 +5,7 @@ import Column from '../modules/Crm/Column';
 import UpdateTaskStatus from '../modules/Crm/UpdateTaskStatus';
 import Cookies from 'universal-cookie';
 import errortrans from "../translate/error";
+import CrmTab from "../modules/Crm/CrmTab"
 const cookies = new Cookies();
 
 const initalDataStatic = {
@@ -38,6 +39,7 @@ const initalDataStatic = {
 }
 function CRM(props){
     const [boardArray,setBoardArray] = useState()
+    const [Crm,setCrm] = useState("orders")
     const token=cookies.get(env.cookieName)
     
     useEffect(()=>{
@@ -45,7 +47,7 @@ function CRM(props){
             method:'post',
             headers: {'Content-Type': 'application/json',
             "x-access-token":token&&token.token,"userId":token&&token.userId},
-            body:JSON.stringify({crmId:props.crm})
+            body:JSON.stringify({crmId:Crm})
           }
           //console.log(postOptions)
       fetch(env.siteApi + "/panel/crm/fetch-tasks",postOptions)
@@ -58,7 +60,7 @@ function CRM(props){
           console.log(error);
         }
       )
-    },[])
+    },[Crm])
     const direction = props.lang?props.lang.dir:errortrans.defaultDir;
     const lang = props.lang?props.lang.lang:errortrans.defaultLang;
     //console.log(taskList)
@@ -180,6 +182,7 @@ function CRM(props){
     }
     return(
     <div className="crm" style={{direction:"rtl"}}>
+        <CrmTab setCrm={setCrm}/>
         <div className='reyham-board board-list'>
             {boardArray?<DragDropContext
             onDragStart={DragStart}

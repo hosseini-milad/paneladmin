@@ -1,6 +1,5 @@
 .crm{
   max-width: 100%;
-  overflow: auto;
   max-height: calc(100vh - 160px);
 }
 .crm ul {
@@ -65,6 +64,9 @@ margin-left: auto;
   }
   .board-list {
     display: flex;
+    overflow: auto;
+    max-height: calc(100vh - 200px);
+
   }
   .board-item {
     width: 300px;
