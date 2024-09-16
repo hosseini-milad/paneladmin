@@ -278,7 +278,7 @@ if(!content||!List)
             </div>
           </div>
           <div className="image-wrapper">
-            <img src="../lathe-sample.jpeg" alt="Lenz" />
+            <img src="#" alt="product image" />
           </div>
         </div>
         
@@ -433,7 +433,7 @@ if(!content||!List)
           <div className="btn-wrapper">
             <ReactToPrint
             trigger={() => {
-              return <button className="submit">پزینت</button>;
+              return <button className="submit">پرینت</button>;
             }}
             content={() => contentRef}
             />

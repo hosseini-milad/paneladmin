@@ -6436,8 +6436,13 @@ slide-toggle {
     justify-content: center;
 
     img {
-      width: 75%;
+      width: 180px;
+      height: 180px;
       display: block;
+      border: 1px solid grey;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      text-align: center;
     }
   }
   .container {

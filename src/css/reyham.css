@@ -1248,4 +1248,7 @@ checkbox-container label {
     min-width:unset;
     width: 100%;
   }
+  .MuiInputBase-input{
+    direction: ltr;
+  }
 }
