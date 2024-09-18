@@ -23,7 +23,7 @@ function OrderTable(props){
             <i></i>
           </th>
           <th>
-            <p>{tabletrans.productName[lang]}</p>
+            {props.category=="Stock"?<p>{tabletrans.description[lang]}</p>:<p>{tabletrans.productName[lang]}</p>}
             <i></i>
           </th>
           <th>

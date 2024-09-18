@@ -76,9 +76,9 @@ function OrderTableRow(props){
                 
               </td>
               <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
-                <div className="listTd">{order.singleLens?
+               {category=="stock"?<div>{order.description}</div>:<div className="listTd">{order.singleLens?
                 order.singleLens.title:''}
-                </div>
+                </div>}
               </td>
               <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
                 <small></small>
