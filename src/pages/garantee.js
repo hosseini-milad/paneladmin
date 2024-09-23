@@ -278,7 +278,7 @@ if(!content||!List)
             </div>
           </div>
           <div className="image-wrapper">
-            <img src="#" alt="product image" />
+            <img src={env.siteApiUrl+(content.orderData&&content.orderData.stockFaktor&&content.orderData.stockFaktor[1].productDetail.imageUrl)} alt="product image" />
           </div>
         </div>
         
