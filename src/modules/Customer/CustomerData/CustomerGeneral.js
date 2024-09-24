@@ -101,6 +101,38 @@ function CustomerGeneral(props) {
       activity: formData.activity === "false" ? "true" : "false", // Toggle between "true" and "false"
     }));
   };
+  const Heasbfa = () => {
+    var postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({
+        id: userData._id,
+        hesabfa:"new",
+      }),
+    };
+    fetch(env.siteApi + "/panel/user/new-hesabfa", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          if (result.error) {
+            setError({ errorText: result.error, errorColor: "red" });
+            
+          }
+          if(result.hesabfa)
+          {
+            setError({ errorText: "در حسابفا ثبت شد", errorColor: "green" });
+          }
+          else console.log(result);
+        },
+        (error) => {
+          setError({ errorText: error, errorColor: "red" });
+        }
+      );
+  };
 
   if (!userData) return <div className="general-page">{env.loader}</div>;
   else
@@ -264,23 +296,8 @@ function CustomerGeneral(props) {
                 }))
               }
             />
-            <div className="dense-btn">
-              <label htmlFor="view">
-                {/* Text indicating the radio button */}
-                {formtrans.status[props.lang]}
-              </label>
-              <input
-                className="switch-input"
-                type="checkbox"
-                id="view"
-                defaultChecked={userData.active === true ? true : false}
-                onClick={activityStatusHandler}
-              />
-              <label
-                htmlFor="view"
-                className={true ? "switch-label" : "switch-label disable-label"}
-              ></label>
-            </div>
+            
+            
             <span style={{ whiteSpace: "pre-wrap" }}></span>
 
             <StyleInput
@@ -314,9 +331,10 @@ function CustomerGeneral(props) {
               title={formtrans.access[props.lang]}
               direction={props.direction}
               defaultValue={props.profile ? props.profile : ""}
-              class={"formInput"}
+              class={"formInput custome-input"}
               options={props.accessList || []}
               label={"profileName"}
+              
               action={(e) =>
                 setFormData((prevState) => ({
                   ...prevState,
@@ -324,6 +342,25 @@ function CustomerGeneral(props) {
                 }))
               }
             />
+            {!userData.cCode?<div className="save-btn active-btn" style={{margin:"15px"}} onClick={() => Heasbfa()}>
+              فعال سازی مشتری
+            </div>:<div className="dense-btn">
+              <label htmlFor="view">
+                {/* Text indicating the radio button */}
+                {formtrans.status[props.lang]}
+              </label>
+              <input
+                className="switch-input"
+                type="checkbox"
+                id="view"
+                defaultChecked={userData.active === true ? true : false}
+                onClick={activityStatusHandler}
+              />
+              <label
+                htmlFor="view"
+                className={true ? "switch-label" : "switch-label disable-label"}
+              ></label>
+            </div>}
             <span style={{ whiteSpace: "pre-wrap" }}></span>
 
             <div className="info-input">
@@ -385,6 +422,7 @@ function CustomerGeneral(props) {
             <></>
           )}
           <div className="create-btn-wrapper">
+            
             <div className="save-btn" onClick={() => saveChanges(false)}>
               {formtrans.saveChanges[props.lang]}
             </div>

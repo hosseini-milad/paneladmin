@@ -54,7 +54,7 @@ const PreviewStTable = (props) => {
                                 <td>{item.count}</td>
                                 <td>{normalPrice(item.price)}</td>
                                 <td></td>
-                                <td></td>
+                                <td>{normalPrice(item.totalPrice)}</td>
                             </tr>
                         ))}
                         <tr>

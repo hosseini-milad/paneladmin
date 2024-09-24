@@ -67,7 +67,8 @@ import PrintGuranteeRx from "./modules/Orders/printGuranteeRx";
 import PrintLabel from "./modules/Orders/printLabel";
 import PrintArea from "./modules/Orders/PrintArea";
 import PreviewRx from "./modules/Orders/orderPreview/PreViewRX";
-
+import message from "./pages/message"
+import Message from './pages/message';
 const cookies = new Cookies();
 const style = document.getElementById('style-direction');
 var lang = JSON.parse(localStorage.getItem(env.cookieLang));
@@ -100,6 +101,7 @@ root.render(
         <Route path="/crmlist/detail/:crmId" element={<Layout><CRMAdd lang={lang}/></Layout>}/>
 
 
+        <Route path="/messages" element={<Layout><Message lang={lang}/></Layout>}/>
         <Route path="/users" element={<Layout><Users lang={lang}/></Layout>}/>
         <Route path="/user" element={<Layout><AccessUser lang={lang}/></Layout>}/>
         <Route path="/newusers" element={<Layout><NewUsers lang={lang}/></Layout>}/>

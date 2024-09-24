@@ -278,7 +278,9 @@ if(!content||!List)
             </div>
           </div>
           <div className="image-wrapper">
-            <img src={env.siteApiUrl+(content.orderData&&content.orderData.stockFaktor&&content.orderData.stockFaktor[1].productDetail.imageUrl)} alt="product image" />
+            <img 
+            src={env.siteApiUrl+(content.orderData.stockFaktor&&content.orderData.stockFaktor[1]&&content.orderData.stockFaktor[1].productDetail?content.orderData.stockFaktor[1].productDetail.imageUrl:"")} 
+            alt="product image" />
           </div>
         </div>
         
@@ -412,14 +414,18 @@ if(!content||!List)
         <div className="info-container">
           
             
-            <TextField label="(به انگلیسی)نام مشتری" id="Customer"
+            {/* <TextField label="(به انگلیسی)نام مشتری" id="Customer"
                   value = {Customer?Customer:""}
                   onChange={(e)=>(regex.test(e.target.value)&&
                     e.target.value.length<19||e.target.value==='')&&
                     (setCustomer(e.target.value),console.log(e.target.value))}
                       variant="outlined"
-            />
+            /> */}
             
+            <div className="fake-input">
+                <p>{content.orderData.consumer?content.orderData.consumer:content.userData.cName}</p>
+                <span>نام مصرف کننده(به انگلیسی)</span>
+            </div>
             <div className="fake-input">
                 <p>{content.price&&content.price}</p>
                 <span>هزینه گارانتی به تومان</span>

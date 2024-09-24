@@ -159,6 +159,9 @@ textarea {
 .formInput {
   margin: 15px !important;
 }
+.custome-input{
+  width: 225px !important;
+}
 .footerFix {
   position: fixed;
   bottom: 0;

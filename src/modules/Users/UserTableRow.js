@@ -68,7 +68,7 @@ function UserTableRow(props){
             </td>
             <td>
               <div className="pen-status order-status">
-                <Status text={user.active === true ?"فعال":"قفل شده"} />
+                <Status text={user.active === true ?"فعال":"غیرفعال"} />
               </div>
             </td>
             <td>
