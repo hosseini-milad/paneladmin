@@ -4,7 +4,7 @@ import tabletrans from "../../translate/tables"
 function MessageTable(props){
   const message = props.message
   const lang=props.lang;
-  const [detail,showDetail] = useState(-1)
+  
     return(
         <table>
         <thead>

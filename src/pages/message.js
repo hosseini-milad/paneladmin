@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import env from "../env";
 import tabletrans from "../translate/tables";
-import messageTable from "../modules/message/messageTable";
+import MessageTable from "../modules/message/messageTable";
 import {
   getFiltersFromUrl,
   updateUrlWithFilters,
@@ -33,13 +33,16 @@ function Message(props) {
     const body = {
       offset: filters.offset || "0",
       pageSize: filters.pageSize || "10",
-      customer: filters.customer,
-      orderNo: filters.orderNo,
-      status: filters.status,
-      brand: filters.brand,
-      dateFrom: filters.date && filters.date.dateFrom,
-      dateTo: filters.date && filters.date.dateTo,
+      // customer: filters.customer,
+      // orderNo: filters.orderNo,
+      // status: filters.status,
+      // brand: filters.brand,
+      // dateFrom: filters.date && filters.date.dateFrom,
+      // dateTo: filters.date && filters.date.dateTo,
       access: "manager",
+      status:	"unread",
+      kind:"manager",
+      user:"true"
     };
     const postOptions = {
       method: "post",
@@ -51,7 +54,7 @@ function Message(props) {
       body: JSON.stringify(body),
     };
     console.log(postOptions);
-    fetch(env.siteApi + "/panel/product/list-brands", postOptions)
+    fetch(env.siteApi + "/setting/log", postOptions)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -65,12 +68,64 @@ function Message(props) {
         }
       );
   }, [filters]);
+  const updateUser=(userId,logId)=>{
+    const postOptions={
+        method:'post',
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token && token.token,
+          userId: token && token.userId,
+        },
+        body:JSON.stringify({id:userId,hesabfa:"new"})
+    }
+    const logOptions={
+        method:'post',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify({id:logId,status:"done",kind:token.access})
+        }
+    //console.log(logOptions)
+    fetch(env.siteApi + "/panel/user/new-hesabfa",postOptions)
+    .then(res => res.json())
+    .then(
+    (result) => {
+        result&&fetch(env.siteApi + "/setting/log/update",logOptions)
+        .then(res => res.json())
+        .then(
+        (result) => {
+            setTimeout(()=>window.location.reload(),1000)
+        }
+        )
+    },
+    (error) => {
+        console.log(error);
+    })
+    
+}
+const updateLog=(logId)=>{
+    const logOptions={
+        method:'post',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify({id:logId,status:"delete",kind:token.access})
+        }
+    fetch(env.siteApi + "/setting/log/update",logOptions)
+    .then(res => res.json())
+    .then(
+    (result) => {
+        setTimeout(()=>window.location.reload(),1000)
+    },
+    
+    (error) => {
+        console.log(error);
+    })
+}
+
   return (
     <div className="user" style={{ direction: direction }}>
       <div className="od-header">
         <div className="od-header-info">
           <div className="od-header-name">
-            <p>{tabletrans.message[lang]}</p>
+            <p>{tabletrans.message[lang]+"("+content.size+")"}</p>
+            
           </div>
         </div>
       </div>
@@ -80,7 +135,23 @@ function Message(props) {
           {loading ? (
             env.loader
           ) : (
-            <messageTable setFilters={setFilters} message={content} lang={lang} />
+            content.log&&content.log.map((item,i)=>(
+              <div className="message-wrapper" key={i}>
+                <div className="title">{(i+1)+" - "+item.title}</div>
+                <div className="description">{item.description}</div>
+                <div className="date">
+                  <span>{new Date(item.date).toLocaleTimeString('fa')}</span>
+                  <span>-</span>
+                  <span>{new Date(item.date).toLocaleDateString('fa')}</span>
+                  
+                  </div>
+                <div className="action">
+                  <button className="detail-btn" onClick={()=>window.location.href=("/customers/detail/"+item.user)}>جزئیات</button>
+                  <button className="active-btn" onClick={()=>updateUser(item.user,item._id)}>فعال سازی مشتری</button>
+                </div>
+                <i className="fa-solid fa-close close-btn" style={{color: "#ff0000",cursor: "pointer"}} onClick={()=>updateLog(item._id)}></i>
+              </div>
+            ))
           )}
         </div>
         <Paging

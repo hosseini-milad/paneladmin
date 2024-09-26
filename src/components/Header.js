@@ -62,7 +62,7 @@ const Header = (props)=>{
                 </a>
     </li>*/}
               <li className="nav-item d-flex align-items-center">
-                <a href="#" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="/messages" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="fa fa-bell cursor-pointer"></i>
                 </a>
                 <ul className="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">

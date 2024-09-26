@@ -795,7 +795,7 @@ const tabletrans ={
     },
     message:{
         english:"Message",
-        persian:"متن پیام"
+        persian:"پیام ها"
     },
     classManage:{
         english:"Class Manage",
