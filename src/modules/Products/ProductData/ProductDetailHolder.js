@@ -14,6 +14,7 @@ function ProductDetailHolder(props) {
   const lang = props.lang ? props.lang.lang : errortrans.defaultLang;
   const [error, setError] = useState({ errorText: "", errorColor: "brown" });
 
+  const [W8, setW8] = useState(0);
   const [content, setContent] = useState("");
   const [brand, setBrand] = useState("");
   const [filters, setFilters] = useState("");
@@ -98,7 +99,7 @@ function ProductDetailHolder(props) {
       );
   }, [productChange.category, content]);
   const saveProducts = (navigateBack) => {
-    //if(newCustomer) {
+    setW8(1)
     var postOptions = {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -121,11 +122,13 @@ function ProductDetailHolder(props) {
             );
           } else {
             setError({ errorText: result.success, errorColor: "green" });
+            window.location.href="/products/detail/"+result.result._id;
             if (navigateBack) {
               setTimeout(() => {
                 window.history.back();
               }, 2000);
             }
+            setW8(0)
           }
         },
         (error) => {
@@ -161,12 +164,14 @@ function ProductDetailHolder(props) {
             {/* <ProductPrice direction={direction} lang={lang} content={content} 
           productChange={productChange} setProductChange={setProductChange}/> */}
             <div className="create-btn-wrapper">
-              <div className="save-btn" onClick={() => saveProducts(false)}>
+              {W8?<div className="save-btn">
+                در حال پردازش ...
+              </div>:<><div className="save-btn" onClick={() => saveProducts(false)}>
                 {formtrans.saveChanges[lang]}
               </div>
               <div className="save-btn" onClick={() => saveProducts(true)}>
                 {formtrans.saveAndClose[lang]}
-              </div>
+              </div></>}
               <p>Publish</p>
               {/* <div className="save-btn" onClick={saveProducts}>
                 {formtrans.saveChanges[lang]}

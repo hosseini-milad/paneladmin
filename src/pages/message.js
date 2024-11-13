@@ -21,6 +21,7 @@ function Message(props) {
   const [content, setContent] = useState("");
   const [filters, setFilters] = useState(getFiltersFromUrl());
   const [loading, setLoading] = useState(0);
+  const [W8,setW8]=useState(0)
   const token = cookies.get(env.cookieName);
 
   function handleFilterChange(newFilters) {
@@ -69,6 +70,7 @@ function Message(props) {
       );
   }, [filters]);
   const updateUser=(userId,logId)=>{
+    setW8(1)
     const postOptions={
         method:'post',
         headers: {
@@ -92,7 +94,9 @@ function Message(props) {
         .then(res => res.json())
         .then(
         (result) => {
-            setTimeout(()=>window.location.reload(),1000)
+            
+            setTimeout(()=>window.location.reload(),500)
+            setW8(0)
         }
         )
     },
@@ -147,7 +151,7 @@ const updateLog=(logId)=>{
                   </div>
                 <div className="action">
                   <button className="detail-btn" onClick={()=>window.location.href=("/customers/detail/"+item.user)}>جزئیات</button>
-                  <button className="active-btn" onClick={()=>updateUser(item.user,item._id)}>فعال سازی مشتری</button>
+                  {W8?<button className="active-btn">در حال پردازش</button>:<button className="active-btn" onClick={()=>updateUser(item.user,item._id)}>فعال سازی مشتری</button>}
                 </div>
                 <i className="fa-solid fa-close close-btn" style={{color: "#ff0000",cursor: "pointer"}} onClick={()=>updateLog(item._id)}></i>
               </div>
