@@ -96,6 +96,18 @@ function BrandDetails(props){
                 ...prevState,
                 brandCode:e
               }))}/>
+          <StyleInput title={formtrans.purchaseContact[props.lang]} direction={props.direction} 
+              defaultValue={content?content.purchaseContact:''} class={"formInput"}
+              action={(e)=>props.setBrandChange(prevState => ({
+                ...prevState,
+                purchaseContact:e
+              }))}/>
+          <StyleInput title={formtrans.discountPerc[props.lang]} direction={props.direction} 
+              defaultValue={content?content.purchase:''} class={"formInput"}
+              action={(e)=>props.setBrandChange(prevState => ({
+                ...prevState,
+                purchase:e
+              }))}/>
           <div className='new-member'>
           <StyleSelect title={formtrans.factory[props.lang]} direction={props.direction} 
               //defaultValue={content?content.brandCode:''} class={"formInput"}

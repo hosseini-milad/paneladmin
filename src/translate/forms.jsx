@@ -67,6 +67,14 @@ const formtrans ={
         english: "Brand Code",
         persian: "کد برند"
     },
+    purchaseContact:{
+        english: "purchaseContact",
+        persian: "طرف حساب"
+    },
+    discountPerc:{
+        english: "discount Percent",
+        persian: "درصد تخفیف خرید"
+    },
     brandName:{
         english: "Brand Name",
         persian: "نام برند"
