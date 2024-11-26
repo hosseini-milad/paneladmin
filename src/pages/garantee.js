@@ -278,9 +278,10 @@ if(!content||!List)
             </div>
           </div>
           <div className="image-wrapper">
-            <img 
+            {(RxStock=="stock")&&(PageType!=="hand")?<img 
             src={env.siteApiUrl+(content.orderData.stockFaktor&&content.orderData.stockFaktor[1]&&content.orderData.stockFaktor[1].productDetail?content.orderData.stockFaktor[1].productDetail.imageUrl:"")} 
-            alt="product image" />
+            alt="product image" />:<img src="/img/brands/ESSENCE.svg"
+            alt="Rx"/>}
           </div>
         </div>
         
