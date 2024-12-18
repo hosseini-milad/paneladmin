@@ -151,6 +151,10 @@ const tabletrans ={
         english: "Products",
         persian: "محصولات"
     },
+    product:{
+        english: "Product",
+        persian: "محصول"
+    },
     edit:{
         english: "Edit",
         persian: "ویرایش"

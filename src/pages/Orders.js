@@ -76,7 +76,7 @@ function Orders(props){
         }
       );
   }, [filters]);
-  console.log(Accontent)
+  console.log(content)
   return (
     <div className="user" style={{ direction: direction }}>
       
@@ -121,6 +121,7 @@ function Orders(props){
           filters={filters}
           status={content.rxStatus}
           setFilters={setFilters}
+          size={content.size}
         />
         <OrderTab setFilters={setFilters} filters={filters} />
 

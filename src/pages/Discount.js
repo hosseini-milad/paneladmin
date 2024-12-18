@@ -7,12 +7,9 @@ import errortrans from "../translate/error";
 import env from "../env";
 import tabletrans from "../translate/tables";
 import DUserFilters from "../modules/Users/UserComponent/DUserFilters";
-import { TextField } from "@material-ui/core"
+import { TextField } from "@material-ui/core";
 import StyleInput from "../components/Button/Input";
 import StyleSelect from "../components/Button/AutoComplete";
-
-
-
 const cookies = new Cookies();
 
 function Users(props) {
@@ -22,20 +19,22 @@ function Users(props) {
   const [Dtable, setDtable] = useState(0);
   const [AddDiscount, setAddDiscount] = useState(0);
   const [RxStock, setRxstock] = useState(0);
-  const [offerStock,setOfferStock] = useState('')
+  const [offerStock, setOfferStock] = useState("");
   const [filters, setFilters] = useState(getFiltersFromUrl());
   const [loading, setLoading] = useState(0);
   const [SaveD, setSaveD] = useState(0);
-  const [Brand, setBrand] = useState('');
-  const [Material, setMaterial] = useState('');
-  const [DiscountPer, setDiscountPer] = useState('');
-  const [OfferId, setOfferId] = useState('');
+  const [Brand, setBrand] = useState("");
+  const [Material, setMaterial] = useState("");
+  const [Product, setProduct] = useState("");
+  const [DiscountPer, setDiscountPer] = useState("");
+  const [OfferId, setOfferId] = useState("");
   const [update, setUpdate] = useState(0);
-  const [offerParams,setOfferParams]= useState('')
-  const [OffType,setOffType]= useState('')
-  const [OffNum,setOffNum]= useState('')
-  const [OptionBrand,setOptionBrand]= useState('')
-  
+  const [offerParams, setOfferParams] = useState("");
+  const [OffType, setOffType] = useState("");
+  const [OffNum, setOffNum] = useState("");
+  const [OptionBrand, setOptionBrand] = useState("");
+  const [OptionProduct, setOptionProduct] = useState("");
+
   //console.log(Dtable)
   const token = cookies.get(env.cookieName);
   useEffect(() => {
@@ -107,7 +106,28 @@ function Users(props) {
       );
   }, [update]);
   useEffect(() => {
-    
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify(),
+    };
+    console.log(postOptions);
+    fetch(env.siteApi + "/panel/product/list-product", postOptions)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setTimeout(() => setOptionProduct(result), 200);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, [AddDiscount]);
+  useEffect(() => {
     const postOptions = {
       method: "post",
       headers: {
@@ -130,7 +150,6 @@ function Users(props) {
       );
   }, [AddDiscount]);
   useEffect(() => {
-    
     const postOptions = {
       method: "post",
       headers: {
@@ -138,10 +157,13 @@ function Users(props) {
         "x-access-token": token && token.token,
         userId: token && token.userId,
       },
-      body: JSON.stringify({category:"62e89544cffae602eb7213a2"}),
+      body: JSON.stringify({ category: "62e89544cffae602eb7213a2" }),
     };
     console.log(postOptions);
-    fetch("https://admin.mgmlens.com/api/panel/product/list-filter", postOptions)
+    fetch(
+      "https://admin.mgmlens.com/api/panel/product/list-filter",
+      postOptions
+    )
       .then((res) => res.json())
       .then(
         (result) => {
@@ -152,9 +174,10 @@ function Users(props) {
         }
       );
   }, [filters]);
-  console.log(Dtable)
-  useEffect(()=>{
-    setOfferStock('');
+  console.log(Dtable);
+  useEffect(() => {
+    setOfferStock("");
+    var body = RxStock == 2 ? { fromUser: Dtable } : { userId: Dtable };
     const postOptions = {
       method: "post",
       headers: {
@@ -162,15 +185,21 @@ function Users(props) {
         "x-access-token": token && token.token,
         userId: token && token.userId,
       },
-      body: JSON.stringify({userId:Dtable}),
 
-      
+      body: JSON.stringify(body),
     };
-    fetch(env.siteApi + (RxStock?"/product/list/offersstock":"/product/list/offers"), postOptions)
+    fetch(
+      env.siteApi +
+        (RxStock == 2
+          ? "/xtra/list-offer"
+          : RxStock == 1
+          ? "/product/list/offersstock"
+          : "/product/list/offers"),
+      postOptions
+    )
       .then((res) => res.json())
       .then(
         (result) => {
-          
           setTimeout(() => setOfferStock(result.offers), 200);
         },
         (error) => {
@@ -178,10 +207,10 @@ function Users(props) {
           console.log(error);
         }
       );
-  },[Dtable,RxStock,SaveD])
-  useEffect(()=>{
-    if(!filters.discount || filters.discount.length<2) return
-    setOfferStock('');
+  }, [Dtable, RxStock, SaveD]);
+  useEffect(() => {
+    if (!filters.discount || filters.discount.length < 2) return;
+    setOfferStock("");
     const postOptions = {
       method: "post",
       headers: {
@@ -189,15 +218,16 @@ function Users(props) {
         "x-access-token": token && token.token,
         userId: token && token.userId,
       },
-      body: JSON.stringify({type:filters.type,value:filters.discount}),
-
-      
+      body: JSON.stringify({ type: filters.type, value: filters.discount }),
     };
-    fetch(env.siteApi + (RxStock?"/panel/user/offerFind":"/panel/user/offerRXFind"), postOptions)
+    fetch(
+      env.siteApi +
+        (RxStock ? "/panel/user/offerFind" : "/panel/user/offerRXFind"),
+      postOptions
+    )
       .then((res) => res.json())
       .then(
         (result) => {
-          
           setTimeout(() => setContent(result), 200);
         },
         (error) => {
@@ -205,7 +235,7 @@ function Users(props) {
           console.log(error);
         }
       );
-  },[filters])
+  }, [filters]);
   // Function to get filters from URL
   function getFiltersFromUrl() {
     const searchParams = new URLSearchParams(window.location.search);
@@ -274,7 +304,7 @@ function Users(props) {
         }
       );
   };
-  const setOffer=()=>{
+  const setOffer = () => {
     const postOptions = {
       method: "post",
       headers: {
@@ -283,29 +313,25 @@ function Users(props) {
         userId: token && token.userId,
       },
       body: JSON.stringify({
-        userId:AddDiscount,
-        brandName:Brand,
-        discountPercent:DiscountPer+"%"
+        userId: AddDiscount,
+        brandName: Brand,
+        discountPercent: DiscountPer + "%",
       }),
-
-      
     };
     console.log(postOptions);
     fetch(env.siteApi + "/product/set/offers", postOptions)
       .then((res) => res.json())
       .then(
         (result) => {
-          
-          setTimeout(() => setSaveD(SaveD+1), 200);
+          setTimeout(() => setSaveD(SaveD + 1), 200);
         },
         (error) => {
           setLoading(0);
           console.log(error);
         }
       );
-
-  }
-  const setOfferS=()=>{
+  };
+  const setOfferS = () => {
     const postOptions = {
       method: "post",
       headers: {
@@ -314,32 +340,29 @@ function Users(props) {
         userId: token && token.userId,
       },
       body: JSON.stringify({
-        userId:AddDiscount,
-        brandName:Brand,
-        material:Material,
-        discountPercent:DiscountPer+"%"
+        userId: AddDiscount,
+        brandName: Brand,
+        material: Material,
+        discountPercent: DiscountPer + "%",
       }),
-
-      
     };
     console.log(postOptions);
     fetch(env.siteApi + "/product/set/stockoffers", postOptions)
       .then((res) => res.json())
       .then(
         (result) => {
-          setMaterial('')
-          setBrand('')
-          setDiscountPer('')
-          setTimeout(() => setSaveD(SaveD+1), 200);
+          setMaterial("");
+          setBrand("");
+          setDiscountPer("");
+          setTimeout(() => setSaveD(SaveD + 1), 200);
         },
         (error) => {
           setLoading(0);
           console.log(error);
         }
       );
-
-  }
-  const removeOffer=(OfferId)=>{
+  };
+  const setOfferA = () => {
     const postOptions = {
       method: "post",
       headers: {
@@ -347,64 +370,140 @@ function Users(props) {
         "x-access-token": token && token.token,
         userId: token && token.userId,
       },
-      body: JSON.stringify({offerCode:OfferId}),
-
-      
+      body: JSON.stringify({
+        fromUser: AddDiscount,
+        offerValue: DiscountPer,
+        sku: Product,
+      }),
     };
     console.log(postOptions);
-    fetch(env.siteApi + (RxStock?"/product/remove/offersstock":"/product/remove/offers"), 
-    postOptions)
+    fetch(env.siteApi + "/xtra/add-offer", postOptions)
       .then((res) => res.json())
       .then(
         (result) => {
-          
-          setTimeout(() => setSaveD(SaveD+1), 200);
+          setMaterial("");
+          setBrand("");
+          setProduct("")
+          setDiscountPer("");
+          setTimeout(() => setSaveD(SaveD + 1), 200);
         },
         (error) => {
           setLoading(0);
           console.log(error);
         }
       );
-
-  }
-  const materialOption = OptionBrand.materialList
+  };
+  const removeOffer = (OfferId) => {
+    const postOptions = {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token && token.token,
+        userId: token && token.userId,
+      },
+      body: JSON.stringify({ offerCode: OfferId }),
+    };
+    console.log(postOptions);
+    fetch(
+      env.siteApi +
+        (RxStock == 2
+          ? "/xtra/remove-offer"
+          : RxStock == 1
+          ? "/product/remove/offersstock"
+          : "/product/remove/offers"),
+      postOptions
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setTimeout(() => setSaveD(SaveD + 1), 200);
+        },
+        (error) => {
+          setLoading(0);
+          console.log(error);
+        }
+      );
+  };
+  const materialOption = OptionBrand.materialList;
   return (
-    <div className="user discount-page"  style={{ direction: direction }}>
-      {AddDiscount?<div className="add-discount">
-        <p className="close-discount-btn" onClick={()=>{setAddDiscount(0)}}>&#10006;</p>
-        <StyleSelect
-          title={tabletrans.brand[lang]}
-          class="filterComponent"
-          direction={direction}
-          action={(e)=>{setBrand(e.enTitle)}}
-          options={OptionBrand.filter}
-          label="enTitle"
-        />
-        {RxStock?<StyleSelect
-          title={tabletrans.material[lang]}
-          class="filterComponent"
-          direction={direction}
-          action={(e)=>{setMaterial(e)}}
-          options={materialOption.optionsP}
-          label="value"
-        />:<></>}
-        <StyleInput
-          title={tabletrans.discount[lang]}
-          direction={direction}
-          action={(e)=>{setDiscountPer(e)}}
-        />
-        {RxStock?<input className="add-discount-btn"  type="button" value="Stock اعمال تخفیف" onClick={()=>setOfferS()}
-            />:
-        <input className="add-discount-btn"  type="button" value="RX اعمال تخفیف" onClick={()=>setOffer()}
-            />}
-      </div>:<></>}
+    <div className="user discount-page" style={{ direction: direction }}>
+      {AddDiscount ? (
+        <div className="add-discount">
+          <p
+            className="close-discount-btn"
+            onClick={() => {
+              setAddDiscount(0);
+            }}
+          >
+            &#10006;
+          </p>
+          {RxStock == 2 ? (
+            <StyleSelect
+              title={tabletrans.product[lang]}
+              class="filterComponent"
+              direction={direction}
+              action={(e) => {
+                setProduct(e.sku);
+              }}
+              options={OptionProduct.filter}
+              label="title"
+            />
+          ) : (
+            <StyleSelect
+              title={tabletrans.brand[lang]}
+              class="filterComponent"
+              direction={direction}
+              action={(e) => {
+                setBrand(e.enTitle);
+              }}
+              options={OptionBrand.filter}
+              label="enTitle"
+            />
+          )}
+          {RxStock == 1 ? (
+            <StyleSelect
+              title={tabletrans.material[lang]}
+              class="filterComponent"
+              direction={direction}
+              action={(e) => {
+                setMaterial(e);
+              }}
+              options={materialOption && materialOption.optionsP}
+              label="value"
+            />
+          ) : (
+            <></>
+          )}
+          <StyleInput
+            title={tabletrans.discount[lang]}
+            direction={direction}
+            action={(e) => {
+              setDiscountPer(e);
+            }}
+          />
+
+          <input
+            className="add-discount-btn"
+            type="button"
+            value="اعمال تخفیف"
+            onClick={() => {
+              RxStock == 2
+                ? setOfferA()
+                : RxStock == 1
+                ? setOfferS()
+                : setOffer();
+            }}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
 
       <div className="od-header">
         <div className="od-header-info">
           <div className="od-header-name">
             <p>{tabletrans.discounts[lang]}</p>
           </div>
-          
         </div>
         <div class="search-wrapper">
           <DUserFilters
@@ -415,14 +514,11 @@ function Users(props) {
             profiles={content.profilesList}
             currentFilters={filters}
             updateUrlWithFilters={updateUrlWithFilters} // Pass the function as a prop
-
           />
-
         </div>
       </div>
       <div class="d-container">
         <div className="list-container discount-user-list">
-        
           <div className="grey"></div>
           <div className="user-list">
             <DUserTable
@@ -444,43 +540,76 @@ function Users(props) {
         <div className="list-container discount-list">
           <div className="table-tab">
             <nav className="slidemenu">
-
-              <input type="radio" name="slideItem" id="slide-item-1" className="slide-toggle" checked />
-              <label htmlFor="slide-item-1" onClick={()=>{setRxstock(0)}} className={RxStock===0?"sliderMenuSelect":"sliderMenu"}>
+              <input
+                type="radio"
+                name="slideItem"
+                id="slide-item-1"
+                className="slide-toggle"
+                checked
+              />
+              <label
+                htmlFor="slide-item-1"
+                onClick={() => {
+                  setRxstock(0);
+                }}
+                className={RxStock === 0 ? "sliderMenuSelect" : "sliderMenu"}
+              >
                 <span>RX</span>
                 <div className="sliderMenu"></div>
               </label>
-                    
-              <input type="radio" name="slideItem" id="slide-item-2" className="slide-toggle" />
-              <label htmlFor="slide-item-2" onClick={()=>{setRxstock(1)}} className={RxStock===1?"sliderMenuSelect":""}>
+
+              <input
+                type="radio"
+                name="slideItem"
+                id="slide-item-2"
+                className="slide-toggle"
+              />
+              <label
+                htmlFor="slide-item-2"
+                onClick={() => {
+                  setRxstock(1);
+                }}
+                className={RxStock === 1 ? "sliderMenuSelect" : ""}
+              >
                 <span>Stock</span>
                 <div className="sliderMenu"></div>
               </label>
-              <input type="radio" name="slideItem" id="slide-item-3" className="slide-toggle" />
-              <label htmlFor="slide-item-3" >
-                <span>Lenz</span>
+              <input
+                type="radio"
+                name="slideItem"
+                id="slide-item-3"
+                className="slide-toggle"
+              />
+              <label
+                htmlFor="slide-item-3"
+                onClick={() => {
+                  setRxstock(2);
+                }}
+                className={RxStock === 2 ? "sliderMenuSelect" : ""}
+              >
+                <span>Accessories</span>
                 <div className="sliderMenu"></div>
               </label>
-              <input type="radio" name="slideItem" id="slide-item-4" className="slide-toggle" />
+              {/* <input type="radio" name="slideItem" id="slide-item-4" className="slide-toggle" />
               <label htmlFor="slide-item-4" >
                 <span>Frame</span>
                 <div className="sliderMenu"></div>
-              </label>
-                    
-              
-              </nav>
-
+              </label> */}
+            </nav>
           </div>
-          {offerStock?<div className="user-list">
-            <DTable
-              
-              lang={props.lang}
-              offerStock={offerStock}
-              setSelectedUser={() => {}}
-              type={RxStock}
-              offerid={removeOffer}
-            />
-          </div>:<>{env.loader}</>}
+          {offerStock ? (
+            <div className="user-list">
+              <DTable
+                lang={props.lang}
+                offerStock={offerStock}
+                setSelectedUser={() => {}}
+                type={RxStock}
+                offerid={removeOffer}
+              />
+            </div>
+          ) : (
+            <>{env.loader}</>
+          )}
           <Paging
             content={content}
             setFilters={setFilters}
@@ -490,7 +619,6 @@ function Users(props) {
           />
         </div>
       </div>
-      
     </div>
   );
 }

@@ -113,6 +113,7 @@ function Products(props) {
           filters={filters}
           status={content.rxStatus}
           setFilters={setFilters}
+          size={content.size}
         />
         <ProductFilters
           lang={props.lang}

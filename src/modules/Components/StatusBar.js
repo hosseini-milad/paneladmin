@@ -28,6 +28,7 @@ function StatusBar(props){
     
 )},[props.filters])
   */
+    console.log(props)
     return(
         <div className="user-statue">
            <div className="statue-all statue-div" 
@@ -36,6 +37,7 @@ function StatusBar(props){
                 status:""
               }))}>
               <p>{statustrans["all"][lang]}</p>
+              <Status status={"all"} text={props.size} lang={lang}/>
             </div>
           {content&&content.map((status,i)=>(status.count?
             <div className="statue-all statue-div" key={i} 
