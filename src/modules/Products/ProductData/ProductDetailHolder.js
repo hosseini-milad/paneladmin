@@ -45,7 +45,7 @@ function ProductDetailHolder(props) {
             setCategory(result.categoryList);
             setBrand(result.brandList);
             setContent(result.filter);
-            setChangeFilters(result.filter&&result.filter.filters);
+            setChangeFilters(result.filter && result.filter.filters);
             setTimeout(
               () => setError({ errorText: "", errorColor: "brown" }),
               2000
@@ -99,7 +99,7 @@ function ProductDetailHolder(props) {
       );
   }, [productChange.category, content]);
   const saveProducts = (navigateBack) => {
-    setW8(1)
+    setW8(1);
     var postOptions = {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -122,13 +122,14 @@ function ProductDetailHolder(props) {
             );
           } else {
             setError({ errorText: result.success, errorColor: "green" });
-            window.location.href="/products/detail/"+result.result._id;
+            window.location.reload();
+
             if (navigateBack) {
               setTimeout(() => {
                 window.history.back();
               }, 2000);
             }
-            setW8(0)
+            setW8(0);
           }
         },
         (error) => {
@@ -164,14 +165,18 @@ function ProductDetailHolder(props) {
             {/* <ProductPrice direction={direction} lang={lang} content={content} 
           productChange={productChange} setProductChange={setProductChange}/> */}
             <div className="create-btn-wrapper">
-              {W8?<div className="save-btn">
-                در حال پردازش ...
-              </div>:<><div className="save-btn" onClick={() => saveProducts(false)}>
-                {formtrans.saveChanges[lang]}
-              </div>
-              <div className="save-btn" onClick={() => saveProducts(true)}>
-                {formtrans.saveAndClose[lang]}
-              </div></>}
+              {W8 ? (
+                <div className="save-btn">در حال پردازش ...</div>
+              ) : (
+                <>
+                  <div className="save-btn" onClick={() => saveProducts(false)}>
+                    {formtrans.saveChanges[lang]}
+                  </div>
+                  <div className="save-btn" onClick={() => saveProducts(true)}>
+                    {formtrans.saveAndClose[lang]}
+                  </div>
+                </>
+              )}
               <p>Publish</p>
               {/* <div className="save-btn" onClick={saveProducts}>
                 {formtrans.saveChanges[lang]}
