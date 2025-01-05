@@ -122,12 +122,13 @@ function ProductDetailHolder(props) {
             );
           } else {
             setError({ errorText: result.success, errorColor: "green" });
-            window.location.reload();
 
             if (navigateBack) {
               setTimeout(() => {
                 window.history.back();
               }, 2000);
+            } else {
+              window.location.reload();
             }
             setW8(0);
           }
