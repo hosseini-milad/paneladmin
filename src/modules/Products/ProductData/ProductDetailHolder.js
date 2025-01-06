@@ -126,7 +126,7 @@ function ProductDetailHolder(props) {
             if (navigateBack) {
               setTimeout(() => {
                 window.history.back();
-              }, 2000);
+              }, 1000);
             } else {
               window.location.reload();
             }
