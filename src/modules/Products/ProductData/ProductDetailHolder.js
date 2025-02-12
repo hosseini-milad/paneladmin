@@ -23,7 +23,7 @@ function ProductDetailHolder(props) {
   const [productChange, setProductChange] = useState("");
 
   useEffect(() => {
-    //if(url==="new")return
+    if (url === "new") return;
     var postOptions = {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -162,6 +162,7 @@ function ProductDetailHolder(props) {
               filters={filters}
               changeFilters={changeFilters}
               setChangeFilters={setChangeFilters}
+              url={url}
             />
             {/* <ProductPrice direction={direction} lang={lang} content={content} 
           productChange={productChange} setProductChange={setProductChange}/> */}
