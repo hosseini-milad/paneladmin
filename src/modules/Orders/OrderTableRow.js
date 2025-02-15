@@ -81,7 +81,7 @@ function OrderTableRow(props){
                 </div>}
               </td>
               <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
-                <small></small>
+                <small style={{whiteSpace:"nowrap",textAlign:"center"}}>{order.consumer}</small>
               </td>
               <td onClick={()=>{OpenPop((order.rxOrderNo)?order.rxOrderNo:order.stockOrderNo)}}>
                 <div className="cu-avatar">

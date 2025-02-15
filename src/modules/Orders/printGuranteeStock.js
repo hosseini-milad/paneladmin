@@ -105,7 +105,7 @@ function PrintGurantee(props){
             </tr>
             <tr>
               <td colSpan={5} className="padding-td">{orderInfo&&orderInfo.orderData.consumer?
-                orderInfo.orderData.consumer:UserInfo.cName}</td>
+                orderInfo.orderData.consumer:"MGM Lens"}</td>
             </tr>
           </tbody>
         </table>
