@@ -135,7 +135,9 @@ function Users(props) {
         "x-access-token": token && token.token,
         userId: token && token.userId,
       },
-      body: JSON.stringify(),
+      body: JSON.stringify({
+        pageSize: "0",
+      }),
     };
     console.log(postOptions);
     fetch(env.siteApi + "/panel/product/list-brands", postOptions)
@@ -383,7 +385,7 @@ function Users(props) {
         (result) => {
           setMaterial("");
           setBrand("");
-          setProduct("")
+          setProduct("");
           setDiscountPer("");
           setTimeout(() => setSaveD(SaveD + 1), 200);
         },

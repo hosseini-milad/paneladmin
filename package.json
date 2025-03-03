@@ -11,6 +11,7 @@
     "@mui/material": "^5.13.6",
     "@mui/styled-engine-sc": "^5.12.0",
     "@tinymce/tinymce-react": "^4.3.0",
+    "caniuse-lite": "^1.0.30001701",
     "chart.js": "^4.4.1",
     "dayjs": "^1.11.8",
     "install": "^0.13.0",
