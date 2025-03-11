@@ -81,14 +81,14 @@ function PrintGurantee(props) {
             <td>Add</td>
           </tr>
           <tr className="guranteeRow">
-            <td>{OrderRdetail && OrderRdetail.align}</td>
+            <td>{OrderRdetail && "R"}</td>
             <td>{OrderRdetail && OrderRdetail.sph}</td>
             <td>{OrderRdetail && OrderRdetail.cyl}</td>
             <td>{OrderRdetail && OrderRdetail.axis}</td>
             <td>{OrderRdetail && OrderRdetail.add}</td>
           </tr>
           <tr className="guranteeRow">
-            <td>{OrderLdetail && OrderLdetail.align}</td>
+            <td>{OrderLdetail && "L"}</td>
             <td>{OrderLdetail && OrderLdetail.sph}</td>
             <td>{OrderLdetail && OrderLdetail.cyl}</td>
             <td>{OrderLdetail && OrderLdetail.axis}</td>
