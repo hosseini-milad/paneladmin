@@ -29039,7 +29039,7 @@ pre[class*="language-"] {
   direction: ltr;
   background-color: white;
   margin-right: auto;
-  margin-left: 20px;
+  margin-left: 26px;
   padding-top: 15px;
 
   * {
@@ -29067,7 +29067,6 @@ pre[class*="language-"] {
   font-weight: 600;
   padding-block: 2px;
 }
-
 
 .barcodeNew img {
   width: 0.89in;
@@ -29142,7 +29141,7 @@ pre[class*="language-"] {
   direction: ltr;
   width: auto;
   padding: 2rem 3rem;
-  .actionBtn{
+  .actionBtn {
     display: flex;
   }
   .preview-btn {
@@ -29155,7 +29154,7 @@ pre[class*="language-"] {
     background-color: green;
     color: white;
   }
-  .cancel-btn{
+  .cancel-btn {
     background-color: red;
   }
 }
