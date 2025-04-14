@@ -23,7 +23,7 @@ function DTable(props) {
               <p>{tabletrans.product[lang]}</p>
               <i></i>
             </th>
-            
+
             <th>
               <p>{tabletrans.discount[lang]}</p>
               <i></i>
@@ -79,7 +79,7 @@ function DTable(props) {
                 setSelectedUser={props.setSelectedUser}
                 selectedUser={props.selectedUser}
                 type={props.type}
-                offerid={props.offerid}
+                removeOffer={props.removeOffer}
               />
             ))
           : ""}

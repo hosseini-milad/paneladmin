@@ -5,7 +5,8 @@ import Status from "../Components/Status";
 function DTableRow(props) {
   const activeAcc = props.index === props.detail;
   const user = props.user;
-  const product=user.product&&user.product
+  const product = user.product && user.product;
+  console.log(user);
   return (
     <>
       {props.type == 2 ? (
@@ -31,18 +32,20 @@ function DTableRow(props) {
             </div>
           </td>
 
-          <td style={{paddingInline:"0.5rem"}}>
-            <div className="cu-avatar" style={{minWidth:"90px"}}>
-              <p className="phone-num" style={{fontSize:"0.85rem"}}>{product&&product.title}</p>
+          <td style={{ paddingInline: "0.5rem" }}>
+            <div className="cu-avatar" style={{ minWidth: "90px" }}>
+              <p className="phone-num" style={{ fontSize: "0.85rem" }}>
+                {product && product.title}
+              </p>
             </div>
           </td>
-          
+
           <td>
             <div className="pen-status order-status">
-              <p>{user.offerValue+"%"}</p>
+              <p>{user.offerValue + "%"}</p>
             </div>
           </td>
-          <td onClick={() => props.offerid(user._id)}>
+          <td onClick={() => props.removeOffer(user._id)}>
             <i class="fa-solid fa-trash" style={{ color: "#dd0005" }}></i>
           </td>
         </tr>
@@ -88,7 +91,7 @@ function DTableRow(props) {
               <p>{user.discountPercent}</p>
             </div>
           </td>
-          <td onClick={() => props.offerid(user.offerCode)}>
+          <td onClick={() => props.removeOffer(user._id)}>
             <i class="fa-solid fa-trash" style={{ color: "#dd0005" }}></i>
           </td>
         </tr>

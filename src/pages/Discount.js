@@ -606,7 +606,7 @@ function Users(props) {
                 offerStock={offerStock}
                 setSelectedUser={() => {}}
                 type={RxStock}
-                offerid={removeOffer}
+                removeOffer={removeOffer}
               />
             </div>
           ) : (
